@@ -1,0 +1,19 @@
+table,th,td{
+	background:#e8f0f2;
+	text-align:left;
+	column-rule-color:
+}
+table tr td:first-child{
+	padding-left:30px;
+	padding-bottom: :20px;
+}
+#table1{
+	padding-bottom:50px;
+	padding-right: 20px;
+
+}
+#table2{
+	padding-bottom:50px;
+	padding-right: 50px;
+
+}
