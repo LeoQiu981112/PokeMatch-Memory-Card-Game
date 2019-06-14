@@ -57,8 +57,6 @@ app.get('/users', function(req, res){
   for(var row in results){
     //type string
     console.log(results[row]);
-    var x=row;
-    console.log(typeof row);
   }
     
   });
