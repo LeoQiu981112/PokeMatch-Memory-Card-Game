@@ -1,18 +1,20 @@
 
 const express = require('express')
 const path = require('path')
-const PORT = process.env.PORT || 7000
+const PORT = process.env.PORT 
 const app = express();
 const { Pool } = require('pg');
-var pool = new Pool({
-  user: 'postgres',
-  password: '123456',
-  host: 'localhost',
-  database: 'test'
-});
 // var pool = new Pool({
-//   connectionString : process.env.DATABASE_URL
-// })
+//   user: 'postgres',
+//   password: '123456',
+//   host: 'localhost',
+//   database: 'test'
+// });
+
+var pool = new Pool({
+  connectionString : process.env.DATABASE_URL
+})
+
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
@@ -46,76 +48,80 @@ app.get('/users', function(req, res){
     //return console.error(error);
     console.log("no work1!");
   }
-    var results = result;
-    console.log(result.rows);
-
+    var results=result.rows;
+    // for(var i=0;i<result.length;i++){
+    //   var row=results.item(i);
+    //   console.log(row);
+    // }
+    //console.log(result.rows);
+  for(var row in results){
+    //type string
+    console.log(results[row]);
+    var x=row;
+    console.log(typeof row);
+  }
+    
   });
+
+
 
   //test insert, the  entries can be replace by elements pointed to by html ids.   
-  var insert = "insesrt into students values (" + "'" + "4"      + "'" + "," 
-                                                + "'" + "lisa"   + "'" + "," 
-                                                + "'" + "chen"   + "'" + "," 
-                                                + "'" + "180"    + "'" + "," 
-                                                + "'" + "36"     + "'" + "," 
-                                                + "'" + "yellow" + "'" + "," 
-                                                + "'" + "3.5"    + "'" 
-                                                + ")"     
-                                                + ";"  ;
-  console.log(insert);
+  // var insert = "insert into students values ( " + "'" + "4"      + "'" + "," 
+  //                                               + "'" + "lisa"   + "'" + "," 
+  //                                               + "'" + "chen"   + "'" + "," 
+  //                                               + "'" + "180"    + "'" + "," 
+  //                                               + "'" + "36"     + "'" + "," 
+  //                                               + "'" + "yellow" + "'" + "," 
+  //                                               + "'" + "3.5"    + "'" 
+  //                                               + ")"     
+  //                                               + ";"  ;
+  // console.log(insert);
 
-  pool.query(insert, function(error, result){
-  if(error) {
-    //return console.error(error);
-    console.log("insert fail!");
-  }
+  // pool.query(insert, function(error, result){
+  // if(error) {
+  //   //return console.error(error);
+  //   console.log("insert fail!");
+  // }
 
-  var results = result;
-  console.log("insesrt success!");
-  });
+  // var results = result;
+  // //console.log("insesrt success!");
+  // });
 
-  var  id_cond="";   
-  var  fn_cond="";
-  var  ln_cond="";
-  var  ht_cond="";
-  var  wt_cond="";
-  var  hc_cond="";
-  var gpa_cond="";
-
-
-  // if element from html !=NULL  
-  //   if ( x == null || x == "" ) {
-
-  //else encapsulatei whth "'"   "'"
-  //else
-
-  var remove = "DELETE FROM students where"    + "id = " + ""
-                                               + "'" + "lisa"   + "'" + "," 
-                                               + "'" + "chen"   + "'" + "," 
-                                               + "'" + "180"    + "'" + "," 
-                                               + "'" + "36"     + "'" + "," 
-                                               + "'" + "yellow" + "'" + "," 
-                                               + "'" + "3.5"    + "'" 
-                                               + ")"     
-                                               + ";"  ;
+  // var  id_cond="";
+  // var  fn_cond="";
+  // var  ln_cond="";
+  // var  ht_cond="";
+  // var  wt_cond="";
+  // var  hc_cond="";
+  // var gpa_cond="";
+  // var remove = "DELETE FROM students where"    + "id = " + ""
+  //                                              + "'" + "lisa"   + "'" + "," 
+  //                                              + "'" + "chen"   + "'" + "," 
+  //                                              + "'" + "180"    + "'" + "," 
+  //                                              + "'" + "36"     + "'" + "," 
+  //                                              + "'" + "yellow" + "'" + "," 
+  //                                              + "'" + "3.5"    + "'" 
+  //                                              + ")"     
+  //                                              + ";"  ;
 
 
 
-  var  id_cond1="";
-  var  fn_cond1="";
-  var  ln_cond1="";
-  var  ht_cond1="";
-  var  wt_cond1="";
-  var  hc_cond1="";
-  var gpa_cond1="";
-  var modify = "insesrt into students values (" + "'" + "4"      + "'" + "," 
-                                                  + "'" + "lisa"   + "'" + "," 
-                                                  + "'" + "chen"   + "'" + "," 
-                                                  + "'" + "180"    + "'" + "," 
-                                                  + "'" + "36"     + "'" + "," 
-                                                  + "'" + "yellow" + "'" + "," 
-                                                  + "'" + "3.5"    + "'" 
-                                                  + ")"     
-                                                  + ";"  ;
+  // var  id_cond1="";
+  // var  fn_cond1="";
+  // var  ln_cond1="";
+  // var  ht_cond1="";
+  // var  wt_cond1="";
+  // var  hc_cond1="";
+  // var gpa_cond1="";
+  // var modify = "insesrt into students values (" + "'" + "4"      + "'" + "," 
+  //                                                 + "'" + "lisa"   + "'" + "," 
+  //                                                 + "'" + "chen"   + "'" + "," 
+  //                                                 + "'" + "180"    + "'" + "," 
+  //                                                 + "'" + "36"     + "'" + "," 
+  //                                                 + "'" + "yellow" + "'" + "," 
+  //                                                 + "'" + "3.5"    + "'" 
+  //                                                 + ")"     
+  //                                                 + ";"  ;
 
 //UPDATE students SET weight =100,height=20 WHERE id=1;
 
