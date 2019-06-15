@@ -21,7 +21,7 @@ app.use(express.urlencoded({extended:false}));
 
 
 
-app.get('/users', function(req, res){
+app.get('/insert', function(req, res){
 
   // pool.query("select * from students", function(error, result){
   // if(error) {
