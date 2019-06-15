@@ -18,25 +18,6 @@ var pool = new Pool({
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
-app.post('/loginnn', function(req, res){
-  // request body info
-  console.log(req.body);
-  // validate user
-  // respond
-})
-app.post('/deleteUser', (req, res) => {
-  // req.body.uid
-  // delete the user with uid
-  res.redirect('/');
-});
-app.delete('/user/:id', (req, res) => {
-  console.log(req.params.id)
-  // delete the user with id
-});
-app.set('views', path.join(__dirname, 'views'))
-app.set('view engine', 'ejs')
-app.get('/', (req, res) => res.render('pages/index'))
-
 
 
 
@@ -60,6 +41,37 @@ app.get('/users', function(req, res){
   }
     
   });
+
+
+
+
+
+
+
+
+
+
+
+
+
+app.post('/deleteUser', (req, res) => {
+  // req.body.uid
+  // delete the user with uid
+  res.redirect('/');
+});
+
+
+app.delete('/user/:id', (req, res) => {
+  console.log(req.params.id)
+  // delete the user with id
+});
+app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'ejs')
+app.get('/', (req, res) => res.render('pages/index'))
+
+
+
+
 
 
 
