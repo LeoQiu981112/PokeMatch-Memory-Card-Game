@@ -3,6 +3,3 @@
 // })
 
 
-function myFunction(){
-	window.location="http://localhost:5000/insert";
-}

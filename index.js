@@ -4,6 +4,8 @@ const path = require('path')
 const PORT = process.env.PORT 
 const app = express();
 const { Pool } = require('pg');
+var bodyParser = require('body-parser');
+
 // var pool = new Pool({
 //   user: 'postgres',
 //   password: '123456',
@@ -18,56 +20,174 @@ var pool = new Pool({
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
+app.use(bodyParser.urlencoded({ extended: true })); 
 
 
 
-app.get('/insert', function(req, res){
-    
-  pool.query("select * from students", function(error, result){
+app.post('/insert', function(req, res){
+
+//   pool.query("select * from students", function(error, result){
+//   if(error) {
+//     //return console.error(error);
+//     console.log("no work1!");
+//   }
+//     console.log("IT WORKED!!!");
+//     var results=result.rows;
+//     console.log(results);
+
+// })
+//test insert, the  entries can be replace by elements pointed to by html ids.   
+
+var id1=req.body.id1;
+
+var fn1=req.body.fn1;
+
+var ln1=req.body.ln1;
+
+var w1=req.body.w1;
+
+var h1=req.body.h1;
+
+var hc1=req.body.hc1;
+
+var gpa1=req.body.gpa1;
+
+  var insert = "insert into students values ( " +        id1          + "," 
+                                                + "'" +  fn1    + "'" + "," 
+                                                + "'" +  ln1    + "'" + "," 
+                                                +        w1           + "," 
+                                                +        h1           + "," 
+                                                + "'" +  hc1    + "'" + "," 
+                                                +        gpa1      
+                                                + ")"     
+                                                + ";"  ;
+  console.log(insert);
+
+  pool.query(insert, function(error, result){
   if(error) {
     //return console.error(error);
-    console.log("no work1!");
+    console.log("insert fail!");
   }
-    console.log("IT WORKED!!!");
+  console.log("insert success");
+  var results = result.rows;
+  console.log(results);
+  //console.log("insesrt success!");
+  })
+
+
+   res.redirect('http://localhost:5000/main.html');
+
+});
+
+
+
+app.post('/remove', function(req, res){
+
+  var id3=req.body.id3;
+
+  var remove = "delete from students where id =" +        id3  
+                                                 + ";" ;   
+  console.log(remove);
+  pool.query(remove, function(error, result){
+  if(error) {
+    //return console.error(error);
+    console.log("remove failed!");
+  }
+  else{
     var results=result.rows;
-    // for(var i=0;i<result.length;i++){
-    //   var row=results.item(i);
-    //   console.log(row);
-    // }
-    //console.log(result.rows);
+  } 
   console.log(results);
 
 })
 
-  //res.redirect('http://localhost:5000');
+  res.redirect('http://localhost:5000/main.html');
+
+});
+
+
+
+
+app.post('/modify', function(req, res){
+var id2=req.body.id2;
+
+var fn2=req.body.fn2;
+
+var ln2=req.body.ln2;
+
+var w2=req.body.w2;
+
+var h2=req.body.h2;
+
+var hc2=req.body.hc2;
+
+var gpa2=req.body.gpa2;
+
+var fp="update students set ";
+
+var sp= " where id = " + id2 + ";";
+
+var tmp;
+if(fn2){
+  tmp= fp + "firstname = " + "'" + fn2 + "'" + sp;
+  pool.query(tmp, function(error, result){
+  if(error) {
+    console.log("mod fail!");
+  }
+  })
+}
+
+if(ln2){
+
+  tmp= fp + "lastname = " + "'" + ln2 + "'" + sp;
+  pool.query(tmp, function(error, result){
+  if(error) {
+    console.log("mod fail!");
+  }
+  })
+}
+
+if(w2){
+  tmp= fp + "weight = " + w2 + sp;
+  pool.query(tmp, function(error, result){
+  if(error) {
+    console.log("mod fail!");
+  }
+  })
+}
+
+if(h2){
+  tmp= fp + "height = " + h2 + sp;
+  pool.query(tmp, function(error, result){
+  if(error) {
+    console.log("mod fail!");
+  }
+  })
+}
+
+if(hc2){
+
+  tmp= fp + "hair_colour = " + "'"+ hc2 + "'" + sp;
+  pool.query(tmp, function(error, result){
+  if(error) {
+    console.log("mod fail!");
+  }
+  })
+}
+
+if(gpa2){
+  tmp= fp + "gpa = " + gpa2 + sp;
+  pool.query(tmp, function(error, result){
+  if(error) {
+    console.log("mod fail!");
+  }
+  })
+}
+
+  res.redirect('http://localhost:5000/main.html');
 
 });
 //-----
-  //test insert, the  entries can be replace by elements pointed to by html ids.   
-
-
-
-  // var insert = "insert into students values ( " +        "10"           + "," 
-  //                                               + "'" + "dog"   + "'" + "," 
-  //                                               + "'" + "cat"   + "'" + "," 
-  //                                               +       "100"          + "," 
-  //                                               +       "10"           + "," 
-  //                                               + "'" + "blue" + "'" + "," 
-  //                                               +       "3.7"      
-  //                                               + ")"     
-  //                                               + ";"  ;
-  // console.log(insert);
-
-  // pool.query(insert, function(error, result){
-  // if(error) {
-  //   //return console.error(error);
-  //   console.log("insert fail!");
-  // }
-
-  // var results = result.rows;
-  // console.log(results);
-  // //console.log("insesrt success!");
-  // });
+  
 
 
 

@@ -5,66 +5,83 @@
 <link rel="stylesheet" type="text/css" href="main.css">
 <script type="text/javascript" src="main.js"></script>
 
+
 </head>
 <body>
 
-<h1>Historgram Generator</h1>
+<h1>Student Database</h1>
 
-<table cellpadding="7" cellspacing="5px" style="margin-right:20px" align="left" id="table1">
-		<tr>
-			<th style="color: #D8000D" colspan="2">Lower bounds</th>
-		</tr>
-		<tr>
-			<td width="30%" >C1</td>
-			<td width="40%"><input type="string" id="C1" value="test1" style="width:100px;height:40px;text-align:right"/></td>
-		</tr>
-		<tr>
-			<td>C2</td>
-			<td><input type="string" id="C2" value="test2" style="width:100px;height:40px;text-align:right"/></td>
-		</tr>
-		<tr>
-			<td>C3</td>
-			<td><input type="string" id="C3" value="test2" style="width:100px;height:40px;text-align:right"/></td>
-		</tr>
-		<tr>
-			<td>C4</td>
-			<td><input type="string" id="C4" value="test2" style="width:100px;height:40px;text-align:right"/></td>
-		</tr>
-		<tr>
-			<td>C5</td>
-			<td><input type="string" id="C5" value="test2" style="width:100px;height:40px;text-align:right"/></td>
-		</tr>
-		<tr>
-			<td>C6</td>
-			<td><input type="string" id="C6" value="test2" style="width:100px;height:40px;text-align:right"/></td>
-		</tr>
-		<tr>
-			<td>C7</td>
-			<td><input type="string" id="C2" value="test2" style="width:100px;height:40px;text-align:right"/></td>
-		</tr>
+<div id="insert">
+    <h1>insert</h1>
+    <form action="/insert" method="post" >
+
+            <label for="id1">ID:</label>
+            <input type="text" id="id1" placeholder="Enter ID" name="id1"/><br>
+
+            <label for="fn1">first name:</label>
+            <input type="text" id="fn1" placeholder="Enter first name" name="fn1" /><br>
+
+            <label for="ln1">last name:</label>
+            <input type="text" id="ln1" placeholder="Enter last name" name="ln1"/><br>
+
+            <label for="w1">weight:</label>
+            <input type="text" id="w1" placeholder="Enter weight" name="w1" /><br>
+
+            <label for="h1">height:</label>
+            <input type="text" id="h1" placeholder="Enter height" name="h1"/><br>
+
+            <label for="ln1">hair_colour:</label>
+            <input type="text" id="hc1" placeholder="Enter hair colour" name="hc1" /><br>
+
+            <label for="gpa1">gpa:</label>
+            <input type="float" id="gpa1" placeholder="Enter gpa" name="gpa1"/><br>
+
+            <input type="submit" value="insert" />
+    </form>
+</div>
 
 
 
-	</table>
 
+<div id="modify">
+    <h1>modify</h1>
+    <form action="/modify" method="post" >
 
+            <label for="id2">ID:</label>
+            <input type="text" id="id2" placeholder="Enter ID" name="id2"/><br>
 
-<table cellpadding="9"  id="table2">
-		<tr>
-			<th style="color: #D8000D" colspan="2">Histogram</th>
-		</tr>
-		<tr>
-			<td width="60%">result1</td>
-			<td id="R1"><td>
-		</tr>
+            <label for="fn2">first name:</label>
+            <input type="text" id="fn2" placeholder="Enter first name" name="fn2" /><br>
 
-		<tr>
-			<td width="60%">123451</td>
-			<td id="R2"><td>
-		</tr>
-		
-	</table>
-	<td><button onclick="myFunction()">Calculate</button></td>
+            <label for="ln2">last name:</label>
+            <input type="text" id="ln2" placeholder="Enter last name" name="ln2" /><br>
+
+            <label for="w2">weight:</label>
+            <input type="text" id="w2" placeholder="Enter weight" name="w2" /><br>
+
+            <label for="h2">height:</label>
+            <input type="text" id="h2" placeholder="Enter height" name="h2"/><br>
+
+            <label for="ln2">hair_colour:</label>
+            <input type="text" id="hc2" placeholder="Enter hair colour" name="hc2"/><br>
+
+            <label for="gpa2">gpa:</label>
+            <input type="float" id="gpa2" placeholder="Enter gpa" name="gpa2"/><br>
+
+            <input type="submit" value="modify" />
+    </form>
+</div>
+
+<div id="remove">
+    <h1>remove by ID</h1>
+    <form action="/remove" method="post" >
+
+            <label for="id3">ID to remove:</label>
+            <input type="text" id="id3" placeholder="Enter ID" name="id3"/><br>
+            <input type="submit" value="remove" />
+    </form>
+</div>
+
 </body>
 </html>
 
