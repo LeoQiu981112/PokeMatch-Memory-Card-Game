@@ -75,8 +75,8 @@ var gpa1=req.body.gpa1;
   })
 
 
-   res.redirect('http://localhost:5000/main.html');
-
+  //res.redirect('http://localhost:5000/main.html');
+res.redirect('https://stark-spire-21434.herokuapp.com/main.html');
 });
 
 
@@ -100,7 +100,7 @@ app.post('/remove', function(req, res){
 
 })
 
-  res.redirect('http://localhost:5000/main.html');
+res.redirect('https://stark-spire-21434.herokuapp.com/main.html');
 
 });
 
@@ -183,7 +183,7 @@ if(gpa2){
   })
 }
 
-  res.redirect('http://localhost:5000/main.html');
+res.redirect('https://stark-spire-21434.herokuapp.com/main.html');
 
 });
 //-----
@@ -227,48 +227,6 @@ app.get('/', (req, res) => res.render('pages/index'))
 
 
 
-
-
-
-
-
-  // var  id_cond="";
-  // var  fn_cond="";
-  // var  ln_cond="";
-  // var  ht_cond="";
-  // var  wt_cond="";
-  // var  hc_cond="";
-  // var gpa_cond="";
-  // var remove = "DELETE FROM students where"    + "id = " + ""
-  //                                              + "'" + "lisa"   + "'" + "," 
-  //                                              + "'" + "chen"   + "'" + "," 
-  //                                              + "'" + "180"    + "'" + "," 
-  //                                              + "'" + "36"     + "'" + "," 
-  //                                              + "'" + "yellow" + "'" + "," 
-  //                                              + "'" + "3.5"    + "'" 
-  //                                              + ")"     
-  //                                              + ";"  ;
-
-
-
-  // var  id_cond1="";
-  // var  fn_cond1="";
-  // var  ln_cond1="";
-  // var  ht_cond1="";
-  // var  wt_cond1="";
-  // var  hc_cond1="";
-  // var gpa_cond1="";
-  // var modify = "insesrt into students values (" + "'" + "4"      + "'" + "," 
-  //                                                 + "'" + "lisa"   + "'" + "," 
-  //                                                 + "'" + "chen"   + "'" + "," 
-  //                                                 + "'" + "180"    + "'" + "," 
-  //                                                 + "'" + "36"     + "'" + "," 
-  //                                                 + "'" + "yellow" + "'" + "," 
-  //                                                 + "'" + "3.5"    + "'" 
-  //                                                 + ")"     
-  //                                                 + ";"  ;
-
-//UPDATE students SET weight =100,height=20 WHERE id=1;
 
 
 
