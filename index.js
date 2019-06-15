@@ -21,28 +21,57 @@ app.use(express.urlencoded({extended:false}));
 
 
 
-
 app.get('/users', function(req, res){
 
-  pool.query("select * from students", function(error, result){
+  // pool.query("select * from students", function(error, result){
+  // if(error) {
+  //   //return console.error(error);
+  //   console.log("no work1!");
+  // }
+  //   console.log("IT WORKED!!!");
+  //   var results=result.rows;
+  //   // for(var i=0;i<result.length;i++){
+  //   //   var row=results.item(i);
+  //   //   console.log(row);
+  //   // }
+  //   //console.log(result.rows);
+  // for(var row in results){
+  //   //type string
+  //   console.log(results[row]);
+  // }
+//-----
+  //test insert, the  entries can be replace by elements pointed to by html ids.   
+  var insert = "insert into students values ( " + "'" + "4"      + "'" + "," 
+                                                + "'" + "lisa"   + "'" + "," 
+                                                + "'" + "chen"   + "'" + "," 
+                                                + "'" + "180"    + "'" + "," 
+                                                + "'" + "36"     + "'" + "," 
+                                                + "'" + "yellow" + "'" + "," 
+                                                + "'" + "3.5"    + "'" 
+                                                + ")"     
+                                                + ";"  ;
+  console.log(insert);
+
+  pool.query(insert, function(error, result){
   if(error) {
     //return console.error(error);
-    console.log("no work1!");
+    console.log("insert fail!");
   }
-    var results=result.rows;
-    // for(var i=0;i<result.length;i++){
-    //   var row=results.item(i);
-    //   console.log(row);
-    // }
-    //console.log(result.rows);
-  for(var row in results){
-    //type string
-    console.log(results[row]);
-  }
-    
+
+  var results = result.rows;
+  console.log(results);
+  //console.log("insesrt success!");
   });
 
 
+
+
+
+
+
+  });
+
+//--------
 
 
 
@@ -75,27 +104,7 @@ app.get('/', (req, res) => res.render('pages/index'))
 
 
 
-  //test insert, the  entries can be replace by elements pointed to by html ids.   
-  // var insert = "insert into students values ( " + "'" + "4"      + "'" + "," 
-  //                                               + "'" + "lisa"   + "'" + "," 
-  //                                               + "'" + "chen"   + "'" + "," 
-  //                                               + "'" + "180"    + "'" + "," 
-  //                                               + "'" + "36"     + "'" + "," 
-  //                                               + "'" + "yellow" + "'" + "," 
-  //                                               + "'" + "3.5"    + "'" 
-  //                                               + ")"     
-  //                                               + ";"  ;
-  // console.log(insert);
 
-  // pool.query(insert, function(error, result){
-  // if(error) {
-  //   //return console.error(error);
-  //   console.log("insert fail!");
-  // }
-
-  // var results = result;
-  // //console.log("insesrt success!");
-  // });
 
   // var  id_cond="";
   // var  fn_cond="";
@@ -139,11 +148,6 @@ app.get('/', (req, res) => res.render('pages/index'))
 
 
 
-
-
-
-
-});
 
 
 
