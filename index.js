@@ -41,13 +41,13 @@ app.get('/users', function(req, res){
   // }
 //-----
   //test insert, the  entries can be replace by elements pointed to by html ids.   
-  var insert = "insert into students values ( " +        "4"           + "," 
-                                                + "'" + "lisa"   + "'" + "," 
-                                                + "'" + "chen"   + "'" + "," 
-                                                +       "180"          + "," 
-                                                +       "36"           + "," 
-                                                + "'" + "yellow" + "'" + "," 
-                                                +       "3.5"      
+  var insert = "insert into students values ( " +        "10"           + "," 
+                                                + "'" + "dog"   + "'" + "," 
+                                                + "'" + "cat"   + "'" + "," 
+                                                +       "100"          + "," 
+                                                +       "10"           + "," 
+                                                + "'" + "blue" + "'" + "," 
+                                                +       "3.7"      
                                                 + ")"     
                                                 + ";"  ;
   console.log(insert);
