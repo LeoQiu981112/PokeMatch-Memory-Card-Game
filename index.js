@@ -22,46 +22,52 @@ app.use(express.urlencoded({extended:false}));
 
 
 app.get('/insert', function(req, res){
-
-  // pool.query("select * from students", function(error, result){
-  // if(error) {
-  //   //return console.error(error);
-  //   console.log("no work1!");
-  // }
-  //   console.log("IT WORKED!!!");
-  //   var results=result.rows;
-  //   // for(var i=0;i<result.length;i++){
-  //   //   var row=results.item(i);
-  //   //   console.log(row);
-  //   // }
-  //   //console.log(result.rows);
-  // for(var row in results){
-  //   //type string
-  //   console.log(results[row]);
-  // }
-//-----
-  //test insert, the  entries can be replace by elements pointed to by html ids.   
-  var insert = "insert into students values ( " +        "10"           + "," 
-                                                + "'" + "dog"   + "'" + "," 
-                                                + "'" + "cat"   + "'" + "," 
-                                                +       "100"          + "," 
-                                                +       "10"           + "," 
-                                                + "'" + "blue" + "'" + "," 
-                                                +       "3.7"      
-                                                + ")"     
-                                                + ";"  ;
-  console.log(insert);
-
-  pool.query(insert, function(error, result){
+    
+  pool.query("select * from students", function(error, result){
   if(error) {
     //return console.error(error);
-    console.log("insert fail!");
+    console.log("no work1!");
   }
-
-  var results = result.rows;
+    console.log("IT WORKED!!!");
+    var results=result.rows;
+    // for(var i=0;i<result.length;i++){
+    //   var row=results.item(i);
+    //   console.log(row);
+    // }
+    //console.log(result.rows);
   console.log(results);
-  //console.log("insesrt success!");
-  });
+
+})
+
+  //res.redirect('http://localhost:5000');
+
+});
+//-----
+  //test insert, the  entries can be replace by elements pointed to by html ids.   
+
+
+
+  // var insert = "insert into students values ( " +        "10"           + "," 
+  //                                               + "'" + "dog"   + "'" + "," 
+  //                                               + "'" + "cat"   + "'" + "," 
+  //                                               +       "100"          + "," 
+  //                                               +       "10"           + "," 
+  //                                               + "'" + "blue" + "'" + "," 
+  //                                               +       "3.7"      
+  //                                               + ")"     
+  //                                               + ";"  ;
+  // console.log(insert);
+
+  // pool.query(insert, function(error, result){
+  // if(error) {
+  //   //return console.error(error);
+  //   console.log("insert fail!");
+  // }
+
+  // var results = result.rows;
+  // console.log(results);
+  // //console.log("insesrt success!");
+  // });
 
 
 
@@ -69,7 +75,7 @@ app.get('/insert', function(req, res){
 
 
 
-  });
+ //  });
 
 //--------
 
@@ -86,7 +92,7 @@ app.get('/insert', function(req, res){
 app.post('/deleteUser', (req, res) => {
   // req.body.uid
   // delete the user with uid
-  res.redirect('/');
+  res.redirect('http://localhost:5000/main.html');
 });
 
 
