@@ -24,6 +24,22 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 
+app.get('/display',function(req,res){
+  pool.query("select * from students;", function(error, result){
+  if(error) {
+    //return console.error(error);
+    console.log("no work1!");
+  }
+  else{
+    var results= result.rows;
+    res.render('pages/db',{results: results});
+  }
+})
+
+});
+
+
+
 app.post('/insert', function(req, res){
 
 //   pool.query("select * from students", function(error, result){
@@ -75,7 +91,7 @@ var gpa1=req.body.gpa1;
   })
 
 
-  //res.redirect('http://localhost:5000/main.html');
+  // res.redirect('http://localhost:5000/main.html');
 res.redirect('https://stark-spire-21434.herokuapp.com/main.html');
 });
 
@@ -101,7 +117,7 @@ app.post('/remove', function(req, res){
 })
 
 res.redirect('https://stark-spire-21434.herokuapp.com/main.html');
-
+// res.redirect('http://localhost:5000/main.html');
 });
 
 
@@ -184,7 +200,7 @@ if(gpa2){
 }
 
 res.redirect('https://stark-spire-21434.herokuapp.com/main.html');
-
+// res.redirect('http://localhost:5000/main.html');
 });
 //-----
   
