@@ -19,7 +19,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 
-app.get('/insert', function(req, res){
+app.get('/hi', function(req, res){
 
   pool.query("select * from students", function(error, result){
   if(error) {
