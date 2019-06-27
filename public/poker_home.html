@@ -14,31 +14,39 @@
 
 <!-- need js to put back  -->
 <!-- var win,loss, win_percent -->
-<div id="ranking" style="float:left;">
+
+
+
+<div id="ranking" align="left">
+
+<div class="container">
     <h1>player ranking</h1>
-    <div  id="pname" style="float:left;">
-        <h1>player name</h1>
-        <ol>
-            <li>Coffee</li>
-            <li>Tea</li>
-            <li>Milk</li>
-        </ol>
-    </div>
+    <div class="row">
+        <div class="col">
+            <h1>player name</h1>
+            <ol>
+                <li>Coffee</li>
+                <li>Tea</li>
+                <li>Milk</li>
+            </ol>
+        </div>
 
-
-    <div id="pwinloss">
-        <ol>
+        <div class="col">
             <h1>player win/loss</h1>
-            <li>1W 1L</li>
-            <li>2W 2L</li>
-            <li>3W 3L</li>
-        </ol>      
-    </div>
+            <ol>
+                <li>1W 1L</li>
+                <li>2W 2L</li>
+                <li>3W 3L</li>
+            </ol>    
+        </div>
 
+    </div>
 </div>
 
 
-<div id="public_board" style="float:right;">
+
+
+<div id="public_board" align="right">
     <h1>Public Announcements</h1>
     <p id = "gm_msg">Message from gm</p>
 </div>
