@@ -15,60 +15,59 @@
     <h1>msg for gm</h1>
     <form action="/msg" method="post" >
 
-            <label for="msg">ID:</label>
-            <input type="text" id="msg" placeholder="Msg for gm" name="msg"/><br>
+            <label for="msg">Message for Gm:</label>
+            <input type="text" id="msg" placeholder="What you what to tell gm" name="msg"/><br>
 
     </form>
 </div>
 
 
+<!-- need js to put back  -->
+<!-- var win,loss, win_percent -->
+<div id="winloss">
+    <h1>player ranking</h1>
 
+    <table cellpadding="9"  id="table2">
+        <tr>
+            <th style="color: #D8000D" colspan="2">Histogram</th>
+        </tr>
+        <tr>
+            <td width="60%">win# </td>
+            <td id="win"><td>
+            <td>win</td>
+            <td width="60%">loss# </td>
+            <td id="loss"><td>
+            <td>loss</td>
+        </tr>
+    </table>
 
-<div id="modify">
-    <h1>modify</h1>
-    <form action="/modify" method="post" >
-
-            <label for="id2">ID:</label>
-            <input type="text" id="id2" placeholder="Enter ID" name="id2"/><br>
-
-            <label for="fn2">first name:</label>
-            <input type="text" id="fn2" placeholder="Enter first name" name="fn2" /><br>
-
-            <label for="ln2">last name:</label>
-            <input type="text" id="ln2" placeholder="Enter last name" name="ln2" /><br>
-
-            <label for="w2">weight:</label>
-            <input type="text" id="w2" placeholder="Enter weight" name="w2" /><br>
-
-            <label for="h2">height:</label>
-            <input type="text" id="h2" placeholder="Enter height" name="h2"/><br>
-
-            <label for="ln2">hair_colour:</label>
-            <input type="text" id="hc2" placeholder="Enter hair colour" name="hc2"/><br>
-
-            <label for="gpa2">gpa:</label>
-            <input type="float" id="gpa2" placeholder="Enter gpa" name="gpa2"/><br>
-
-            <input type="submit" value="modify" />
+    <form action="/rank check" method="post" >
+            <input type="submit" value="update" />
     </form>
 </div>
 
-<div id="remove">
-    <h1>remove by ID</h1>
-    <form action="/remove" method="post" >
 
-            <label for="id3">ID to remove:</label>
-            <input type="text" id="id3" placeholder="Enter ID" name="id3"/><br>
-            <input type="submit" value="remove" />
-    </form>
-</div>
+<button id="create" class="float-left submit-button" >create room</button>
+<script type="text/javascript">
+    document.getElementById("create").onclick = function () {
+        location.href = "https://stark-spire-21434.herokuapp.com";
+    };
+</script>
 
-<div id="display">
-    <h1>display</h1>
-    <form action="/display" method="get" >
-        <input type="submit" value="display" />
-    </form>
-</div>
+<button id="join" class="float-left submit-button" >join room</button>
+<script type="text/javascript">
+    document.getElementById("join").onclick = function () {
+        location.href = "https://stark-spire-21434.herokuapp.com";
+    };
+</script>
+
+<button id="logout " class="float-left submit-button" >logout</button>
+<script type="text/javascript">
+    document.getElementById("logout").onclick = function () {
+        location.href = "https://stark-spire-21434.herokuapp.com";
+    };
+</script>
+
 
 
 </body>
