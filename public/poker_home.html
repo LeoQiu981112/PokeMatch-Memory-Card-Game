@@ -11,7 +11,37 @@
 
 <h1>Student Database</h1>
 
-<div id="msg">
+
+<!-- need js to put back  -->
+<!-- var win,loss, win_percent -->
+<div id="ranking">
+    <h1>player ranking</h1>
+
+</div>
+
+
+
+<table cellpadding="9"  id="winloss">
+    <tr>
+        <th style="color: #D8000D" colspan="2">Histogram</th>
+    </tr>
+    <tr>
+        <td width="10%">win# </td>
+        <td id="win"><td>
+        <td>win</td>
+        <td width="10%">loss# </td>
+        <td id="loss"><td>
+        <td>loss</td>
+    </tr>
+
+    <tr>
+        <form action="/rank check" method="post" >
+        <input type="submit" value="update" />
+    </tr>
+</table>
+
+
+<div id="msg" align="right">
     <h1>msg for gm</h1>
     <form action="/msg" method="post" >
 
@@ -22,29 +52,6 @@
 </div>
 
 
-<!-- need js to put back  -->
-<!-- var win,loss, win_percent -->
-<div id="winloss">
-    <h1>player ranking</h1>
-
-    <table cellpadding="9"  id="table2">
-        <tr>
-            <th style="color: #D8000D" colspan="2">Histogram</th>
-        </tr>
-        <tr>
-            <td width="60%">win# </td>
-            <td id="win"><td>
-            <td>win</td>
-            <td width="60%">loss# </td>
-            <td id="loss"><td>
-            <td>loss</td>
-        </tr>
-    </table>
-
-    <form action="/rank check" method="post" >
-            <input type="submit" value="update" />
-    </form>
-</div>
 
 
 <button id="create" class="float-left submit-button" >create room</button>
