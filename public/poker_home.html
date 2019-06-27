@@ -9,14 +9,15 @@
 </head>
 <body>
 
-<h1>Student Database</h1>
+<h1>Player Homepage</h1>
 
 
 <!-- need js to put back  -->
 <!-- var win,loss, win_percent -->
-<div id="ranking">
+<div id="ranking" style="float:left;">
     <h1>player ranking</h1>
-    <div class="player name">
+    <div  id="pname" style="float:left;">
+        <h1>player name</h1>
         <ol>
             <li>Coffee</li>
             <li>Tea</li>
@@ -25,8 +26,9 @@
     </div>
 
 
-    <div class="win loss of that player">
+    <div id="pwinloss">
         <ol>
+            <h1>player win/loss</h1>
             <li>1W 1L</li>
             <li>2W 2L</li>
             <li>3W 3L</li>
@@ -36,18 +38,23 @@
 </div>
 
 
+<div id="public_board" style="float:right;">
+    <h1>Public Announcements</h1>
+    <p id = "gm_msg">Message from gm</p>
+</div>
+
 
 <table cellpadding="9"  id="winloss">
     <tr>
         <th>My Stats</th>
     </tr>
     <tr>
-        <td width="10%">win# </td>
+        <td> win# </td>
         <td id="win"><td>
-        <td>win</td>
-        <td width="10%">loss# </td>
+        <td> win </td>
+        <td> loss# </td>
         <td id="loss"><td>
-        <td>loss</td>
+        <td> loss </td>
     </tr>
 
     <tr>
@@ -62,8 +69,8 @@
     <form action="/msg" method="post" >
 
             <label for="msg">Message for Gm:</label>
-            <input type="text" id="msg" placeholder="What you what to tell gm" name="msg"/><br>
-
+            <input type="text" id="msg" placeholder="What you what to tell gm" name="msg"/><br>\
+            <input type="submit" value="send message" />
     </form>
 </div>
 
