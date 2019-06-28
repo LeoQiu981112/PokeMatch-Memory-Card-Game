@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<!-- <link rel="stylesheet" type="text/css" href="poker_home.css"> -->
+<!-- <script type="text/javascript" src="poker_home.js"></script> -->
+
+
+</head>
+<body>
+<a href="https://stark-spire-21434.herokuapp.com/modify.html">
+    <input type="button" value="Account info" >
+</a>
+
+<h1>Player Homepage</h1>
+
+
+<!-- need js to put back  -->
+<!-- var win,loss, win_percent -->
+
+<div id="ranking">
+
+<div >
+    <h1>player ranking</h1>
+    <div style="display:table-row">
+        <div class="col" style="display: table-cell">
+            <div style="margin-right:40px">player name</div>
+            <div>p1</div>
+            <div>p2</div>
+            <div>p3</div>
+            <div>p4</div>
+            <div>p5</div>
+        </div>
+
+        <div style="display:table-cell">
+            <div>player win/loss</div>
+            <div>5w 1l</div>
+            <div>4w 1l</div>
+            <div>3w 1l</div>
+            <div>2w 1l</div>
+            <div>1w 1l</div>
+        </div>
+
+
+    </div>
+</div>
+
+
+
+
+<div id="public_board" align="right" style="top=0 px;">
+    <h1>Public Announcements</h1>
+    <p id = "gm_msg">Message from gm</p>
+</div>
+
+
+<table cellpadding="9"  id="winloss">
+    <tr>
+        <th>My Stats</th>
+    </tr>
+    <tr>
+        <td> win# </td>
+        <td id="win"><td>
+        <td> win </td>
+        <td> loss# </td>
+        <td id="loss"><td>
+        <td> loss </td>
+    </tr>
+
+
+</table>
+
+<form action="/rank check" method="post" >
+<input type="submit" value="update" />
+
+<div id="msg" align="right">
+    <h1>msg for gm</h1>
+    <form action="/msg" method="post" >
+
+            <label for="msg">Message for Gm:</label>
+            <input type="text" id="msg" placeholder="What you what to tell gm" name="msg"/><br>\
+            <input type="submit" value="send message" />
+    </form>
+</div>
+
+
+
+
+<button id="create" class="float-left submit-button" >create room</button>
+<script type="text/javascript">
+    document.getElementById("create").onclick = function () {
+        location.href = "https://stark-spire-21434.herokuapp.com";
+    };
+</script>
+
+<button id="join" class="float-left submit-button" >join room</button>
+<script type="text/javascript">
+    document.getElementById("join").onclick = function () {
+        location.href = "https://stark-spire-21434.herokuapp.com";
+    };
+</script>
+
+
+<button id="logout" class="float-left submit-button" >logout</button>
+<script type="text/javascript">
+    document.getElementById("logout").onclick = function () {
+        location.href = "https://stark-spire-21434.herokuapp.com/login.html";
+    };
+</script>
+
+
+
+
+</script>
+
+
+
+</body>
+</html>
+
+
+
+<!-- redirect... https://stark-spire-21434.herokuapp.com/insert -->

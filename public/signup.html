@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="stylesheet" type="text/css" href="project.css">
+<script type="text/javascript" src="project.js"></script> 
+
+</head>
+<body>
+
+<h1>Sign Up</h1>
+
+<div id="signup">
+   <h1>User Information</h1>
+   <form action="/signup" method="post">
+      <label for="sid">ID:</label>
+      <input type="text" id="sid" placeholder="Enter User ID" name="sid"/><br>
+
+      <label for="spassword">Password:</label>
+      <input type="text" id="spassword" placeholder="Enter Password" name="spassword"/><br>
+
+      <label for="sname">Name:</label>
+      <input type="text" id="sname" placeholder="Enter Your Name" name="sname"/><br>
+
+      <label for="sage">Age:</label>
+      <input type="number" id="sage" placeholder="Enter Your Name" name="sage"/><br>
+
+      <label for="squestion">Security Question:</label>
+      <select name="squestion" id="squestion">
+         <option value="nonselect">Select</option>
+         <option value="mothername">What is your mother's name?</option>
+         <option value="fatherage">How old is your father?</option>
+         <option value="platenumber">What is your plate number?</option>
+         <option value="teacher">Who is your High School teacher?</option>
+         <option value="book">What is your favourite book?</option>
+         <option value="movie">Which movie is your favourite?</option>
+      </select><br>
+
+      <label for="sanswer">Question Answer:</label>
+      <input type="text" id="sanswer" placeholder="Enter Your Answer" name="sanswer"><br>
+
+      <a href="https://stark-spire-21434.herokuapp.com/login.html">
+         <input type="submit" value="SignUp" />
+      </a>
+      <button onclick="resets()">Reset</button>
+   </form>
+</div>
+
+</body>
+</html>
