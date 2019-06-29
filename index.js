@@ -53,7 +53,7 @@ var sques=req.body.squestion;
 
 var sans=req.body.sanswer;
 
-  var insert = "insert into students values ( " + "'" +  sid      + "'" + "," 
+  var insert = "insert into players values ( " + "'" +  sid      + "'" + "," 
                                                 + "'" +  spass    + "'" + "," 
                                                 + "'" +  sname    + "'" + "," 
                                                 +        sage           + "," 
