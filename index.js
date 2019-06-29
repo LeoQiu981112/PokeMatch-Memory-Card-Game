@@ -40,41 +40,26 @@ app.get('/display',function(req,res){
 
 
 
-app.post('/insert', function(req, res){
+app.post('/signup', function(req, res){
 
-//   pool.query("select * from students", function(error, result){
-//   if(error) {
-//     //return console.error(error);
-//     console.log("no work1!");
-//   }
-//     console.log("IT WORKED!!!");
-//     var results=result.rows;
-//     console.log(results);
+var sid=req.body.sid;
 
-// })
-//test insert, the  entries can be replace by elements pointed to by html ids.   
+var spass=req.body.spassword;
 
-var id1=req.body.id1;
+var sname=req.body.sname;
 
-var fn1=req.body.fn1;
+var sage=req.body.sage;
 
-var ln1=req.body.ln1;
+var sques=req.body.squestion;
 
-var w1=req.body.w1;
+var sanswer=req.body.sanswer;
 
-var h1=req.body.h1;
-
-var hc1=req.body.hc1;
-
-var gpa1=req.body.gpa1;
-
-  var insert = "insert into students values ( " +        id1          + "," 
-                                                + "'" +  fn1    + "'" + "," 
-                                                + "'" +  ln1    + "'" + "," 
-                                                +        w1           + "," 
-                                                +        h1           + "," 
-                                                + "'" +  hc1    + "'" + "," 
-                                                +        gpa1      
+  var insert = "insert into students values ( " + "'" +  sid      + "'" + "," 
+                                                + "'" +  spass    + "'" + "," 
+                                                + "'" +  sname    + "'" + "," 
+                                                +        sage           + "," 
+                                                + "'" +  sques    + "'" + "," 
+                                                + "'" +  sans     + "'" + ","     
                                                 + ")"     
                                                 + ";"  ;
   console.log(insert);
@@ -92,7 +77,7 @@ var gpa1=req.body.gpa1;
 
 
   // res.redirect('http://localhost:5000/main.html');
-res.redirect('https://stark-spire-21434.herokuapp.com/main.html');
+res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
 });
 
 
