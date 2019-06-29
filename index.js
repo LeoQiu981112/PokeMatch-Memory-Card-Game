@@ -58,7 +58,7 @@ var sans=req.body.sanswer;
                                                 + "'" +  sname    + "'" + "," 
                                                 +        sage           + "," 
                                                 +        sques          + "," 
-                                                + "'" +  sans     + "'" + ","     
+                                                + "'" +  sans     + "'"     
                                                 + ")"     
                                                 + ";"  ;
   console.log(insert);
