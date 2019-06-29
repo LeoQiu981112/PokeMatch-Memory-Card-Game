@@ -40,7 +40,7 @@ app.get('/display',function(req,res){
 app.post('/login', function(req, res){
 var user=req.body.Lid;
 var pwd=req.body.Lpassword;
-console.log("result id is" + Lid );
+console.log("result id is" + user );
 
   // swap for 1 combined query once db is working
   if(user == "1234" && pwd == "6666"){
@@ -54,7 +54,7 @@ console.log("result id is" + Lid );
   else{
       alert("the password or username is error");
   }
-  
+
 });
 
 
