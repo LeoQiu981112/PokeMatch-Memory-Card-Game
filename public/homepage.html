@@ -9,18 +9,20 @@
 </head>
 <body>
 
-<script>
-var user=parent.document.getElementById('Lid').value;
-</script>
+
 
 
 <a href="https://stark-spire-21434.herokuapp.com/modify.html">
     <input type="button" value="Account info" >
 </a>
 
-<h1>Player Homepage</h1>
+<p id=home>Player Homepage</p>
 
+<script>
+var user=parent.document.getElementById('Lid').value;
+document.getElementById("home").innerHTML=user;
 
+</script>
 <!-- need js to put back  -->
 <!-- var win,loss, win_percent -->
 
