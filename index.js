@@ -58,7 +58,7 @@ console.log("result id is" + Lid );
   else{
       alert("the password or username is error");
   }
-}
+});
 
 
 
