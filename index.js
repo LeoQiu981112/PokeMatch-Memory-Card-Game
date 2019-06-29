@@ -51,13 +51,10 @@ console.log("result id is" + Lid );
     res.redirect('https://stark-spire-21434.herokuapp.com/homepage.html');
   }
 
-
-
-
-
   else{
       alert("the password or username is error");
   }
+  
 });
 
 
