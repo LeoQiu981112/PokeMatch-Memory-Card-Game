@@ -43,7 +43,7 @@ var pwd=req.body.Lpassword;
 console.log("result id is" + Lid );
 
   // swap for 1 combined query once db is working
-  if(user=="1234"&&pwd="6666"){
+  if(user == "1234" && pwd == "6666"){
     res.redirect('https://stark-spire-21434.herokuapp.com/homepage.html');
   }
 
