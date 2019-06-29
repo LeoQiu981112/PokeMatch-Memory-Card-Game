@@ -37,7 +37,7 @@ app.get('/display',function(req,res){
 
 });
 
-app.get('/login', function(req, res){
+app.post('/login', function(req, res){
 var user=req.body.Lid;
 var pwd=req.body.Lpassword;
 console.log("result id is" + Lid );
