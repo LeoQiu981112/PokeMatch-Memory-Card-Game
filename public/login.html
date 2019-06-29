@@ -54,7 +54,7 @@
 <body>
 	<p id="BJ">2 player BlackJack</p>
 <div class="table1">
-	<form id="table11">
+	<form action="/login" id="table11">
 		      ID:<input type="text" name="Lid" id="Lid"/>
 		<br/>
 		Password:<input type="password" name="Lpassword" id="Lpassword"/>
@@ -91,26 +91,6 @@
         document.getElementById('inputbox').style.display=n?'block':'none';     /* 点击按钮打开/关闭 对话框 */
     }
     
-    
-    function test(){
-        var user,pwd;
-        user = document.getElementById('Lid').value;
-        pwd = document.getElementById('Lpassword').value;
-        if(user[0]=='G' && user[1] =='M'&& user=='GM1' && pwd=='123'){
-            window.location.href="https://stark-spire-21434.herokuapp.com/GM.html";
-        }
-        else if( user=='123' && pwd=='123'){
-            window.location.href="https://stark-spire-21434.herokuapp.com/homepage.html";
-        }
-        else if ( user=='' && pwd==''){
-            alert("the password or username is error");
-        }
-        else{
-            alert("the password or username is error");
-        }
-        
-    
-    }
 </script>
 
 
