@@ -9,10 +9,20 @@
 </head>
 
 <body>
-    <p align="center" font size="5">Personal Information</p>
-    <form action="/modify" method="put" >
-        <label for="mid">ID:</label><br>
 
+    <script>
+    var user=parent.document.getElementById('Lid').value;
+    document.getElementById("userid").innerHTML=user;
+
+
+    </script>
+
+
+
+    <p align="center" font size="5">Personal Information</p>
+    <p>ID:</p>  <p id="userid"> </p> 
+
+    <form action="/modify" method="put" >
         <label for="mpassword">Password:</label>
         <input type="text" id="mpassword" value="123" name="fn2" /><br>
 
