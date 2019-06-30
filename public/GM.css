@@ -1,0 +1,75 @@
+body {
+	background-image: url(GM.jpg);
+	background-repeat:no-repeat;
+	background-position: center center;
+	background-attachment: fixed;
+	background-size: cover;
+
+
+}
+#GGM{
+	font-size:1.73vw;
+	background-color: #fff;
+	padding:6% 2%;
+	width: 30%;
+	opacity: 0.8;
+	border-radius: 10%;
+	position:absolute;
+	height:30%;
+	top:20%;
+	left:12%;
+	
+}
+h1{
+	font-size:3.3vw;
+	color: #D4DC9F;
+	width:30%;
+	height:20%;
+	position:absolute;
+	top:0%;
+	left:29%;
+	margin-left:10%;
+	margin-top:10%；
+}
+#gpublish{
+	background-color: #fff;
+	padding:6% 2%;
+	width: 30%;
+	opacity: 0.8;
+	border-radius: 10%;
+	position:absolute;
+	top:20%;
+	left:52%;
+	height:30%;
+
+}
+
+#gmessage{
+	width:96%;
+	height:90%;
+	line-height:30px;
+	font-size: 1.5vw;
+
+}
+#gpbutton{
+	font-size: 1.5vw;
+}
+
+#Gsearch{
+	font-size: 1.5vw;
+}
+#gsbutton{
+	font-size: 1.5vw;
+}
+#Gdelete{
+	font-size: 1.5vw;
+}
+#gdbutton{
+	font-size: 1.5vw;
+}
+#glog{
+	font-size: 1.5vw;
+	border-radius: 20px;
+	background-color: #fff;
+}
+

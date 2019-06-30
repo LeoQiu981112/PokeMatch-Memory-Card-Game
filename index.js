@@ -52,7 +52,7 @@ console.log("result id is" + user );
   }
 
   else if(user=='GM1' && pwd=='123'){
-    res.redirect('https://stark-spire-21434.herokuapp.com/homepage.html');
+    res.redirect('https://stark-spire-21434.herokuapp.com/GM.html');
   }
 
   else{
