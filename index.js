@@ -1,4 +1,3 @@
-public
 const express = require('express')
 const path = require('path')
 const PORT = process.env.PORT 
@@ -6,12 +5,16 @@ const app = express();
 const { Pool } = require('pg');
 var bodyParser = require('body-parser');
 
+var flash = require('connect-flash');
+var session = require('express-session');
+
 // var pool = new Pool({
 //   user: 'postgres',
 //   password: '123456',
 //   host: 'localhost',
 //   database: 'test'
 // });
+app.use(flash());
 
 var pool = new Pool({
   connectionString : process.env.DATABASE_URL
@@ -38,6 +41,27 @@ app.get('/display',function(req,res){
 
 });
 
+app.post('/login', function(req, res){
+var user=req.body.Lid;
+var pwd=req.body.Lpassword;
+console.log("result id is" + user );
+
+  // swap for 1 combined query once db is working
+  if(user == "1234" && pwd == "6666"){
+    res.redirect('https://stark-spire-21434.herokuapp.com/homepage.html');
+  }
+
+  else if(user=='GM1' && pwd=='123'){
+    res.redirect('https://stark-spire-21434.herokuapp.com/homepage.html');
+  }
+
+  else{
+    res.send("username or password incorrect");
+    // res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
+  }
+
+});
+
 
 
 app.post('/signup', function(req, res){
@@ -52,14 +76,14 @@ var sage=req.body.sage;
 
 var sques=req.body.squestion;
 
-var sanswer=req.body.sanswer;
+var sans=req.body.sanswer;
 
-  var insert = "insert into students values ( " + "'" +  sid      + "'" + "," 
+  var insert = "insert into players values ( "  + "'" +  sid      + "'" + "," 
                                                 + "'" +  spass    + "'" + "," 
                                                 + "'" +  sname    + "'" + "," 
                                                 +        sage           + "," 
-                                                + "'" +  sques    + "'" + "," 
-                                                + "'" +  sans     + "'" + ","     
+                                                +        sques          + "," 
+                                                + "'" +  sans     + "'"     
                                                 + ")"     
                                                 + ";"  ;
   console.log(insert);
