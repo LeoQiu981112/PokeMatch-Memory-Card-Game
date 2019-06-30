@@ -5,16 +5,12 @@ const app = express();
 const { Pool } = require('pg');
 var bodyParser = require('body-parser');
 
-var flash = require('connect-flash');
-var session = require('express-session');
-
 // var pool = new Pool({
 //   user: 'postgres',
 //   password: '123456',
 //   host: 'localhost',
 //   database: 'test'
 // });
-app.use(flash());
 
 var pool = new Pool({
   connectionString : process.env.DATABASE_URL
@@ -42,23 +38,40 @@ app.get('/display',function(req,res){
 });
 
 app.post('/login', function(req, res){
-var user=req.body.Lid;
-var pwd=req.body.Lpassword;
-console.log("result id is" + user );
+  var user=req.body.Lid;
+  var pwd=req.body.Lpassword;
+  console.log("result id is" + user );
 
-  // swap for 1 combined query once db is working
-  if(user == "1234" && pwd == "6666"){
-    res.redirect('https://stark-spire-21434.herokuapp.com/homepage.html');
-  }
-
-  else if(user=='GM1' && pwd=='123'){
+  //gm
+  if(user=='GM1' && pwd=='123'){
     res.redirect('https://stark-spire-21434.herokuapp.com/GM.html');
   }
+  
+  //query
+  var match="select * from players where id=" + user + "and password =" + pws;
 
-  else{
-    res.send("username or password incorrect");
-    // res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
-  }
+  pool.query(match, function(error, result){
+    if(error) {
+      console.log("query fail!");
+    } 
+    else{
+    res.redirect('https://stark-spire-21434.herokuapp.com/homepage.html');
+    console.log("match? success");
+    var results = result.rows;
+    console.log(results);
+    //console.log("insesrt success!");
+    }
+  });
+
+//if found
+  //res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
+  // res.redirect('http://localhost:5000/main.html');
+
+//if not found
+  // else{
+  //   res.send("username or password incorrect");
+  //   // res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
+  // }
 
 });
 
