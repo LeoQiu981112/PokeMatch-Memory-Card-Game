@@ -5,7 +5,7 @@ const app = express();
 const { Pool } = require('pg');
 var bodyParser = require('body-parser');
 var flash = require('connect-flash');
-
+app.use(flash());
 // var pool = new Pool({
 //   user: 'postgres',
 //   password: '123456',
@@ -13,11 +13,6 @@ var flash = require('connect-flash');
 //   database: 'test'
 // });
 
-app.configure(function() {
-  app.use(express.cookieParser('keyboard cat'));
-  app.use(express.session({ cookie: { maxAge: 60000 }}));
-  app.use(flash());
-});
 
 var pool = new Pool({
   connectionString : process.env.DATABASE_URL
