@@ -4,25 +4,17 @@ const PORT = process.env.PORT
 const app = express();
 const { Pool } = require('pg');
 var bodyParser = require('body-parser');
+
 var flash = require('connect-flash');
-
-
-module.exports = function (app, config, passport) {
-   app.use(flash());
-};
-
 var session = require('express-session');
-app.use(session({ cookie: { maxAge: 60000 }, 
-                  secret: 'woot',
-                  resave: false, 
-                  saveUninitialized: false}));
+
 // var pool = new Pool({
 //   user: 'postgres',
 //   password: '123456',
 //   host: 'localhost',
 //   database: 'test'
 // });
-
+app.use(flash());
 
 var pool = new Pool({
   connectionString : process.env.DATABASE_URL
@@ -64,8 +56,8 @@ console.log("result id is" + user );
   }
 
   else{
-    req.flash('loginMessage', 'incorrect username or password');
-    res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
+    res.send("username or password incorrect");
+    // res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
   }
 
 });
