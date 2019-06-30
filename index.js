@@ -52,7 +52,10 @@ console.log("result id is" + user );
   }
 
   else{
-    res.redirect('https://stark-spire-21434.herokuapp.com/login.html?e=' + encodeURIComponent('Incorrect username or password'));
+    req.session.error = 'Incorrect username or password';
+    res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
+    res.render('login', { error: req.session.error });
+    delete res.session.error; // remove from further requests
   }
 
 });
