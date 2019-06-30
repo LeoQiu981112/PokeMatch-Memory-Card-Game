@@ -5,7 +5,17 @@ const app = express();
 const { Pool } = require('pg');
 var bodyParser = require('body-parser');
 var flash = require('connect-flash');
-app.use(flash());
+
+
+module.exports = function (app, config, passport) {
+   app.use(flash());
+};
+
+var session = require('express-session');
+app.use(session({ cookie: { maxAge: 60000 }, 
+                  secret: 'woot',
+                  resave: false, 
+                  saveUninitialized: false}));
 // var pool = new Pool({
 //   user: 'postgres',
 //   password: '123456',
