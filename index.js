@@ -65,28 +65,27 @@ console.log("result id is" + user );
 
 
 app.post('/signup', function(req, res){
-
-var sid=req.body.sid;
-
-var spass=req.body.spassword;
-
-var sname=req.body.sname;
-
-var sage=req.body.sage;
-
-var sques=req.body.squestion;
-
-var sans=req.body.sanswer;
-
-  var insert = "insert into players values ( "  + "'" +  sid      + "'" + "," 
+  try{
+    var id=req.body.sid;
+    var pass=req.body.spassword;
+    var name=req.body.sname;
+    var age=req.body.sage;
+    var ques=req.body.squestion;
+    var ans=req.body.sanswer;
+    var insert = "insert into players values ( "  + "'" +  sid      + "'" + "," 
                                                 + "'" +  spass    + "'" + "," 
                                                 + "'" +  sname    + "'" + "," 
-                                                +        sage           + "," 
+                                              +        sage           + "," 
                                                 +        sques          + "," 
                                                 + "'" +  sans     + "'"     
                                                 + ")"     
                                                 + ";"  ;
-  console.log(insert);
+    console.log(insert);
+  }
+  catch (ex){
+    console.log(`Duplicated User ${ex}`);
+  }
+  
 
   pool.query(insert, function(error, result){
   if(error) {
