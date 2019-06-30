@@ -50,7 +50,8 @@ app.post('/login', function(req, res){
 
 
   //query
-  var match="select * from players where id=" + user + "and password =" + pwd + ";";
+  var match="select * from players where id = " + "'" + user + "'" + 
+            "and password                   = " + "'" + pwd  + "'" + ";";
   console.log("query: " + match );
 
   pool.query(match, function(error, result){
