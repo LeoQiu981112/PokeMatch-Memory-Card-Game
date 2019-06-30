@@ -52,8 +52,7 @@ console.log("result id is" + user );
   }
 
   else{
-    res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
-    res.flash("msg","username not found/ password incorrect");
+    res.redirect('https://stark-spire-21434.herokuapp.com/login.html?e=' + encodeURIComponent('Incorrect username or password'));
   }
 
 });
