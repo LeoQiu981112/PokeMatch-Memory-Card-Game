@@ -2,7 +2,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
-   <link href="GM.css " rel="stylesheet" type="text/css" />	 
+   <link href="GM.css " rel="stylesheet" type="text/css" />	
+   <script type="text/javascript" src="index.js"></script> 
     <title>GM</title>
 </head>
 <body>
@@ -42,30 +43,5 @@
             <input type="button" value="Logout" id="glog">
     </a>
 
-<script>
 
-    app.post('/delete', function(req, res){
-
-  var value=req.body.Gdelete;
-
-  var remove = "delete from students where id =" +        value  
-                                                 + ";" ;   
-  console.log(remove);
-  pool.query(remove, function(error, result){
-  if(error) {
-    //return console.error(error);
-    console.log("delete failed!");
-  }
-  else{
-    var results=result.rows;
-  } 
-  console.log(results);
-
-})
-
-res.redirect('https://stark-spire-21434.herokuapp.com/GM.html');
-// res.redirect('http://localhost:5000/main.html');
-});
-
-</script>
 </body>

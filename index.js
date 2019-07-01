@@ -138,7 +138,7 @@ app.post('/signup', function(req, res){
   console.log(insert);
 
   var flag = 0;
-  pool.query("select * from players", () => {
+  pool.query("select id from players", () => {
     var results = results.rows;
     for(var i = 0,len = results.length; i < len; i++){
       if (id ==results[i]){
