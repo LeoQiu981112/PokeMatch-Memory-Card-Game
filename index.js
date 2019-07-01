@@ -267,7 +267,7 @@ app.post('/modify', function(req, res){
   }
 
   if(manswer){
-    tmp= fp + "ans = " + "'"+ hc2 + "'" + sp;
+    tmp= fp + "ans = " + "'"+ manswer + "'" + sp;
     pool.query(tmp, function(error, result){
     if(error) {
       console.log("mod fail!");
