@@ -1,6 +1,6 @@
 const express = require('express')
 const path = require('path')
-const PORT = process.env.PORT 
+const PORT = process.env.PORT || 8001
 const app = express();
 const { Pool } = require('pg');
 var bodyParser = require('body-parser');
@@ -65,20 +65,14 @@ console.log("result id is" + user );
 });
 
 app.post('/signup', function(req, res){
-
-var sid=req.body.sid;
-
-var spass=req.body.spassword;
-
-var sname=req.body.sname;
-
-var sage=req.body.sage;
-
-var sques=req.body.squestion;
-
-var sans=req.body.sanswer;
-
-  var insert = "insert into players values ( "  + "'" +  sid      + "'" + "," 
+  
+  var id=req.body.sid;
+  var pass=req.body.spassword;
+  var name=req.body.sname;
+  var age=req.body.sage;
+  var ques=req.body.squestion;
+  var ans=req.body.sanswer;
+  var insert = "insert into players values ( "+ "'" +  sid      + "'" + "," 
                                                 + "'" +  spass    + "'" + "," 
                                                 + "'" +  sname    + "'" + "," 
                                                 +        sage           + "," 
@@ -88,20 +82,37 @@ var sans=req.body.sanswer;
                                                 + ";"  ;
   console.log(insert);
 
-  pool.query(insert, function(error, result){
-  if(error) {
-    //return console.error(error);
-    console.log("insert fail!");
+  var flag = 0;
+  pool.query("select * from players", () => {
+    var results = results.rows;
+    for(var i = 0,len = results.length; i < len; i++){
+      if (id ==results[i]){
+        console.alert("Duplicated Users!");
+        break;
+      }
+    }
+    flag = 1;
+    res.redirect('https://stark-spire-21434.herokuapp.com/signup.html');
+  });
+
+  if (flag == 0){
+    pool.query(insert, function(error, results){
+      if(error) {
+        //return console.error(error);
+        console.log("insert failed!");
+      }
+      else{
+        console.log("insert succeeded!");
+        var results = results.rows;
+        console.log(results);
+        //console.log("insesrt success!");
+      }
+    });
+    // res.redirect('http://localhost:5000/main.html');
+    res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
   }
-  console.log("insert success");
-  var results = result.rows;
-  console.log(results);
-  //console.log("insesrt success!");
-  })
 
-
-  // res.redirect('http://localhost:5000/main.html');
-res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
+  
 });
 
 
