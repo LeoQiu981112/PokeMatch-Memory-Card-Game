@@ -27,8 +27,11 @@
   		    	<th colspan="1"></th>
   		    </tr>
   		</table>
-  		<input type="text" id="Gdelete" placeholder="enter ID">
-  		<button onclick="deleteID()"id="gdbutton">Delete</button>
+      <form action="/remove" method="post" >
+            <input type="text" id="Gdelete" placeholder="Enter ID" name="Gdelete"/>
+            <input type="submit" id="gdbutton" value="delete" />
+    </form>
+ 
   	</div>
   	<div id="gpublish">
   		<textarea type="text" id="gmessage" cols="8" rows="20"  style="OVERFLOW:   hidden"placeholder="Message Box"></textarea>
@@ -38,4 +41,31 @@
   	<a href="https://stark-spire-21434.herokuapp.com/login.html" id="GLog">
             <input type="button" value="Logout" id="glog">
     </a>
+
+<script>
+
+    app.post('/delete', function(req, res){
+
+  var value=req.body.Gdelete;
+
+  var remove = "delete from students where id =" +        value  
+                                                 + ";" ;   
+  console.log(remove);
+  pool.query(remove, function(error, result){
+  if(error) {
+    //return console.error(error);
+    console.log("delete failed!");
+  }
+  else{
+    var results=result.rows;
+  } 
+  console.log(results);
+
+})
+
+res.redirect('https://stark-spire-21434.herokuapp.com/GM.html');
+// res.redirect('http://localhost:5000/main.html');
+});
+
+</script>
 </body>
