@@ -234,7 +234,7 @@ app.post('/modify', function(req, res){
     })
   }
 
-  if(mname)
+  if(mname){
     tmp= fp + "name = " + "'" + mname + "'" + sp;
     pool.query(tmp, function(error, result){
     if(error) {
