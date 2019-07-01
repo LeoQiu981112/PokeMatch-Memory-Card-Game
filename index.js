@@ -127,7 +127,7 @@ app.post('/signup', function(req, res){
   var sage=req.body.sage;
   var sques=req.body.squestion;
   var sans=req.body.sanswer;
-  var insert = "insert into players values ( "+ "'" +  sid      + "'" + "," 
+  var insert = "insert into players values ("   + "'" +  sid      + "'" + "," 
                                                 + "'" +  spass    + "'" + "," 
                                                 + "'" +  sname    + "'" + "," 
                                                 +        sage           + "," 
