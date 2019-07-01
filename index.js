@@ -8,12 +8,12 @@ var bodyParser = require('body-parser');
 var flash = require('connect-flash');
 var session = require('express-session');
 
-// var pool = new Pool({
-//   user: 'postgres',
-//   password: '123456',
-//   host: 'localhost',
-//   database: 'test'
-// });
+var pool = new Pool({
+  user: 'postgres',
+  password: '123456',
+  host: 'localhost',
+  database: 'test'
+ });
 app.use(flash());
 
 var pool = new Pool({
@@ -106,17 +106,17 @@ res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
 
 
 
-app.post('/remove', function(req, res){
+app.post('/delete', function(req, res){
 
-  var id3=req.body.id3;
+  var value=req.body.Gdelete;
 
-  var remove = "delete from students where id =" +        id3  
+  var remove = "delete from players where id =" +        value  
                                                  + ";" ;   
   console.log(remove);
   pool.query(remove, function(error, result){
   if(error) {
     //return console.error(error);
-    console.log("remove failed!");
+    console.log("delete failed!");
   }
   else{
     var results=result.rows;
@@ -125,10 +125,9 @@ app.post('/remove', function(req, res){
 
 })
 
-res.redirect('https://stark-spire-21434.herokuapp.com/main.html');
+res.redirect('https://stark-spire-21434.herokuapp.com/GM.html');
 // res.redirect('http://localhost:5000/main.html');
 });
-
 
 
 
