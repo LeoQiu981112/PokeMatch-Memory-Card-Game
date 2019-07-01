@@ -203,84 +203,82 @@ res.redirect('https://stark-spire-21434.herokuapp.com/GM.html');
 
 
 app.post('/modify', function(req, res){
-var id2=req.body.id2;
 
-var fn2=req.body.fn2;
+  //var mid=req.body.mid;
 
-var ln2=req.body.ln2;
+  var mid=   "'" + "xyz" + "'" 
 
-var w2=req.body.w2;
+  var mpassword=req.body.mpassword;
 
-var h2=req.body.h2;
+  var mname=req.body.mname;
 
-var hc2=req.body.hc2;
+  var mage=req.body.mage;
 
-var gpa2=req.body.gpa2;
+  var mquestion=req.body.mquestion;
 
-var fp="update students set ";
+  var manswer=req.body.manswer;
 
-var sp= " where id = " + id2 + ";";
 
-var tmp;
-if(fn2){
-  tmp= fp + "firstname = " + "'" + fn2 + "'" + sp;
-  pool.query(tmp, function(error, result){
-  if(error) {
-    console.log("mod fail!");
+  var fp="update players set ";
+
+  var sp= " where id = " + mid + ";";
+
+  var tmp;
+
+  if(mpassword){
+    tmp= fp + "password = " + "'" + mpassword + "'" + sp;
+    pool.query(tmp, function(error, result){
+    if(error) {
+      console.log("mod fail!");
+    }
+    })
   }
-  })
-}
 
-if(ln2){
-
-  tmp= fp + "lastname = " + "'" + ln2 + "'" + sp;
-  pool.query(tmp, function(error, result){
-  if(error) {
-    console.log("mod fail!");
+  if(mname)
+    tmp= fp + "name = " + "'" + mname + "'" + sp;
+    pool.query(tmp, function(error, result){
+    if(error) {
+      console.log("mod fail!");
+    }
+    })
   }
-  })
-}
 
-if(w2){
-  tmp= fp + "weight = " + w2 + sp;
-  pool.query(tmp, function(error, result){
-  if(error) {
-    console.log("mod fail!");
+  if(mage){
+    tmp= fp + "age = " + mage + sp;
+    pool.query(tmp, function(error, result){
+    if(error) {
+      console.log("mod fail!");
+    }
+    })
   }
-  })
-}
 
-if(h2){
-  tmp= fp + "height = " + h2 + sp;
-  pool.query(tmp, function(error, result){
-  if(error) {
-    console.log("mod fail!");
+// modify security question, get question from db?????
+//security question 从heroku db 里的sec_q table 里取
+//根据players 里sqnum，每个问题有个对应的数字
+//Heroku pg:psql 登录
+
+  if(mquestion){
+    tmp= fp + "sqnum = " + mquestion + sp;
+    pool.query(tmp, function(error, result){
+    if(error) {
+      console.log("mod fail!");
+    }
+    })
   }
-  })
-}
 
-if(hc2){
-
-  tmp= fp + "hair_colour = " + "'"+ hc2 + "'" + sp;
-  pool.query(tmp, function(error, result){
-  if(error) {
-    console.log("mod fail!");
+  if(manswer){
+    tmp= fp + "ans = " + "'"+ hc2 + "'" + sp;
+    pool.query(tmp, function(error, result){
+    if(error) {
+      console.log("mod fail!");
+    }
+    })
   }
-  })
-}
 
-if(gpa2){
-  tmp= fp + "gpa = " + gpa2 + sp;
-  pool.query(tmp, function(error, result){
-  if(error) {
-    console.log("mod fail!");
-  }
-  })
-}
-
-res.redirect('https://stark-spire-21434.herokuapp.com/main.html');
+res.redirect('https://stark-spire-21434.herokuapp.com/modify.html');
 // res.redirect('http://localhost:5000/main.html');
 });
+
 //-----
   
 
