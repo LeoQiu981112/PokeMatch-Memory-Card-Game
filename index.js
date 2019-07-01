@@ -3,10 +3,29 @@ const path = require('path')
 const PORT = process.env.PORT 
 const app = express();
 const { Pool } = require('pg');
-var bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 
-var flash = require('connect-flash');
-var session = require('express-session');
+const expressValidator=require('express-validator');
+const flash=require('connect-flash');
+const session=require('express-session');
+
+//express session middleware
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure:true }
+}));
+
+//express messages middleware
+app.use(require('connect-flash')());
+
+app.use(function (req, res, next) {
+  res.locals.messages = require('express-messages')(req, res);
+  next();
+});
+
+
 
 // var pool = new Pool({
 //   user: 'postgres',
@@ -14,6 +33,12 @@ var session = require('express-session');
 //   host: 'localhost',
 //   database: 'test'
 // });
+//var pool = new Pool({
+  //user: 'postgres',
+  //password: 'wyw13512865663',
+  //host: 'localhost',
+  //database: 'test'
+ //});
 app.use(flash());
 
 var pool = new Pool({
@@ -24,6 +49,23 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.use(bodyParser.urlencoded({ extended: true })); 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -42,23 +84,60 @@ app.get('/display',function(req,res){
 });
 
 app.post('/login', function(req, res){
-var user=req.body.Lid;
-var pwd=req.body.Lpassword;
-console.log("result id is" + user );
+  var user=req.body.Lid;
+  var pwd=req.body.Lpassword;
+  console.log("result id is" + user );
 
-  // swap for 1 combined query once db is working
-  if(user == "1234" && pwd == "6666"){
-    res.redirect('https://stark-spire-21434.herokuapp.com/homepage.html');
-  }
-
-  else if(user=='GM1' && pwd=='123'){
+  //gm
+  if(user=='GM1' && pwd=='123'){
     res.redirect('https://stark-spire-21434.herokuapp.com/GM.html');
   }
+  
 
+
+  //query
+  var match="select * from players where id = " + "'" + user + "'" + 
+            "and password                   = " + "'" + pwd  + "'" + ";";
+  console.log("query: " + match );
+
+  pool.query(match, function(error, result){
+    if(error) {
+      console.log("query fail!");
+    } 
+    else{
+    //res.redirect('https://stark-spire-21434.herokuapp.com/homepage.html');
+    console.log("match? success");
+    if(result!=[]){
+      var results = result.rows;
+      console.log(result);
+      res.redirect('https://stark-spire-21434.herokuapp.com/homepage.html');
+    }
+
+
+    //create identical login page, cept onload create alert 
   else{
     res.send("username or password incorrect");
-    // res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
+    function backtologin() {
+      res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
+    }
+
+    setTimeout(backtologin, 1500);
+
+
   }
+    //console.log("insesrt success!");
+    }
+  });
+
+//if found
+  //res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
+  // res.redirect('http://localhost:5000/main.html');
+
+//if not found
+  // else{
+  //   res.send("username or password incorrect");
+  //   // res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
+  // }
 
 });
 
@@ -105,17 +184,17 @@ res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
 
 
 
-app.post('/remove', function(req, res){
+app.post('/delete', function(req, res){
 
-  var id3=req.body.id3;
+  var value=req.body.Gdelete;
 
-  var remove = "delete from students where id =" +        id3  
+  var remove = "delete from players where id =" +        value  
                                                  + ";" ;   
   console.log(remove);
   pool.query(remove, function(error, result){
   if(error) {
     //return console.error(error);
-    console.log("remove failed!");
+    console.log("delete failed!");
   }
   else{
     var results=result.rows;
@@ -124,10 +203,9 @@ app.post('/remove', function(req, res){
 
 })
 
-res.redirect('https://stark-spire-21434.herokuapp.com/main.html');
+res.redirect('https://stark-spire-21434.herokuapp.com/GM.html');
 // res.redirect('http://localhost:5000/main.html');
 });
-
 
 
 
