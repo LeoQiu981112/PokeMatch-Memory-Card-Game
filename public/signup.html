@@ -56,14 +56,14 @@
         sa= document.getElementById('sanswer').value;
    
         if(ID=="" || pwd=="" || name=="" || age=="" || sq=="" || sa==""){
-            alert("should enter all information");
+          alert("Please enter all information!");
+        }
+        else if(ID=="GM"){
+          alert("Sorry!You can not sign up as GM!")
         }
         else{
          window.location.href="https://stark-spire-21434.herokuapp.com/login.html";
         }
-        
-        
-    
     }
 </script>
 

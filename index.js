@@ -11,10 +11,10 @@ var session = require('express-session');
 // var pool = new Pool({
 //   user: 'postgres',
 //   password: '123456',
-//   host: 'localhost',
+ //  host: 'localhost',
 //   database: 'test'
-// });
-app.use(flash());
+ //});
+//app.use(flash());
 
 var pool = new Pool({
   connectionString : process.env.DATABASE_URL
@@ -104,7 +104,25 @@ var sans=req.body.sanswer;
 res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
 });
 
-
+app.post('/gmmessage', function(req, res){
+  console.log("hi!");
+  var mes=req.body.gmessage;
+  var insert = "insert into gm values ('" +mes+"');" 
+  console.log(insert);
+  pool.query(insert, function(error, result){
+    if(error) {
+    //return console.error(error);
+    console.log("insert fail!");
+    }
+    console.log("insert success");
+    var results = result.rows;
+    console.log(results);
+    //console.log("insesrt success!");
+  })
+  //res.redirect('http://localhost:5000/main.html');
+  //res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
+  //res.redirect('https://www.google.com')
+});
 
 app.post('/remove', function(req, res){
 
@@ -214,25 +232,7 @@ res.redirect('https://stark-spire-21434.herokuapp.com/main.html');
 //-----
   
 
-
-
-
-
-
-
- //  });
-
 //--------
-
-
-
-
-
-
-
-
-
-
 
 app.post('/deleteUser', (req, res) => {
   // req.body.uid
@@ -248,17 +248,6 @@ app.delete('/user/:id', (req, res) => {
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 app.get('/', (req, res) => res.render('pages/index'))
-
-
-
-
-
-
-
-
-
-
-
 
 app.get('/users/:id', function(req, res){
   console.log(req.params.id);

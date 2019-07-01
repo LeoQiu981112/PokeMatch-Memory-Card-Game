@@ -31,11 +31,18 @@
   		<button onclick="deleteID()"id="gdbutton">Delete</button>
   	</div>
   	<div id="gpublish">
-  		<textarea type="text" id="gmessage" cols="8" rows="20"  style="OVERFLOW:   hidden"placeholder="Message Box"></textarea>
-    </br>
-    <button onclick="searchID()"><a herf="---------" id="gpbutton" >Publish</a></button>
-  	</div>
-  	<a href="https://stark-spire-21434.herokuapp.com/login.html" id="GLog">
-            <input type="button" value="Logout" id="glog">
-    </a>
+      <form action="/gmmessage" method="post">
+        <label for="gmessage"></label>
+        <textarea type="text" id="gmessage" cols="8" rows="20" style="OVERFLOW: hidden" placeholder="Message Box"></textarea></br>
+        <input type="submit" value="Publish" id="gpublish">
+      </form>
+      <a href="https://stark-spire-21434.herokuapp.com/login.html" id="GLog">
+        <input type="button" value="Logout" id="glog">
+      </a>
+    </div>
+    <p id="demo">fffffhfhgfhgfhgfhgfh</p>
 </body>
+<script>
+  var mes=document.getElementById('gmessage').value;
+  document.getElementById("demo").innerHTML=mes;
+</script>
