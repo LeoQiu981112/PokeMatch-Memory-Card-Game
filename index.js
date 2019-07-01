@@ -47,19 +47,19 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 
-app.get('/display',function(req,res){
-  pool.query("select * from students;", function(error, result){
-  if(error) {
-    //return console.error(error);
-    console.log("no work1!");
-  }
-  else{
-    var results= result.rows;
-    res.render('pages/db',{results: results});
-  }
-})
+// app.get('/display',function(req,res){
+//   pool.query("select * from students;", function(error, result){
+//   if(error) {
+//     //return console.error(error);
+//     console.log("no work1!");
+//   }
+//   else{
+//     var results= result.rows;
+//     res.render('pages/db',{results: results});
+//   }
+// })
 
-});
+// });
 
 app.post('/login', function(req, res){
   var user=req.body.Lid;
@@ -299,23 +299,20 @@ res.redirect('https://stark-spire-21434.herokuapp.com/main.html');
 
 
 
-app.post('/deleteUser', (req, res) => {
-  // req.body.uid
-  // delete the user with uid
-  res.redirect('http://localhost:5000/main.html');
-});
+// app.post('/deleteUser', (req, res) => {
+//   // req.body.uid
+//   // delete the user with uid
+//   res.redirect('http://localhost:5000/main.html');
+// });
 
 
-app.delete('/user/:id', (req, res) => {
-  console.log(req.params.id)
-  // delete the user with id
-});
-app.set('views', path.join(__dirname, 'views'))
-app.set('view engine', 'ejs')
-app.get('/', (req, res) => res.render('pages/index'))
-
-
-
+// app.delete('/user/:id', (req, res) => {
+//   console.log(req.params.id)
+//   // delete the user with id
+// });
+// app.set('views', path.join(__dirname, 'views'))
+// app.set('view engine', 'ejs')
+// app.get('/', (req, res) => res.render('pages/index'))
 
 
 
@@ -325,9 +322,12 @@ app.get('/', (req, res) => res.render('pages/index'))
 
 
 
-app.get('/users/:id', function(req, res){
-  console.log(req.params.id);
-})
+
+
+
+// app.get('/users/:id', function(req, res){
+//   console.log(req.params.id);
+// })
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
 
