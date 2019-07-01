@@ -275,7 +275,7 @@ app.post('/modify', function(req, res){
     })
   }
 
-  res.redirect('https://stark-spire-21434.herokuapp.com/modify.html');
+  res.redirect('https://stark-spire-21434.herokuapp.com/homepage.html');
 // res.redirect('http://localhost:5000/main.html');
 });
 
