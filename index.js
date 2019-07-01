@@ -3,7 +3,29 @@ const path = require('path')
 const PORT = process.env.PORT 
 const app = express();
 const { Pool } = require('pg');
-var bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
+
+const expressValidator=require('express-validator');
+const flash=require('connect-flash');
+const session=require('express-session');
+
+//express session middleware
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure:true }
+}));
+
+//express messages middleware
+app.use(require('connect-flash')());
+
+app.use(function (req, res, next) {
+  res.locals.messages = require('express-messages')(req, res);
+  next();
+});
+
+
 
 // var pool = new Pool({
 //   user: 'postgres',
@@ -20,6 +42,23 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.use(bodyParser.urlencoded({ extended: true })); 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -61,8 +100,24 @@ app.post('/login', function(req, res){
     else{
     //res.redirect('https://stark-spire-21434.herokuapp.com/homepage.html');
     console.log("match? success");
-    var results = result.rows;
-    console.log(results);
+    if(result!=[]){
+      var results = result.rows;
+      console.log(result);
+      res.redirect('https://stark-spire-21434.herokuapp.com/homepage.html');
+    }
+
+
+    //create identical login page, cept onload create alert 
+  else{
+    res.send("username or password incorrect");
+    function backtologin() {
+      res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
+    }
+
+    setTimeout(backtologin, 1500);
+
+
+  }
     //console.log("insesrt success!");
     }
   });
