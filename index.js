@@ -19,10 +19,27 @@ const bodyParser = require('body-parser');
 //});
 
 
-
 var pool = new Pool({
   connectionString : process.env.DATABASE_URL
 })
+
+app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.json());
+app.use(express.urlencoded({extended:false}));
+app.use(bodyParser.urlencoded({ extended: true })); 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -43,8 +60,6 @@ app.get('/display',function(req,res){
 })
 
 });
-
-
 
 app.post('/login', function(req, res){
   var user=req.body.Lid;
