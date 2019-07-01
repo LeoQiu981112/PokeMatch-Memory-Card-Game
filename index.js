@@ -92,6 +92,7 @@ app.post('/signup', function(req, res){
       }
     }
     flag = 1;
+    res.redirect('https://stark-spire-21434.herokuapp.com/signup.html');
   });
 
   if (flag == 0){
@@ -107,10 +108,11 @@ app.post('/signup', function(req, res){
         //console.log("insesrt success!");
       }
     });
+    // res.redirect('http://localhost:5000/main.html');
+    res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
   }
 
-  // res.redirect('http://localhost:5000/main.html');
-  res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
+  
 });
 
 
