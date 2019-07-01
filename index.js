@@ -139,7 +139,7 @@ app.post('/signup', function(req, res){
 
   var flag = 0;
   pool.query("select id from players", () => {
-    var results = results.rows;
+    var results = result.rows;
     for(var i = 0,len = results.length; i < len; i++){
       if (id ==results[i]){
         console.alert("Duplicated Users!");
@@ -151,14 +151,14 @@ app.post('/signup', function(req, res){
   });
 
   if (flag == 0){
-    pool.query(insert, function(error, results){
+    pool.query(insert, function(error, result){
       if(error) {
         //return console.error(error);
         console.log("insert failed!");
       }
       else{
         console.log("insert succeeded!");
-        var results = results.rows;
+        var results = result.rows;
         console.log(results);
         //console.log("insesrt success!");
       }
@@ -172,17 +172,17 @@ app.post('/signup', function(req, res){
 
 
 
-app.post('/delete', function(req, res){
+app.post('/remove', function(req, res){
 
-  var value=req.body.Gdelete;
+  var id3=req.body.Gdelete;
 
-  var remove = "delete from players where id =" +        value  
+  var remove = "delete from students where id =" +        id3  
                                                  + ";" ;   
   console.log(remove);
   pool.query(remove, function(error, result){
   if(error) {
     //return console.error(error);
-    console.log("delete failed!");
+    console.log("remove failed!");
   }
   else{
     var results=result.rows;
