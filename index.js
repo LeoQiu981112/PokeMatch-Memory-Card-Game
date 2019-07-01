@@ -8,12 +8,14 @@ var bodyParser = require('body-parser');
 var flash = require('connect-flash');
 var session = require('express-session');
 
-// var pool = new Pool({
-//   user: 'postgres',
-//   password: '123456',
-//   host: 'localhost',
-//   database: 'test'
-// });
+//var pool = new Pool({
+//  user: 'postgres',
+//  password: 'postgres',
+//  host: 'localhost',
+//  database: 'test',
+//  port: 5432,
+//});
+
 app.use(flash());
 
 var pool = new Pool({
@@ -61,8 +63,6 @@ console.log("result id is" + user );
   }
 
 });
-
-
 
 app.post('/signup', function(req, res){
 
