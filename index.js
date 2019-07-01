@@ -176,7 +176,7 @@ app.post('/remove', function(req, res){
 
   var id3=req.body.Gdelete;
 
-  var remove = "delete from students where id =" +    "'" + id3 + "'"  
+  var remove = "delete from players where id =" +    "'" + id3 + "'"  
                                                  + ";" ;   
   console.log(remove);
   pool.query(remove, function(error, result){
