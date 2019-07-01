@@ -65,42 +65,52 @@ console.log("result id is" + user );
 
 
 app.post('/signup', function(req, res){
-  try{
-    var id=req.body.sid;
-    var pass=req.body.spassword;
-    var name=req.body.sname;
-    var age=req.body.sage;
-    var ques=req.body.squestion;
-    var ans=req.body.sanswer;
-    var insert = "insert into players values ( "  + "'" +  sid      + "'" + "," 
+  
+  var id=req.body.sid;
+  var pass=req.body.spassword;
+  var name=req.body.sname;
+  var age=req.body.sage;
+  var ques=req.body.squestion;
+  var ans=req.body.sanswer;
+  var insert = "insert into players values ( "+ "'" +  sid      + "'" + "," 
                                                 + "'" +  spass    + "'" + "," 
                                                 + "'" +  sname    + "'" + "," 
-                                              +        sage           + "," 
+                                                +        sage           + "," 
                                                 +        sques          + "," 
                                                 + "'" +  sans     + "'"     
                                                 + ")"     
                                                 + ";"  ;
-    console.log(insert);
-  }
-  catch (ex){
-    console.log(`Duplicated User ${ex}`);
-  }
-  
+  console.log(insert);
 
-  pool.query(insert, function(error, result){
-  if(error) {
-    //return console.error(error);
-    console.log("insert fail!");
-  }
-  console.log("insert success");
-  var results = result.rows;
-  console.log(results);
-  //console.log("insesrt success!");
-  })
+  var flag = 0;
+  pool.query("select * from players", () => {
+    var results = results.rows;
+    for(var i = 0,len = results.length; i < len; i++){
+      if (id ==results[i]){
+        console.alert("Duplicated Users!");
+        break;
+      }
+    }
+    flag = 1;
+  });
 
+  if (flag == 0){
+    pool.query(insert, function(error, results){
+      if(error) {
+        //return console.error(error);
+        console.log("insert failed!");
+      }
+      else{
+        console.log("insert succeeded!");
+        var results = results.rows;
+        console.log(results);
+        //console.log("insesrt success!");
+      }
+    });
+  }
 
   // res.redirect('http://localhost:5000/main.html');
-res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
+  res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
 });
 
 
