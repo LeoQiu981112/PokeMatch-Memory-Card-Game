@@ -8,12 +8,12 @@ var bodyParser = require('body-parser');
 var flash = require('connect-flash');
 var session = require('express-session');
 
-var pool = new Pool({
-  user: 'postgres',
-  password: '123456',
-  host: 'localhost',
-  database: 'test'
- });
+//var pool = new Pool({
+  //user: 'postgres',
+  //password: 'wyw13512865663',
+  //host: 'localhost',
+  //database: 'test'
+ //});
 app.use(flash());
 
 var pool = new Pool({
