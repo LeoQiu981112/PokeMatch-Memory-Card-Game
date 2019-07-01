@@ -105,9 +105,8 @@ res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
 });
 
 app.post('/gmmessage', function(req, res){
-  console.log("hi!");
   var mes=req.body.gmessage;
-  var insert = "insert into gm values ('" +mes+"');" 
+  var insert = "insert into gm values ('"+mes+"');" 
   console.log(insert);
   pool.query(insert, function(error, result){
     if(error) {
@@ -119,9 +118,6 @@ app.post('/gmmessage', function(req, res){
     console.log(results);
     //console.log("insesrt success!");
   })
-  //res.redirect('http://localhost:5000/main.html');
-  //res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
-  //res.redirect('https://www.google.com')
 });
 
 app.post('/remove', function(req, res){
@@ -230,7 +226,6 @@ res.redirect('https://stark-spire-21434.herokuapp.com/main.html');
 // res.redirect('http://localhost:5000/main.html');
 });
 //-----
-  
 
 //--------
 
@@ -253,7 +248,5 @@ app.get('/users/:id', function(req, res){
   console.log(req.params.id);
 })
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
-
-
 
 // need a to string value for numbers
