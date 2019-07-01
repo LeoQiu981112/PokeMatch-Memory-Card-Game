@@ -5,25 +5,8 @@ const app = express();
 const { Pool } = require('pg');
 const bodyParser = require('body-parser');
 
-const expressValidator=require('express-validator');
-const flash=require('connect-flash');
-const session=require('express-session');
 
-//express session middleware
-app.use(session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure:true }
-}));
 
-//express messages middleware
-app.use(require('connect-flash')());
-
-app.use(function (req, res, next) {
-  res.locals.messages = require('express-messages')(req, res);
-  next();
-});
 
 
 
@@ -35,29 +18,11 @@ app.use(function (req, res, next) {
 //  port: 5432,
 //});
 
-app.use(flash());
+
 
 var pool = new Pool({
   connectionString : process.env.DATABASE_URL
 })
-
-app.use(express.static(path.join(__dirname, 'public')))
-app.use(express.json());
-app.use(express.urlencoded({extended:false}));
-app.use(bodyParser.urlencoded({ extended: true })); 
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -78,6 +43,8 @@ app.get('/display',function(req,res){
 })
 
 });
+
+
 
 app.post('/login', function(req, res){
   var user=req.body.Lid;
