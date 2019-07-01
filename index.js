@@ -1,6 +1,6 @@
 const express = require('express')
 const path = require('path')
-const PORT = process.env.PORT 
+const PORT = process.env.PORT || 8001
 const app = express();
 const { Pool } = require('pg');
 var bodyParser = require('body-parser');
