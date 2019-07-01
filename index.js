@@ -121,12 +121,12 @@ app.post('/login', function(req, res){
 
 app.post('/signup', function(req, res){
   
-  var id=req.body.sid;
-  var pass=req.body.spassword;
-  var name=req.body.sname;
-  var age=req.body.sage;
-  var ques=req.body.squestion;
-  var ans=req.body.sanswer;
+  var sid=req.body.sid;
+  var spass=req.body.spassword;
+  var sname=req.body.sname;
+  var sage=req.body.sage;
+  var sques=req.body.squestion;
+  var sans=req.body.sanswer;
   var insert = "insert into players values ( "+ "'" +  sid      + "'" + "," 
                                                 + "'" +  spass    + "'" + "," 
                                                 + "'" +  sname    + "'" + "," 
