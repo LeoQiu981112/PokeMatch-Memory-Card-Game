@@ -3,49 +3,20 @@
 <html>
 <head>
     <meta charset="UTF-8">
-   <link href="GM.css " rel="stylesheet" type="text/css" />	
    <link href="GM.css " rel="stylesheet" type="text/css" /> 
     <title>GM</title>
 </head>
 <body>
 
   <h1>Game Manager</h1>
-      <input id="Gsearch" type="text" name="search_id" placeholder="enter ID">
-	<div id="GGM">
-		
-			<form action="/search" method="post" >
-				<input type="text" id="gsearch" name="gsearch" placeholder="enter ID">
-				<input type="submit" value="Search" id="search" name="search">
-			</form>
-			
-  		<table>
-  			<h2>User Information</h2>
-  		    <tr>
-  		    	<th>ID</th>
-  		    	<th>Name</th>
-  		    	<th>Age</th>
-  		    	<th colspan="1"></th>
-  		    </tr>
-  		    <tr>
-  		    	<th>read</th>
-  		    	<th>read</th>
-  		    	<th>read</th>
-  		    	<th colspan="1"></th>
-  		    </tr>
-          <tr>
-            <form action="/remove" method="post" >
-              <input type="text" id="Gdelete" name="Gdelete" placeholder="enter ID">
-              <input type="submit" value="Delete" id="delete">
-            </form>
-          </tr>
-  		</table>
-	</div>
-
-
-  	<div id="gpublish">
   <div id="GGM">
-      <input id="Gsearch" type="text" name="search_id" placeholder="enter ID">
-      <button onclick="searchID()"><a herf="---------" id="gsbutton" >Search</a></button>
+    
+      <form action="/search" method="post" >
+        <input type="text" id="gsearch" name="gsearch" placeholder="enter ID">
+        <input type="submit" value="Search" id="search" name="search">
+      </form>
+      
+
       <table>
           <tr>
             <th>ID</th>
@@ -61,7 +32,7 @@
       <br></br>
       <form action="/remove" method="post" >
         <input type="text" id="Gdelete" name="Gdelete" placeholder="enter ID">
-        <input type="submit" value="delete" id="delete">
+        <input type="submit" value="Delete" id="delete">
       </form>
     </div>
     <div id="gpublish">
@@ -75,3 +46,4 @@
       </a>
     </div>
 </body>
+</html>
