@@ -128,7 +128,6 @@ app.post('/signup', function(req, res){
 
   //if (flag == 0){
     pool.query(insert, function(error, result){
-      console.log(result);
 
     	if(error) {
     		console.log("insert failed!");
@@ -186,6 +185,28 @@ res.redirect('https://stark-spire-21434.herokuapp.com/GM.html');
 });
 
 
+
+app.post('/search', function(req, res){
+	
+	var search = "select * from players where id in ($1);"  
+                                                   
+  console.log(search);
+
+  pool.query(search, function(error, result){
+    console.log(result);
+
+	  // if(result.rowCount) {
+    //   console.log("remove succeeded!");
+	  // }
+	  // else{
+    //   //return console.error(error);
+	  //   console.log("remove failed!");
+	  // } 	  
+  });
+
+  res.redirect('https://stark-spire-21434.herokuapp.com/GM.html');
+// res.redirect('http://localhost:5000/main.html');
+});
 
 
 app.post('/modify', function(req, res){

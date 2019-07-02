@@ -10,9 +10,15 @@
 
   <h1>Game Manager</h1>
 	<div id="GGM">
+		
+			<form action="/search" method="post" >
+				<input type="text" id="gsearch" name="gsearch" placeholder="enter ID">
+				<input type="submit" value="Search" id="search">
+			</form>
+			
 
-  		<input id="Gsearch" type="text" name="search_id" placeholder="enter ID">
-  		<button onclick="searchID()"><a herf="---------" id="gsbutton" >Search</a></button>
+  		<!-- <input id="Gsearch" type="text" name="search_id" placeholder="enter ID">
+  		<button onclick="searchID()"><a herf="---------" id="gsbutton" >Search</a></button> -->
   		<table>
   			<h2>User Information</h2>
   		    <tr>
@@ -30,14 +36,13 @@
           <tr>
             <form action="/remove" method="post" >
               <input type="text" id="Gdelete" name="Gdelete" placeholder="enter ID">
-              <input type="submit" value="delete" id="delete">
+              <input type="submit" value="Delete" id="delete">
             </form>
           </tr>
   		</table>
+	</div>
 
 
-
-  	</div>
   	<div id="gpublish">
       <form action="/gmmessage" method="post">
 
