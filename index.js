@@ -192,7 +192,7 @@ app.post('/search', function(req, res){
                                                    
   console.log(search);
 
-  pool.query(insert, function(error, result){
+  pool.query(search, function(error, result){
 
     if(error) {
       console.log("Search failed!");
