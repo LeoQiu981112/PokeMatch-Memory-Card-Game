@@ -128,6 +128,8 @@ app.post('/signup', function(req, res){
 
   //if (flag == 0){
     pool.query(insert, function(error, result){
+      console.log(result);
+
     	if(error) {
     		console.log("insert failed!");
     	}
@@ -168,8 +170,8 @@ app.post('/remove', function(req, res){
   console.log(remove);
 
   pool.query(remove, function(error, result){
-    console.log(result);
-    
+    //console.log(result);
+
 	  if(result.rowCount) {
       console.log("remove succeeded!");
 	  }
