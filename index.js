@@ -115,7 +115,7 @@ app.post('/signup', function(req, res){
 
 app.post('/gmmessage', function(req, res){
   var mes=req.body.gmessage;
-  var insert = "insert into gm values ('"+mes+"');" 
+  var insert = "insert into gm_msg values ('"+mes+"');" 
   console.log(insert);
   pool.query(insert, function(error, result){
     if(error) {
