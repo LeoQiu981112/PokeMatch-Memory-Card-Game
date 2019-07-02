@@ -115,7 +115,7 @@ app.post('/signup', function(req, res){
 
     if(error) {
       console.log("Insert failed!");
-      res.redirect('https://stark-spire-21434.herokuapp.com/insertFailed.html');
+      res.redirect('https://stark-spire-21434.herokuapp.com/signupFailed.html');
     }
     else{
         console.log("Insert succeeded!");
@@ -155,7 +155,7 @@ app.post('/remove', function(req, res){
 
 	  if(result.rowCount) {
       console.log("Remove succeeded!");
-      res.redirect('https://stark-spire-21434.herokuapp.com/GM.html');
+      res.redirect('https://stark-spire-21434.herokuapp.com/deleteSucceeded.html');
 	  }
 	  else{
       //return console.error(error);
