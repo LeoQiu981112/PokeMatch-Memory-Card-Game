@@ -90,7 +90,7 @@ app.post('/signup', function(req, res){
         break;
       }
     }
-    res.json({ "code":"200" , "message":"Duplicated users!" });
+    //res.json({ "code":"200" , "message":"Duplicated users!" });
     flag = 1;
     res.redirect('https://stark-spire-21434.herokuapp.com/signup.html');
   });
