@@ -8,42 +8,32 @@
 <body>
 
   <h1>Game Manager</h1>
-	<div id="GGM">
-
-  		<input id="Gsearch" type="text" name="search_id" placeholder="enter ID">
-  		<button onclick="searchID()"><a herf="---------" id="gsbutton" >Search</a></button>
-  		<table>
-  			<h2>User Information</h2>
-  		    <tr>
-  		    	<th>ID</th>
-  		    	<th>Name</th>
-  		    	<th>Age</th>
-  		    	<th colspan="1"></th>
-  		    </tr>
-  		    <tr>
-  		    	<th>read</th>
-  		    	<th>read</th>
-  		    	<th>read</th>
-  		    	<th colspan="1"></th>
-  		    </tr>
+  <div id="GGM">
+      <input id="Gsearch" type="text" name="search_id" placeholder="enter ID">
+      <button onclick="searchID()"><a herf="---------" id="gsbutton" >Search</a></button>
+      <table>
           <tr>
-            <form action="/remove" method="post" >
-              <input type="text" id="Gdelete" name="Gdelete" placeholder="enter ID">
-              <input type="submit" value="delete" id="delete">
-            </form>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Age</th>
           </tr>
-  		</table>
-
-
-
-  	</div>
-  	<div id="gpublish">
+          <tr>
+            <th>read</th>
+            <th>read</th>
+            <th>read</th>
+          </tr>
+      </table>
+      <br></br>
+      <form action="/remove" method="post" >
+        <input type="text" id="Gdelete" name="Gdelete" placeholder="enter ID">
+        <input type="submit" value="delete" id="delete">
+      </form>
+    </div>
+    <div id="gpublish">
       <form action="/gmmessage" method="post">
-
-      <label for="gmessage" ></label>
-      <input type="text" id="gmessage" placeholder="Message Box" name="gmessage"/><br>
-
-        <input type="submit" value="Publish" id="gpublish">
+        <label for="gmessage" ></label>
+        <input type="text" id="gmessage" placeholder="Message Box" name="gmessage"/><br>
+        <input type="submit" value="Publish" id="publish">
       </form>
       <a href="https://stark-spire-21434.herokuapp.com/login.html" id="GLog">
         <input type="button" value="Logout" id="glog">
