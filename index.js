@@ -81,20 +81,21 @@ app.post('/signup', function(req, res){
                                                 + ";"  ;
   console.log(insert);
 
-  //var flag = 0;
-  //pool.query("select id from players;", () => {
-  //  var results = result.rows;
-  //  for(var i = 0,len = results.length; i < len; i++){
-  //    if (id ==results[i]){
-  //      console.alert("Duplicated Users!");
-  //      break;
-  //    }
-  //  }
-  //  flag = 1;
-  //  res.redirect('https://stark-spire-21434.herokuapp.com/signup.html');
-  //});
+  var flag = 0;
+  pool.query("select id from players;", function(err, result) {
+    var results = result.rows;
+    for(var i = 0,len = results.length; i < len; i++){
+      if (id == results[i]){
+        console.log("Duplicated Users!");
+        break;
+      }
+    }
+    res.json("Duplicated Users!");
+    flag = 1;
+    res.redirect('https://stark-spire-21434.herokuapp.com/signup.html');
+  });
 
-  //if (flag == 0){
+  if (flag == 0){
     pool.query(insert, function(error, result){
       if(error) {
         //return console.error(error);
@@ -109,7 +110,7 @@ app.post('/signup', function(req, res){
     });
     // res.redirect('http://localhost:5000/main.html');
     res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
-  //}
+  }
   
 }); // end of signup
 
