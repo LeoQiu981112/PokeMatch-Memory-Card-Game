@@ -17,14 +17,14 @@
         <label for="mid">ID:</label><br>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <label for="mpassword">Password:</label>
-        <input type="text" id="mpassword" placeholder="Enter New Password" name="fn2" /><br>
+        <input type="text" id="mpassword" placeholder="Enter New Password" name="mpassword" /><br>
 
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <label for="mname">Name:</label>
-        <input type="text" id="mname" placeholder="Enter Your Name" name="ln2" /><br>
+        <input type="text" id="mname" placeholder="Enter Your Name" name="mname" /><br>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <label for="mage">Age:</label>
-        <input type="number" id="mage" placeholder="Enter Your age" name="w2" /><br>
+        <input type="number" id="mage" placeholder="Enter Your age" name="mage" /><br>
 
         <label for="mquestion">Security Question:</label>
         <select name="mquestion" id="mquestion">
@@ -47,9 +47,82 @@
     </form>
 </div>
     
+<script>
+    app.post('/modify', function(req, res){
 
-    
-    
+        var mid=req.body.mid;
+
+        var mpassword=req.body.mpassword;
+
+        var mname=req.body.mname;
+
+        var mage=req.body.mage;
+
+        var mquestion=req.body.mquestion;
+
+        var manswer=req.body.manswer;
+
+        var fp="update users set ";
+
+        var sp= " where id = " + mid + ";";
+
+        var tmp;
+
+        if(mpassword){
+            tmp= fp + "password = " + mpassword + sp;
+            pool.query(tmp, function(error, result){
+            if(error) {
+                console.log("mod fail!");
+            }         
+            })
+        }
+
+        if(mname){
+            tmp= fp + "name = " + mname + sp;
+            pool.query(tmp, function(error, result){
+            if(error) {
+                console.log("mod fail!");
+            }
+            })
+        }
+
+        if(mage){
+            tmp= fp + "age = " + mage + sp;
+            pool.query(tmp, function(error, result){
+        if(error) {
+            console.log("mod fail!");
+            }
+            })
+        }
+
+// modify security question, get question from db?????
+//security question 从heroku db 里的sec_q table 里取
+//根据players 里sqnum，每个问题有个对应的数字
+//Heroku pg:psql 登录
+
+        if(mquestion){
+            tmp= fp + "question = " + "'"+ mquestion + "'"+ sp;
+            pool.query(tmp, function(error, result){
+            if(error) {
+                console.log("mod fail!");
+            }
+            })
+        }
+
+        if(manswer){
+            tmp= fp + "question answer = " + "'"+ hc2 + "'" + sp;
+            pool.query(tmp, function(error, result){
+            if(error) {
+                console.log("mod fail!");
+            }
+            })
+        }
+
+        res.redirect('https://stark-spire-21434.herokuapp.com/modify.html');
+        // res.redirect('http://localhost:5000/main.html');
+        });
+
+</script>
     
 </body>
 
