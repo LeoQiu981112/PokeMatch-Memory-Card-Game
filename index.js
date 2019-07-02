@@ -114,18 +114,16 @@ app.post('/signup', function(req, res){
   pool.query(insert, function(error, result){
 
     if(error) {
-    	console.log("Insert failed!");
+      console.log("Insert failed!");
+      res.redirect('https://stark-spire-21434.herokuapp.com/insertFailed.html');
     }
     else{
         console.log("Insert succeeded!");
         var results = result.rows;
-    		console.log(results);
+        console.log(results);
+        res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
     }
-  });
-    
-  res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
-    
-  
+  });    
 })
 
 app.post('/gmmessage', function(req, res){
@@ -157,14 +155,16 @@ app.post('/remove', function(req, res){
 
 	  if(result.rowCount) {
       console.log("Remove succeeded!");
+      res.redirect('https://stark-spire-21434.herokuapp.com/GM.html');
 	  }
 	  else{
       //return console.error(error);
-	    console.log("Remove failed!");
+      console.log("Remove failed!");
+      res.redirect('https://stark-spire-21434.herokuapp.com/deleteFailed.html');
 	  } 	  
   });
 
-res.redirect('https://stark-spire-21434.herokuapp.com/GM.html');
+
 // res.redirect('http://localhost:5000/main.html');
 });
 
@@ -182,15 +182,15 @@ app.post('/search', function(req, res){
 	  if(result.rowCount) {
       console.log("Search succeeded!");
       var results = result.rows;
-      //res.render('GM/search', results);
+      res.redirect('https://stark-spire-21434.herokuapp.com/searchSucceeded.html');
 	  }
 	  else{
       console.log("Search failed!");
-      res.render('pages/message',{message:"No Such player In Database!"})
+      res.redirect('https://stark-spire-21434.herokuapp.com/searchFailed.html');
 	  } 	   
   }); 	  
 
-  res.redirect('https://stark-spire-21434.herokuapp.com/GM.html');
+  //res.redirect('https://stark-spire-21434.herokuapp.com/GM.html');
 // res.redirect('http://localhost:5000/main.html');
 });
 
