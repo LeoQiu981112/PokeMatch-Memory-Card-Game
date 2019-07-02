@@ -111,6 +111,21 @@ app.post('/signup', function(req, res){
                                                 + ";"  ;
 	console.log(insert);
 
+  var flag = 0;
+  pool.query("select id from players;", function(error, result) {
+    var results = result.rows;
+    for(var i = 0, len = results.length; i < len; i++){
+      if (sid == results[i]){
+        console.log("Duplicated Users!");
+        //res.json({ "code":"200" , "message":"Duplicated users!" });
+        flag = 1;
+        res.redirect('https://stark-spire-21434.herokuapp.com/signup.html');
+        break;
+      }
+    }   
+  });
+
+  if (flag == 0){
     pool.query(insert, function(error, result){
     	if(error) {
     		console.log("insert failed!");
@@ -121,7 +136,7 @@ app.post('/signup', function(req, res){
     		console.log(results);
     	}
     });
-
+  }
     res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
 });
 
