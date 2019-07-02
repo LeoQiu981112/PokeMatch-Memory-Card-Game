@@ -29,18 +29,18 @@ app.use(express.static(path.join(__dirname, 'views')))
 app.set('view engine', 'ejs')
 
 
-app.get('/display',function(req,res){
-  pool.query("select * from students;", function(error, result){
-  if(error) {
-    //return console.error(error);
-    console.log("no work1!");
-  }
-  else{
-    var results= result.rows;
-    res.render('pages/db',{results: results});
-  }
-  })
-});
+// app.get('/display',function(req,res){
+//   pool.query("select * from students;", function(error, result){
+//   if(error) {
+//     //return console.error(error);
+//     console.log("no work1!");
+//   }
+//   else{
+//     var results= result.rows;
+//     res.render('pages/db',{results: results});
+//   }
+//   })
+// });
 
 app.post('/login', function(req, res){
   var user=req.body.Lid;
@@ -80,18 +80,6 @@ app.post('/login', function(req, res){
 	   	}
     });
 });
-
-//if found
-  //res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
-  // res.redirect('http://localhost:5000/main.html');
-
-//if not found
-  // else{
-  //   res.send("username or password incorrect");
-  //   // res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
-  // }
-
-
 
 
 app.post('/signup', function(req, res){
@@ -177,7 +165,7 @@ app.post('/search', function(req, res){
   console.log(search);
 
   pool.query(search, function(error, result){
-    //console.log(result);
+    console.log(result);
 
 	  if(result.rowCount) {
       console.log("Search succeeded!");
