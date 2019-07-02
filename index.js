@@ -198,7 +198,7 @@ app.post('/search', function(req, res){
       console.log("Search failed!");
     }
     else{
-      console.log("Insert succeeded!");
+      console.log("Search succeeded!");
       var results = result.rows;
       console.log(results);
     } 
