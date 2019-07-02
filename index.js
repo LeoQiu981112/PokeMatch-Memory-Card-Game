@@ -45,7 +45,7 @@ app.set('view engine', 'ejs')
 app.post('/login', function(req, res){
   var user=req.body.Lid;
   var pwd=req.body.Lpassword;
-  console.log("result id is" + user);
+  console.log("result id is " + user);
 
   //gm
   if(user=='GM1' && pwd=='123'){
@@ -56,9 +56,8 @@ app.post('/login', function(req, res){
   console.log(match);
 
   pool.query(match, function(error, result){
-    console.log(eval(result.rows));
-    console.log(eval(result.rows).id);
-    console.log(eval(result.rows).password);
+    console.log(JSON.parse(result.rows));
+    
 	  if(result.rows.id != user) {
       console.log("UseID dose not exist!");
       res.redirect('https://stark-spire-21434.herokuapp.com/wrongID.html');
