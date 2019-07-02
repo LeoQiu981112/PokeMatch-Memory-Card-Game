@@ -26,9 +26,16 @@
   		    	<th>read</th>
   		    	<th colspan="1"></th>
   		    </tr>
+          <tr>
+            <form action="/remove" method="post" >
+              <input type="text" id="Gdelete" name="Gdelete" placeholder="enter ID">
+              <input type="submit" value="delete" id="delete">
+            </form>
+          </tr>
   		</table>
-  		<input type="text" id="Gdelete" placeholder="enter ID">
-  		<button onclick="deleteID()"id="gdbutton">Delete</button>
+
+
+
   	</div>
   	<div id="gpublish">
       <form action="/gmmessage" method="post">
