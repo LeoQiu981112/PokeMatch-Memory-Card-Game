@@ -56,7 +56,8 @@ app.post('/login', function(req, res){
   console.log(match);
 
   pool.query(match, function(error, result){
-    console.log(JSON.parse(result.rows));
+    console.log(result);
+    console.log(result.rows);
     
 	  if(result.rows.id != user) {
       console.log("UseID dose not exist!");
