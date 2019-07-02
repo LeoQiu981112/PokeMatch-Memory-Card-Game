@@ -141,6 +141,7 @@ app.post('/signup', function(req, res){
     res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
     console.log(flag);
   }
+})
 
 app.post('/gmmessage', function(req, res){
   var mes=req.body.gmessage;
