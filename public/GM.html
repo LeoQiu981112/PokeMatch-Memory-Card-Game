@@ -3,53 +3,47 @@
 <html>
 <head>
     <meta charset="UTF-8">
-   <link href="GM.css " rel="stylesheet" type="text/css" />	
+   <link href="GM.css " rel="stylesheet" type="text/css" /> 
     <title>GM</title>
 </head>
 <body>
 
   <h1>Game Manager</h1>
-	<div id="GGM">
-		
-			<form action="/search" method="post" >
-				<input type="text" id="gsearch" name="gsearch" placeholder="enter ID">
-				<input type="submit" value="Search" id="search" name="search">
-			</form>
-			
-  		<table>
-  			<h2>User Information</h2>
-  		    <tr>
-  		    	<th>ID</th>
-  		    	<th>Name</th>
-  		    	<th>Age</th>
-  		    	<th colspan="1"></th>
-  		    </tr>
-  		    <tr>
-  		    	<th>read</th>
-  		    	<th>read</th>
-  		    	<th>read</th>
-  		    	<th colspan="1"></th>
-  		    </tr>
+  <div id="GGM">
+    
+      <form action="/search" method="post" >
+        <input type="text" id="gsearch" name="gsearch" placeholder="enter ID">
+        <input type="submit" value="Search" id="search" name="search">
+      </form>
+      
+
+      <table>
           <tr>
-            <form action="/remove" method="post" >
-              <input type="text" id="Gdelete" name="Gdelete" placeholder="enter ID">
-              <input type="submit" value="Delete" id="delete">
-            </form>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Age</th>
           </tr>
-  		</table>
-	</div>
-
-
-  	<div id="gpublish">
+          <tr>
+            <th>read</th>
+            <th>read</th>
+            <th>read</th>
+          </tr>
+      </table>
+      <br></br>
+      <form action="/remove" method="post" >
+        <input type="text" id="Gdelete" name="Gdelete" placeholder="enter ID">
+        <input type="submit" value="Delete" id="delete">
+      </form>
+    </div>
+    <div id="gpublish">
       <form action="/gmmessage" method="post">
-
-      <label for="gmessage" ></label>
-      <input type="text" id="gmessage" placeholder="Message Box" name="gmessage"/><br>
-
-        <input type="submit" value="Publish" id="gpublish">
+        <label for="gmessage" ></label>
+        <input type="text" id="gmessage" placeholder="Message Box" name="gmessage"/><br>
+        <input type="submit" value="Publish" id="publish">
       </form>
       <a href="https://stark-spire-21434.herokuapp.com/login.html" id="GLog">
         <input type="button" value="Logout" id="glog">
       </a>
     </div>
 </body>
+</html>
