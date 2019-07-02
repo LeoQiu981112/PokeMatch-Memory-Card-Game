@@ -127,6 +127,7 @@ app.post('/gmmessage', function(req, res){
     console.log(results);
     //console.log("insesrt success!");
   });
+  res.redirect('https://stark-spire-21434.herokuapp.com/GM.html');
 }); // end of gm msg
 
 app.post('/remove', function(req, res){
@@ -148,7 +149,7 @@ app.post('/remove', function(req, res){
 	  console.log(results);
   });
 
-res.redirect('https://stark-spire-21434.herokuapp.com/main.html');
+res.redirect('https://stark-spire-21434.herokuapp.com/GM.html');
 // res.redirect('http://localhost:5000/main.html');
 });
 
@@ -229,4 +230,3 @@ app.post('/modify', function(req, res){
 
 
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
-
