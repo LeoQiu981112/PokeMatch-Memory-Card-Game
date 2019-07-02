@@ -187,8 +187,8 @@ res.redirect('https://stark-spire-21434.herokuapp.com/GM.html');
 
 
 app.post('/search', function(req, res){
-	
-	var search = "select * from players where id in ($1);"  
+	var sid=req.body.gsearch;
+	var search = "select * from players where id in " + "('" + sid + "')" + ";"; 
                                                    
   console.log(search);
 
