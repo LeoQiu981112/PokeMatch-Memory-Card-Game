@@ -1,17 +1,23 @@
-
 const express = require('express')
 const path = require('path')
-const PORT = process.env.PORT 
+const PORT = process.env.PORT || 8001
 const app = express();
 const { Pool } = require('pg');
-var bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 
-// var pool = new Pool({
-//   user: 'postgres',
-//   password: '123456',
-//   host: 'localhost',
-//   database: 'test'
-// });
+
+
+
+
+
+//var pool = new Pool({
+//  user: 'postgres',
+//  password: 'postgres',
+//  host: 'localhost',
+//  database: 'test',
+//  port: 5432,
+//});
+
 
 var pool = new Pool({
   connectionString : process.env.DATABASE_URL
@@ -23,85 +29,159 @@ app.use(express.urlencoded({extended:false}));
 app.use(bodyParser.urlencoded({ extended: true })); 
 
 
-
-app.get('/display',function(req,res){
-  pool.query("select * from students;", function(error, result){
-  if(error) {
-    //return console.error(error);
-    console.log("no work1!");
-  }
-  else{
-    var results= result.rows;
-    res.render('pages/db',{results: results});
-  }
-})
-
-});
+app.use(express.static(path.join(__dirname, 'views')))
+app.set('view engine', 'ejs')
 
 
 
-app.post('/insert', function(req, res){
 
-//   pool.query("select * from students", function(error, result){
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// app.get('/display',function(req,res){
+//   pool.query("select * from students;", function(error, result){
 //   if(error) {
 //     //return console.error(error);
 //     console.log("no work1!");
 //   }
-//     console.log("IT WORKED!!!");
-//     var results=result.rows;
-//     console.log(results);
-
+//   else{
+//     var results= result.rows;
+//     res.render('pages/db',{results: results});
+//   }
 // })
-//test insert, the  entries can be replace by elements pointed to by html ids.   
 
-var id1=req.body.id1;
+// });
 
-var fn1=req.body.fn1;
+app.post('/login', function(req, res){
+  var user=req.body.Lid;
+  var pwd=req.body.Lpassword;
+  console.log("result id is" + user );
 
-var ln1=req.body.ln1;
+  //gm
+  if(user=='GM1' && pwd=='123'){
+    res.redirect('https://stark-spire-21434.herokuapp.com/GM.html');
+  }
+  
 
-var w1=req.body.w1;
 
-var h1=req.body.h1;
+  //query
+  var match="select * from players where id = " + "'" + user + "'" + 
+            "and password                   = " + "'" + pwd  + "'" + ";";
+  console.log("query: " + match );
 
-var hc1=req.body.hc1;
+  pool.query(match, function(error, result){
+    if(error) {
+      console.log("query fail!");
+    } 
+    else{
+    //res.redirect('https://stark-spire-21434.herokuapp.com/homepage.html');
+    console.log("match? success");
+    if(result!=[]){
+      var results = result.rows;
+      console.log(result);
+      res.redirect('https://stark-spire-21434.herokuapp.com/homepage.html');
+    }
 
-var gpa1=req.body.gpa1;
 
-  var insert = "insert into students values ( " +        id1          + "," 
-                                                + "'" +  fn1    + "'" + "," 
-                                                + "'" +  ln1    + "'" + "," 
-                                                +        w1           + "," 
-                                                +        h1           + "," 
-                                                + "'" +  hc1    + "'" + "," 
-                                                +        gpa1      
+    //create identical login page, cept onload create alert 
+  else{
+    res.send("username or password incorrect");
+    function backtologin() {
+      res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
+    }
+
+    setTimeout(backtologin, 1500);
+
+
+  }
+    //console.log("insesrt success!");
+    }
+  });
+
+//if found
+  //res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
+  // res.redirect('http://localhost:5000/main.html');
+
+//if not found
+  // else{
+  //   res.send("username or password incorrect");
+  //   // res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
+  // }
+
+});
+
+app.post('/signup', function(req, res){
+  
+  var sid=req.body.sid;
+  var spass=req.body.spassword;
+  var sname=req.body.sname;
+  var sage=req.body.sage;
+  var sques=req.body.squestion;
+  var sans=req.body.sanswer;
+  var insert = "insert into players values ("   + "'" +  sid      + "'" + "," 
+                                                + "'" +  spass    + "'" + "," 
+                                                + "'" +  sname    + "'" + "," 
+                                                +        sage           + "," 
+                                                +        sques          + "," 
+                                                + "'" +  sans     + "'"     
                                                 + ")"     
                                                 + ";"  ;
   console.log(insert);
 
-  pool.query(insert, function(error, result){
-  if(error) {
-    //return console.error(error);
-    console.log("insert fail!");
-  }
-  console.log("insert success");
-  var results = result.rows;
-  console.log(results);
-  //console.log("insesrt success!");
-  })
+  //var flag = 0;
+  //pool.query("select id from players;", () => {
+  //  var results = result.rows;
+  //  for(var i = 0,len = results.length; i < len; i++){
+  //    if (id ==results[i]){
+  //      console.alert("Duplicated Users!");
+  //      break;
+  //    }
+  //  }
+  //  flag = 1;
+  //  res.redirect('https://stark-spire-21434.herokuapp.com/signup.html');
+  //});
 
+  //if (flag == 0){
+    pool.query(insert, function(error, result){
+      if(error) {
+        //return console.error(error);
+        console.log("insert failed!");
+      }
+      else{
+        console.log("insert succeeded!");
+        var results = result.rows;
+        console.log(results);
+        //console.log("insesrt success!");
+      }
+    });
+    // res.redirect('http://localhost:5000/main.html');
+    res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
+  //}
 
-  // res.redirect('http://localhost:5000/main.html');
-res.redirect('https://stark-spire-21434.herokuapp.com/main.html');
+  
 });
 
 
 
 app.post('/remove', function(req, res){
 
-  var id3=req.body.id3;
+  var id3=req.body.Gdelete;
 
-  var remove = "delete from students where id =" +        id3  
+  var remove = "delete from players where id =" +    "'" + id3 + "'"  
                                                  + ";" ;   
   console.log(remove);
   pool.query(remove, function(error, result){
@@ -116,92 +196,89 @@ app.post('/remove', function(req, res){
 
 })
 
-res.redirect('https://stark-spire-21434.herokuapp.com/main.html');
+res.redirect('https://stark-spire-21434.herokuapp.com/GM.html');
 // res.redirect('http://localhost:5000/main.html');
 });
-
 
 
 
 app.post('/modify', function(req, res){
-var id2=req.body.id2;
 
-var fn2=req.body.fn2;
+  //var mid=req.body.mid;
 
-var ln2=req.body.ln2;
+  var mid=   "'" + "xyz" + "'" 
 
-var w2=req.body.w2;
+  var mpassword=req.body.mpassword;
 
-var h2=req.body.h2;
+  var mname=req.body.mname;
 
-var hc2=req.body.hc2;
+  var mage=req.body.mage;
 
-var gpa2=req.body.gpa2;
+  var mquestion=req.body.mquestion;
 
-var fp="update students set ";
+  var manswer=req.body.manswer;
 
-var sp= " where id = " + id2 + ";";
 
-var tmp;
-if(fn2){
-  tmp= fp + "firstname = " + "'" + fn2 + "'" + sp;
-  pool.query(tmp, function(error, result){
-  if(error) {
-    console.log("mod fail!");
+  var fp="update players set ";
+
+  var sp= " where id = " + mid + ";";
+
+  var tmp;
+
+  if(mpassword){
+    tmp= fp + "password = " + "'" + mpassword + "'" + sp;
+    pool.query(tmp, function(error, result){
+    if(error) {
+      console.log("mod fail!");
+    }
+    })
   }
-  })
-}
 
-if(ln2){
-
-  tmp= fp + "lastname = " + "'" + ln2 + "'" + sp;
-  pool.query(tmp, function(error, result){
-  if(error) {
-    console.log("mod fail!");
+  if(mname){
+    tmp= fp + "name = " + "'" + mname + "'" + sp;
+    pool.query(tmp, function(error, result){
+    if(error) {
+      console.log("mod fail!");
+    }
+    })
   }
-  })
-}
 
-if(w2){
-  tmp= fp + "weight = " + w2 + sp;
-  pool.query(tmp, function(error, result){
-  if(error) {
-    console.log("mod fail!");
+  if(mage){
+    tmp= fp + "age = " + mage + sp;
+    pool.query(tmp, function(error, result){
+    if(error) {
+      console.log("mod fail!");
+    }
+    })
   }
-  })
-}
 
-if(h2){
-  tmp= fp + "height = " + h2 + sp;
-  pool.query(tmp, function(error, result){
-  if(error) {
-    console.log("mod fail!");
+// modify security question, get question from db?????
+//security question 从heroku db 里的sec_q table 里取
+//根据players 里sqnum，每个问题有个对应的数字
+//Heroku pg:psql 登录
+
+  if(mquestion){
+    tmp= fp + "sqnum = " + mquestion + sp;
+    pool.query(tmp, function(error, result){
+    if(error) {
+      console.log("mod fail!");
+    }
+    })
   }
-  })
-}
 
-if(hc2){
-
-  tmp= fp + "hair_colour = " + "'"+ hc2 + "'" + sp;
-  pool.query(tmp, function(error, result){
-  if(error) {
-    console.log("mod fail!");
+  if(manswer){
+    tmp= fp + "ans = " + "'"+ manswer + "'" + sp;
+    pool.query(tmp, function(error, result){
+    if(error) {
+      console.log("mod fail!");
+    }
+    })
   }
-  })
-}
 
-if(gpa2){
-  tmp= fp + "gpa = " + gpa2 + sp;
-  pool.query(tmp, function(error, result){
-  if(error) {
-    console.log("mod fail!");
-  }
-  })
-}
-
-res.redirect('https://stark-spire-21434.herokuapp.com/main.html');
+  res.redirect('https://stark-spire-21434.herokuapp.com/homepage.html');
 // res.redirect('http://localhost:5000/main.html');
 });
+
 //-----
   
 
@@ -225,23 +302,20 @@ res.redirect('https://stark-spire-21434.herokuapp.com/main.html');
 
 
 
-app.post('/deleteUser', (req, res) => {
-  // req.body.uid
-  // delete the user with uid
-  res.redirect('http://localhost:5000/main.html');
-});
+// app.post('/deleteUser', (req, res) => {
+//   // req.body.uid
+//   // delete the user with uid
+//   res.redirect('http://localhost:5000/main.html');
+// });
 
 
-app.delete('/user/:id', (req, res) => {
-  console.log(req.params.id)
-  // delete the user with id
-});
-app.set('views', path.join(__dirname, 'views'))
-app.set('view engine', 'ejs')
-app.get('/', (req, res) => res.render('pages/index'))
-
-
-
+// app.delete('/user/:id', (req, res) => {
+//   console.log(req.params.id)
+//   // delete the user with id
+// });
+// app.set('views', path.join(__dirname, 'views'))
+// app.set('view engine', 'ejs')
+// app.get('/', (req, res) => res.render('pages/index'))
 
 
 
@@ -251,9 +325,12 @@ app.get('/', (req, res) => res.render('pages/index'))
 
 
 
-app.get('/users/:id', function(req, res){
-  console.log(req.params.id);
-})
+
+
+
+// app.get('/users/:id', function(req, res){
+//   console.log(req.params.id);
+// })
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
 

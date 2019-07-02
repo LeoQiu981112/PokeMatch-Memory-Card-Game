@@ -2,49 +2,52 @@
 <html>
 
 <head>
-    <title>Information Page</title>
+    <title>Modify</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="information.css" type="text/css">
+    <link href="modify.css " rel="stylesheet" type="text/css" /> 
     
 </head>
 
 <body>
-    <p align="center" font size="5">Personal Information</p>
-    <form action="/modify" method="put" >
+    <div id="mmodify">
+    <h1>Modify</h1>
+    <h2 >Personal Information</h2>
+    <form action="/modify" method="post" >
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <label for="mid">ID:</label><br>
-
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <label for="mpassword">Password:</label>
-        <input type="text" id="mpassword" value="123" name="fn2" /><br>
+        <input type="text" id="mpassword" placeholder="Enter New Password" name="mpassword" /><br>
 
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <label for="mname">Name:</label>
-        <input type="text" id="mname" value="123" name="ln2" /><br>
-
+        <input type="text" id="mname" placeholder="Enter Your Name" name="mname" /><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <label for="mage">Age:</label>
-        <input type="number" id="mage" value="123" name="w2" /><br>
+        <input type="number" id="mage" placeholder="Enter Your age" name="mage" /><br>
 
         <label for="mquestion">Security Question:</label>
         <select name="mquestion" id="mquestion">
-            <option value="nonselect">Select</option>
-            <option value="mothername">What is your mother's name?</option>
-            <option value="fatherage">How old is your father?</option>
-            <option value="platenumber">What is your plate number?</option>
-            <option value="teacher">Who is your High School teacher?</option>
-            <option value="book">What is your favourite book?</option>
-            <option value="movie">Which is your favourite movie?</option>
+            <option value="0">Select</option>
+            <option value="1">What is your mother's name?</option>
+            <option value="2">How old is your father?</option>
+            <option value="3">What is your plate number?</option>
+            <option value="4">Who is your High School teacher?</option>
+            <option value="5">What is your favourite book?</option>
+            <option value="6">Which is your favourite movie?</option>
         </select><br>
 
-        <label for="manswer">Question Answer:</label>
+        <label for="manswer">Question Answer :</label>
         <input type="text" id="manswer" placeholder="Enter Your Answer" name="manswer"><br>
         
-        <input type="submit" value="modify" >
+
         <a href="https://stark-spire-21434.herokuapp.com/homepage.html">
-            <input type="button" value="Back" >
+            <input type="submit" value="modify" id="mbutton" >
+            <input type="button" value="Back" id="mback" >
         </a>
     </form>
-    
-    <script type="text/javascript" src="app.js"></script>
-    
-    
+</div>
+
     
 </body>
 

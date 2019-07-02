@@ -5,73 +5,27 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login in</title>
-    
-    <style type="text/css">
-    .table1{
-        text-align: center; /*让div内部文字居中*/
-        background-color: #fff;
-        border-radius: 20px;
-        width: 300px;
-        height: 350px;
-        margin: auto;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: -1;
-    }
-
-    .box{
-        background: #ffffff;
-        z-index: 10;
-        width:500px; 
-        margin-top:10%; 
-        margin:auto; 
-        padding:28px;
-        height:600px; 
-        border:1px #111 solid;
-        display:none;            /* 默认对话框隐藏 */
-        }
-    .box.show{
-        display:block;
-    } 
-    .box .x{ 
-        font-size:18px; 
-        text-align:right;
-         display:block;
-     }
-
-    .box input{
-        width:80%;
-        font-size:18px; 
-        margin-top:18px;
-    }
-    </style>
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="login.css">
 </head>
 
 <body>
-	<p>2 player BlackJack</p>
 <div class="table1">
-	<form id="table11">
-		      ID:<input type=“text" name="Lid" id="Lid"/>
-		<br/>
-		Password:<input type="password" name="Lpassword" id="Lpassword"/>
-		<br/>
-        <input type="button" value="login" name="Llogin" id="Llogin" onClick="test()" >
-        <a href="https://stark-spire-21434.herokuapp.com/signup.html">
-            <input type="button" value="sign up" >
-        </a>
-	</form>
 </div>
- <input type="button" onClick="msgbox(1)" value="rule">
-
-    
-     
-     <div id='inputbox' class="box">
-        <a class='x' href=''; onclick="msgbox(0); return false;">close</a>
-        The object of the game is to rearch 21 points or achieve a score higher than the dealer without exceeding 21
+<form id="table11" action="/login" method="post" >
+    <input type="text" placeholder="Enter Username" name="Lid" id="Lid"/>
+    <br/>
+    <input type="password" placeholder="Enter Password" name="Lpassword" id="Lpassword"/>
+    <br/>
+    <input type="submit" value="Login" name="Llogin" id="Llogin" >
+    <a href="https://stark-spire-21434.herokuapp.com/signup.html">
+    <input type="button" value="SignUp" id="Lsignup">
+    </a>
+</form>
+<input type="button" onClick="msgbox(1)" value="rule" id="Lrule">
+<div id='inputbox' class="box">
+    <a class='x' href=''; onclick="msgbox(0); return false;">close</a>
+    The object of the game is to rearch 21 points or achieve a score higher than the dealer without exceeding 21
     <br/>
     First, place a bet and hit Deal
     <br/>
@@ -85,35 +39,11 @@
     <br/>
     DOUBLE your bet to receive only one further card if you are confident of beating the dealer
 </div>
-</div>
- <script>  
+<script>  
     function msgbox(n){
         document.getElementById('inputbox').style.display=n?'block':'none';     /* 点击按钮打开/关闭 对话框 */
     }
-    
-    
-    function test(){
-        var user,pwd;
-        user = document.getElementById('Lid').value;
-        pwd = document.getElementById('Lpassword').value;
-        if(user[0]=='G' && user[1] =='M'&& user=='GM1' && pwd=='123'){
-            window.location.href="https://stark-spire-21434.herokuapp.com/GM.html";
-        }
-        else if( user=='123' && pwd=='123'){
-            window.location.href="https://stark-spire-21434.herokuapp.com/homepage.html";
-        }
-        else if ( user=='' && pwd==''){
-            alert("the password or username is error");
-        }
-        else{
-            alert("the password or username is error");
-        }
-        
-    
-    }
 </script>
-
-
 </body>
 </html>
 

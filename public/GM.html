@@ -1,46 +1,46 @@
-<!doctype html>
-<html lang="en">
-  <head>
-  	<meta charset="utf-8">
-  	<link rel="stylesheet" type="text/css" href="-----.css">
-  	<script type="text/javascript" src="-----.js"></script>
-  	<title>Game Manager</title>
-  </head>
-  <body>
-  	<header><h1>Game Manager</h1></header>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+   <link href="GM.css " rel="stylesheet" type="text/css" />	
+    <title>GM</title>
+</head>
+<body>
 
-<!--search user from database & jump to the information page of the user-->  	
-	<div id="search_button">
-  		<input type="text" name="search_id">
-  		<button onclick="searchID()"><a herf="---------" id="search_user">Search</a></button>
-  	</div>
+  <h1>Game Manager</h1>
+	<div id="GGM">
 
-<!--delete user from database-->  	
-  	<div id="delete_button">
-  		<input type="text" name="delete_id">
-  		<button onclick="deleteID()">Delete</button>
-  	</div>
-
-<!-- User write message on homepage then store into database 
-	& directly shown in a table with their ID on GM's page  -->
-  	<div id="message_box">
-  		<h2>Message Box</h2>
-  		<table id="messageTable">
-        <input type="submit" value="Send" />
-  			<tr>
-  				<th>&nbsp</th>
-  				<th>ID</th>
-  				<th>Message</th>
-  				<th>&nbsp</th>
-  			</tr>
+  		<input id="Gsearch" type="text" name="search_id" placeholder="enter ID">
+  		<button onclick="searchID()"><a herf="---------" id="gsbutton" >Search</a></button>
+  		<table>
+  			<h2>User Information</h2>
+  		    <tr>
+  		    	<th>ID</th>
+  		    	<th>Name</th>
+  		    	<th>Age</th>
+  		    	<th colspan="1"></th>
+  		    </tr>
+  		    <tr>
+  		    	<th>read</th>
+  		    	<th>read</th>
+  		    	<th>read</th>
+  		    	<th colspan="1"></th>
+  		    </tr>
   		</table>
+      <form action="/remove" method="post" >
+            <input type="text" id="Gdelete" placeholder="Enter ID" name="Gdelete"/>
+            <input type="submit" id="gdbutton" value="delete" />
+    </form>
+ 
   	</div>
+  	<div id="gpublish">
+  		<textarea type="text" id="gmessage" cols="8" rows="20"  style="OVERFLOW:   hidden"placeholder="Message Box"></textarea>
+    </br>
+    <button onclick="searchID()"><a herf="---------" id="gpbutton" >Publish</a></button>
+  	</div>
+  	<a href="https://stark-spire-21434.herokuapp.com/login.html" id="GLog">
+            <input type="button" value="Logout" id="glog">
+    </a>
 
-<!-- GM log out & directly jump to the log in page -->
-  	<div id="logout_button">
-  		<button><a href="https://stark-spire-21434.herokuapp.com/login.html" id="log_out">Log Out</a></button>
-  	</div>		
-  </body>
-</html>
 
-
+</body>
