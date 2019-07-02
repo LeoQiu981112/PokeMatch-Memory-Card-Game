@@ -51,11 +51,12 @@ app.post('/login', function(req, res){
   if(user=='GM1' && pwd=='123'){
     res.redirect('https://stark-spire-21434.herokuapp.com/GM.html');
   }
-  //query
-  var match = "select * from players where id in " + "('" + user + "')" + ";"; 
-  console.log(match);
+  else{
+    //query
+    var match = "select * from players where id in " + "('" + user + "')" + ";"; 
+    console.log(match);
 
-  pool.query(match, function(error, result){
+    pool.query(match, function(error, result){
 
     console.log(result.rows);
     
@@ -72,6 +73,8 @@ app.post('/login', function(req, res){
       res.redirect('https://stark-spire-21434.herokuapp.com/homepage.html');
     } 
   });
+  }
+  
 
   // //query
   // var match="select * from players where id = " + "'" + user + "'" + 
