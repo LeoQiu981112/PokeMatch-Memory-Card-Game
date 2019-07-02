@@ -1,6 +1,6 @@
-const express = require('express')
-const path = require('path')
-const PORT = process.env.PORT || 8001
+const express = require('express');
+const path = require('path');
+const PORT = process.env.PORT;
 const app = express();
 const { Pool } = require('pg');
 var bodyParser = require('body-parser');
@@ -23,7 +23,7 @@ var pool = new Pool({
   connectionString : process.env.DATABASE_URL
 })
 
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.use(bodyParser.urlencoded({ extended: true })); 
@@ -31,6 +31,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, 'views')))
 app.set('view engine', 'ejs')
+
 
 app.get('/display',function(req,res){
   pool.query("select * from students;", function(error, result){
@@ -42,23 +43,8 @@ app.get('/display',function(req,res){
     var results= result.rows;
     res.render('pages/db',{results: results});
   }
-})
-
-
-
-// app.get('/display',function(req,res){
-//   pool.query("select * from students;", function(error, result){
-//   if(error) {
-//     //return console.error(error);
-//     console.log("no work1!");
-//   }
-//   else{
-//     var results= result.rows;
-//     res.render('pages/db',{results: results});
-//   }
-// })
-
-// });
+  })
+});
 
 app.post('/login', function(req, res){
 var user=req.body.Lid;
