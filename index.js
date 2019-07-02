@@ -139,7 +139,7 @@ app.post('/signup', function(req, res){
   
     res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
 //});
-
+})
 
 app.post('/gmmessage', function(req, res){
   var mes=req.body.gmessage;
@@ -269,6 +269,6 @@ app.post('/modify', function(req, res){
 //   console.log(req.params.id);
 // })
 
-app.listen(PORT, () => console.log(`Listening on ${ PORT }`)
+app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
 
