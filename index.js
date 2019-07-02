@@ -168,14 +168,13 @@ app.post('/remove', function(req, res){
   console.log(remove);
 
   pool.query(remove, function(error, result){
-	  if(error) {
-	    //return console.error(error);
-	    console.log("remove failed!");
+	  if(result) {
+      console.log("remove succeeded!");
 	  }
 	  else{
-	    var results=result.rows;
-	  } 
-	  console.log(results);
+      //return console.error(error);
+	    console.log("remove failed!");
+	  } 	  
   });
 
 res.redirect('https://stark-spire-21434.herokuapp.com/GM.html');
