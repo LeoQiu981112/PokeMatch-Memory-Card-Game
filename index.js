@@ -57,8 +57,8 @@ app.post('/login', function(req, res){
 
   pool.query(match, function(error, result){
 
-    //console.log(result.rows[0]);
-    //console.log(result.rows[0].id);
+    console.log(result.rows[0]);
+    
 	  if(result.rows[0].id != user) {
       console.log("UseID dose not exist!");
       res.redirect('https://stark-spire-21434.herokuapp.com/wrongID.html');
@@ -186,7 +186,7 @@ app.post('/search', function(req, res){
   console.log(search);
 
   pool.query(search, function(error, result){
-    //console.log(result);
+    console.log(result.rows);
 
 	  if(result.rowCount) {
       console.log("Search succeeded!");
