@@ -56,18 +56,14 @@ app.post('/login', function(req, res){
   console.log(match);
 
   pool.query(match, function(error, result){
-    
-    var jsonData = JSON.stringify(result);
-    var result = parseJSON(jsonData);
 
-    console.log(result);
-    //console.log(result.rows);
+    console.log(result.rows[0]);
     
-	  if(result.rows.id != user) {
+	  if(result.rows[0].id != user) {
       console.log("UseID dose not exist!");
       res.redirect('https://stark-spire-21434.herokuapp.com/wrongID.html');
 	  }
-	  else if(result.rows.password != pwd){
+	  else if(result.rows[0].password != pwd){
       console.log("Wrong password!");
       res.redirect('https://stark-spire-21434.herokuapp.com/wrongPassword.html');
     } 	  
