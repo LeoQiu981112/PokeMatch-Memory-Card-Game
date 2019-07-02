@@ -1,13 +1,9 @@
-const express = require('express');
-const path = require('path');
-const PORT = process.env.PORT;
+const express = require('express')
+const path = require('path')
+const PORT = process.env.PORT 
 const app = express();
 const { Pool } = require('pg');
 var bodyParser = require('body-parser');
-
-
-
-
 
 
 //var pool = new Pool({
@@ -23,7 +19,7 @@ var pool = new Pool({
   connectionString : process.env.DATABASE_URL
 })
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.use(bodyParser.urlencoded({ extended: true })); 
@@ -114,9 +110,8 @@ app.post('/signup', function(req, res){
     // res.redirect('http://localhost:5000/main.html');
     res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
   //}
-
   
-});
+}); // end of signup
 
 app.post('/gmmessage', function(req, res){
   var mes=req.body.gmessage;
@@ -131,10 +126,8 @@ app.post('/gmmessage', function(req, res){
     var results = result.rows;
     console.log(results);
     //console.log("insesrt success!");
-  })
-});
-
-app.post('/remove', function(req, res){
+  });
+}); // end of gm msg
 
 app.post('/remove', function(req, res){
 
@@ -143,17 +136,17 @@ app.post('/remove', function(req, res){
   var remove = "delete from players where id =" +    "'" + id3 + "'"  
                                                  + ";" ;   
   console.log(remove);
-  pool.query(remove, function(error, result){
-  if(error) {
-    //return console.error(error);
-    console.log("remove failed!");
-  }
-  else{
-    var results=result.rows;
-  } 
-  console.log(results);
 
-})
+  pool.query(remove, function(error, result){
+	  if(error) {
+	    //return console.error(error);
+	    console.log("remove failed!");
+	  }
+	  else{
+	    var results=result.rows;
+	  } 
+	  console.log(results);
+  });
 
 res.redirect('https://stark-spire-21434.herokuapp.com/main.html');
 // res.redirect('http://localhost:5000/main.html');
@@ -163,53 +156,43 @@ res.redirect('https://stark-spire-21434.herokuapp.com/main.html');
 
 
 app.post('/modify', function(req, res){
-
   //var mid=req.body.mid;
-
   var mid=   "'" + "xyz" + "'" 
-
   var mpassword=req.body.mpassword;
-
   var mname=req.body.mname;
-
   var mage=req.body.mage;
-
   var mquestion=req.body.mquestion;
-
   var manswer=req.body.manswer;
 
-
   var fp="update players set ";
-
   var sp= " where id = " + mid + ";";
-
   var tmp;
 
   if(mpassword){
     tmp= fp + "password = " + "'" + mpassword + "'" + sp;
     pool.query(tmp, function(error, result){
-    if(error) {
-      console.log("mod fail!");
-    }
-    })
+	    if(error) {
+	      console.log("mod fail!");
+	    }
+    });
   }
 
   if(mname){
     tmp= fp + "name = " + "'" + mname + "'" + sp;
     pool.query(tmp, function(error, result){
-    if(error) {
-      console.log("mod fail!");
-    }
-    })
+	    if(error) {
+	      console.log("mod fail!");
+	    }
+    });
   }
 
   if(mage){
     tmp= fp + "age = " + mage + sp;
     pool.query(tmp, function(error, result){
-    if(error) {
-      console.log("mod fail!");
-    }
-    })
+	    if(error) {
+	      console.log("mod fail!");
+	    }
+    });
   }
 
 // modify security question, get question from db?????
@@ -220,68 +203,30 @@ app.post('/modify', function(req, res){
   if(mquestion){
     tmp= fp + "sqnum = " + mquestion + sp;
     pool.query(tmp, function(error, result){
-    if(error) {
-      console.log("mod fail!");
-    }
-    })
+	    if(error) {
+	      console.log("mod fail!");
+	    }
+    });
   }
 
   if(manswer){
     tmp= fp + "ans = " + "'"+ manswer + "'" + sp;
     pool.query(tmp, function(error, result){
-    if(error) {
-      console.log("mod fail!");
-    }
-    })
+	    if(error) {
+	      console.log("mod fail!");
+	    }
+    });
   }
 
   res.redirect('https://stark-spire-21434.herokuapp.com/homepage.html');
 // res.redirect('http://localhost:5000/main.html');
 });
 
-//-----
-
-//--------
-
-
-
-
-
-
-
-
-
-
-
-// app.post('/deleteUser', (req, res) => {
-//   // req.body.uid
-//   // delete the user with uid
-//   res.redirect('http://localhost:5000/main.html');
-// });
-
-
-// app.delete('/user/:id', (req, res) => {
-//   console.log(req.params.id)
-//   // delete the user with id
-// });
-// app.set('views', path.join(__dirname, 'views'))
-// app.set('view engine', 'ejs')
-// app.get('/', (req, res) => res.render('pages/index'))
-
-
-
-
-
-
-
-
-
-
-
 
 // app.get('/users/:id', function(req, res){
 //   console.log(req.params.id);
 // })
+
+
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
-// need a to string value for numbers
