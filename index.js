@@ -181,7 +181,7 @@ app.post('/search', function(req, res){
 
 	  if(result.rowCount) {
       console.log("Search succeeded!");
-      var results = result.rows;
+      res.send(result.rows);
 	  }
 	  else{
 	    console.log("Search failed!");
