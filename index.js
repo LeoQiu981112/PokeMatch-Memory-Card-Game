@@ -182,11 +182,11 @@ app.post('/search', function(req, res){
 	  if(result.rowCount) {
       console.log("Search succeeded!");
       var results = result.rows;
-      res.render('GM/search', results);
+      //res.render('GM/search', results);
 	  }
 	  else{
       console.log("Search failed!");
-      
+      res.render('pages/message',{message:"No Such player In Database!"})
 	  } 	   
   }); 	  
 
