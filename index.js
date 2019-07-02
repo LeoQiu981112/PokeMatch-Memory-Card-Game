@@ -133,7 +133,7 @@ app.post('/signup', function(req, res){
     	else{
         	console.log("insert succeeded!");
         	var results = result.rows;
-    		console.log(results);
+    		  console.log(results);
     	}
     });
   
