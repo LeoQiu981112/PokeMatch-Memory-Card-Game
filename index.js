@@ -61,25 +61,64 @@ app.get('/display',function(req,res){
 // });
 
 app.post('/login', function(req, res){
-var user=req.body.Lid;
-var pwd=req.body.Lpassword;
-console.log("result id is" + user );
+  var user=req.body.Lid;
+  var pwd=req.body.Lpassword;
+  console.log("result id is" + user );
 
-  // swap for 1 combined query once db is working
-  if(user == "1234" && pwd == "6666"){
-    res.redirect('https://stark-spire-21434.herokuapp.com/homepage.html');
-  }
-
-  else if(user=='GM1' && pwd=='123'){
+  //gm
+  if(user=='GM1' && pwd=='123'){
     res.redirect('https://stark-spire-21434.herokuapp.com/GM.html');
   }
+  
+  //query
+  var match="select * from players where id = " + "'" + user + "'" + 
+            "and password                   = " + "'" + pwd  + "'" + ";";
+  console.log("query: " + match );
 
-  else{
-    res.send("username or password incorrect");
-    // res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
-  }
+  pool.query(match, function(error, result){
+  	if(error) {
+      console.log("query fail!");
+    } 
+
+    else{
+	    //res.redirect('https://stark-spire-21434.herokuapp.com/homepage.html');
+	    console.log("match? success");
+	    if(result!=[]){
+		    var results = result.rows;
+		    console.log(result);
+		    res.redirect('https://stark-spire-21434.herokuapp.com/homepage.html');
+	    }
+
+
+	    //create identical login page, cept onload create alert 
+	  	else{
+		    res.send("username or password incorrect");
+		    //console.log("insesrt success!");
+	    }
+   	}
+
+   });
+});
+
+//if found
+  //res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
+  // res.redirect('http://localhost:5000/main.html');
+
+//if not found
+  // else{
+  //   res.send("username or password incorrect");
+  //   // res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
+  // }
 
 });
+
+
+
+
+
+
+
+
 
 app.post('/signup', function(req, res){
   
@@ -148,28 +187,25 @@ app.post('/gmmessage', function(req, res){
   })
 });
 
-app.post('/remove', function(req, res){
 
 app.post('/remove', function(req, res){
-
-  var id3=req.body.Gdelete;
-
-  var remove = "delete from players where id =" +    "'" + id3 + "'"  
+	var id3=req.body.Gdelete;
+	var remove = "delete from players where id =" +    "'" + id3 + "'"  
                                                  + ";" ;   
-  console.log(remove);
-  pool.query(remove, function(error, result){
-  if(error) {
+	console.log(remove);
+	pool.query(remove, function(error, result){
+	if(error) {
     //return console.error(error);
-    console.log("remove failed!");
-  }
-  else{
-    var results=result.rows;
-  } 
-  console.log(results);
+		console.log("remove failed!");
+	}
+	else{
+		var results=result.rows;
+	} 
+	console.log(results);
 
-})
+	});
 
-res.redirect('https://stark-spire-21434.herokuapp.com/main.html');
+	res.redirect('https://stark-spire-21434.herokuapp.com/GM.html');
 // res.redirect('http://localhost:5000/main.html');
 });
 
@@ -180,7 +216,7 @@ app.post('/modify', function(req, res){
 
   //var mid=req.body.mid;
 
-  var mid=   "'" + "xyz" + "'" 
+  var mid=   "'" + "xyz" + "'" ;
 
   var mpassword=req.body.mpassword;
 
@@ -253,25 +289,7 @@ app.post('/modify', function(req, res){
 // res.redirect('http://localhost:5000/main.html');
 });
 
-//-----
 
-//--------
-
-
-
-
-
-
-
-
-
-
-
-// app.post('/deleteUser', (req, res) => {
-//   // req.body.uid
-//   // delete the user with uid
-//   res.redirect('http://localhost:5000/main.html');
-// });
 
 
 // app.delete('/user/:id', (req, res) => {
@@ -284,18 +302,9 @@ app.post('/modify', function(req, res){
 
 
 
-
-
-
-
-
-
-
-
-
 // app.get('/users/:id', function(req, res){
 //   console.log(req.params.id);
 // })
+
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
-// need a to string value for numbers
