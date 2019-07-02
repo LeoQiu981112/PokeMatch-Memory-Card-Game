@@ -203,7 +203,6 @@ app.post('/search', function(req, res){
       console.log(results);
     } 
   }); 	  
-});
 
   res.redirect('https://stark-spire-21434.herokuapp.com/GM.html');
 // res.redirect('http://localhost:5000/main.html');
