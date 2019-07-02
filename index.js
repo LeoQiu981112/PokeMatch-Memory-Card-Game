@@ -57,29 +57,28 @@ app.post('/login', function(req, res){
             "and password                   = " + "'" + pwd  + "'" + ";";
   console.log("query: " + match );
 
-  pool.query(match, function(error, result){
-  	if(error) {
-      console.log("query fail!");
-    } 
+    pool.query(match, function(error, result){
+	  	if(error) {
+	      console.log("query fail!");
+	    } 
 
-    else{
-	    //res.redirect('https://stark-spire-21434.herokuapp.com/homepage.html');
-	    console.log("match? success");
-	    if(result!=[]){
-		    var results = result.rows;
-		    console.log(result);
-		    res.redirect('https://stark-spire-21434.herokuapp.com/homepage.html');
-	    }
+	    else{
+		    //res.redirect('https://stark-spire-21434.herokuapp.com/homepage.html');
+		    console.log("match? success");
+		    if(result!=[]){
+			    var results = result.rows;
+			    console.log(result);
+			    res.redirect('https://stark-spire-21434.herokuapp.com/homepage.html');
+		    }
 
 
-	    //create identical login page, cept onload create alert 
-	  	else{
-		    res.send("username or password incorrect");
-		    //console.log("insesrt success!");
-	    }
-   	}
-
-   });
+		    //create identical login page, cept onload create alert 
+		  	else{
+			    res.send("username or password incorrect");
+			    //console.log("insesrt success!");
+		    }
+	   	}
+    });
 });
 
 //if found
@@ -91,13 +90,6 @@ app.post('/login', function(req, res){
   //   res.send("username or password incorrect");
   //   // res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
   // }
-
-});
-
-
-
-
-
 
 
 
