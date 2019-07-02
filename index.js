@@ -111,37 +111,21 @@ app.post('/signup', function(req, res){
                                                 + ";"  ;
 	console.log(insert);
  
-  // var flag = 0;
-  // pool.query("select id from players;", function(error, result) {
-  //    var results = result.rows;
-  //    for(var i = 0, len = results.length; i < len; i++){
-  //      if (sid == results[i]){
-  //        console.log("Duplicated Users!");
-  //        //res.json({ "code":"200" , "message":"Duplicated users!" });
-  //        flag = 1;
-  //        res.redirect('https://stark-spire-21434.herokuapp.com/GM.html');
-  //        console.log(flag);
-  //        break;
-  //      }
-  //    }   
-  //  });
+  pool.query(insert, function(error, result){
 
-  //if (flag == 0){
-    pool.query(insert, function(error, result){
-
-    	if(error) {
-    		console.log("insert failed!");
-    	}
-    	else{
-        	console.log("insert succeeded!");
-        	var results = result.rows;
-    		  console.log(results);
-    	}
-    });
+    if(error) {
+    	console.log("Insert failed!");
+    }
+    else{
+        console.log("Insert succeeded!");
+        var results = result.rows;
+    		console.log(results);
+    }
+  });
     
-    res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
-    //console.log(flag);
-  //}
+  res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
+    
+  
 })
 
 app.post('/gmmessage', function(req, res){
@@ -193,15 +177,15 @@ app.post('/search', function(req, res){
   console.log(search);
 
   pool.query(search, function(error, result){
-    console.log(result);
-    // if(error) {
-    //   console.log("Search failed!");
-    // }
-    // else{
-    //   console.log("Search succeeded!");
-    //   var results = result.rows;
-    //   console.log(results);
-    // } 
+    //console.log(result);
+
+	  if(result.rowCount) {
+      console.log("Search succeeded!");
+      var results = result.rows;
+	  }
+	  else{
+	    console.log("Search failed!");
+	  } 	   
   }); 	  
 
   res.redirect('https://stark-spire-21434.herokuapp.com/GM.html');
