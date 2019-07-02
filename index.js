@@ -58,11 +58,11 @@ app.post('/login', function(req, res){
   pool.query(match, function(error, result){
     
     var jsonData = JSON.stringify(result);
-    var result = $.parseJSON(jsonData);
+    var result = parseJSON(jsonData);
 
     console.log(result);
     //console.log(result.rows);
-
+    
 	  if(result.rows.id != user) {
       console.log("UseID dose not exist!");
       res.redirect('https://stark-spire-21434.herokuapp.com/wrongID.html');
