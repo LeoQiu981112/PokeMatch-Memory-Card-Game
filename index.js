@@ -150,13 +150,13 @@ app.post('/gmmessage', function(req, res){
   console.log(insert);
   pool.query(insert, function(error, result){
     if(error) {
-    //return console.error(error);
-    console.log("insert fail!");
+      console.log("Insert failed!");
     }
-    console.log("insert success");
-    var results = result.rows;
-    console.log(results);
-    //console.log("insesrt success!");
+    else{
+      console.log("Insert succeeded!");
+      var results = result.rows;
+      console.log(results);
+    } 
   });
   res.redirect('https://stark-spire-21434.herokuapp.com/GM.html');
 }); // end of gm msg
@@ -172,11 +172,11 @@ app.post('/remove', function(req, res){
     //console.log(result);
 
 	  if(result.rowCount) {
-      console.log("remove succeeded!");
+      console.log("Remove succeeded!");
 	  }
 	  else{
       //return console.error(error);
-	    console.log("remove failed!");
+	    console.log("Remove failed!");
 	  } 	  
   });
 
@@ -192,17 +192,18 @@ app.post('/search', function(req, res){
                                                    
   console.log(search);
 
-  pool.query(search, function(error, result){
-    console.log(result);
+  pool.query(insert, function(error, result){
 
-	  // if(result.rowCount) {
-    //   console.log("remove succeeded!");
-	  // }
-	  // else{
-    //   //return console.error(error);
-	  //   console.log("remove failed!");
-	  // } 	  
-  });
+    if(error) {
+      console.log("Search failed!");
+    }
+    else{
+      console.log("Insert succeeded!");
+      var results = result.rows;
+      console.log(results);
+    } 
+  }); 	  
+});
 
   res.redirect('https://stark-spire-21434.herokuapp.com/GM.html');
 // res.redirect('http://localhost:5000/main.html');
