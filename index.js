@@ -182,13 +182,14 @@ app.post('/search', function(req, res){
 	  if(result.rowCount) {
       console.log("Search succeeded!");
       var results = result.rows;
+      res.render('GM/search', results);
 	  }
 	  else{
-	    console.log("Search failed!");
+      console.log("Search failed!");
+      
 	  } 	   
   }); 	  
-  
-  res.json(results);
+
   res.redirect('https://stark-spire-21434.herokuapp.com/GM.html');
 // res.redirect('http://localhost:5000/main.html');
 });
