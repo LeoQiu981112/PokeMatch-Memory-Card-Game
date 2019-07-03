@@ -128,6 +128,7 @@ app.post('/signup', function(req, res){
 });
 
 
+
 app.post('/gmmessage', function(req, res){
   var mes=req.body.gmessage;
   var insert = "insert into gm_msg values ('"+mes+"');" 
