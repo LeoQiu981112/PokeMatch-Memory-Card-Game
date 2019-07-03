@@ -41,28 +41,28 @@ app.post('/login', function(req, res){
   
 
     if(result.rows.length == 0){
-    // //players
-    // var match = "select * from players where id in " + "('" + user + "')" + ";"; 
-    // console.log(match);
+      //players
+      var match = "select * from players where id in " + "('" + user + "')" + ";"; 
+      console.log(match);
 
-    // pool.query(match, function(error, result){
+      pool.query(match, function(error, result){
 
-    //   console.log(result.rows);
+        console.log(result.rows);
     
-	  //   if(result.rows.length == 0) {
-    //     console.log("UseID dose not exist!");
-    //     res.redirect('https://stark-spire-21434.herokuapp.com/wrongID.html');
-	  //   }
-	  //   else if(result.rows[0].password != pwd){
-    //     console.log("Wrong password!");
-    //     res.redirect('https://stark-spire-21434.herokuapp.com/wrongPassword.html');
-    //   } 	  
-    //   else{
-    //     console.log("Login succeeded!");
-    //     res.redirect('https://stark-spire-21434.herokuapp.com/homepage.html');
-    //   } 
-    // });
-  }
+	      if(result.rows.length == 0) {
+          console.log("UseID dose not exist!");
+          res.redirect('https://stark-spire-21434.herokuapp.com/wrongID.html');
+	      }
+	      else if(result.rows[0].password != pwd){
+          console.log("Wrong password!");
+          res.redirect('https://stark-spire-21434.herokuapp.com/wrongPassword.html');
+        } 	  
+        else{
+          console.log("Login succeeded!");
+          res.redirect('https://stark-spire-21434.herokuapp.com/homepage.html');
+        } 
+      });
+    }
 
     else if(result.rows[0].password != pwd){
       console.log("Wrong password!");
