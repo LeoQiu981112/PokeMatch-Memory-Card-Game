@@ -99,7 +99,7 @@ app.post('/signup', function(req, res){
     console.log(result.rows);
     if(result.rows.length != 0){
       console.log("Sorry!You can not sign up as GM!");
-      res.redirect('https://stark-spire-21434.herokuapp.com/signup.html');
+      res.redirect('https://stark-spire-21434.herokuapp.com/alert.html');
     }
 
     else{
