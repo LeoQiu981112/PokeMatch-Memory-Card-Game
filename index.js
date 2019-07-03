@@ -91,36 +91,41 @@ app.post('/signup', function(req, res){
                                                 + "'" +  sans     + "'"     
                                                 + ")"     
                                                 + ";"  ;
-                                        
-  if (sid == "GM1"){
-    console.log("Sorry!You can not sign up as GM!");
-    res.redirect('https://stark-spire-21434.herokuapp.com/signup.html');
-  }
-  else{
-	  console.log(insert);
+  
+  var match = "select * from gm where id in " + "('" + sid + "')" + ";"; 
+  console.log(match);
+                                              
+  pool.query(match, function(error, result){
+    console.log(result.rows);
+    if(result.rows.length != 0){
+      console.log("Sorry!You can not sign up as GM!");
+      res.redirect('https://stark-spire-21434.herokuapp.com/signup.html');
+    }
+
+    else{
+	    console.log(insert);
  
-    pool.query(insert, function(error, result){
-      console.log(error);
-
+      pool.query(insert, function(error, result){
+        //console.log(error);
     
-
-      if(error.code == 42601) {
-        console.log("Incomplete information!");
-        res.redirect('https://stark-spire-21434.herokuapp.com/signup.html');
-      }
-      else if(error.code == 23505){
-        console.log("Insert failed!");
-        res.redirect('https://stark-spire-21434.herokuapp.com/signupFailed.html');
-      }
-      else{
-          console.log("Insert succeeded!");
-          var results = result.rows;
-          console.log(results);
-          res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
-      }
-    });    
-  }
-})
+        if(error.code == 42601) {
+          console.log("Incomplete information!");
+          res.redirect('https://stark-spire-21434.herokuapp.com/signup.html');
+        }
+        else if(error.code == 23505){
+          console.log("Insert failed!");
+          res.redirect('https://stark-spire-21434.herokuapp.com/signupFailed.html');
+        }
+        else{
+            console.log("Insert succeeded!");
+            var results = result.rows;
+            console.log(results);
+            res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
+        }
+      });    
+    }
+  })
+});
 
 
 app.post('/gmmessage', function(req, res){
