@@ -68,7 +68,7 @@ app.post('/login', function(req, res){
     console.log("Wrong password!");
     res.redirect('https://stark-spire-21434.herokuapp.com/wrongPassword.html');
   }
-  else if(result.rows[0].password == pwd){
+  else if(results.rows[0].password == pwd){
     console.log("Login succeeded!");
     res.redirect('https://stark-spire-21434.herokuapp.com/GM.html');
   }
