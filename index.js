@@ -81,6 +81,7 @@ app.post('/signup', function(req, res){
 	console.log(insert);
  
   pool.query(insert, function(error, result){
+    console.log(error);
 
     if(error) {
       console.log("Insert failed!");
