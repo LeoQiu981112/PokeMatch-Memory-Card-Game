@@ -24,7 +24,6 @@ app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.use(bodyParser.urlencoded({ extended: true })); 
 
-
 app.use(express.static(path.join(__dirname, 'views')))
 app.set('view engine', 'ejs')
 
@@ -34,11 +33,15 @@ app.post('/login', function(req, res){
   console.log("result id is " + user);
 
   //gm
-  if(user=='GM1' && pwd=='123'){
-    res.redirect('https://stark-spire-21434.herokuapp.com/GM.html');
-  }
-  else{
-    //query
+  var match = "select * from gm where id in " + "('" + user + "')" + ";"; 
+  console.log(match);
+
+  pool.query(match, function(error, results){
+    console.log(results.rows);
+  });
+
+  if(results.rows.length == 0){
+    //players
     var match = "select * from players where id in " + "('" + user + "')" + ";"; 
     console.log(match);
 
@@ -59,6 +62,15 @@ app.post('/login', function(req, res){
         res.redirect('https://stark-spire-21434.herokuapp.com/homepage.html');
       } 
     });
+  }
+
+  else if(results.rows[0].password != pwd){
+    console.log("Wrong password!");
+    res.redirect('https://stark-spire-21434.herokuapp.com/wrongPassword.html');
+  }
+  else if(result.rows[0].password == pwd){
+    console.log("Login succeeded!");
+    res.redirect('https://stark-spire-21434.herokuapp.com/GM.html');
   }
 });
 
