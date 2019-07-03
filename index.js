@@ -28,20 +28,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'views')))
 app.set('view engine', 'ejs')
 
-
-// app.get('/display',function(req,res){
-//   pool.query("select * from students;", function(error, result){
-//   if(error) {
-//     //return console.error(error);
-//     console.log("no work1!");
-//   }
-//   else{
-//     var results= result.rows;
-//     res.render('pages/db',{results: results});
-//   }
-//   })
-// });
-
 app.post('/login', function(req, res){
   var user=req.body.Lid;
   var pwd=req.body.Lpassword;
@@ -51,27 +37,29 @@ app.post('/login', function(req, res){
   if(user=='GM1' && pwd=='123'){
     res.redirect('https://stark-spire-21434.herokuapp.com/GM.html');
   }
-  //query
-  var match = "select * from players where id in " + "('" + user + "')" + ";"; 
-  console.log(match);
+  else{
+    //query
+    var match = "select * from players where id in " + "('" + user + "')" + ";"; 
+    console.log(match);
 
-  pool.query(match, function(error, result){
+    pool.query(match, function(error, result){
 
-    console.log(result.rows);
+      console.log(result.rows);
     
-	  if(result.rows.length == 0) {
-      console.log("UseID dose not exist!");
-      res.redirect('https://stark-spire-21434.herokuapp.com/wrongID.html');
-	  }
-	  else if(result.rows[0].password != pwd){
-      console.log("Wrong password!");
-      res.redirect('https://stark-spire-21434.herokuapp.com/wrongPassword.html');
-    } 	  
-    else{
-      console.log("Login succeeded!");
-      res.redirect('https://stark-spire-21434.herokuapp.com/homepage.html');
-    } 
-  });
+	    if(result.rows.length == 0) {
+        console.log("UseID dose not exist!");
+        res.redirect('https://stark-spire-21434.herokuapp.com/wrongID.html');
+	    }
+	    else if(result.rows[0].password != pwd){
+        console.log("Wrong password!");
+        res.redirect('https://stark-spire-21434.herokuapp.com/wrongPassword.html');
+      } 	  
+      else{
+        console.log("Login succeeded!");
+        res.redirect('https://stark-spire-21434.herokuapp.com/homepage.html');
+      } 
+    });
+  }
 });
 
 
@@ -90,22 +78,37 @@ app.post('/signup', function(req, res){
                                                 + "'" +  sans     + "'"     
                                                 + ")"     
                                                 + ";"  ;
-	console.log(insert);
+                                        
+  if (sid == "GM1"){
+    console.log("Sorry!You can not sign up as GM!");
+    res.redirect('https://stark-spire-21434.herokuapp.com/signup.html');
+  }
+  else{
+	  console.log(insert);
  
-  pool.query(insert, function(error, result){
+    pool.query(insert, function(error, result){
+      console.log(error);
 
-    if(error) {
-      console.log("Insert failed!");
-      res.redirect('https://stark-spire-21434.herokuapp.com/signupFailed.html');
-    }
-    else{
-        console.log("Insert succeeded!");
-        var results = result.rows;
-        console.log(results);
-        res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
-    }
-  });    
+    
+
+      if(error.code == 42601) {
+        console.log("Incomplete information!");
+        res.redirect('https://stark-spire-21434.herokuapp.com/signup.html');
+      }
+      else if(error.code == 23505){
+        console.log("Insert failed!");
+        res.redirect('https://stark-spire-21434.herokuapp.com/signupFailed.html');
+      }
+      else{
+          console.log("Insert succeeded!");
+          var results = result.rows;
+          console.log(results);
+          res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
+      }
+    });    
+  }
 })
+
 
 app.post('/gmmessage', function(req, res){
   var mes=req.body.gmessage;
@@ -249,7 +252,7 @@ app.post('/modify', function(req, res){
 
 
 // app.delete('/user/:id', (req, res) => {
-//   console.log(req.params.id)
+//   console.log(req.params.id) 
 //   // delete the user with id
 // });
 // app.set('views', path.join(__dirname, 'views'))

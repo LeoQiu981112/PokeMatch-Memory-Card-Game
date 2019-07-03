@@ -98,19 +98,13 @@
 <input type="button" onClick="msgbox(1)" value="rule" id="Hrule">
 <div id='inputbox' class="box">
     <a class='x' href=''; onclick="msgbox(0); return false;">close</a>
-    The object of the game is to rearch 21 points or achieve a score higher than the dealer without exceeding 21
+    Players choose a pattern for the cards. Cards are all initialized face-down.
     <br/>
-    First, place a bet and hit Deal
+    Each player takes turns flipping two cards face-up — if they are of the same , then that player wins the pair(the pair stays face-up) and gets another turn.
     <br/>
-    Then HIT to add a card, or STAND if you are happen with your cards
+    If the cards are not identical, they are turned back facedown and it becomes the next player’s turn to pick two cards.
     <br/>
-    If your card total goes over 21 you are  BUST and the dealer wins 
-    <br/>
-    You can use INSURANCE if the dealer is dealt an ace. INsurance pays out if the dealer has BLACKJAC
-    <br/>
-    You can SPLIT your cards if dealt two cars of the same value
-    <br/>
-    DOUBLE your bet to receive only one further card if you are confident of beating the dealer
+    The game continues until players have picked up all the pairs; the winner is the player with the most pairs.
 </div>
 <script>  
     function msgbox(n){
