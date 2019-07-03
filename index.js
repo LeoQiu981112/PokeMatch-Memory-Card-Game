@@ -237,7 +237,7 @@ app.post('/modify', function(req, res){
 
 
 // app.delete('/user/:id', (req, res) => {
-//   console.log(req.params.id)
+//   console.log(req.params.id) 
 //   // delete the user with id
 // });
 // app.set('views', path.join(__dirname, 'views'))
