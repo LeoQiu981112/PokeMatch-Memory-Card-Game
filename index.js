@@ -3,7 +3,6 @@ var app=express();//1
 var session=require('express-session');//1
 const path = require('path')
 const PORT = process.env.PORT 
-const app = express();
 const { Pool } = require('pg');
 var bodyParser = require('body-parser');
 
