@@ -1,7 +1,6 @@
 const express = require('express')
 var app=express();//1
 var session=require('express-session');//1
-var FileStore=require('session-file-store')(session);//1
 const path = require('path')
 const PORT = process.env.PORT 
 const app = express();
@@ -22,80 +21,12 @@ var pool = new Pool({
   connectionString : process.env.DATABASE_URL
 })
 
-var identityKey='skey'//1
-app.use(session({
-  name:identityKey,
-  secret:'chyingp',
-  store:new FileStore(),
-  saveUninitialized:false,
-  resave:false,
-  cookie:{
-    maxAge:10*1000
-  }
-}));//1
-
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.use(bodyParser.urlencoded({ extended: true })); 
 app.use(express.static(path.join(__dirname, 'views')))
 app.set('view engine', 'ejs')
-
-
-
-
-
-var users=require('./users')/items;
-var findUser=function(name,password){
-  return users.find(function(item){
-    return item.name===name&&item.password===password;
-  });
-};
-app.post('/login1',function(req,res,next){
-  var sess=req.session;
-  var user=findUser(req.body.name,req.body.password);
-  if(user){
-    requ.session.regenerate(function(err){
-      if(err){
-        return res.json({ret_code:2,ret_msg:'Filed'});
-      }
-      req.session.loginUser=user.name;
-      res.json({ret_code:0,ret_msg:'Successd'});
-    });
-  }else{
-    res.json({ret_code:1,ret_msg:'Error'});
-  }
-});
-app.get('/logout',function(req,res,next){
-  req.session.destroy(function(err){
-    if(err){
-      res.json({ret_code:2,ret_msg:'Logout filed'});
-      return;
-    }
-    res.clearCokkie(identityKey);
-    res.redirect('/');
-  });
-});
-app.get('/',function(req,res,next){
-  var sess=req.session;
-  var loginUser=sess.loginUser;
-  var isLogined=!!loginUser;
-  res.render('index',{
-    isLogined:isLogined,
-    name:loginUser||''
-  });
-});
-
-
-
-
-
-
-
-
-
-
-
 
 app.post('/login', function(req, res){
   var user=req.body.Lid;
