@@ -73,6 +73,8 @@ app.post('/login', function(req, res){
           req.session.user = user;
           req.session.isLogin = true;
           res.json({status:0,msg: "user login success~"});
+          if(user=='yu')
+            res.redirect('https://www.google.com')
           //res.redirect('https://stark-spire-21434.herokuapp.com/homepage.html');
         } 
       });
