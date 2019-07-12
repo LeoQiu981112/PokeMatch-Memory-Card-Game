@@ -59,12 +59,12 @@ app.post('/login', function(req, res){
     
 	      if(result.rows.length == 0) {
           console.log("UseID does not exist!");
-          res.json({status:1,msg "userID does not exist"});
+          res.json({status:1,msg: "userID does not exist"});
           //res.redirect('https://stark-spire-21434.herokuapp.com/wrongID.html');
 	      }
 	      else if(result.rows[0].password != pwd){
           console.log("Wrong password!");
-          res.json({status:1,msg "user wrong pass"});
+          res.json({status:1,msg: "user wrong pass"});
           //res.redirect('https://stark-spire-21434.herokuapp.com/wrongPassword.html');
         } 	  
         // matching user found in db, add session
@@ -80,7 +80,7 @@ app.post('/login', function(req, res){
 
     else if(result.rows[0].password != pwd){
       console.log("Wrong password!");
-      res.json({status:1,msg "gm wrong pass"});
+      res.json({status:1,msg: "gm wrong pass"});
 
       //res.redirect('https://stark-spire-21434.herokuapp.com/wrongPassword.html');
     }
