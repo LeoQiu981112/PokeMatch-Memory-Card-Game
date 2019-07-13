@@ -106,11 +106,12 @@ app.post("/login", function(req, res){
 app.get('/userlist',function(req,res){
   console.log("hudsdhsdk");
   console.log(req.session.sign);
-  res.json({status:-1,msg:"user"});
   var message="select msg from gm_msg where id=1;";
   console.log(message);
   pool.query(message,function(error,result){
     console.log(result.rows[0].msg);
+    var msg=reslut.rows[0].msg;
+    res.json({status:-1,msg:msg});
   })
 });
 
