@@ -31,7 +31,7 @@
             $.ajax({
                 type:"post",
                 url:"/login",
-                data:{Lid:Lid,Lpassword:Lpassword};
+                data:{Lid:Lid,Lpassword:Lpassword},
                 success:function(data){
                     if(data.status==0){
                         location.href="https://stark-spire-21434.herokuapp.com/homepage.html";
