@@ -11,7 +11,7 @@
 <body>
 <div class="table1">
 </div>
-<form id="table11"><! action="/login" method="post">
+<div id="table11"><! action="/login" method="post">
     <input type="text" placeholder="Enter Username" name="Lid" id="Lid"/>
     <br/>
     <input type="password" placeholder="Enter Password" name="Lpassword" id="Lpassword"/>
@@ -20,18 +20,19 @@
     <a href="https://stark-spire-21434.herokuapp.com/signup.html">
     <input type="button" value="SignUp" id="Lsignup">
     </a>
-</form>
+</div>
     <script src="js/jquery.min.js"></script>
     <script>
-        $("#table11").submit(function(){
-            window.location.href="https://stark-spire-21434.herokuapp.com/homepage.html";
+        $("#Llogin").click(function(){
+            var Lid=$("#Lid").val();
+            var Lpassword=$("#Lpassword").val();
             $.ajax({
                 type;"post",
                 url:"/login",
-                dataType:'json'
+                data:{Lid:Lid,Lpassword:Lpassword};
                 success:function(data){
                     if(data.status==0){
-                        window.location.href="https://stark-spire-21434.herokuapp.com/homepage.html";
+                        location.href="https://stark-spire-21434.herokuapp.com/homepage.html";
                     }else{
                         alert(data.msg);
                     }
@@ -43,6 +44,7 @@
 
         });
     </script>
+    
 <input type="button" onClick="msgbox(1)" value="rule" id="Lrule">
 <div id='inputbox' class="box">
     <a class='x' href=''; onclick="msgbox(0); return false;">close</a>
