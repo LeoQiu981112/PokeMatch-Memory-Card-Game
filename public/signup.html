@@ -2,7 +2,8 @@
 <html>
 <head>
 
-<link href="signup.css " rel="stylesheet" type="text/css" />   
+<link href="signup.css " rel="stylesheet" type="text/css" />  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> 
 
 
 </head>
@@ -15,17 +16,16 @@
 
 
 
-   <form action="/signup" method="post">
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   <div><! action="/signup" method="post">
       <label for="sid" >ID:</label>
       <input type="text" id="sid" placeholder="Enter User ID" name="sid"/><br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+     
       <label for="spassword">Password:</label>
       <input type="text" id="spassword" placeholder="Enter Password" name="spassword"/><br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
       <label for="sname">Name:</label>
       <input type="text" id="sname" placeholder="Enter Your Name" name="sname"/><br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
       <label for="sage">Age:</label>
       <input type="number" id="sage" placeholder="Enter Your Name" name="sage"/><br>
 
@@ -42,15 +42,38 @@
 
       <label for="sanswer">Question   Answer :</label>
       <input type="text" id="sanswer" placeholder="Enter Your Answer" name="sanswer"><br>
-      <input type="submit" value="sign up"  id="ssign" onClick="test()" >
+      <input type="submit" value="sign up"  id="ssign">
       <a href="https://stark-spire-21434.herokuapp.com/login.html">
             <input type="button" value="Back" id="sback" >
         </a>
-   </form>
+   </div>
 
 
 </div>
 <script>  
+  $("#ssign").click(function(){
+    var sid=$("#sid").val();
+    var spassword=$("#spassword").val();
+    var sname=$("#sname").val();
+    var sage=$("#sage").val();
+    var squestion=$("#squestion").val();
+    var sanswer=$("#sanswer").val();
+    $.ajax({
+      type:"post",
+      url:"/signup",
+      data:{sid:sid,spassword:spassword,sname:sname,sage:sage,squestion:squestion,sanswer:sanswer},
+      success:function(data){
+        if(data.status==0){
+          location.href="https://stark-spire-21434.herokuapp.com/login.html";
+        }else{
+          alert(data.msg);
+        }
+      },
+      error:function(){
+        alert("Internet error!");
+      }
+    })
+  });
    //function test(){
    //     var ID,pwd,name,age, sq,sa;
      //   ID = document.getElementById('sid').value;
