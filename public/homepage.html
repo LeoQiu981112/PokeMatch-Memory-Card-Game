@@ -18,7 +18,11 @@
         url:"/userlist",
         success:function(data){
             if(data.status==-1){
-                location.href="https://stark-spire-21434.herokuapp.com/login.html"
+                //location.href="https://stark-spire-21434.herokuapp.com/login.html"
+                var html="";
+                hrml+=data.status;
+                $("tbody").html(html)
+
             }
            // var html="";
            // html+=data.status;
