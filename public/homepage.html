@@ -37,16 +37,18 @@
 
     //wait til button clicked
     $("#logout").click(function(){
-        type:"get",
-        url:"/logout",
-        success:function(data){
-            if(data.status==-1){
-                location.href="https://stark-spire-21434.herokuapp.com/login.html"
+        $.ajax({
+            type:"get",
+            url:"/logout",
+            success:function(data){
+                if(data.status==-1){
+                    location.href="https://stark-spire-21434.herokuapp.com/login.html";
+                }
+            },
+            error:function(){
+                alert("Internet error!");
             }
-        },
-        error:function(){
-            alert("logout failed");
-        }
+        })
     }); 
 
 
