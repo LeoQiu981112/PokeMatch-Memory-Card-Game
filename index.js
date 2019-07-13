@@ -6,7 +6,7 @@ const path = require('path')
 const PORT = process.env.PORT 
 const { Pool } = require('pg');
 var bodyParser = require('body-parser');
-var cookieParser=require("cookie-parser");
+//var cookieParser=require("cookie-parser");
 
 
 //var pool = new Pool({
