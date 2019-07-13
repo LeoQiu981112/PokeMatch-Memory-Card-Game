@@ -36,6 +36,8 @@
         }
     });    
 
+
+
     //wait til button clicked
     $("#logout").click(function(){
         $.ajax({
@@ -50,7 +52,7 @@
             error:function(){
                 alert("Internet error!");
             }
-        })
+        });
     }); 
 
 
