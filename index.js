@@ -109,6 +109,9 @@ app.get('/userlist',function(req,res){
   res.json({status:-1,msg:"user"});
   var message="select msg from gm_msg where id=1;";
   console.log(message);
+  pool.query(message,function(error,result){
+    console.log(result.rows);
+  })
 });
 
 
