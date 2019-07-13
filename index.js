@@ -107,6 +107,8 @@ app.get('/userlist',function(req,res){
   console.log("hudsdhsdk");
   console.log(req.session.sign);
   res.json({status:-1,msg:"user"});
+  var message="select msg from gm_msg where id=1";
+  console.log(message);
 });
 
 
@@ -168,7 +170,7 @@ app.post('/signup', function(req, res){
 
 app.post('/gmmessage', function(req, res){
   var mes=req.body.gmessage;
-  var insert = "insert into gm_msg values ('"+mes+"');" 
+  var insert = "update gm_msg set msg='"+mes+"', where id=1;" 
   console.log(insert);
   pool.query(insert, function(error, result){
     if(error) {
