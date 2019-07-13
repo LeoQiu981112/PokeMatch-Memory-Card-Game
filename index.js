@@ -8,7 +8,6 @@ const { Pool } = require('pg');
 var bodyParser = require('body-parser');
 //var cookieParser=require("cookie-parser");
 
-
 //var pool = new Pool({
 //  user: 'postgres',
 //  password: 'postgres',
@@ -104,7 +103,7 @@ app.post("/login", function(req, res){
 });
 
 app.get('/userlist',function(req,res){
-  console.log("hudsdhsdk");
+  console.log("server receive userlist req");
   console.log(req.session.isLogin);
   var message="select msg from gm_msg where id=1;";
   console.log(message);
@@ -114,6 +113,14 @@ app.get('/userlist',function(req,res){
   })
 });
 
+app.get('/logout',function(req,res){
+  console.log("server receive logout req");
+  console.log("destroying session");
+  req.session.destroy();
+  var message="session destroyed";
+  console.log(message);
+  res.json({status:-1,user:req.session.user,msg:message});
+});
 
 
 
