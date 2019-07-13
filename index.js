@@ -110,8 +110,7 @@ app.get('/userlist',function(req,res){
   console.log(message);
   pool.query(message,function(error,result){
     console.log(result.rows[0].msg);
-    var msg=reslut.rows[0].msg;
-    res.json({status:-1,user:"user",msg:msg});
+    res.json({status:-1,user:"user",msg:result.rows[0].msg});
   })
 });
 
