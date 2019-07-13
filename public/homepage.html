@@ -39,28 +39,9 @@
         }
     });    
 
+</script>>
 
 
-    //wait til button clicked
-    $("#logout").click(function(){
-        $.ajax({
-            type:"get",
-            url:"/logout",
-            success:function(data){
-                if(data.status==-1){
-                    console.log(data.user + " has logged out.");
-                    location.href="https://stark-spire-21434.herokuapp.com/login.html";
-                }
-            },
-            error:function(){
-                alert("Internet error!");
-            }
-        });
-    }); 
-
-
-
-</script>
 
 
 <table id="rankingbackground">
@@ -102,6 +83,7 @@
 </table>
 
 <button id="create" class="float-left submit-button" >Create</button>
+
 <script type="text/javascript">
     document.getElementById("create").onclick = function () {
         location.href = "https://stark-spire-21434.herokuapp.com";
@@ -109,6 +91,7 @@
 </script>
 
 <button id="join" class="float-left submit-button" >Join</button>
+
 <script type="text/javascript">
     document.getElementById("join").onclick = function () {
         location.href = "https://stark-spire-21434.herokuapp.com";
@@ -135,13 +118,41 @@
 </form>-->
 
 <button id="account" class="float-left submit-button" >Info</button>
+
 <script type="text/javascript">
     document.getElementById("account").onclick = function () {
         location.href = "https://stark-spire-21434.herokuapp.com/modify.html";
     };
 </script>
 
-<input type="submit" id="logout" class="float-left submit-button" value="logout"> 
+
+
+
+
+
+<input type="button" value="logout"  class="float-left submit-button" id="logout" > 
+
+<script>
+    //wait til button clicked
+    $("#logout").click(function(){
+        $.ajax({
+            type:"get",
+            url:"/logout",
+            success:function(data){
+                if(data.status==-1){
+                    location.href="https://stark-spire-21434.herokuapp.com/login.html";
+                }
+            },
+            error:function(){
+                alert("logout error!");
+            }
+        });
+    }); 
+
+</script>
+
+
+
 
 <input type="button" onClick="msgbox(1)" value="rule" id="Hrule">
 <div id='inputbox' class="box">
