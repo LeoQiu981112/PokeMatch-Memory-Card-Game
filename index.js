@@ -35,7 +35,7 @@ app.use(session({
   cookie: {user:"default",maxAge:60*15*1000}
 }));
 
-app.post('/login', function(req, res){
+app.post("/login", function(req, res){
   var user=req.body.Lid;
   var pwd=req.body.Lpassword;
   //console.log("result id is " + user);
