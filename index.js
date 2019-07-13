@@ -110,7 +110,7 @@ app.get('/userlist',function(req,res){
   var message="select msg from gm_msg where id=1;";
   console.log(message);
   pool.query(message,function(error,result){
-    console.log(result.rows);
+    console.log(result.rows[0].msg);
   })
 });
 
