@@ -41,9 +41,26 @@
         <input type="text" id="gmessage" placeholder="Message Box" name="gmessage"/><br>
         <input type="submit" value="Publish" id="publish">
       </form>
-      <a href="https://stark-spire-21434.herokuapp.com/login.html" id="GLog">
-        <input type="button" value="Logout" id="glog">
-      </a>
+        <input type="button" value="Logout" id="glogout">
+      <script>
+          //wait til button clicked
+          $("#glogout").click(function(){
+              $.ajax({
+                  type:"get",
+                  url:"/logout",
+                  success:function(data){
+                      if(data.status==-1){
+                          location.href="https://stark-spire-21434.herokuapp.com/login.html";
+                      }
+                  },
+                  error:function(){
+                      alert("logout error!");
+                  }
+              });
+          }); 
+
+      </script>
+
     </div>
 </body>
 </html>
