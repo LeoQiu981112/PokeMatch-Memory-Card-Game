@@ -13,6 +13,7 @@
 <body>
 <h1></h1>
 <script>
+    //run right away
     $.ajax({
         type:"get",
         url:"/userlist",
@@ -34,8 +35,8 @@
         }
     });    
 
-
-    $.ajax({
+    //wait til button clicked
+    $("#logout").click(function(){
         type:"get",
         url:"/logout",
         success:function(data){
@@ -132,11 +133,6 @@
 </script>
 
 <button id="logout" class="float-left submit-button" >Logout</button>
-<script type="text/javascript">
-    document.getElementById("logout").onclick = function () {
-        location.href = "https://stark-spire-21434.herokuapp.com/login.html";
-    };
-</script>
 
 <input type="button" onClick="msgbox(1)" value="rule" id="Hrule">
 <div id='inputbox' class="box">
