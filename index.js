@@ -103,6 +103,8 @@ app.post("/login", function(req, res){
 
 app.get('/userlist',function(req,res){
   console.log("hudsdhsdk");
+  console.log(req.session.sign);
+
 });
 
 
