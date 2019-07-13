@@ -12,6 +12,7 @@
 
 <body>
 <h1></h1>
+
 <script>
     //run right away
     $.ajax({
@@ -42,6 +43,7 @@
             url:"/logout",
             success:function(data){
                 if(data.status==-1){
+                    console.log(data.user + " has logged out.");
                     location.href="https://stark-spire-21434.herokuapp.com/login.html";
                 }
             },
