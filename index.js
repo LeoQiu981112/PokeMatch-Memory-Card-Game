@@ -38,43 +38,45 @@ app.use(session({
 app.post('/login', function(req, res){
   var user=req.body.Lid;
   var pwd=req.body.Lpassword;
-  console.log("result id is " + user);
+  //console.log("result id is " + user);
 
   //gm
   var match = "select * from gm where id in " + "('" + user + "')" + ";"; 
-  console.log(match);
+  //console.log(match);
 
   pool.query(match, function(error, result){
-    console.log(result.rows);
+    //console.log(result.rows);
   
 
     if(result.rows.length == 0){
       //players
       var match = "select * from players where id in " + "('" + user + "')" + ";"; 
-      console.log(match);
+      //console.log(match);
 
       pool.query(match, function(error, result){
 
-        console.log(result.rows);
+        //console.log(result.rows);
     
 	      if(result.rows.length == 0) {
-          console.log("UseID does not exist!");
+          //console.log("UseID does not exist!");
           res.json({status:1,msg: "userID does not exist"});
           //res.redirect('https://stark-spire-21434.herokuapp.com/wrongID.html');
 	      }
 	      else if(result.rows[0].password != pwd){
-          console.log("Wrong password!");
+          //console.log("Wrong password!");
           res.json({status:1,msg: "user wrong pass"});
           //res.redirect('https://stark-spire-21434.herokuapp.com/wrongPassword.html');
         } 	  
         // matching user found in db, add session
         else{
-          console.log("Login succeeded!");
+          //console.log("Login succeeded!");
           req.session.user = user;
           req.session.isLogin = true;
-          var json='{"status":0,"msg":"Login Success"}';
+          var json='{"user":'+user+'"status":0,"msg":"Login Success"}';
           var obj=JSON.parse(json);
+          console.log(obj.user);
           console.log(obj.status);
+          console.log(obj.msg)
           //res.json({status:0,msg: "user login success~"});
           //res.redirect('https://stark-spire-21434.herokuapp.com/homepage.html');
         } 
