@@ -39,7 +39,7 @@ app.post("/login", function(req, res){
   var user=req.body.Lid;
   var pwd=req.body.Lpassword;
   //console.log("result id is " + user);
-
+  console.log("gfthfhgfhgfgh");
   //gm
   var match = "select * from gm where id in " + "('" + user + "')" + ";"; 
   //console.log(match);
