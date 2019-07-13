@@ -72,7 +72,7 @@ app.post("/login", function(req, res){
           //console.log("Login succeeded!");
           req.session.user = user;
           req.session.isLogin = true;
-          var json='{"user":"'+user+'","status":0,"msg":"Login Success"}';
+          var json='{"user":"'+user+'","status":1,"msg":"Login Success"}';
           var obj=JSON.parse(json);
           console.log(obj.user);
           console.log(obj.status);
