@@ -72,8 +72,11 @@ app.post('/login', function(req, res){
           console.log("Login succeeded!");
           req.session.user = user;
           req.session.isLogin = true;
-          res.json({status:0,msg: "user login success~"});
-          res.redirect('https://stark-spire-21434.herokuapp.com/homepage.html');
+          var json='{"userid":'+user+'status":0,"msg":"Login Success"}';
+          obj=JSON.parse(json);
+          console.log(obj.userid);
+          //res.json({status:0,msg: "user login success~"});
+          //res.redirect('https://stark-spire-21434.herokuapp.com/homepage.html');
         } 
       });
     }
