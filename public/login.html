@@ -20,12 +20,13 @@
     <a href="https://stark-spire-21434.herokuapp.com/signup.html">
     <input type="button" value="SignUp" id="Lsignup">
     </a>
+</form>
     <script src="js/jquery.min.js"></script>
     <script>
-        $("#table11").click(function(){
+        $("#table11").submit(function(){
             window.location.href="https://stark-spire-21434.herokuapp.com/homepage.html";
             $.ajax({
-                type;'post',
+                type;"post",
                 url:"/login",
                 dataType:'json'
                 success:function(data){
@@ -42,7 +43,6 @@
 
         });
     </script>
-</form>
 <input type="button" onClick="msgbox(1)" value="rule" id="Lrule">
 <div id='inputbox' class="box">
     <a class='x' href=''; onclick="msgbox(0); return false;">close</a>
