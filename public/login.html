@@ -7,9 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login</title>
     <link rel="stylesheet" type="text/css" href="login.css">
+    <script type="text/javascript" src="/jquery-3.1.0.in.js"></script>
 </head>
 
 <body>
+<p id="demo">123</p>
 <div class="table1">
 </div>
 <form id="table11" action="/login" method="post" >
@@ -37,6 +39,14 @@
     function msgbox(n){
         document.getElementById('inputbox').style.display=n?'block':'none';     /* 点击按钮打开/关闭 对话框 */
     }
+    $.ajax({
+        type;"get",
+        url:"/login",
+        success:function(data){
+            var user=data.user;
+            document.getElementById("demo").innerHTML=user;
+        }
+    })
 </script>
 </body>
 </html>
