@@ -42,25 +42,27 @@
         <input type="submit" value="Publish" id="publish">
       </form>
         <input type="button" value="Logout" id="glogout">
-      <script>
-          //wait til button clicked
-          $("#glogout").click(function(){
-              $.ajax({
-                  type:"get",
-                  url:"/logout",
-                  success:function(data){
-                      if(data.status==-1){
-                          location.href="https://stark-spire-21434.herokuapp.com/login.html";
-                      }
-                  },
-                  error:function(){
-                      alert("logout error!");
-                  }
-              });
-          }); 
-
-      </script>
 
     </div>
-</body>
+
+    <script>
+        //wait til button clicked
+        $("#glogout").click(function(){
+            $.ajax({
+                type:"get",
+                url:"/logout",
+                success:function(data){
+                    if(data.status==-1){
+                        location.href="https://stark-spire-21434.herokuapp.com/login.html";
+                    }
+                },
+                error:function(){
+                    alert("logout error!");
+                }
+            });
+        }); 
+
+    </script>
+
+  </body>
 </html>
