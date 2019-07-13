@@ -96,7 +96,7 @@ app.post("/login", function(req, res){
       console.log("Login succeeded!");
       req.session.user = user;
       req.session.isLogin = true;
-      res.json({status:0,msg: "GM login success~"});
+      res.json({status:-1,msg: "GM login success~"});
 
       //res.redirect('https://stark-spire-21434.herokuapp.com/GM.html');
     }
@@ -111,7 +111,7 @@ app.get('/userlist',function(req,res){
   pool.query(message,function(error,result){
     console.log(result.rows[0].msg);
     var msg=reslut.rows[0].msg;
-    res.json({status:-1,msg:msg});
+    res.json({status:-1,user:"user",msg:msg});
   })
 });
 
