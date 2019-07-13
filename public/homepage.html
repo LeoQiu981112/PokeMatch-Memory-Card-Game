@@ -10,11 +10,24 @@
 </head>
 
 <body>
-<h1 id =data!>data</h1>
+<tbody></tbody>
 <script src= "js/jquery.min.js"></script>
 <script>
-$.ajax({
-})    
+    $.ajax({
+        type:"get",
+        url:"/userlist",
+        success:function(data){
+            if(data.code==-1){
+                location.href="https://stark-spire-21434.herokuapp.com/login.html"
+            }
+            var html="";
+            html+=data.Lid
+            $("tbody").html(html);
+        },
+        error:function(){
+            alert("Neternet Error");
+        }
+    });    
 
 </script>
 

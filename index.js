@@ -102,6 +102,13 @@ app.post("/login", function(req, res){
   });
 });
 
+app.get('/userlist',function(req,res){
+  console.log("hudsdhsdk");
+});
+
+
+
+
 
 app.post('/signup', function(req, res){
 	var sid=req.body.sid;
