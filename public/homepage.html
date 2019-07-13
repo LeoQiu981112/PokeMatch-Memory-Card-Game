@@ -17,15 +17,15 @@
         type:"get",
         url:"/userlist",
         success:function(data){
-            if(data.code==-1){
+            if(data.status==-1){
                 location.href="https://stark-spire-21434.herokuapp.com/login.html"
             }
             var html="";
-            html+=47456464
+            html+=data.status;
             $("tbody").html(html);
         },
         error:function(){
-            alert("Neternet Error");
+            alert("Internet Error");
         }
     });    
 

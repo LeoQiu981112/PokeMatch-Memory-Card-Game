@@ -6,6 +6,7 @@ const path = require('path')
 const PORT = process.env.PORT 
 const { Pool } = require('pg');
 var bodyParser = require('body-parser');
+var cookieParser=require("cookie-parser");
 
 
 //var pool = new Pool({
@@ -29,6 +30,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'views')))
 app.set('view engine', 'ejs')
 
+app.use(cookieParser());
 app.use(session({
   secret:"secret key",
   resave:false,
@@ -104,7 +106,7 @@ app.post("/login", function(req, res){
 app.get('/userlist',function(req,res){
   console.log("hudsdhsdk");
   console.log(req.session.sign);
-
+  res.json({status:1})
 });
 
 
