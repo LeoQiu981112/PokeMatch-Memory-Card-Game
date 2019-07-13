@@ -12,7 +12,7 @@
 <body>
 <div class="table1">
 </div>
-<div id="table11"><! action="/login" method="post">
+<form id="table11"><! action="/login" method="post">
     <input type="text" placeholder="Enter Username" name="Lid" id="Lid"/>
     <br/>
     <input type="password" placeholder="Enter Password" name="Lpassword" id="Lpassword"/>
@@ -26,7 +26,7 @@
         $("#Llogin").click(function(){
             document.getElementById.innerHTML=123
             $.ajax({
-                type;'get',
+                type;'post',
                 url:"/login",
                 dataType:'json'
                 success:function(data){
@@ -43,7 +43,7 @@
 
         });
     </script>
-</div>
+</form>
 <input type="button" onClick="msgbox(1)" value="rule" id="Lrule">
 <div id='inputbox' class="box">
     <a class='x' href=''; onclick="msgbox(0); return false;">close</a>
