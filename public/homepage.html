@@ -11,7 +11,7 @@
 </head>
 
 <body>
-<tbody></tbody>
+<h1></h1>
 <script>
     $.ajax({
         type:"get",
@@ -20,8 +20,8 @@
             if(data.status==-1){
                 //location.href="https://stark-spire-21434.herokuapp.com/login.html"
                 var html="";
-                html+=data.status;
-                $("tbody").html(html)
+                html+=data.msg;
+                $("h1").html(html)
 
             }
            // var html="";
