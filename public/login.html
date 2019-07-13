@@ -8,7 +8,6 @@
     <title>Login</title>
     <link rel="stylesheet" type="text/css" href="login.css">
 </head>
-<p id=demo></p>
 <body>
 <div class="table1">
 </div>
@@ -24,14 +23,13 @@
     <script src="js/jquery.min.js"></script>
     <script>
         $("#table11").click(function(){
-            document.getElementById.innerHTML=123
             $.ajax({
                 type;'post',
                 url:"/login",
                 dataType:'json'
                 success:function(data){
-                    if(data.status>0){
-                        location.href="https://stark-spire-21434.herokuapp.com/homepage.html";
+                    if(data.status==0){
+                        window.location.href="https://stark-spire-21434.herokuapp.com/homepage.html";
                     }else{
                         alert(data.msg);
                     }
