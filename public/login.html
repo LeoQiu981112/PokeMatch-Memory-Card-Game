@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login</title>
     <link rel="stylesheet" type="text/css" href="login.css">
+        <script src="js/jquery.min.js"></script>
+
 </head>
 <body>
 <div class="table1">
@@ -16,12 +18,12 @@
     <br/>
     <input type="password" placeholder="Enter Password" name="Lpassword" id="Lpassword"/>
     <br/>
-    <input type="submit" value="Login" name="Llogin" id="Llogin" >
+    <input type="button" value="Login" name="Llogin" id="Llogin" >
     <a href="https://stark-spire-21434.herokuapp.com/signup.html">
     <input type="button" value="SignUp" id="Lsignup">
     </a>
 </div>
-    <script src="js/jquery.min.js"></script>
+
     <script>
         $("#Llogin").click(function(){
             var Lid=$("#Lid").val();
@@ -44,7 +46,7 @@
 
         });
     </script>
-    
+
 <input type="button" onClick="msgbox(1)" value="rule" id="Lrule">
 <div id='inputbox' class="box">
     <a class='x' href=''; onclick="msgbox(0); return false;">close</a>
