@@ -105,7 +105,7 @@ app.post("/login", function(req, res){
 
 app.get('/userlist',function(req,res){
   console.log("hudsdhsdk");
-  console.log(req.session.sign);
+  console.log(req.session.isLogin);
   var message="select msg from gm_msg where id=1;";
   console.log(message);
   pool.query(message,function(error,result){
