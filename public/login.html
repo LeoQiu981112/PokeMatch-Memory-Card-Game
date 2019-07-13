@@ -24,13 +24,11 @@
     <script src="js/jquery.min.js"></script>
     <script>
         $("#Llogin").click(function(){
-            var Lid=$("#Lid").val();
-            var Lpassword=$("#Lpassword").val();
             document.getElementById.innerHTML=123
             $.ajax({
-                type;"post",
+                type;'post',
                 url:"/login",
-                data:{Lid:Lid, Lpassword:Lpassword},
+                dataType:'json'
                 success:function(data){
                     if(data.status>0){
                         location.href="https://stark-spire-21434.herokuapp.com/homepage.html";
