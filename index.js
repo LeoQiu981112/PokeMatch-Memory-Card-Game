@@ -117,7 +117,6 @@ app.get('/logout',function(req,res){
   console.log("server receive logout req");
   console.log("destroying session");
   req.session.isLogin= false;
-  console.log(message);
   res.json({status:-1,user:req.session.user,msg:"message"});
 });
 
