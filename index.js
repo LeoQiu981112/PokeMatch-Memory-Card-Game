@@ -73,7 +73,7 @@ app.post('/login', function(req, res){
           req.session.user = user;
           req.session.isLogin = true;
           var json='{"status":0,"msg":"Login Success"}';
-          obj=JSON.parse(json);
+          var obj=JSON.parse(json);
           console.log(obj.status);
           //res.json({status:0,msg: "user login success~"});
           //res.redirect('https://stark-spire-21434.herokuapp.com/homepage.html');
