@@ -11,6 +11,27 @@
 </head>
 
 <body>
+<h1 align = "left" id="name"></h1>
+
+<script>
+    //run right away
+    $.ajax({
+        type:"get",
+        url:"/userlist",
+        success:function(data){
+            if(data.status==-1){
+                var user="";
+                user+=data.user;
+                $("#name").html(user);
+            }
+        },
+        error:function(){
+            alert("Internet Error");
+        }
+    });    
+
+</script>>
+
     <div id="mmodify">
     <h1>Modify</h1>
     <h2 >Personal Information</h2>
