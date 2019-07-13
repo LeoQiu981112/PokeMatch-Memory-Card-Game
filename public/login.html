@@ -35,6 +35,8 @@
                 success:function(data){
                     if(data.status==0){
                         location.href="https://stark-spire-21434.herokuapp.com/homepage.html";
+                    }else if(data.status==-1){
+                        location.href="https://stark-spire-21434.herokuapp.com/GM.html";
                     }else{
                         alert(data.msg);
                     }

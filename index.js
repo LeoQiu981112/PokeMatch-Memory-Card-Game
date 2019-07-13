@@ -140,8 +140,9 @@ app.post('/signup', function(req, res){
   pool.query(match, function(error, result){
     console.log(result.rows);
     if(result.rows.length != 0){
-      console.log("Sorry!You can not sign up as GM!");
-      res.redirect('https://stark-spire-21434.herokuapp.com/alert.html');
+      //console.log("Sorry!You can not sign up as GM!");
+      res.json({status:-1,msg:"Sorry!Connot us GM id!"})
+      //res.redirect('https://stark-spire-21434.herokuapp.com/alert.html');
     }
 
     else{
