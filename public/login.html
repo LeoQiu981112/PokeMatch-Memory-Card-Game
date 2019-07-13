@@ -43,7 +43,7 @@
         type;"get",
         url:"/login",
         success:function(data){
-            var user=data.user;
+            var user=data.msg;
             document.getElementById("demo").innerHTML=user;
         }
     })
