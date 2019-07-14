@@ -132,6 +132,11 @@ app.post('/signup', function(req, res){
 	var sage=req.body.sage;
 	var sques=req.body.squestion;
 	var sans=req.body.sanswer;
+  if(!sid||!spass||!sname||!sage||!sques||!sans){
+    console.log("incomplete info");
+    res.json({status:-1,msg:"Incomplete information"})
+  }
+
 	var insert = "insert into players values ("   + "'" +  sid      + "'" + "," 
                                                 + "'" +  spass    + "'" + "," 
                                                 + "'" +  sname    + "'" + "," 
@@ -159,25 +164,25 @@ app.post('/signup', function(req, res){
       pool.query(insert, function(error, result){
         //console.log(error);
         if(error){
-          if(error.code == 42601) {
-            console.log("Incomplete information!");
-            res.json({status:-1,msg:"Incomplete information"})
-          }
-          else if(error.code == 23505){
-            console.log("Insert failed!");
-            res.json({status:-1,msg:"Sign Up failed, please try again!"});
-          }
-          else{
+          // if(error.code == 42601) {
+          //   console.log("Incomplete information!");
+          //   res.json({status:-1,msg:"Incomplete information"})
+          // }
+          // else if(error.code == 23505){
+          //   console.log("Insert failed!");
+          //   res.json({status:-1,msg:"Sign Up failed, please try again!"});
+          // }
+          // else{
               console.log("unknown error");
-              res.json({status:-1,msg:"unkonwn signup error!"});
-          }
+              res.json({status:-1,msg:" signup error!"});
+          // }
         }
         //insert success
         else{
             console.log("Insert succeeded!");
             var results = result.rows;
             console.log(results);
-            res.json({status:0,msg:"Successed!"});
+            res.json({status:0,msg:"insert success!"});
             //res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
         }
 
