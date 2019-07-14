@@ -102,6 +102,7 @@ app.post("/login", function(req, res){
   });
 });
 
+//for gm
 app.get('/userlist',function(req,res){
   console.log("server receive userlist req");
   console.log(req.session.isLogin);
@@ -262,7 +263,7 @@ app.post('/modify', function(req, res){
   var manswer=req.body.manswer;
 
   var fp="update players set ";
-  var sp= " where id = " + req.session.user + ";";
+  var sp= " where id = " + mid + ";";
   var tmp;
 
   if(mpassword){
@@ -316,7 +317,6 @@ app.post('/modify', function(req, res){
   }
 
   res.redirect('https://stark-spire-21434.herokuapp.com/homepage.html');
-// res.redirect('http://localhost:5000/main.html');
 });
 
 
