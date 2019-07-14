@@ -272,17 +272,14 @@ app.post('/modify', function(req, res){
   var fp="update players set ";
   var sp= " where id = " + mid + ";";
   var tmp;
-
+  var num=0;
   if(mpassword){
     tmp= fp + "password = " + "'" + mpassword + "'" + sp;
     pool.query(tmp, function(error, result){
 	    if(error) {
 	      console.log("mod fail!");
-        res.json({status:-1});
+        num=-1;
 	    }
-      else{
-        res.json({status:0});
-      }
     });
   }
 
@@ -291,11 +288,8 @@ app.post('/modify', function(req, res){
     pool.query(tmp, function(error, result){
 	    if(error) {
 	      console.log("mod fail!");
-        res.json({status:-1});
+        num=-1;
 	    }
-      else{
-        res.json({status:0});
-      }
     });
   }
 
@@ -304,11 +298,9 @@ app.post('/modify', function(req, res){
     pool.query(tmp, function(error, result){
 	    if(error) {
 	      console.log("mod fail!");
-        res.json({status:-1});
+        num=-1;
 	    }
-      else{
-        res.json({status:0});
-      }
+
     });
   }
 
@@ -322,11 +314,9 @@ app.post('/modify', function(req, res){
     pool.query(tmp, function(error, result){
 	    if(error) {
 	      console.log("mod fail!");
-        res.json({status:-1});
+        num=-1;
 	    }
-      else{
-        res.json({status:0});
-      }
+
     });
   }
 
@@ -335,13 +325,12 @@ app.post('/modify', function(req, res){
     pool.query(tmp, function(error, result){
 	    if(error) {
 	      console.log("mod fail!");
-        res.json({status:-1});
+        num=-1;
 	    }
-      else{
-        res.json({status:0});
-      }
     });
   }
+  
+  res.json({status:num});
 
   //res.redirect('https://stark-spire-21434.herokuapp.com/homepage.html');
 });
