@@ -71,31 +71,31 @@
         </a>
 
     </div>
-    <script>
-        $("#mbutton").click(function(){
-            var mpassword=$("#mspassword").val();
-            var mname=$("#mname").val();
-            var mage=$("#mage").val();
-            var mquestion=$("#mquestion").val();
-            var manswer=$("#manswer").val();
-            $.ajax({
-                type:"post",
-                url:"/modify",
-                data:{mpassword:mpassword,mname:mname,mage:mage,mquestion:mquestion,manswer:manswer},
-                success:function(data){
-                    if(data.status==-1){
-                        alert("Modify Fail!");
-                    }else{
-                        alert("Modify success!");
-                    }
-                },
-                error:function(){
-                    alert("Internet error!");
-                }
-            })
-        });
-    </script>
 </div>
+<script>
+    $("#mbutton").click(function(){
+        var mpassword=$("#mspassword").val();
+        var mname=$("#mname").val();
+        var mage=$("#mage").val();
+        var mquestion=$("#mquestion").val();
+        var manswer=$("#manswer").val();
+        $.ajax({
+            type:"post",
+            url:"/modify",
+            data:{mpassword:mpassword,mname:mname,mage:mage,mquestion:mquestion,manswer:manswer},
+            success:function(data){
+                if(data.status==-1){
+                    alert("Modify Fail!");
+                }else{
+                    alert("Modify success!");
+                }
+            },
+            error:function(){
+                alert("Internet error!");
+            }
+        })
+    });
+</script>
 
     
 </body>
