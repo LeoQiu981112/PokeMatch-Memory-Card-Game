@@ -164,18 +164,8 @@ app.post('/signup', function(req, res){
       pool.query(insert, function(error, result){
         //console.log(error);
         if(error){
-          // if(error.code == 42601) {
-          //   console.log("Incomplete information!");
-          //   res.json({status:-1,msg:"Incomplete information"})
-          // }
-          // else if(error.code == 23505){
-          //   console.log("Insert failed!");
-          //   res.json({status:-1,msg:"Sign Up failed, please try again!"});
-          // }
-          // else{
-              console.log("unknown error");
-              res.json({status:-1,msg:" signup error!"});
-          // }
+          res.json({status:-1,msg:" signup error!"});
+          
         }
         //insert success
         else{
@@ -183,7 +173,6 @@ app.post('/signup', function(req, res){
             var results = result.rows;
             console.log(results);
             res.json({status:0,msg:"insert success!"});
-            //res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
         }
 
       }); // player query    
