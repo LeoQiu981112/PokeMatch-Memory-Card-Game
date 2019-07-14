@@ -141,13 +141,12 @@ app.post('/signup', function(req, res){
                                                 + ")"     
                                                 + ";"  ;
   
-  var match = "select * from gm where id in " + "('" + sid + "')" + ";"; 
+  var match = "select * from gm where id = " + "'" + sid + "'" + ";"; 
   console.log(match);
                                               
   //gm check
   pool.query(match, function(error, result){
-    console.log(result.rows);
-
+    // console.log(result.rows);
     if(result.rows.length != 0){
       console.log("Sorry!You can not sign up as GM!");
       res.json({status:-1,msg:"Sorry! Connot us GM id!"})
@@ -155,7 +154,6 @@ app.post('/signup', function(req, res){
 
     // player check
     else{
-
 	    console.log(insert);
  
       pool.query(insert, function(error, result){
