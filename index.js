@@ -211,6 +211,7 @@ app.post('/gmmessage', function(req, res){
 
 
 app.post('/remove', function(req, res){
+  var status=0;
 	var id3=req.body.Gdelete;
 	var remove = "delete from players where id =" +    "'" + id3 + "'"  
                                                  + ";" ;   
@@ -221,13 +222,15 @@ app.post('/remove', function(req, res){
 
 	  if(result.rowCount) {
       console.log("Remove succeeded!");
-      res.redirect('https://stark-spire-21434.herokuapp.com/deleteSucceeded.html');
+      //res.redirect('https://stark-spire-21434.herokuapp.com/deleteSucceeded.html');
 	  }
 	  else{
       //return console.error(error);
       console.log("Remove failed!");
-      res.redirect('https://stark-spire-21434.herokuapp.com/deleteFailed.html');
-	  } 	  
+      status=1;
+      //res.redirect('https://stark-spire-21434.herokuapp.com/deleteFailed.html');
+	  }
+    res.json({status:status}); 	  
   });
 
 
