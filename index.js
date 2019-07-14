@@ -271,6 +271,7 @@ app.post('/modify', function(req, res){
     pool.query(tmp, function(error, result){
 	    if(error) {
 	      console.log("mod fail!");
+        res.json({status:-1});
 	    }
     });
   }
@@ -280,6 +281,7 @@ app.post('/modify', function(req, res){
     pool.query(tmp, function(error, result){
 	    if(error) {
 	      console.log("mod fail!");
+        res.json({status:-1});
 	    }
     });
   }
@@ -289,6 +291,7 @@ app.post('/modify', function(req, res){
     pool.query(tmp, function(error, result){
 	    if(error) {
 	      console.log("mod fail!");
+        res.json({status:-1});
 	    }
     });
   }
@@ -303,6 +306,7 @@ app.post('/modify', function(req, res){
     pool.query(tmp, function(error, result){
 	    if(error) {
 	      console.log("mod fail!");
+        res.json({status:-1});
 	    }
     });
   }
@@ -312,6 +316,7 @@ app.post('/modify', function(req, res){
     pool.query(tmp, function(error, result){
 	    if(error) {
 	      console.log("mod fail!");
+        res.json({status:-1});
 	    }
     });
   }

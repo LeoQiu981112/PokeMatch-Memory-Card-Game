@@ -40,7 +40,7 @@
 
     </script>
 
-    <form action="/modify" method= "post" >
+    <div><!action="/modify" method= "post" >
         <label for="mpassword">Password:</label>
         <input type="text" id="mpassword" placeholder="Enter New Password" name="mpassword" /><br>
 
@@ -70,7 +70,31 @@
             <input type="button" value="Back" id="mback" >
         </a>
 
-    </form>
+    </div>
+    <script>
+        $("#mbutton").click(function(){
+            var mpassword=$("#mspassword").val();
+            var mname=$("#mname").val();
+            var mage=$("#mage").val();
+            var mquestion=$("#mquestion").val();
+            var manswer=$("#manswer").val();
+            $.ajax({
+                type:"post",
+                url:"/modify",
+                data:{mpassword:mpassword,mname:mname,mage:mage,mquestion:mquestion,manswer:manswer},
+                success:function(data){
+                    if(data.status==-1){
+                        alert("Modify Fail!");
+                    }else{
+                        location.href="https://stark-spire-21434.herokuapp.com/homepage.html"
+                    }
+                },
+                error:function(){
+                    alert("Internet error!");
+                }
+            })
+        });
+    </script>
 </div>
 
     
