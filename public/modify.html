@@ -13,31 +13,37 @@
 <body>
 <h1 align = "left" id="name"></h1>
 
-<script>
-    //run right away
-    $.ajax({
-        type:"get",
-        url:"/userlist",
-        success:function(data){
-            if(data.status==-1){
-                var user="";
-                user+=data.user;
-                $("#name").html(user);
-            }
-        },
-        error:function(){
-            alert("Internet Error");
-        }
-    });    
-
-</script>>
 
     <div id="mmodify">
     <h1>Modify</h1>
     <h2 >Personal Information</h2>
-    <form action="/modify" method="post" >
+    <div >
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <label for="mid">ID:</label><br>
+        <label for="mid">ID:</label> <p id= mid></p> <br>
+
+
+
+        <script>
+            //run right away
+            $.ajax({
+                type:"get",
+                url:"/userlist",
+                success:function(data){
+                    if(data.status==-1){
+                        var user="";
+                        user+=data.user;
+                        $("#name").html(user);
+                        $("#mid").html(user);
+                    }
+                },
+                error:function(){
+                    alert("Internet Error");
+                }
+            });    
+
+        </script>
+
+
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <label for="mpassword">Password:</label>
         <input type="text" id="mpassword" placeholder="Enter New Password" name="mpassword" /><br>
@@ -68,7 +74,7 @@
             <input type="submit" value="modify" id="mbutton" >
             <input type="button" value="Back" id="mback" >
         </a>
-    </form>
+    </div>
 </div>
 
     

@@ -253,7 +253,7 @@ app.post('/search', function(req, res){
 app.post('/modify', function(req, res){
   //var mid=req.body.mid;
 
-  var mid=   "'" + "xyz" + "'" ;
+  var mid=   "'" + req.session.user + "'" ;
 
   var mpassword=req.body.mpassword;
   var mname=req.body.mname;
@@ -262,7 +262,7 @@ app.post('/modify', function(req, res){
   var manswer=req.body.manswer;
 
   var fp="update players set ";
-  var sp= " where id = " + mid + ";";
+  var sp= " where id = " + req.session.user + ";";
   var tmp;
 
   if(mpassword){

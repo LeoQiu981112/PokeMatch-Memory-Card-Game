@@ -36,7 +36,7 @@
 
   <h1>Game Manager</h1>
   <div id="GGM">
-      <h1>Manage players</h1>
+      <h2>Manage players</h2>
       <form action="/search" method="post" >
         <input type="text" id="gsearch" name="gsearch" placeholder="enter ID">
         <input type="submit" value="Search" id="search" name="search">
@@ -56,12 +56,14 @@
           </tr>
       </table>
       <br></br>
+      <h2>Delete player by ID</h2>
       <form action="/remove" method="post" >
         <input type="text" id="Gdelete" name="Gdelete" placeholder="enter ID">
         <input type="submit" value="Delete" id="delete">
       </form>
     </div>
     <div id="gpublish">
+      <h2>Public Message Board</h2>
       <form action="/gmmessage" method="post">
         <label for="gmessage" ></label>
         <input type="text" id="gmessage" placeholder="Message Box" name="gmessage"/><br>
