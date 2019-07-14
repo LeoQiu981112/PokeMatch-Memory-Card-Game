@@ -126,6 +126,9 @@ app.get('/logout',function(req,res){
 
 
 app.post('/signup', function(req, res){
+    var msg="";
+    var stat=0;
+
 	var sid=req.body.sid;
 	var spass=req.body.spassword;
 	var sname=req.body.sname;
@@ -151,8 +154,7 @@ app.post('/signup', function(req, res){
   //gm check
   pool.query(match, function(error, result){
     // console.log(result.rows);
-    var msg="";
-    var stat=0;
+
     if(result.rows.length != 0){
       console.log("Sorry!You can not sign up as GM!");
       msg="Sorry! Connot us GM id!";
