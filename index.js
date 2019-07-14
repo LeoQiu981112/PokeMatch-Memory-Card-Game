@@ -275,6 +275,8 @@ app.post('/modify', function(req, res){
   var num=0;
   if(mpassword){
     tmp= fp + "password = " + "'" + mpassword + "'" + sp;
+    console.log(mpassword);
+    console.log(tmp);
     pool.query(tmp, function(error, result){
 	    if(error) {
 	      console.log("mod fail!");
