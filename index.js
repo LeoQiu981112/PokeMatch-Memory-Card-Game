@@ -137,7 +137,8 @@ app.post('/signup', function(req, res){
 	var sans=req.body.sanswer;
   if(!sid||!spass||!sname||!sage||!sques||!sans){
     console.log("incomplete info");
-    res.json({status:-1,msg:"Incomplete information"});
+    msg="Incomplete information";
+    stat=-1;
   }
 
 	var insert = "insert into players values ("   + "'" +  sid      + "'" + "," 
