@@ -280,6 +280,9 @@ app.post('/modify', function(req, res){
 	      console.log("mod fail!");
         res.json({status:-1});
 	    }
+      else{
+        res.json({status:0});
+      }
     });
   }
 
@@ -290,6 +293,9 @@ app.post('/modify', function(req, res){
 	      console.log("mod fail!");
         res.json({status:-1});
 	    }
+      else{
+        res.json({status:0});
+      }
     });
   }
 
@@ -300,6 +306,9 @@ app.post('/modify', function(req, res){
 	      console.log("mod fail!");
         res.json({status:-1});
 	    }
+      else{
+        res.json({status:0});
+      }
     });
   }
 
@@ -315,6 +324,9 @@ app.post('/modify', function(req, res){
 	      console.log("mod fail!");
         res.json({status:-1});
 	    }
+      else{
+        res.json({status:0});
+      }
     });
   }
 
@@ -325,6 +337,9 @@ app.post('/modify', function(req, res){
 	      console.log("mod fail!");
         res.json({status:-1});
 	    }
+      else{
+        res.json({status:0});
+      }
     });
   }
 
