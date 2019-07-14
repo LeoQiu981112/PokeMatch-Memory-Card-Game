@@ -3,7 +3,7 @@
 <head>
 
 <link href="signup.css " rel="stylesheet" type="text/css" />  
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <link rel = "icon" href="data:,">
 
 
@@ -43,7 +43,13 @@
 
       <label for="sanswer">Question   Answer :</label>
       <input type="text" id="sanswer" placeholder="Enter Your Answer" name="sanswer"><br>
+
+
+
       <input type="submit" value="sign up"  id="ssign">
+
+
+
       <a href="https://stark-spire-21434.herokuapp.com/login.html">
             <input type="button" value="Back" id="sback" >
         </a>
@@ -51,6 +57,7 @@
 
 
 </div>
+
 <script>  
   $("#ssign").click(function(){
     var sid=$("#sid").val();
@@ -59,10 +66,12 @@
     var sage=$("#sage").val();
     var squestion=$("#squestion").val();
     var sanswer=$("#sanswer").val();
+
     $.ajax({
       type:"post",
       url:"/signup",
       data:{sid:sid,spassword:spassword,sname:sname,sage:sage,squestion:squestion,sanswer:sanswer},
+
       success:function(data){
         if(data.status==0){
           location.href="https://stark-spire-21434.herokuapp.com/login.html";

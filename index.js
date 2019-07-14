@@ -144,22 +144,25 @@ app.post('/signup', function(req, res){
   var match = "select * from gm where id in " + "('" + sid + "')" + ";"; 
   console.log(match);
                                               
+  //gm check
   pool.query(match, function(error, result){
     console.log(result.rows);
+
     if(result.rows.length != 0){
-      //console.log("Sorry!You can not sign up as GM!");
+      console.log("Sorry!You can not sign up as GM!");
       res.json({status:-1,msg:"Sorry! Connot us GM id!"})
-      //res.redirect('https://stark-spire-21434.herokuapp.com/alert.html');
     }
 
+    // player check
     else{
+
 	    console.log(insert);
  
       pool.query(insert, function(error, result){
         //console.log(error);
     
         if(error.code == 42601) {
-          //console.log("Incomplete information!");
+          console.log("Incomplete information!");
           res.json({status:-1,msg:"Incomplete information"})
           //res.redirect('https://stark-spire-21434.herokuapp.com/signup.html');
         }
@@ -177,8 +180,9 @@ app.post('/signup', function(req, res){
         }
       });    
     }
-  })
-});
+
+  }) //query
+}); // request
 
 
 
