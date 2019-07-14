@@ -134,7 +134,7 @@ app.post('/signup', function(req, res){
 	var sans=req.body.sanswer;
   if(!sid||!spass||!sname||!sage||!sques||!sans){
     console.log("incomplete info");
-    res.json({status:-1,msg:"Incomplete information"})
+    res.json({status:-1,msg:"Incomplete information"});
   }
 
 	var insert = "insert into players values ("   + "'" +  sid      + "'" + "," 
@@ -147,14 +147,16 @@ app.post('/signup', function(req, res){
                                                 + ";"  ;
   
   var match = "select * from gm where id = " + "'" + sid + "'" + ";"; 
-  console.log(match);
                                               
   //gm check
   pool.query(match, function(error, result){
     // console.log(result.rows);
+    var msg="";
+    var stat=0;
     if(result.rows.length != 0){
       console.log("Sorry!You can not sign up as GM!");
-      res.json({status:-1,msg:"Sorry! Connot us GM id!"})
+      msg="Sorry! Connot us GM id!";
+      stat=-1;
     }
 
     // player check
@@ -164,21 +166,25 @@ app.post('/signup', function(req, res){
       pool.query(insert, function(error, result){
         //console.log(error);
         if(error){
-          res.json({status:-1,msg:" signup error!"});
-          
+          console.log("signup err");
+          msg="signup error!";
+          stat=-1;
         }
         //insert success
         else{
-            console.log("Insert succeeded!");
-            var results = result.rows;
-            console.log(results);
-            res.json({status:0,msg:"insert success!"});
+          console.log("Insert succeeded!");
+          msg="insert success!";
+          stat=0;
         }
 
       }); // player query    
     }
 
   }) // GM  query
+
+  res.json({status:stat,msg:msg});
+
+
 }); // request
 
 
