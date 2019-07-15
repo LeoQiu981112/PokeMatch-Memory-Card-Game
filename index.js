@@ -43,15 +43,15 @@ app.use(session({
 app.post('/poke',function(req,res){
   // var name=req.body.name;
   var name='eevee';
-  P.getPokemonByName('eevee',function(response,error){
+  P.getPokemonByName('eevee',function(res,error){
     if(!error){
       //console.log(response);
-      var ah=JSON.parse(response);
-      console.log(ah.ability[0]);
-      console.log(ah.stats[0]); //0-5
-      console.log(ah.type[0]);
-      console.log(ah.height);
-      console.log(ah.weight);
+   
+      console.log(res.stats[0].base_stat); //55
+      console.log(res.stats[0].stats.name); //speed
+      console.log(res.type[0]);
+      console.log(res.height);
+      console.log(res.weight);
     } 
     else {
       console.log(error);
