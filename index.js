@@ -42,8 +42,8 @@ app.use(session({
 
 app.post('/poke',function(req,res){
   // var name=req.body.name;
-  var name='eevee';
-  P.getPokemonByName('nidoqueen',function(result,error){
+  var name='nidoqueen';
+  P.getPokemonByName(name,function(result,error){
     if(!error){
       //console.log(response);
       var statlen = result.stats.length-1;
@@ -59,9 +59,21 @@ app.post('/poke',function(req,res){
       for ( i=0; i< result.types.length;i++){
         console.log(result.types[i].type.name);
       }
+    // description
+    P.getPokemonSpeciesByName(name,function(result,error){
+      if(!error){
+        console.log(result.flavor_text);
+      }
+      else{
+        console.log("description err");
+      }
+    })
+
+
+
     } 
     else {
-      console.log(error);
+      console.log("pokemon api error");
     }
   })
 });
