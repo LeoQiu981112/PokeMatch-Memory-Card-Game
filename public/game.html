@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Pokemon Match</title>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel = "shortcut icon" href="">
+    <link rel="stylesheet" type="text/css" href="game.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <link rel = "icon" href="data:,">
+</head>
+<body>
+	<h1></h1>
+	<script>
+    //run right away
+    	$.ajax({
+        	type:"get",
+        	url:"/userlist",
+        	success:function(data){
+            	if(data.status==-1){
+                	var user="";
+                	user+=data.user;
+                	$("h1").html(user);
+                	var msg="";
+                	msg+=data.msg;
+                	$("p1").html(msg);
+            		}
+        		},
+        	error:function(){
+            	alert("Internet Error");
+        	}
+    	});    
+	</script>
+
+
+	<table id="table" align="center" valign="middle">
+		<tr>
+			<td><p><img src="picture/card1.jpg" href = "javascript:void(0)" onclick ="picture('card1')" id="card1" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/card2.jpg" href = "javascript:void(0)" onclick ="picture('card2')" id="card2" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/card3.jpg" href = "javascript:void(0)" onclick ="picture('card3')" id="card3" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/card4.jpg" href = "javascript:void(0)" onclick ="picture('card4')" id="card4" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/card5.jpg" href = "javascript:void(0)" onclick ="picture('card5')" id="card5" align="bottom" width="80%" height="200%"></p></td>
+		</tr>
+		<tr>
+			<td><p><img src="picture/card6.jpg" href = "javascript:void(0)" onclick ="picture('card6')" id="card6" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/card7.jpg" href = "javascript:void(0)" onclick ="picture('card7')" id="card7" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/card8.jpg" href = "javascript:void(0)" onclick ="picture('card8')" id="card8" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/card9.jpg" href = "javascript:void(0)" onclick ="picture('card9')" id="card9" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/card10.jpg" href = "javascript:void(0)" onclick ="picture('card10')" id="card10" align="bottom" width="80%" height="200%"></p></td>
+		</tr>
+		<tr>
+			<td><p><img src="picture/card11.jpg" href = "javascript:void(0)" onclick ="picture('card11')" id="card11" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/card12.jpg" href = "javascript:void(0)" onclick ="picture('card12')" id="card12" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/card13.jpg" href = "javascript:void(0)" onclick ="picture('card13')" id="card13" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/card14.jpg" href = "javascript:void(0)" onclick ="picture('card14')" id="card14" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/card15.jpg" href = "javascript:void(0)" onclick ="picture('card15')" id="card15" align="bottom" width="80%" height="200%"></p></td>
+		</tr>
+		<tr>
+			<td><p><img src="picture/card16.jpg" href = "javascript:void(0)" onclick ="picture('card16')" id="card16" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/card17.jpg" href = "javascript:void(0)" onclick ="picture('card17')" id="card17" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/card18.jpg" href = "javascript:void(0)" onclick ="picture('card18')" id="card18" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/card19.jpg" href = "javascript:void(0)" onclick ="picture('card19')" id="card19" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/card20.jpg" href = "javascript:void(0)" onclick ="picture('card20')" id="card20" align="bottom" width="80%" height="200%"></p></td>
+		</tr>
+		<tr>
+			<td><p><img src="picture/card21.jpg" href = "javascript:void(0)" onclick ="picture('card21')" id="card21" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/card22.jpg" href = "javascript:void(0)" onclick ="picture('card22')" id="card22" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/card23.jpg" href = "javascript:void(0)" onclick ="picture('card23')" id="card23" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/card24.jpg" href = "javascript:void(0)" onclick ="picture('card24')" id="card24" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/card25.jpg" href = "javascript:void(0)" onclick ="picture('card25')" id="card25" align="bottom" width="80%" height="200%"></p></td>
+		</tr>
+		<tr>
+			<td><p><img src="picture/card26.jpg" href = "javascript:void(0)" onclick ="picture('card26')" id="card26" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/card27.jpg" href = "javascript:void(0)" onclick ="picture('card27')" id="card27" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/card28.jpg" href = "javascript:void(0)" onclick ="picture('card28')" id="card28" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/card29.jpg" href = "javascript:void(0)" onclick ="picture('card29')" id="card29" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/card30.jpg" href = "javascript:void(0)" onclick ="picture('card30')" id="card30" align="bottom" width="80%" height="200%"></p></td>
+		</tr>
+		<tr>
+			<td><p><img src="picture/card31.jpg" href = "javascript:void(0)" onclick ="picture('card31')" id="card31" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/card32.jpg" href = "javascript:void(0)" onclick ="picture('card32')" id="card32" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/card33.jpg" href = "javascript:void(0)" onclick ="picture('card33')" id="card33" align="bottom" width="80%" height="200%"></p></td>
+		</tr>
+
+		<script type="text/javascript">
+			function picture(n){
+				document.getElementById('picture').innerHTML='<img src="pokemon/'+n+'.png" weight="20%" height="20%">';
+				document.getElementById('light').style.display='block';
+				document.getElementById('fade').style.display='block';
+			}
+		</script>
+
+
+		<button id="account" class="float-left submit-button" >Info</button>
+		<script type="text/javascript">
+			document.getElementById("account").onclick = function () {
+				location.href = "https://stark-spire-21434.herokuapp.com/modify.html";
+			};
+		</script>
+
+		<button id="back" class="float-left submit-button" >Back</button>
+		<script type="text/javascript">
+			document.getElementById("back").onclick = function () {
+				location.href = "https://stark-spire-21434.herokuapp.com/homepage.html";
+			};
+		</script>
+
+		<input type="button" value="logout"  class="float-left submit-button" id="logout" > 
+		<script>
+		//wait til button clicked
+			$("#logout").click(function(){
+				$.ajax({
+					type:"get",
+					url:"/logout",
+					success:function(data){
+						if(data.status==-1){
+							location.href="https://stark-spire-21434.herokuapp.com/login.html";
+						}
+					},
+					error:function(){
+						alert("logout error!");
+					}
+				});
+			}); 
+		</script>
+		<br></br>
+		<br></br>
+
+		<div id="light" class="white_content">
+			<a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'" >Close</a>
+			<br></br>
+			<div id="picture" weight="20%" height="20%" style="float:left;display:inline;"></div>
+			<div id="attr" style="float:left;display:inline;">
+				<p>Name: </p>
+				<p>HP: </p>
+				<p>Attack: </p>
+				<p>Defense: </p>
+				<p>Speed: </p>
+				<p>Sp Atk: </p>
+				<p>Sp Def: </p>
+			</div>
+			<div id="attr_data" style="float:left;display:inline;">
+				<p>45</p>
+				<p>49</p>
+				<p>49</p>
+				<p>45</p>
+				<p>65</p>
+				<p>65</p>
+				<p>65</p>
+			</div>
+			<div id="introduce" style="float:left;display:inline;">
+				<p>Height: </p>
+				<p>Weight: </p>
+				<p>Egg Group: </p>
+				<p>Abilities: </p>
+				<p>EVs: </p>
+				<p>Catch Rate: </p>
+				<p>Gender Ratio: </p>
+			</div>
+			<div id="introduce_data" style="float:left;display:inline;">
+				<p>2.3 ft</p>
+				<p>15.21 lbs</p>
+				<p>Plant,Monster</p>
+				<p>Chlorophyll,Overgrow</p>
+				<p>1 Special Attack</p>
+				<p>18%</p>
+				<p>12.5/87.5</p>
+			</div>
+</body>
+</html>
