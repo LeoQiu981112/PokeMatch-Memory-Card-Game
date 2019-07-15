@@ -62,7 +62,7 @@ app.post('/poke',function(req,res){
     // description
     P.getPokemonSpeciesByName(name,function(result,error){
       if(!error){
-        console.log(result.flavor_text);
+        console.log(result);
       }
       else{
         console.log("description err");
