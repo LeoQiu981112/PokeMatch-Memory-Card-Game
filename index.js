@@ -45,7 +45,7 @@ app.post('/poke',function(req,res){
   var name='nidoqueen';
   P.getPokemonByName(name,function(result,error){
     if(!error){
-      //console.log(response);
+      // stats
       var statlen = result.stats.length-1;
       for ( i=statlen; i>=0 ;i--){
         console.log(result.stats[i].stat.name);
@@ -62,7 +62,7 @@ app.post('/poke',function(req,res){
     // description
     P.getPokemonSpeciesByName(name,function(result,error){
       if(!error){
-        console.log(result);
+        console.log(result.flavor_text_entries[1].flavor_text);
       }
       else{
         console.log("description err");
