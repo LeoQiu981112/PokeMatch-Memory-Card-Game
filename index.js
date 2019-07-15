@@ -43,15 +43,16 @@ app.use(session({
 app.post('/poke',function(req,res){
   // var name=req.body.name;
   var name='eevee';
-  P.getPokemonByName('eevee',function(res,error){
+  P.getPokemonByName('eevee',function(result,error){
     if(!error){
       //console.log(response);
    
-      console.log(res.stats[0].base_stat); //55
-      console.log(res.stats[0].stats.name); //speed
-      console.log(res.type[0]);
-      console.log(res.height);
-      console.log(res.weight);
+      console.log(result.stats[0].base_stat); //55
+      console.log(result.stats[0].stat.name); //speed
+      console.log(result.height);
+      console.log(result.weight);
+      console.log(result.type[0]);
+
     } 
     else {
       console.log(error);
@@ -275,11 +276,11 @@ app.post('/search', function(req, res){
 	  if(result.rowCount) {
       console.log("Search succeeded!");
       //var results = result.rows;
-      res.redirect('https://stark-spire-21434.herokuapp.com/searchSucceeded.html');
+      //res.redirect('https://stark-spire-21434.herokuapp.com/searchSucceeded.html');
 	  }
 	  else{
       console.log("Search failed!");
-      res.redirect('https://stark-spire-21434.herokuapp.com/searchFailed.html');
+      //res.redirect('https://stark-spire-21434.herokuapp.com/searchFailed.html');
 	  } 	   
   }); 	  
 
