@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link href="signup.css " rel="stylesheet" type="text/css" />  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<link rel = "icon" href="data:,">
+
+
+</head>
+<body>
+
+
+<div id="ssignup">
+   <h1>Sign Up</h1>
+   <h2>User Information</h2>
+
+
+
+   <div><! action="/signup" method="post">
+      <label for="sid" >ID:</label>
+      <input type="text" id="sid" placeholder="Enter User ID" name="sid"/><br>
+     
+      <label for="spassword">Password:</label>
+      <input type="text" id="spassword" placeholder="Enter Password" name="spassword"/><br>
+
+      <label for="sname">Name:</label>
+      <input type="text" id="sname" placeholder="Enter Your Name" name="sname"/><br>
+
+      <label for="sage">Age:</label>
+      <input type="number" id="sage" placeholder="Enter Your Name" name="sage"/><br>
+
+      <label for="squestion">Security Question:</label>
+      <select name="squestion" id="squestion">
+         <option value="nonselect">Select</option>
+         <option value=1>What is your mother's name?</option>
+         <option value=2>How old is your father?</option>
+         <option value=3>What is your plate number?</option>
+         <option value=4>Who is your High School teacher?</option>
+         <option value=5>What is your favourite book?</option>
+         <option value=6>Which movie is your favourite?</option>
+      </select><br>
+
+      <label for="sanswer">Question   Answer :</label>
+      <input type="text" id="sanswer" placeholder="Enter Your Answer" name="sanswer"><br>
+
+
+
+      <input type="submit" value="sign up"  id="ssign">
+
+
+
+      <a href="https://stark-spire-21434.herokuapp.com/login.html">
+            <input type="button" value="Back" id="sback" >
+        </a>
+   </div>
+
+
+</div>
+
+<script>  
+  $("#ssign").click(function(){
+    var sid=$("#sid").val();
+    var spassword=$("#spassword").val();
+    var sname=$("#sname").val();
+    var sage=$("#sage").val();
+    var squestion=$("#squestion").val();
+    var sanswer=$("#sanswer").val();
+
+    $.ajax({
+      type:"post",
+      url:"/signup",
+      data:{sid:sid,spassword:spassword,sname:sname,sage:sage,squestion:squestion,sanswer:sanswer},
+
+      success:function(data){
+        if(data.status==0){
+          location.href="https://stark-spire-21434.herokuapp.com/login.html";
+        }
+        else{
+          alert(data.msg);
+          location.href="https://stark-spire-21434.herokuapp.com/signup.html";
+        }
+      },
+      error:function(){
+      }
+    })
+  });
+   //function test(){
+   //     var ID,pwd,name,age, sq,sa;
+     //   ID = document.getElementById('sid').value;
+       // pwd= document.getElementById('spassword').value;
+        //name= document.getElementById('sname').value;
+        //age= document.getElementById('sage').value;
+        //sq= document.getElementById('squestion').value;
+        //sa= document.getElementById('sanswer').value;
+   
+        //if(ID=="" || pwd=="" || name=="" || age=="" || sq=="" || sa==""){
+          //alert("Please enter all information!");
+        //}
+      //   else if(ID=="GM1"|| ID=="GM2" || ID=="GM3"){
+      //     alert("Sorry!You can not sign up as GM!")
+      //   }
+        //else{
+         //window.location.href="https://stark-spire-21434.herokuapp.com/login.html";
+        //}
+    //}
+</script>
+
+</body>
+</html>

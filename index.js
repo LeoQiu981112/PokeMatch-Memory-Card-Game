@@ -1,17 +1,21 @@
-
-const express = require('express')
+var http=require("http");
+var express = require('express');
+var app=express();//1
+var session=require('express-session');//1
 const path = require('path')
 const PORT = process.env.PORT 
-const app = express();
 const { Pool } = require('pg');
 var bodyParser = require('body-parser');
+//var cookieParser=require("cookie-parser");
 
-// var pool = new Pool({
-//   user: 'postgres',
-//   password: '123456',
-//   host: 'localhost',
-//   database: 'test'
-// });
+//var pool = new Pool({
+//  user: 'postgres',
+//  password: 'postgres',
+//  host: 'localhost',
+//  database: 'test',
+//  port: 5432,
+//});
+
 
 var pool = new Pool({
   connectionString : process.env.DATABASE_URL
@@ -22,240 +26,340 @@ app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.use(bodyParser.urlencoded({ extended: true })); 
 
+app.use(express.static(path.join(__dirname, 'views')))
+app.set('view engine', 'ejs')
 
+//app.use(cookieParser());
+app.use(session({
+  secret:"secret key",
+  resave:false,
+  saveUninitialized: true,
+  cookie: {user:"default",maxAge:60*15*1000}
+}));
 
-app.get('/display',function(req,res){
-  pool.query("select * from students;", function(error, result){
-  if(error) {
-    //return console.error(error);
-    console.log("no work1!");
-  }
-  else{
-    var results= result.rows;
-    res.render('pages/db',{results: results});
-  }
-})
+app.post("/login", function(req, res){
+  var user=req.body.Lid;
+  var pwd=req.body.Lpassword;
+  //console.log("result id is " + user);
+  //gm
+  var match = "select * from gm where id in " + "('" + user + "')" + ";"; 
+  //console.log(match);
 
+  pool.query(match, function(error, result){
+    //console.log(result.rows);
+  
+
+    if(result.rows.length == 0){
+      //players
+      var match = "select * from players where id in " + "('" + user + "')" + ";"; 
+      //console.log(match);
+
+      pool.query(match, function(error, result){
+
+        //console.log(result.rows);
+    
+	      if(result.rows.length == 0) {
+          //console.log("UseID does not exist!");
+          res.json({status:1,msg: "userID does not exist"});
+          //res.redirect('https://stark-spire-21434.herokuapp.com/wrongID.html');
+	      }
+	      else if(result.rows[0].password != pwd){
+          //console.log("Wrong password!");
+          res.json({status:1,msg: "user wrong pass"});
+          //res.redirect('https://stark-spire-21434.herokuapp.com/wrongPassword.html');
+        } 	  
+        // matching user found in db, add session
+        else{
+          //console.log("Login succeeded!");
+          req.session.user = user;
+          req.session.isLogin = true;
+          var json='{"user":"'+user+'","status":1,"msg":"Login Success"}';
+          var obj=JSON.parse(json);
+          console.log(obj.user);
+          console.log(obj.status);
+          console.log(obj.msg)
+          //res.json({status:1,msg:"Login Success"});
+          res.json({status:0,msg: "user login success~"});
+          //location.href='https://stark-spire-21434.herokuapp.com/homepage.html';
+        } 
+      });
+    }
+
+    else if(result.rows[0].password != pwd){
+      console.log("Wrong password!");
+      res.json({status:1,msg: "gm wrong pass"});
+
+      //res.redirect('https://stark-spire-21434.herokuapp.com/wrongPassword.html');
+    }
+    else if(result.rows[0].password == pwd){
+      console.log("Login succeeded!");
+      req.session.user = user;
+      req.session.isLogin = true;
+      res.json({status:-1,msg: "GM login success~"});
+
+      //res.redirect('https://stark-spire-21434.herokuapp.com/GM.html');
+    }
+  });
+});
+
+//for gm
+app.get('/userlist',function(req,res){
+  console.log("server receive userlist req");
+  console.log(req.session.isLogin);
+  var message="select msg from gm_msg where id=1;";
+  console.log(message);
+  pool.query(message,function(error,result){
+    console.log(result.rows[0].msg);
+    res.json({status:-1,user:req.session.user,msg:result.rows[0].msg});
+  })
+});
+
+app.get('/logout',function(req,res){
+  console.log("server receive logout req");
+  console.log("destroying session");
+  req.session.destroy();
+  //req.session.isLogin= false;
+  res.json({status:-1,msg:"session ended"});
 });
 
 
 
-app.post('/insert', function(req, res){
 
-//   pool.query("select * from students", function(error, result){
-//   if(error) {
-//     //return console.error(error);
-//     console.log("no work1!");
-//   }
-//     console.log("IT WORKED!!!");
-//     var results=result.rows;
-//     console.log(results);
+app.post('/signup', function(req, res){
+    var msg="";
+    var stat=0;
 
-// })
-//test insert, the  entries can be replace by elements pointed to by html ids.   
+	var sid=req.body.sid;
+	var spass=req.body.spassword;
+	var sname=req.body.sname;
+	var sage=req.body.sage;
+	var sques=req.body.squestion;
+	var sans=req.body.sanswer;
+  if(!sid||!spass||!sname||!sage||!sques||!sans){
+    console.log("incomplete info");
+    msg="Incomplete information";
+    stat=-1;
+  }
 
-var id1=req.body.id1;
-
-var fn1=req.body.fn1;
-
-var ln1=req.body.ln1;
-
-var w1=req.body.w1;
-
-var h1=req.body.h1;
-
-var hc1=req.body.hc1;
-
-var gpa1=req.body.gpa1;
-
-  var insert = "insert into students values ( " +        id1          + "," 
-                                                + "'" +  fn1    + "'" + "," 
-                                                + "'" +  ln1    + "'" + "," 
-                                                +        w1           + "," 
-                                                +        h1           + "," 
-                                                + "'" +  hc1    + "'" + "," 
-                                                +        gpa1      
+	var insert = "insert into players values ("   + "'" +  sid      + "'" + "," 
+                                                + "'" +  spass    + "'" + "," 
+                                                + "'" +  sname    + "'" + "," 
+                                                +        sage           + "," 
+                                                +        sques          + "," 
+                                                + "'" +  sans     + "'"     
                                                 + ")"     
                                                 + ";"  ;
+  
+  var match = "select * from gm where id = " + "'" + sid + "'" + ";"; 
+                                              
+  //gm check
+  pool.query(match, function(error, result){
+    // console.log(result.rows);
+
+    if(result.rows.length != 0){
+      console.log("Sorry!You can not sign up as GM!");
+      msg="Sorry! Connot us GM id!";
+      stat=-1;
+    }
+
+    // player check
+    else{
+	    console.log(insert);
+ 
+      pool.query(insert, function(error, result){
+        //console.log(error);
+        if(error){
+          console.log("signup err");
+          msg="signup error!";
+          stat=-1;
+        }
+        //insert success
+        else{
+          console.log("Insert succeeded!");
+          msg="insert success!";
+          stat=0;
+        }
+
+      }); // player query    
+    }
+
+  }) // GM  query
+
+  res.json({status:stat,msg:msg});
+
+
+}); // request
+
+
+
+app.post('/gmmessage', function(req, res){
+  var mes=req.body.gmessage;
+  var insert = "update gm_msg set msg='"+mes+"' where id=1;" 
   console.log(insert);
-
   pool.query(insert, function(error, result){
-  if(error) {
-    //return console.error(error);
-    console.log("insert fail!");
-  }
-  console.log("insert success");
-  var results = result.rows;
-  console.log(results);
-  //console.log("insesrt success!");
-  })
-
-
-  // res.redirect('http://localhost:5000/main.html');
-res.redirect('https://stark-spire-21434.herokuapp.com/main.html');
-});
-
+    if(error) {
+      console.log("Insert failed!");
+    }
+    else{
+      console.log("Insert succeeded!");
+      var results = result.rows;
+      console.log(results);
+    } 
+  });
+  res.redirect('https://stark-spire-21434.herokuapp.com/GM.html');
+}); // end of gm msg
 
 
 app.post('/remove', function(req, res){
-
-  var id3=req.body.id3;
-
-  var remove = "delete from students where id =" +        id3  
+  var status=0;
+	var id3=req.body.Gdelete;
+	var remove = "delete from players where id =" +    "'" + id3 + "'"  
                                                  + ";" ;   
   console.log(remove);
+
   pool.query(remove, function(error, result){
-  if(error) {
-    //return console.error(error);
-    console.log("remove failed!");
-  }
-  else{
-    var results=result.rows;
-  } 
-  console.log(results);
+    //console.log(result);
 
-})
+	  if(result.rowCount) {
+      console.log("Remove succeeded!");
+      //res.redirect('https://stark-spire-21434.herokuapp.com/deleteSucceeded.html');
+	  }
+	  else{
+      //return console.error(error);
+      console.log("Remove failed!");
+      status=1;
+      //res.redirect('https://stark-spire-21434.herokuapp.com/deleteFailed.html');
+	  }
+    res.json({status:status}); 	  
+  });
 
-res.redirect('https://stark-spire-21434.herokuapp.com/main.html');
+
 // res.redirect('http://localhost:5000/main.html');
 });
 
 
+
+app.post('/search', function(req, res){
+	var sid=req.body.gsearch;
+	var search = "select * from players where id in " + "('" + sid + "')" + ";"; 
+                                                   
+  console.log(search);
+
+  pool.query(search, function(error, result){
+    //console.log(result);
+
+	  if(result.rowCount) {
+      console.log("Search succeeded!");
+      //var results = result.rows;
+      res.redirect('https://stark-spire-21434.herokuapp.com/searchSucceeded.html');
+	  }
+	  else{
+      console.log("Search failed!");
+      res.redirect('https://stark-spire-21434.herokuapp.com/searchFailed.html');
+	  } 	   
+  }); 	  
+
+  //res.redirect('https://stark-spire-21434.herokuapp.com/GM.html');
+// res.redirect('http://localhost:5000/main.html');
+});
 
 
 app.post('/modify', function(req, res){
-var id2=req.body.id2;
+  //var mid=req.body.mid;
 
-var fn2=req.body.fn2;
+  var mid=   "'" + req.session.user + "'" ;
 
-var ln2=req.body.ln2;
+  var mpassword=req.body.mpassword;
+  var mname=req.body.mname;
+  var mage=req.body.mage;
+  var mquestion=req.body.mquestion;
+  var manswer=req.body.manswer;
 
-var w2=req.body.w2;
-
-var h2=req.body.h2;
-
-var hc2=req.body.hc2;
-
-var gpa2=req.body.gpa2;
-
-var fp="update students set ";
-
-var sp= " where id = " + id2 + ";";
-
-var tmp;
-if(fn2){
-  tmp= fp + "firstname = " + "'" + fn2 + "'" + sp;
-  pool.query(tmp, function(error, result){
-  if(error) {
-    console.log("mod fail!");
+  var fp="update players set ";
+  var sp= " where id = " + mid + ";";
+  var tmp;
+  var num=0;
+  if(mpassword){
+    tmp= fp + "password = " + "'" + mpassword + "'" + sp;
+    console.log(mpassword);
+    console.log(tmp);
+    pool.query(tmp, function(error, result){
+	    if(error) {
+	      console.log("mod fail!");
+        num=-1;
+	    }
+    });
   }
-  })
-}
 
-if(ln2){
-
-  tmp= fp + "lastname = " + "'" + ln2 + "'" + sp;
-  pool.query(tmp, function(error, result){
-  if(error) {
-    console.log("mod fail!");
+  if(mname){
+    tmp= fp + "name = " + "'" + mname + "'" + sp;
+    pool.query(tmp, function(error, result){
+	    if(error) {
+	      console.log("mod fail!");
+        num=-1;
+	    }
+    });
   }
-  })
-}
 
-if(w2){
-  tmp= fp + "weight = " + w2 + sp;
-  pool.query(tmp, function(error, result){
-  if(error) {
-    console.log("mod fail!");
+  if(mage){
+    tmp= fp + "age = " + mage + sp;
+    pool.query(tmp, function(error, result){
+	    if(error) {
+	      console.log("mod fail!");
+        num=-1;
+	    }
+
+    });
   }
-  })
-}
 
-if(h2){
-  tmp= fp + "height = " + h2 + sp;
-  pool.query(tmp, function(error, result){
-  if(error) {
-    console.log("mod fail!");
+// modify security question, get question from db?????
+//security question 从heroku db 里的sec_q table 里取
+//根据players 里sqnum，每个问题有个对应的数字
+//Heroku pg:psql 登录
+
+  if(mquestion){
+    tmp= fp + "sqnum = " + mquestion + sp;
+    pool.query(tmp, function(error, result){
+	    if(error) {
+	      console.log("mod fail!");
+        num=-1;
+	    }
+
+    });
   }
-  })
-}
 
-if(hc2){
-
-  tmp= fp + "hair_colour = " + "'"+ hc2 + "'" + sp;
-  pool.query(tmp, function(error, result){
-  if(error) {
-    console.log("mod fail!");
+  if(manswer){
+    tmp= fp + "ans = " + "'"+ manswer + "'" + sp;
+    pool.query(tmp, function(error, result){
+	    if(error) {
+	      console.log("mod fail!");
+        num=-1;
+	    }
+    });
   }
-  })
-}
-
-if(gpa2){
-  tmp= fp + "gpa = " + gpa2 + sp;
-  pool.query(tmp, function(error, result){
-  if(error) {
-    console.log("mod fail!");
-  }
-  })
-}
-
-res.redirect('https://stark-spire-21434.herokuapp.com/main.html');
-// res.redirect('http://localhost:5000/main.html');
-});
-//-----
   
+  res.json({status:num});
 
-
-
-
-
-
-
- //  });
-
-//--------
-
-
-
-
-
-
-
-
-
-
-
-app.post('/deleteUser', (req, res) => {
-  // req.body.uid
-  // delete the user with uid
-  res.redirect('http://localhost:5000/main.html');
+  //res.redirect('https://stark-spire-21434.herokuapp.com/homepage.html');
 });
 
 
-app.delete('/user/:id', (req, res) => {
-  console.log(req.params.id)
-  // delete the user with id
-});
-app.set('views', path.join(__dirname, 'views'))
-app.set('view engine', 'ejs')
-app.get('/', (req, res) => res.render('pages/index'))
+
+
+// app.delete('/user/:id', (req, res) => {
+//   console.log(req.params.id) 
+//   // delete the user with id
+// });
+// app.set('views', path.join(__dirname, 'views'))
+// app.set('view engine', 'ejs')
+// app.get('/', (req, res) => res.render('pages/index'))
 
 
 
+// app.get('/users/:id', function(req, res){
+//   console.log(req.params.id);
+// })
 
-
-
-
-
-
-
-
-
-app.get('/users/:id', function(req, res){
-  console.log(req.params.id);
-})
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
 
-
-// need a to string value for numbers

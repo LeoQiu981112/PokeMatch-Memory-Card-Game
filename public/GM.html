@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link href="GM.css " rel="stylesheet" type="text/css" /> 
+    <link rel = "icon" href="data:,">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    <h2 align = "left" id="name"></h2>
+
+    <script>
+        //run right away
+        $.ajax({
+            type:"get",
+            url:"/userlist",
+            success:function(data){
+                if(data.status==-1){
+                    var user="";
+                    user+=data.user;
+                    $("#name").html(user);
+                }
+            },
+            error:function(){
+                alert("Internet Error");
+            }
+        });    
+
+    </script>>
+
+    <title>GM</title>
+  </head>
+  <body>
+
+
+
+  <h1>Game Manager</h1>
+  <div id="GGM">
+      <h2>Manage players</h2>
+      <form action="/search" method="post" >
+        <input type="text" id="gsearch" name="gsearch" placeholder="enter ID">
+        <input type="submit" value="Search" id="search" name="search">
+      </form>
+      
+
+      <table>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Age</th>
+          </tr>
+          <tr>
+            <th>read</th>
+            <th>read</th>
+            <th>read</th>
+          </tr>
+      </table>
+      <br></br>
+
+
+      <h2>Delete player by ID</h2>
+      <div> <!action="/remove" method="post" >
+        <input type="text" id="Gdelete" name="Gdelete" placeholder="enter ID">
+        <input type="submit" value="Delete" id="delete">
+      </div>
+      <script>
+        $("#delete").click(function(){
+            var Gdelete=$("#Gdelete").val();
+            $.ajax({
+                type:"post",
+                url:"/remove",
+                data:{Gdelete:Gdelete},
+                success:function(data){
+                    if(data.status==0){
+                        alert("Delete Succcess!");
+                    }else{
+                        alert("Delete Failed");
+                    }
+                },
+                error:function(){
+                    alert("Internet error!");
+                }
+            })
+        });
+      </script>
+
+
+
+    </div>
+    <div id="gpublish">
+      <h2>Public Message Board</h2>
+      <form action="/gmmessage" method="post">
+        <label for="gmessage" ></label>
+        <input type="text" id="gmessage" placeholder="Message Box" name="gmessage"/><br>
+        <input type="submit" value="Publish" id="publish">
+      </form>
+        <input type="button" value="Logout" id="glogout">
+
+    </div>
+
+    <script>
+        //wait til button clicked
+        $("#glogout").click(function(){
+            $.ajax({
+                type:"get",
+                url:"/logout",
+                success:function(data){
+                    if(data.status==-1){
+                        location.href="https://stark-spire-21434.herokuapp.com/login.html";
+                    }
+                },
+                error:function(){
+                    alert("logout error!");
+                }
+            });
+        }); 
+
+    </script>
+
+  </body>
+</html>
