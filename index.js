@@ -48,7 +48,7 @@ app.post('/poke',function(req,res){
       //console.log(response);
       var statlen = result.stats.length - 1;
       for ( i=0; i< statlen;i++){
-        console.log(result.stats[statlen-i].name);
+        console.log(JSON.parse(result.stats[statlen-i].name));
         console.log(result.stats[statlen-i].base_stat);
       }
       console.log("height:"); 
@@ -57,7 +57,7 @@ app.post('/poke',function(req,res){
       console.log(result.weight);
       console.log("type:");   
       for ( i=0; i< result.types.length;i++){
-        console.log(result.types[i].name);
+        console.log(JSON.parse(result.types[i].name));
       }
     } 
     else {
