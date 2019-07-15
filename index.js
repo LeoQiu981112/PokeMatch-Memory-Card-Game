@@ -7,7 +7,7 @@ const PORT = process.env.PORT
 const { Pool } = require('pg');
 var bodyParser = require('body-parser');
 var Pokedex=require('pokedex-promise-v2');
-var p = new Pokedex();
+var P = new Pokedex();
 //var cookieParser=require("cookie-parser");
 
 //var pool = new Pool({
