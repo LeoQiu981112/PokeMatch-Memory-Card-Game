@@ -6,7 +6,7 @@ const path = require('path')
 const PORT = process.env.PORT 
 const { Pool } = require('pg');
 var bodyParser = require('body-parser');
-var Pokedex=require('pokedex-promist-v2');
+var Pokedex=require('pokedex-promise-v2');
 var p = new Pokedex();
 //var cookieParser=require("cookie-parser");
 
