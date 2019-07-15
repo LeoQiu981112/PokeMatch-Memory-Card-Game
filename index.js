@@ -43,12 +43,12 @@ app.use(session({
 app.post('/poke',function(req,res){
   // var name=req.body.name;
   var name='eevee';
-  P.getPokemonByName('eevee',function(result,error){
+  P.getPokemonByName('nidoqueen',function(result,error){
     if(!error){
       //console.log(response);
       var statlen = result.stats.length - 1;
       for ( i=0; i< statlen;i++){
-        console.log(JSON.stringify(result.stats[statlen-i].name));
+        console.log(result.stats[statlen-i].stat.name);
         console.log(result.stats[statlen-i].base_stat);
       }
       console.log("height:"); 
@@ -57,7 +57,7 @@ app.post('/poke',function(req,res){
       console.log(result.weight);
       console.log("type:");   
       for ( i=0; i< result.types.length;i++){
-        console.log(JSON.stringify(result.types[i].name));
+        console.log(result.types[i].type.name);
       }
     } 
     else {
