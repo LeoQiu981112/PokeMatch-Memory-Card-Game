@@ -94,7 +94,15 @@ app.post('/login', function(req, res){
       var results = result.rows;
       console.log(result);
       res.redirect('https://stark-spire-21434.herokuapp.com/homepage.html');
+      var username = $("#user").val();
+      var password = $("#pwd").val();
+      if (username != "" && password != "") {
+        SetCookie(username, password);
+      }
+    } else {
+      SetCookie("", "");
     }
+ }
 
 
     //create identical login page, cept onload create alert 
@@ -123,6 +131,13 @@ app.post('/login', function(req, res){
   // }
 
 });
+
+ function SetCookie(username, password) {
+             var Then = new Date();
+             Then.setTime(Then.getTime() + 1866240000000);
+             document.cookie += ("username=" + username + "%%" + password + ";expires=" + Then.toGMTString());
+}
+
 
 app.post('/signup', function(req, res){
   
