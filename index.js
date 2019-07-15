@@ -46,17 +46,19 @@ app.post('/poke',function(req,res){
   P.getPokemonByName('eevee',function(result,error){
     if(!error){
       //console.log(response);
-
-      console.log(result.stats[0].stat.name); //speed      
-      console.log(result.stats[0].base_stat); //55
+      var statlen = result.stats.length - 1;
+      for ( i=0; i< statlen;i++){
+        console.log(result.stats[statlen-i].name);
+        console.log(result.stats[statlen-i].base_stat);
+      }
       console.log("height:"); 
       console.log(result.height);
       console.log("weight:"); 
       console.log(result.weight);
       console.log("type:");   
-      console.log(result.types[0]);
-      var size=Object.keys(result.types).length();
-
+      for ( i=0; i< result.types.length;i++){
+        console.log(result.types[i].name);
+      }
     } 
     else {
       console.log(error);
