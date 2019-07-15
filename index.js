@@ -46,10 +46,10 @@ app.post('/poke',function(req,res){
   P.getPokemonByName('nidoqueen',function(result,error){
     if(!error){
       //console.log(response);
-      var statlen = result.stats.length - 1;
-      for ( i=0; i< statlen;i++){
-        console.log(result.stats[statlen-i].stat.name);
-        console.log(result.stats[statlen-i].base_stat);
+      var statlen = result.stats.length-1;
+      for ( i=statlen; i>=0 ;i--){
+        console.log(result.stats[i].stat.name);
+        console.log(result.stats[i].base_stat);
       }
       console.log("height:"); 
       console.log(result.height);
