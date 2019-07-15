@@ -6,6 +6,8 @@ const path = require('path')
 const PORT = process.env.PORT 
 const { Pool } = require('pg');
 var bodyParser = require('body-parser');
+var Pokedex=require('pokedex-promist-v2');
+var p = new Pokedex();
 //var cookieParser=require("cookie-parser");
 
 //var pool = new Pool({
@@ -36,6 +38,22 @@ app.use(session({
   saveUninitialized: true,
   cookie: {user:"default",maxAge:60*15*1000}
 }));
+
+
+app.post('/poke',function(req,res){
+  // var name=req.body.name;
+  var name='eevee';
+  P.getPokemonByName('eevee',function(response,error){
+    if(!error){
+      console.log(response);
+    } 
+    else {
+      console.log(error);
+    }
+  })
+});
+
+
 
 app.post("/login", function(req, res){
   var user=req.body.Lid;
