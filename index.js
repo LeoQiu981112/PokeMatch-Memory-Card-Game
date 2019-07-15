@@ -46,11 +46,12 @@ app.post('/poke',function(req,res){
   P.getPokemonByName('eevee',function(response,error){
     if(!error){
       //console.log(response);
-      console.log(response.ability[0]);
-      console.log(response.stats[0]); //0-5
-      console.log(response.type[0]);
-      console.log(response.height);
-      console.log(response.weight);
+      var ah=JSON.parse(response);
+      console.log(ah.ability[0]);
+      console.log(ah.stats[0]); //0-5
+      console.log(ah.type[0]);
+      console.log(ah.height);
+      console.log(ah.weight);
     } 
     else {
       console.log(error);
