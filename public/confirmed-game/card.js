@@ -1,3 +1,4 @@
+//Reference: https://www.linuxidc.com/Linux/2017-02/140212.htm
 
 function $(id) {
     return document.getElementById(id);
@@ -67,7 +68,7 @@ function img_preload(img, callback) {
     }
     var et = setInterval(
         function() {
-            if (onload_img == img.length) { // 定时器,判断图片完全加载后调用callback
+            if (onload_img == img.length) {
                 clearInterval(et);
                 callback();
             }
