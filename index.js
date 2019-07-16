@@ -75,7 +75,7 @@ app.post('/poke',function(req,res){
       }
     } 
     else {
-      status=1;
+      res.json({status:1,msg: "api error"});
       console.log("pokemon api error");
     }
   })
@@ -90,15 +90,15 @@ app.post('/poke',function(req,res){
     }
     else{
       console.log("description err");
-      status=1;
+      res.json({status:1,msg: "description error"});
 
     }
   })
 
 
 //retur pokemon info
-  // res.json({status:0,hp:hp,attk:attk,def:def,sattk:sattk,sdef:sdef,spd:spd,ht:ht,wt:wt,type:type,des:des});
-  res.json({status:status});
+  res.json({status:0,hp:hp,attk:attk,def:def,sattk:sattk,sdef:sdef,spd:spd,ht:ht,wt:wt,type:type,des:des});
+  // res.json({status:status});
 
 
 });
