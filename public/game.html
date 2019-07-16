@@ -151,28 +151,29 @@
 				document.getElementById('light').style.display='block';
 				document.getElementById('fade').style.display='block';
 
-
+				var name,hp,attk,def,sattk,sdef,spd,ht,wt,type,des;
 	            $.ajax({
 	                type:"post",
 	                url:"/poke",
 	                data:{pokename:n},
 	                success:function(data){
 	                    if(data.status==0){
-	                        var name=n;
-	                        var hp= data.hp;
-	                        var attk=data.attk;
-	                        var def=data.def;
-	                        var sattk=data.sattk;
-	                        var sdef=data.sdef;
-	                        var spd=data.spd;
+	                        name=n;
+	                        hp= data.hp;
+	                        attk=data.attk;
+	                        def=data.def;
+	                        sattk=data.sattk;
+	                        sdef=data.sdef;
+	                        spd=data.spd;
 
-	                        var ht=data.ht;
-	                        var wt=data.wt;
-	                        var type=data.type;
+	                        ht=data.ht;
+	                        wt=data.wt;
+	                        type=data.type;
+	                        des=data.des;
 	                        alert("success");
 	                    }
 	                    else{
-	                        alert(data.msg);
+	                        alert("fetch info eror");
 	                    }
 	                },
 	                error:function(){

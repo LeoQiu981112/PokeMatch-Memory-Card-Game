@@ -42,25 +42,42 @@ app.use(session({
 app.post('/poke',function(req,res){
   // var name=req.body.name;
   var name='nidoqueen';
+  var hp,attk,def,sattk,sdef,spd,ht,wt,type,des;
+
   P.getPokemonByName(name,function(result,error){
     if(!error){
       // stats
-      var statlen = result.stats.length-1;
+      hp=result.stats[5].base_stat;
+      attk=result.stats[4].base_stat;
+      def=result.stats[3].base_stat;
+      sattk=result.stats[2].base_stat;
+      sdef=result.stats[1].base_stat;
+      spd=result.stats[0].base_stat;
       for ( i=statlen; i>=0 ;i--){
         console.log(result.stats[i].stat.name);
         console.log(result.stats[i].base_stat);
       }
+
+      ht=result.height;
       console.log("height:"); 
       console.log(result.height);
+
+      wt=results.weight;
       console.log("weight:"); 
       console.log(result.weight);
+
       console.log("type:");   
       for ( i=0; i< result.types.length;i++){
+        type+=result.types[i].type.name;
         console.log(result.types[i].type.name);
+        if(i!=(result.types.length-1)){
+          type+=', ';
+        }
       }
     // description
     P.getPokemonSpeciesByName(name,function(result,error){
       if(!error){
+        des=result.flavor_text_entries[1].flavor_text;
         console.log(result.flavor_text_entries[1].flavor_text);
       }
       else{
@@ -75,6 +92,13 @@ app.post('/poke',function(req,res){
       console.log("pokemon api error");
     }
   })
+
+
+//retur pokemon info
+  res.json({status:0,hp:hp,attk:attk,def:def,sattk:sattk,sdef:sdef,spd:spd,ht:ht,wt:wt,type:type,des:des});
+
+
+
 });
 
 
