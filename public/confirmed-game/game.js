@@ -195,12 +195,12 @@ var card = (function(total,cardnum){
 
         var key = parseInt(id.replace('card',''));
     
-        if(leveldata[key]['turn']==0){ // 未翻开
-            if(first==-1){  // 第一次翻
+        if(leveldata[key]['turn']==0){
+            if(first==-1){
                 turn_animate(key);
                 first = key;
                 leveldata[key]['turn'] = 1;
-            }else{  // 第二次翻
+            }else{
                 turn_animate(key);
                 leveldata[key]['turn'] = 1;
                 check_turn(key);
@@ -212,12 +212,12 @@ var card = (function(total,cardnum){
     check_turn = function(key){
         is_lock = 1;
 
-        if(leveldata[first]['cardno']==leveldata[key]['cardno']){ // 配对成功
+        if(leveldata[first]['cardno']==leveldata[key]['cardno']){
             matchnum ++;
 
             if(matchnum==cardnum){
                 var et = setTimeout(function(){
-                    message('success', levelup);
+                    message('success', process);
                 }, 225);
             }
 
