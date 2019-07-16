@@ -120,12 +120,12 @@ app.post('/poke1',function(req,res){
       }
       des=result.flavor_text_entries[i].flavor_text;
       console.log(result.flavor_text_entries[i].flavor_text);
-      result.json({status:0,des:des});
+      res.json({status:0,des:des});
     })
 
     .catch(function(error){
       console.log("description err");
-      result.json({status:1,msg: "description error"});
+      res.json({status:1,msg: "description error"});
     })
 
 });//poke1
