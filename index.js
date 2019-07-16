@@ -6,6 +6,8 @@ const path = require('path')
 const PORT = process.env.PORT 
 const { Pool } = require('pg');
 var bodyParser = require('body-parser');
+var Pokedex=require('pokedex-promise-v2');
+var P = new Pokedex();
 //var cookieParser=require("cookie-parser");
 
 //var pool = new Pool({
@@ -36,6 +38,47 @@ app.use(session({
   saveUninitialized: true,
   cookie: {user:"default",maxAge:60*15*1000}
 }));
+
+
+app.post('/poke',function(req,res){
+  // var name=req.body.name;
+  var name='nidoqueen';
+  P.getPokemonByName(name,function(result,error){
+    if(!error){
+      // stats
+      var statlen = result.stats.length-1;
+      for ( i=statlen; i>=0 ;i--){
+        console.log(result.stats[i].stat.name);
+        console.log(result.stats[i].base_stat);
+      }
+      console.log("height:"); 
+      console.log(result.height);
+      console.log("weight:"); 
+      console.log(result.weight);
+      console.log("type:");   
+      for ( i=0; i< result.types.length;i++){
+        console.log(result.types[i].type.name);
+      }
+    // description
+    P.getPokemonSpeciesByName(name,function(result,error){
+      if(!error){
+        console.log(result.flavor_text_entries[1].flavor_text);
+      }
+      else{
+        console.log("description err");
+      }
+    })
+
+
+
+    } 
+    else {
+      console.log("pokemon api error");
+    }
+  })
+});
+
+
 
 app.post("/login", function(req, res){
   var user=req.body.Lid;
@@ -126,12 +169,21 @@ app.get('/logout',function(req,res){
 
 
 app.post('/signup', function(req, res){
+    var msg="";
+    var stat=0;
+
 	var sid=req.body.sid;
 	var spass=req.body.spassword;
 	var sname=req.body.sname;
 	var sage=req.body.sage;
 	var sques=req.body.squestion;
 	var sans=req.body.sanswer;
+  if(!sid||!spass||!sname||!sage||!sques||!sans){
+    console.log("incomplete info");
+    msg="Incomplete information";
+    stat=-1;
+  }
+
 	var insert = "insert into players values ("   + "'" +  sid      + "'" + "," 
                                                 + "'" +  spass    + "'" + "," 
                                                 + "'" +  sname    + "'" + "," 
@@ -141,44 +193,45 @@ app.post('/signup', function(req, res){
                                                 + ")"     
                                                 + ";"  ;
   
-  var match = "select * from gm where id in " + "('" + sid + "')" + ";"; 
-  console.log(match);
+  var match = "select * from gm where id = " + "'" + sid + "'" + ";"; 
                                               
+  //gm check
   pool.query(match, function(error, result){
-    console.log(result.rows);
+    // console.log(result.rows);
+
     if(result.rows.length != 0){
-      //console.log("Sorry!You can not sign up as GM!");
-      res.json({status:-1,msg:"Sorry! Connot us GM id!"})
-      //res.redirect('https://stark-spire-21434.herokuapp.com/alert.html');
+      console.log("Sorry!You can not sign up as GM!");
+      msg="Sorry! Connot us GM id!";
+      stat=-1;
     }
 
+    // player check
     else{
 	    console.log(insert);
  
       pool.query(insert, function(error, result){
         //console.log(error);
-    
-        if(error.code == 42601) {
-          //console.log("Incomplete information!");
-          res.json({status:-1,msg:"Incomplete information"})
-          //res.redirect('https://stark-spire-21434.herokuapp.com/signup.html');
+        if(error){
+          console.log("signup err");
+          msg="signup error!";
+          stat=-1;
         }
-        else if(error.code == 23505){
-          console.log("Insert failed!");
-          res.json({status:-1,msg:"Sign Up failed, please try again!"});
-          //res.redirect('https://stark-spire-21434.herokuapp.com/signupFailed.html');
-        }
+        //insert success
         else{
-            console.log("Insert succeeded!");
-            var results = result.rows;
-            console.log(results);
-            res.json({status:0,msg:"Successed!"});
-            //res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
+          console.log("Insert succeeded!");
+          msg="insert success!";
+          stat=0;
         }
-      });    
+
+      }); // player query    
     }
-  })
-});
+
+  }) // GM  query
+
+  res.json({status:stat,msg:msg});
+
+
+}); // request
 
 
 
@@ -201,6 +254,7 @@ app.post('/gmmessage', function(req, res){
 
 
 app.post('/remove', function(req, res){
+  var status=0;
 	var id3=req.body.Gdelete;
 	var remove = "delete from players where id =" +    "'" + id3 + "'"  
                                                  + ";" ;   
@@ -211,13 +265,15 @@ app.post('/remove', function(req, res){
 
 	  if(result.rowCount) {
       console.log("Remove succeeded!");
-      res.redirect('https://stark-spire-21434.herokuapp.com/deleteSucceeded.html');
+      //res.redirect('https://stark-spire-21434.herokuapp.com/deleteSucceeded.html');
 	  }
 	  else{
       //return console.error(error);
       console.log("Remove failed!");
-      res.redirect('https://stark-spire-21434.herokuapp.com/deleteFailed.html');
-	  } 	  
+      status=1;
+      //res.redirect('https://stark-spire-21434.herokuapp.com/deleteFailed.html');
+	  }
+    res.json({status:status}); 	  
   });
 
 
@@ -238,11 +294,11 @@ app.post('/search', function(req, res){
 	  if(result.rowCount) {
       console.log("Search succeeded!");
       //var results = result.rows;
-      res.redirect('https://stark-spire-21434.herokuapp.com/searchSucceeded.html');
+      //res.redirect('https://stark-spire-21434.herokuapp.com/searchSucceeded.html');
 	  }
 	  else{
       console.log("Search failed!");
-      res.redirect('https://stark-spire-21434.herokuapp.com/searchFailed.html');
+      //res.redirect('https://stark-spire-21434.herokuapp.com/searchFailed.html');
 	  } 	   
   }); 	  
 
@@ -265,13 +321,15 @@ app.post('/modify', function(req, res){
   var fp="update players set ";
   var sp= " where id = " + mid + ";";
   var tmp;
-
+  var num=0;
   if(mpassword){
     tmp= fp + "password = " + "'" + mpassword + "'" + sp;
+    console.log(mpassword);
+    console.log(tmp);
     pool.query(tmp, function(error, result){
 	    if(error) {
 	      console.log("mod fail!");
-        res.json({status:-1});
+        num=-1;
 	    }
     });
   }
@@ -281,7 +339,7 @@ app.post('/modify', function(req, res){
     pool.query(tmp, function(error, result){
 	    if(error) {
 	      console.log("mod fail!");
-        res.json({status:-1});
+        num=-1;
 	    }
     });
   }
@@ -291,8 +349,9 @@ app.post('/modify', function(req, res){
     pool.query(tmp, function(error, result){
 	    if(error) {
 	      console.log("mod fail!");
-        res.json({status:-1});
+        num=-1;
 	    }
+
     });
   }
 
@@ -306,8 +365,9 @@ app.post('/modify', function(req, res){
     pool.query(tmp, function(error, result){
 	    if(error) {
 	      console.log("mod fail!");
-        res.json({status:-1});
+        num=-1;
 	    }
+
     });
   }
 
@@ -316,10 +376,12 @@ app.post('/modify', function(req, res){
     pool.query(tmp, function(error, result){
 	    if(error) {
 	      console.log("mod fail!");
-        res.json({status:-1});
+        num=-1;
 	    }
     });
   }
+  
+  res.json({status:num});
 
   //res.redirect('https://stark-spire-21434.herokuapp.com/homepage.html');
 });

@@ -56,11 +56,36 @@
           </tr>
       </table>
       <br></br>
+
+
       <h2>Delete player by ID</h2>
-      <form action="/remove" method="post" >
+      <div> <!action="/remove" method="post" >
         <input type="text" id="Gdelete" name="Gdelete" placeholder="enter ID">
         <input type="submit" value="Delete" id="delete">
-      </form>
+      </div>
+      <script>
+        $("#delete").click(function(){
+            var Gdelete=$("#Gdelete").val();
+            $.ajax({
+                type:"post",
+                url:"/remove",
+                data:{Gdelete:Gdelete},
+                success:function(data){
+                    if(data.status==0){
+                        alert("Delete Succcess!");
+                    }else{
+                        alert("Delete Failed");
+                    }
+                },
+                error:function(){
+                    alert("Internet error!");
+                }
+            })
+        });
+      </script>
+
+
+
     </div>
     <div id="gpublish">
       <h2>Public Message Board</h2>

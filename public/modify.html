@@ -1,103 +1,105 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <title>Modify</title>
-    <meta charset="UTF-8">
-    <link href="modify.css " rel="stylesheet" type="text/css" /> 
-    <link rel = "icon" href="data:,">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    
-</head>
+    <head>
+        <title>Modify</title>
+        <meta charset="UTF-8">
+        <link href="modify.css " rel="stylesheet" type="text/css" /> 
+        <link rel = "icon" href="data:,">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        
+    </head>
 
-<body>
-<h1 align = "left" id="name"></h1>
+    <body>
+    <h1 align = "left" id="name"></h1>
 
 
-    <div id="mmodify">
-    <h1>Modify</h1>
-    <h2 >Personal Information</h2>
+        <div id="mmodify">
+        <h1>Modify</h1>
+        <h2 >Personal Information</h2>
 
-    <label>ID: <label id="mid"></label> </label><br>
+        <label>ID: <label id="mid"></label> </label><br>
+
+        <script>
+            //run right away
+            $.ajax({
+                type:"get",
+                url:"/userlist",
+                success:function(data){
+                    if(data.status==-1){
+                        var user="";
+                        user+=data.user;
+                        $("#name").html(user);
+                        $("#mid").html(user);
+                    }
+                },
+                error:function(){
+                    alert("Internet Error");
+                }
+            });    
+
+        </script>
+
+        <div><!action="/modify" method= "post" >
+            <label for="mpassword">Password:</label>
+            <input type="text" id="mpassword" placeholder="Enter New Password" name="mpassword" /><br>
+
+            <label for="mname">Name:</label>
+            <input type="text" id="mname" placeholder="Enter Your Name" name="mname" /><br>
+
+            <label for="mage">Age:</label>
+            <input type="number" id="mage" placeholder="Enter Your age" name="mage" /><br>
+
+            <label for="mquestion">Security Question:</label>
+            <select name="mquestion" id="mquestion">
+                <option value="0">Select</option>
+                <option value="1">What is your mother's name?</option>
+                <option value="2">How old is your father?</option>
+                <option value="3">What is your plate number?</option>
+                <option value="4">Who is your High School teacher?</option>
+                <option value="5">What is your favourite book?</option>
+                <option value="6">Which is your favourite movie?</option>
+            </select><br>
+
+            <label for="manswer">Question Answer :</label>
+            <input type="text" id="manswer" placeholder="Enter Your Answer" name="manswer"><br>
+            
+            <input type="submit" value="modify" name="mbutton" id="mbutton" >
+
+            <a href="https://stark-spire-21434.herokuapp.com/homepage.html">
+                <input type="button" value="Back" id="mback" >
+            </a>
+
+        </div>
+    </div>
 
     <script>
-        //run right away
-        $.ajax({
-            type:"get",
-            url:"/userlist",
-            success:function(data){
-                if(data.status==-1){
-                    var user="";
-                    user+=data.user;
-                    $("#name").html(user);
-                    $("#mid").html(user);
+        $("#mbutton").click(function(){
+            var mpassword=$("#mpassword").val();
+            var mname=$("#mname").val();
+            var mage=$("#mage").val();
+            var mquestion=$("#mquestion").val();
+            var manswer=$("#manswer").val();
+            $.ajax({
+                type:"post",
+                url:"/modify",
+                data:{mpassword:mpassword,mname:mname,mage:mage,mquestion:mquestion,manswer:manswer},
+                success:function(data){
+                    if(data.status==-1){
+                        alert("Modify Fail!");
+                    }
+                    else{
+                        alert("Modify success!");
+                    }
+                },
+                error:function(){
+                    alert("Internet error!");
                 }
-            },
-            error:function(){
-                alert("Internet Error");
-            }
-        });    
-
+            });
+        });
     </script>
 
-    <div><!action="/modify" method= "post" >
-        <label for="mpassword">Password:</label>
-        <input type="text" id="mpassword" placeholder="Enter New Password" name="mpassword" /><br>
-
-        <label for="mname">Name:</label>
-        <input type="text" id="mname" placeholder="Enter Your Name" name="mname" /><br>
-
-        <label for="mage">Age:</label>
-        <input type="number" id="mage" placeholder="Enter Your age" name="mage" /><br>
-
-        <label for="mquestion">Security Question:</label>
-        <select name="mquestion" id="mquestion">
-            <option value="0">Select</option>
-            <option value="1">What is your mother's name?</option>
-            <option value="2">How old is your father?</option>
-            <option value="3">What is your plate number?</option>
-            <option value="4">Who is your High School teacher?</option>
-            <option value="5">What is your favourite book?</option>
-            <option value="6">Which is your favourite movie?</option>
-        </select><br>
-
-        <label for="manswer">Question Answer :</label>
-        <input type="text" id="manswer" placeholder="Enter Your Answer" name="manswer"><br>
-        
-        <input type="submit" value="modify" id="mbutton" >
-
-        <a href="https://stark-spire-21434.herokuapp.com/homepage.html">
-            <input type="button" value="Back" id="mback" >
-        </a>
-
-    </div>
-</div>
-<script>
-    $("#mbutton").click(function(){
-        var mpassword=$("#mspassword").val();
-        var mname=$("#mname").val();
-        var mage=$("#mage").val();
-        var mquestion=$("#mquestion").val();
-        var manswer=$("#manswer").val();
-        $.ajax({
-            type:"post",
-            url:"/modify",
-            data:{mpassword:mpassword,mname:mname,mage:mage,mquestion:mquestion,manswer:manswer},
-            success:function(data){
-                if(data.status==-1){
-                    alert("Modify Fail!");
-                }else{
-                    alert("Modify success!");
-                }
-            },
-            error:function(){
-                alert("Internet error!");
-            }
-        })
-    });
-</script>
-
     
-</body>
+    </body>
 
 </html>
