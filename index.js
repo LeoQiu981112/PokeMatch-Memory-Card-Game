@@ -89,25 +89,26 @@ app.post('/poke',function(req,res){
 
 });
 
-app.post('/poke1',function(req,res){
-  var des;
-  var name=req.body.name;
+// app.post('/poke1',function(req,res){
+//   var des;
+//   var name=req.body.name;
 
-  // description
-  P.getPokemonSpeciesByName(name,function(result,error){
-    if(!error){
-      des=result.flavor_text_entries[1].flavor_text;
-      console.log(result.flavor_text_entries[1].flavor_text);
-      result.json({status:0,des:des});
-    }
+//   // description
+  
+//   P.getPokemonSpeciesByName(name,function(result,error){
+//     if(!error){
+//       des=result.flavor_text_entries[1].flavor_text;
+//       console.log(result.flavor_text_entries[1].flavor_text);
+//       result.json({status:0,des:des});
+//     }
 
-    else{
-      console.log("description err");
-      result.json({status:1,msg: "description error"});
-    }
-  })
+//     else{
+//       console.log("description err");
+//       result.json({status:1,msg: "description error"});
+//     }
+//   })
 
-});//poke1
+// });//poke1
 
 
 app.post("/login", function(req, res){
