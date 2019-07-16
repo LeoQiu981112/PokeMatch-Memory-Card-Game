@@ -67,7 +67,7 @@ app.post('/poke',function(req,res){
 
       console.log("type:");   
       for ( i=1; i< result.types.length;i++){
-        type=type+result.types[i].type.name+" ";
+        type+=JSON.parse(result.types[i].type.name)+' ';
         console.log(result.types[i].type.name);
  
       }
