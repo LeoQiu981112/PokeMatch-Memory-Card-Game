@@ -167,7 +167,7 @@
 			<p>Defense: </p>
 			<p>Sp Atk: </p>			
 		</div>
-		<div id="attr_data" style="float:left;">
+		<div id="attr_data" style="float:left;display: inline-flex;">
 			<p id='name'>0</p>
 			<p id='hp'>0</p>
 			<p id='attk'>0</p>
@@ -182,7 +182,7 @@
 			<p>Type:</p>
 		</div>  
 		<!-- disply inline for inputs below nad above -->
-		<div id="introduce_data" style="float:left;">
+		<div id="introduce_data" style="float:left;display: inline-flex;">
 			<p id='ht'>0</p>
 			<p id= 'wt'>0</p>
 			<p id='sdef'>0</p>
@@ -209,17 +209,17 @@
 	                    if(data.status==0){
 	                        $("#name").html(n);
 	                        hp1+=data.hp;
-	                        $("#hp").html(hp1);
+	                        $("#hp").text(hp1);
 	                        attk1=+data.attk;
-	                        $("#attk").html(attk1);
+	                        $("#attk").text(attk1);
 	                        def+=data.def;
-	                        $("#def").html(def);
+	                        $("#def").text(def);
 	                        sattk+=data.sattk;
-	                        $("#sattk").html(sattk);
+	                        $("#sattk").text(sattk);
 	                        sdef+=data.sdef;
-	                        $("#sdef").html(sdef);
+	                        $("#sdef").text(sdef);
 	                        spd+=data.spd;
-	                        $("#spd").html(spd);
+	                        $("#spd").text(spd);
 	                        ht1=data.ht;
 	                        $("#ht").html(ht1);
 	                        wt1=data.wt;
