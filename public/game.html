@@ -72,7 +72,7 @@
 
 	<table id="table" align="center" valign="middle">
 		<tr>
-			<td><p><img src="picture/water/dewgong.jpg" href = "javascript:void(0)" onclick ="picture('dewgong')" id="dewgong" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/water/dewgong.jpg" href = "javascript:void(0)" onclick ="picture('dewgong');box(n)" id="dewgong" align="bottom" width="80%" height="200%"></p></td>
 			<td><p><img src="picture/water/seel.jpg" href = "javascript:void(0)" onclick ="picture('seel')" id="seel" align="bottom" width="80%" height="200%"></p></td>
 			<td><p><img src="picture/water/squirtle.jpg" href = "javascript:void(0)" onclick ="picture('squirtle')" id="squirtle" align="bottom" width="80%" height="200%"></p></td>
 			<td><p><img src="picture/water/wartortle.jpg" href = "javascript:void(0)" onclick ="picture('wartortle')" id="wartortle" align="bottom" width="80%" height="200%"></p></td>
@@ -194,11 +194,17 @@
 
 
 		<script >
-			function picture(n){
-				// document.getElementById('picture').innerHTML='<img src="pokemon/'+n+'.png" weight="200%" height="200%">';
+			function box(n){
+				document.getElementById('picture').innerHTML='<img src="pokemon/'+n+'.png" weight="200%" height="200%">';
 
 				$("#light").hide();
 				$("#fade").hide();
+			}
+			function picture(n){
+			//	document.getElementById('picture').innerHTML='<img src="pokemon/'+n+'.png" weight="200%" height="200%">';
+
+			//	$("#light").hide();
+			//	$("#fade").hide();
 
 				
 				var name,hp,attk,def,sattk,sdef,spd,ht,wt,type,des;
