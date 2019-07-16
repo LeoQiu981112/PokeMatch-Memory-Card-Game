@@ -66,12 +66,10 @@ app.post('/poke',function(req,res){
       console.log(result.weight);
 
       console.log("type:");   
-      for ( i=0; i< result.types.length;i++){
-        type+=result.types[i].type.name;
+      for ( i=1; i< result.types.length;i++){
+        type=type+result.types[i].type.name+" ";
         console.log(result.types[i].type.name);
-        if(i!=(result.types.length-1)){
-          type+=" ";
-        }
+ 
       }
 
       res.json({status:0,hp:hp,attk:attk,def:def,sattk:sattk,sdef:sdef,spd:spd,ht:ht,wt:wt,type:type});
