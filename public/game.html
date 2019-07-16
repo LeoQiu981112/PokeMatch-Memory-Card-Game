@@ -193,23 +193,23 @@
 
 				var name,hp,attk,def,sattk,sdef,spd,ht,wt,type,des;
 	            $.ajax({
-	                type:"get",
+	                type:"post",
 	                url:"/poke",
 	                data:{pokename:"nidoqueen"},
 	                success:function(data){
 	                    if(data.status==0){
 	                        name=n;
-	                        hp= data.hp;
-	                        attk=data.attk;
-	                        def=data.def;
-	                        sattk=data.sattk;
-	                        sdef=data.sdef;
-	                        spd=data.spd;
+	                        // hp= data.hp;
+	                        // attk=data.attk;
+	                        // def=data.def;
+	                        // sattk=data.sattk;
+	                        // sdef=data.sdef;
+	                        // spd=data.spd;
 
-	                        ht=data.ht;
-	                        wt=data.wt;
-	                        type=data.type;
-	                        des=data.des;
+	                        // ht=data.ht;
+	                        // wt=data.wt;
+	                        // type=data.type;
+	                        // des=data.des;
 	                        alert("success");
 	                    }
 	                    else{

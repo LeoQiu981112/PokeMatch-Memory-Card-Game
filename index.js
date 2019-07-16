@@ -38,29 +38,30 @@ app.use(session({
 }));
 
 app.post('/poke',function(req,res){
-  // var name=req.body.name;
-  var name='nidoqueen';
+  // var name='nidoqueen';
   var hp,attk,def,sattk,sdef,spd,ht,wt,type,des;
+  var status=0;
+  var name=req.body.name;
 
   P.getPokemonByName(name,function(result,error){
     if(!error){
       // stats
-      hp=result.stats[5].base_stat;
-      attk=result.stats[4].base_stat;
-      def=result.stats[3].base_stat;
-      sattk=result.stats[2].base_stat;
-      sdef=result.stats[1].base_stat;
-      spd=result.stats[0].base_stat;
+      // hp=result.stats[5].base_stat;
+      // attk=result.stats[4].base_stat;
+      // def=result.stats[3].base_stat;
+      // sattk=result.stats[2].base_stat;
+      // sdef=result.stats[1].base_stat;
+      // spd=result.stats[0].base_stat;
       for ( i=statlen; i>=0 ;i--){
         console.log(result.stats[i].stat.name);
         console.log(result.stats[i].base_stat);
       }
 
-      ht=result.height;
+      // ht=result.height;
       console.log("height:"); 
       console.log(result.height);
 
-      wt=results.weight;
+      // wt=results.weight;
       console.log("weight:"); 
       console.log(result.weight);
 
@@ -72,29 +73,32 @@ app.post('/poke',function(req,res){
           type+=', ';
         }
       }
-    // description
-    P.getPokemonSpeciesByName(name,function(result,error){
-      if(!error){
-        des=result.flavor_text_entries[1].flavor_text;
-        console.log(result.flavor_text_entries[1].flavor_text);
-      }
-      else{
-        console.log("description err");
-      }
-    })
-
-
-
     } 
     else {
+      status=1;
       console.log("pokemon api error");
     }
   })
 
 
-//retur pokemon info
-  res.json({status:0,hp:hp,attk:attk,def:def,sattk:sattk,sdef:sdef,spd:spd,ht:ht,wt:wt,type:type,des:des});
+  // description
+  P.getPokemonSpeciesByName(name,function(result,error){
+    if(!error){
+      des=result.flavor_text_entries[1].flavor_text;
+      console.log(result.flavor_text_entries[1].flavor_text);
 
+    }
+    else{
+      console.log("description err");
+      status=1;
+
+    }
+  })
+
+
+//retur pokemon info
+  // res.json({status:0,hp:hp,attk:attk,def:def,sattk:sattk,sdef:sdef,spd:spd,ht:ht,wt:wt,type:type,des:des});
+  res.json({status:status});
 
 
 });
