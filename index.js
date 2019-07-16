@@ -6,7 +6,9 @@ const path = require('path')
 const PORT = process.env.PORT 
 const { Pool } = require('pg');
 var bodyParser = require('body-parser');
-//var cookieParser=require("cookie-parser");
+var Pokedex=require('pokedex-promise-v2');
+var P = new Pokedex();
+
 
 //var pool = new Pool({
 //  user: 'postgres',
