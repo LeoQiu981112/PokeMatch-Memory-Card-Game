@@ -208,18 +208,18 @@
 	                success:function(data){
 	                    if(data.status==0){
 	                        $("#name").html(n);
-	                        hp1+=data.hp;
+	                        hp1=data.hp;
 	                       // $("#hp").html(hp1);
 	                        document.getElementById("hp").innerHTML=hp1;
-	                        attk1=+data.attk;
+	                        attk1=data.attk;
 	                        //$("#attk").html(attk1);
-	                        def1+=data.def;
+	                        def1=data.def;
 	                        $("#def").html(def1);
-	                        sattk1+=data.sattk;
+	                        sattk1=data.sattk;
 	                        $("#sattk").html(sattk1);
-	                        sdef1+=data.sdef;
+	                        sdef1=data.sdef;
 	                        $("#sdef").html(sdef1);
-	                        spd1+=data.spd;
+	                        spd1=data.spd;
 	                        $("#spd").html(spd1);
 	                        ht1=data.ht;
 	                        $("#ht").html(ht1);
