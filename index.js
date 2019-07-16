@@ -37,6 +37,48 @@ app.use(session({
   cookie: {user:"default",maxAge:60*15*1000}
 }));
 
+app.post('/poke',function(req,res){
+  // var name=req.body.name;
+  var name='nidoqueen';
+  P.getPokemonByName(name,function(result,error){
+    if(!error){
+      // stats
+      var statlen = result.stats.length-1;
+      for ( i=statlen; i>=0 ;i--){
+        console.log(result.stats[i].stat.name);
+        console.log(result.stats[i].base_stat);
+      }
+      console.log("height:"); 
+      console.log(result.height);
+      console.log("weight:"); 
+      console.log(result.weight);
+      console.log("type:");   
+      for ( i=0; i< result.types.length;i++){
+        console.log(result.types[i].type.name);
+      }
+    // description
+    P.getPokemonSpeciesByName(name,function(result,error){
+      if(!error){
+        console.log(result.flavor_text_entries[1].flavor_text);
+      }
+      else{
+        console.log("description err");
+      }
+    })
+
+
+
+    } 
+    else {
+      console.log("pokemon api error");
+    }
+  })
+});
+
+
+
+
+
 app.post("/login", function(req, res){
   var user=req.body.Lid;
   var pwd=req.body.Lpassword;
