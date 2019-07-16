@@ -166,8 +166,6 @@
 			<p>Attack: </p>
 			<p>Defense: </p>
 			<p>Sp Atk: </p>			
-			<p>Sp Def: </p>
-			<p>Speed: </p>
 		</div>
 		<div id="attr_data" style="float:left;display:inline;">
 			<p id='name'>45</p>
@@ -175,18 +173,20 @@
 			<p id='attk'>49</p>
 			<p id='def'>49</p>
 			<p id='sattk'>45</p>
-			<p id='sdef'>65</p>
-			<p id='spd'>10</p>
 		</div>
 		<div id="introduce" style="float:left;display:inline;">
-			<p>Height: </p>
-			<p>Weight: </p>
+			<p>Height(ft): </p>
+			<p>Weight(lbs): </p>
 			<p>Type:</p>
+			<p>Sp Def: </p>
+			<p>Speed: </p>
 		</div>
 		<div id="introduce_data" style="float:left;display:inline;">
-			<p id='ht'>2.3 </p> <p>ft</p>
-			<p id= 'wt'>15.21 </p>  <p>lbs </p>
+			<p id='ht'>2.3</p>
+			<p id= 'wt'>15.2</p>
 			<p id= 'type'>Plant,Monster</p>
+			<p id='sdef'>65</p>
+			<p id='spd'>10</p>
 	<!-- 		<p id= 'des'>des</p> -->
 		</div>
 
@@ -209,25 +209,25 @@
 	                data:{name:n},
 	                success:function(data){
 	                    if(data.status==0){
-	                        $("name").html(n);
+	                        $("#name").html(n);
 	                        hp+=data.hp;
-	                        $("hp").html(hp);
+	                        $("#hp").html(hp);
 	                        attk=+data.attk;
-	                        $("attk").html(attk);
+	                        $("#attk").html(attk);
 	                        def+=data.def;
-	                        $("def").html(def);
+	                        $("#def").html(def);
 	                        sattk+=data.sattk;
-	                        $("sattk").html(sattk);
+	                        $("#sattk").html(sattk);
 	                        sdef+=data.sdef;
-	                        $("sdef").html(sdef);
+	                        $("#sdef").html(sdef);
 	                        spd+=data.spd;
-	                        $("spd").html(spd);
+	                        $("#spd").html(spd);
 	                        ht=data.ht;
-	                        $("ht").html(ht);
+	                        $("#ht").html(ht);
 	                        wt=data.wt;
-	                        $("wt").html(wt);
+	                        $("#wt").html(wt);
 	                        type=data.type;
-	                        $("type").html(type);
+	                        $("#type").html(type);
 
 	                        // des=data.des;
 	                        // $("des").html(des);
