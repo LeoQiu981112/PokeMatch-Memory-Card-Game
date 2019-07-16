@@ -34,139 +34,165 @@
     	});    
 	</script>
 
+	<button id="account" class="float-left submit-button" >Info</button>
+	<script type="text/javascript">
+		document.getElementById("account").onclick = function () {
+			location.href = "https://stark-spire-21434.herokuapp.com/modify.html";
+		};
+	</script>
+
+	<button id="back" class="float-left submit-button" >Back</button>
+	<script type="text/javascript">
+		document.getElementById("back").onclick = function () {
+			location.href = "https://stark-spire-21434.herokuapp.com/homepage.html";
+		};
+	</script>
+
+	<input type="button" value="logout"  class="float-left submit-button" id="logout" > 
+	<script>
+	//wait til button clicked
+		$("#logout").click(function(){
+			$.ajax({
+				type:"get",
+				url:"/logout",
+				success:function(data){
+					if(data.status==-1){
+						location.href="https://stark-spire-21434.herokuapp.com/login.html";
+					}
+				},
+				error:function(){
+					alert("logout error!");
+				}
+			});
+		}); 
+	</script>
+
+	<br></br>
+	<br></br>
 
 	<table id="table" align="center" valign="middle">
 		<tr>
-			<td><p><img src="picture/bulbasaur.jpg" href = "javascript:void(0)" onclick ="picture('bulbasaur')" id="bulbasaur" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/wartortle.jpg" href = "javascript:void(0)" onclick ="picture('wartortle')" id="wartortle" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/pidgey.jpg" href = "javascript:void(0)" onclick ="picture('pidgey')" id="pidgey" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/rattata.jpg" href = "javascript:void(0)" onclick ="picture('rattata')" id="rattata" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/pikachu.jpg" href = "javascript:void(0)" onclick ="picture('pikachu')" id="pikachu" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/water/dewgong.jpg" href = "javascript:void(0)" onclick ="picture('dewgong')" id="dewgong" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/water/seel.jpg" href = "javascript:void(0)" onclick ="picture('seel')" id="seel" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/water/squirtle.jpg" href = "javascript:void(0)" onclick ="picture('squirtle')" id="squirtle" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/water/wartortle.jpg" href = "javascript:void(0)" onclick ="picture('wartortle')" id="wartortle" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/water/lapras.jpg" href = "javascript:void(0)" onclick ="picture('lapras')" id="lapras" align="bottom" width="80%" height="200%"></p></td>
 		</tr>
 		<tr>
-			<td><p><img src="picture/raichu.jpg" href = "javascript:void(0)" onclick ="picture('raichu')" id="raichu" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/nidoran.jpg" href = "javascript:void(0)" onclick ="picture('nidoran')" id="nidoran" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/nidorina.jpg" href = "javascript:void(0)" onclick ="picture('nidorina')" id="nidorina" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/clefairy.jpg" href = "javascript:void(0)" onclick ="picture('clefairy')" id="clefairy" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/jigglypuff.jpg" href = "javascript:void(0)" onclick ="picture('jigglypuff')" id="jigglypuff" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/water/poliwag.jpg" href = "javascript:void(0)" onclick ="picture('poliwag')" id="poliwag" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/water/slowpoke.jpg" href = "javascript:void(0)" onclick ="picture('slowpoke')" id="slowpoke" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/water/slowking.jpg" href = "javascript:void(0)" onclick ="picture('slowking')" id="slowking" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/water/magikarp.jpg" href = "javascript:void(0)" onclick ="picture('magikarp')" id="magikarp" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/water/psyduck.jpg" href = "javascript:void(0)" onclick ="picture('psyduck')" id="psyduck" align="bottom" width="80%" height="200%"></p></td>
 		</tr>
 		<tr>
-			<td><p><img src="picture/wigglytuff.jpg" href = "javascript:void(0)" onclick ="picture('wigglytuff')" id="wigglytuff" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/oddish.jpg" href = "javascript:void(0)" onclick ="picture('oddish')" id="oddish" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/diglett.jpg" href = "javascript:void(0)" onclick ="picture('diglett')" id="diglett" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/meowth.jpg" href = "javascript:void(0)" onclick ="picture('meowth')" id="meowth" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/psyduck.jpg" href = "javascript:void(0)" onclick ="picture('psyduck')" id="psyduck" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/electric/pikachu.jpg" href = "javascript:void(0)" onclick ="picture('pikachu')" id="pikachu" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/electric/raichu.jpg" href = "javascript:void(0)" onclick ="picture('raichu')" id="raichu" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/electric/pichu.jpg" href = "javascript:void(0)" onclick ="picture('pichu')" id="pichu" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/electric/dedenne.jpg" href = "javascript:void(0)" onclick ="picture('dedenne')" id="dedenne" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/electric/emolga.jpg" href = "javascript:void(0)" onclick ="picture('emolga')" id="emolga" align="bottom" width="80%" height="200%"></p></td>
 		</tr>
 		<tr>
-			<td><p><img src="picture/poliwag.jpg" href = "javascript:void(0)" onclick ="picture('poliwag')" id="poliwag" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/seel.jpg" href = "javascript:void(0)" onclick ="picture('seel')" id="seel" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/dewgong.jpg" href = "javascript:void(0)" onclick ="picture('dewgong')" id="dewgong" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/gastly.jpg" href = "javascript:void(0)" onclick ="picture('gastly')" id="gastly" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/electrode.jpg" href = "javascript:void(0)" onclick ="picture('electrode')" id="electrode" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/electric/plusle.jpg" href = "javascript:void(0)" onclick ="picture('plusle')" id="plusle" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/electric/shinx.jpg" href = "javascript:void(0)" onclick ="picture('shinx')" id="shinx" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/electric/mareep.jpg" href = "javascript:void(0)" onclick ="picture('mareep')" id="mareep" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/electric/electrode.jpg" href = "javascript:void(0)" onclick ="picture('electrode')" id="electrode" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/electric/magnemite.jpg" href = "javascript:void(0)" onclick ="picture('magnemite')" id="magnemite" align="bottom" width="80%" height="200%"></p></td>
 		</tr>
 		<tr>
-			<td><p><img src="picture/chansey.jpg" href = "javascript:void(0)" onclick ="picture('chansey')" id="chansey" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/lapras.jpg" href = "javascript:void(0)" onclick ="picture('lapras')" id="lapras" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/ditto.jpg" href = "javascript:void(0)" onclick ="picture('ditto')" id="ditto" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/eevee.jpg" href = "javascript:void(0)" onclick ="picture('eevee')" id="eevee" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/dragonair.jpg" href = "javascript:void(0)" onclick ="picture('dragonair')" id="dragonair" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/grass/exeggcute.jpg" href = "javascript:void(0)" onclick ="picture('exeggcute')" id="exeggcute" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/grass/shroomish.jpg" href = "javascript:void(0)" onclick ="picture('shroomish')" id="shroomish" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/grass/petilil.jpg" href = "javascript:void(0)" onclick ="picture('petilil')" id="petilil" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/grass/chikorita.jpg" href = "javascript:void(0)" onclick ="picture('chikorita')" id="chikorita" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/grass/turtwig.jpg" href = "javascript:void(0)" onclick ="picture('turtwig')" id="turtwig" align="bottom" width="80%" height="200%"></p></td>
 		</tr>
 		<tr>
-			<td><p><img src="picture/chikorita.jpg" href = "javascript:void(0)" onclick ="picture('chikorita')" id="chikorita" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/crobat.jpg" href = "javascript:void(0)" onclick ="picture('crobat')" id="crobat" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/pichu.jpg" href = "javascript:void(0)" onclick ="picture('pichu')" id="pichu" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/cleffa.jpg" href = "javascript:void(0)" onclick ="picture('cleffa')" id="card29" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/lgglybuff.jpg" href = "javascript:void(0)" onclick ="picture('lgglybuff')" id="lgglybuff" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/grass/bulbasaur.jpg" href = "javascript:void(0)" onclick ="picture('bulbasaur')" id="bulbasaur" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/grass/bellossom.jpg" href = "javascript:void(0)" onclick ="picture('bellossom')" id="bellossom" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/grass/oddish.jpg" href = "javascript:void(0)" onclick ="picture('oddish')" id="oddish" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/grass/bounsweet.jpg" href = "javascript:void(0)" onclick ="picture('bounsweet')" id="bounsweet" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/grass/cherubi.jpg" href = "javascript:void(0)" onclick ="picture('cherubi')" id="cherubi" align="bottom" width="80%" height="200%"></p></td>
 		</tr>
 		<tr>
-			<td><p><img src="picture/sylveon.jpg" href = "javascript:void(0)" onclick ="picture('sylveon')" id="sylveon" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/sentret.jpg" href = "javascript:void(0)" onclick ="picture('sentret')" id="sentret" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/furret.jpg" href = "javascript:void(0)" onclick ="picture('furret')" id="furret" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/fire/charmander.jpg" href = "javascript:void(0)" onclick ="picture('charmander')" id="charmander" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/fire/cyndaquil.jpg" href = "javascript:void(0)" onclick ="picture('cyndaquil')" id="cyndaquil" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/fire/darumaka.jpg" href = "javascript:void(0)" onclick ="picture('darumaka')" id="darumaka" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/fire/fennekin.jpg" href = "javascript:void(0)" onclick ="picture('fennekin')" id="fennekin" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/fire/growlithe.jpg" href = "javascript:void(0)" onclick ="picture('growlithe')" id="growlithe" align="bottom" width="80%" height="200%"></p></td>
+		</tr>
+
+		<tr>
+			<td><p><img src="picture/fire/ninetales.jpg" href = "javascript:void(0)" onclick ="picture('ninetales')" id="ninetales" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/fire/ponyta.jpg" href = "javascript:void(0)" onclick ="picture('ponyta')" id="ponyta" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/fire/torchic.jpg" href = "javascript:void(0)" onclick ="picture('torchic')" id="torchic" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/fire/victini.jpg" href = "javascript:void(0)" onclick ="picture('victini')" id="victini" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/fire/vulpix.jpg" href = "javascript:void(0)" onclick ="picture('vulpix')" id="vulpix" align="bottom" width="80%" height="200%"></p></td>
+		</tr>
+
+		<tr>
+			<td><p><img src="picture/eevee/eevee.jpg" href = "javascript:void(0)" onclick ="picture('eevee')" id="eevee" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/eevee/espeon.jpg" href = "javascript:void(0)" onclick ="picture('espeon')" id="espeon" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/eevee/glaceon.jpg" href = "javascript:void(0)" onclick ="picture('glaceon')" id="glaceon" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/eevee/jolteon.jpg" href = "javascript:void(0)" onclick ="picture('jolteon')" id="jolteon" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/eevee/flareon.jpg" href = "javascript:void(0)" onclick ="picture('flareon')" id="flareon" align="bottom" width="80%" height="200%"></p></td>
+		</tr>
+
+		<tr>
+			<td><p><img src="picture/eevee/leafeon.jpg" href = "javascript:void(0)" onclick ="picture('leafeon')" id="leafeon" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/eevee/sylveon.jpg" href = "javascript:void(0)" onclick ="picture('sylveon')" id="sylveon" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/eevee/umbreon.jpg" href = "javascript:void(0)" onclick ="picture('umbreon')" id="umbreon" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/eevee/vaporeon.jpg" href = "javascript:void(0)" onclick ="picture('vaporeon')" id="vaporeon" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img src="picture/eevee/ditto.jpg" href = "javascript:void(0)" onclick ="picture('ditto')" id="ditto" align="bottom" width="80%" height="200%"></p></td>
 		</tr>
 
 		<script type="text/javascript">
 			function picture(n){
-				document.getElementById('picture').innerHTML='<img src="pokemon/'+n+'.png" weight="20%" height="20%">';
+				document.getElementById('picture').innerHTML='<img src="pokemon/'+n+'.png" weight="200%" height="200%">';
 				document.getElementById('light').style.display='block';
 				document.getElementById('fade').style.display='block';
 			}
 		</script>
+	</table>
 
-
-		<button id="account" class="float-left submit-button" >Info</button>
-		<script type="text/javascript">
-			document.getElementById("account").onclick = function () {
-				location.href = "https://stark-spire-21434.herokuapp.com/modify.html";
-			};
-		</script>
-
-		<button id="back" class="float-left submit-button" >Back</button>
-		<script type="text/javascript">
-			document.getElementById("back").onclick = function () {
-				location.href = "https://stark-spire-21434.herokuapp.com/homepage.html";
-			};
-		</script>
-
-		<input type="button" value="logout"  class="float-left submit-button" id="logout" > 
-		<script>
-		//wait til button clicked
-			$("#logout").click(function(){
-				$.ajax({
-					type:"get",
-					url:"/logout",
-					success:function(data){
-						if(data.status==-1){
-							location.href="https://stark-spire-21434.herokuapp.com/login.html";
-						}
-					},
-					error:function(){
-						alert("logout error!");
-					}
-				});
-			}); 
-		</script>
+	<div id="light" class="white_content">
+		<a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'" >Close</a>
 		<br></br>
-		<br></br>
-
-		<div id="light" class="white_content">
-			<a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'" >Close</a>
-			<br></br>
-			<div id="picture" weight="20%" height="20%" style="float:left;display:inline;"></div>
-			<div id="attr" style="float:left;display:inline;">
-				<p>Name: </p>
-				<p>HP: </p>
-				<p>Attack: </p>
-				<p>Defense: </p>
-				<p>Speed: </p>
-				<p>Sp Atk: </p>
-				<p>Sp Def: </p>
-			</div>
-			<div id="attr_data" style="float:left;display:inline;">
-				<p>45</p>
-				<p>49</p>
-				<p>49</p>
-				<p>45</p>
-				<p>65</p>
-				<p>65</p>
-				<p>65</p>
-			</div>
-			<div id="introduce" style="float:left;display:inline;">
-				<p>Height: </p>
-				<p>Weight: </p>
-				<p>Egg Group: </p>
-				<p>Abilities: </p>
-				<p>EVs: </p>
-				<p>Catch Rate: </p>
-				<p>Gender Ratio: </p>
-			</div>
-			<div id="introduce_data" style="float:left;display:inline;">
-				<p>2.3 ft</p>
-				<p>15.21 lbs</p>
-				<p>Plant,Monster</p>
-				<p>Chlorophyll,Overgrow</p>
-				<p>1 Special Attack</p>
-				<p>18%</p>
-				<p>12.5/87.5</p>
-			</div>
+		<div id="picture" style="float:left;display:inline;"></div>
+		<div id="attr" style="float:left;display:inline;">
+			<p>Name: </p>
+			<p>HP: </p>
+			<p>Attack: </p>
+			<p>Defense: </p>
+			<p>Speed: </p>
+			<p>Sp Atk: </p>			
+			<p>Sp Def: </p>
+		</div>
+		<div id="attr_data" style="float:left;display:inline;">
+			<p>45</p>
+			<p>49</p>
+			<p>49</p>
+			<p>45</p>
+			<p>65</p>
+			<p>65</p>
+			<p>65</p>
+		</div>
+		<div id="introduce" style="float:left;display:inline;">
+			<p>Height: </p>
+			<p>Weight: </p>
+			<p>Egg Group: </p>
+			<p>Abilities: </p>
+			<p>EVs: </p>
+			<p>Catch Rate: </p>
+			<p>Gender Ratio: </p>
+		</div>
+		<div id="introduce_data" style="float:left;display:inline;">
+			<p>2.3 ft</p>
+			<p>15.21 lbs</p>
+			<p>Plant,Monster</p>
+			<p>Chlorophyll,Overgrow</p>
+			<p>1 Special Attack</p>
+			<p>18%</p>
+			<p>12.5/87.5</p>
+		</div>
 </body>
 </html>

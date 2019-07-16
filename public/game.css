@@ -11,6 +11,10 @@ body{
 td{
     text-align:center;
 }
+#picture{
+    width:40%;
+    height:40%;
+}
 #attr{
     font-size: 1.2vw;
     color: #4d8673;
@@ -19,7 +23,7 @@ td{
 #attr_data{
     font-size:1.2vw;
     color: #4d8673;
-    width:10%;
+    width:8%;
 }
 #introduce{
     font-size:1.2vw;
