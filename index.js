@@ -39,7 +39,7 @@ app.use(session({
 
 app.post('/poke',function(req,res){
   // var name='nidoqueen';
-  var hp,attk,def,sattk,sdef,spd,ht,wt,type;
+  var hp,attk,def,sattk,sdef,spd,ht,wt;
   var name=req.body.name;
   console.log(name);
 
@@ -56,6 +56,19 @@ app.post('/poke',function(req,res){
         console.log(result.stats[i].stat.name);
         console.log(result.stats[i].base_stat);
       }
+        console.log("teststat hp");
+        console.log(hp);
+        console.log("teststat attk");
+        console.log(attk);
+        console.log("teststat def");
+        console.log(def);
+        console.log("teststat sattk");
+        console.log(sattk);
+        console.log("teststat sdef");
+        console.log(sdef);
+        console.log("teststat spd");
+        console.log(spd);
+
 
       ht=result.height;
       console.log("height:"); 
@@ -64,14 +77,16 @@ app.post('/poke',function(req,res){
       wt=result.weight;
       console.log("weight:"); 
       console.log(result.weight);
-
       console.log("type:");   
-      for ( i=1; i< result.types.length;i++){
-        type=type+result.types[i].type.name+" ";
-        console.log(result.types[i].type.name);
+      var type="";
+      for ( i=0; i< result.types.length;i++){
+        type+=result.types[i].type.name+" ";
+        // console.log("test");
+        // console.log(type);
+        // console.log("actual");
+        // console.log(result.types[i].type.name);
  
       }
-
       res.json({status:0,hp:hp,attk:attk,def:def,sattk:sattk,sdef:sdef,spd:spd,ht:ht,wt:wt,type:type});
     } //if
 
@@ -84,26 +99,36 @@ app.post('/poke',function(req,res){
 
 });
 
-// app.post('/poke1',function(req,res){
-//   var des;
-//   var name=req.body.name;
+app.post('/poke1',function(req,res){
+  var des;
+  var name=req.body.name;
 
-//   // description
+  // description
 
-//   P.getPokemonSpeciesByName(name,function(result,error){
-//     if(!error){
-//       des=result.flavor_text_entries[1].flavor_text;
-//       console.log(result.flavor_text_entries[1].flavor_text);
-//       result.json({status:0,des:des});
-//     }
+  P.getPokemonSpeciesByName(name)
 
-//     else{
-//       console.log("description err");
-//       result.json({status:1,msg: "description error"});
-//     }
-//   })
+    .then(function(result){
+      var found=0;
+      var i=0;
+      while(found==0){
+        if(result.flavor_text_entries[i].language.name=="en"){
+          found=1;
+        }
+        else{
+          i++;
+        }
+      }
+      des=result.flavor_text_entries[i].flavor_text;
+      console.log(result.flavor_text_entries[i].flavor_text);
+      res.json({status:0,des:des});
+    })
 
-// });//poke1
+    .catch(function(error){
+      console.log("description err");
+      res.json({status:1,msg: "description error"});
+    })
+
+});//poke1
 
 
 app.post("/login", function(req, res){
