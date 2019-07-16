@@ -40,7 +40,6 @@ app.use(session({
 app.post('/poke',function(req,res){
   // var name='nidoqueen';
   var hp,attk,def,sattk,sdef,spd,ht,wt,type,des;
-  var status=0;
   var name=req.body.name;
 
   P.getPokemonByName(name,function(result,error){
@@ -52,7 +51,7 @@ app.post('/poke',function(req,res){
       sattk=result.stats[2].base_stat;
       sdef=result.stats[1].base_stat;
       spd=result.stats[0].base_stat;
-      for ( i=statlen; i>=0 ;i--){
+      for ( i=5; i>=0 ;i--){
         console.log(result.stats[i].stat.name);
         console.log(result.stats[i].base_stat);
       }
