@@ -165,7 +165,8 @@
 			<p>HP: </p>
 			<p>Attack: </p>
 			<p>Defense: </p>
-			<p>Sp Atk: </p>			
+			<p>Sp Atk: </p>	
+			<p>Description: </p>			
 		</div>
 		<div id="attr_data" style="float:left;display: inline;">
 			<p id='name'>0</p>
@@ -173,6 +174,7 @@
 			<p id='attk'>0</p>
 			<p id='def'>0</p>
 			<p id='sattk'>0</p>
+			<p id= 'des'>des</p>
 		</div>
 		<div id="introduce" style="float:left;display:inline;">
 			<p>Height(ft): </p>
@@ -188,7 +190,6 @@
 			<p id='sdef'>0</p>
 			<p id='spd'>0</p>
 			<p id= 'type'>none</p>
-	<!-- 		<p id= 'des'>des</p> -->
 		</div>
 
 
@@ -200,7 +201,7 @@
 				$("#light").show();
 				$("#fade").show();
 
-				var hp1,attk1,def1,sattk1,sdef1,spd1,ht1,wt1,type1,des;
+				var hp1,attk1,def1,sattk1,sdef1,spd1,ht1,wt1,type1;
 	            $.ajax({
 	                type:"post",
 	                url:"/poke",
@@ -241,23 +242,26 @@
 	                }
 	            });
 
-	            // $.ajax({
-	            //     type:"post",
-	            //     url:"/poke1",
-	            //     data:{name:n},
-	            //     success:function(data){
-	            //         if(data.status==0){
-	            //             $("des").html(des);
-	            //             //alert("success");
-	            //         }
-	            //         else{
-	            //             alert("fetch des eror");
-	            //         }
-	            //     },
-	            //     error:function(){
-	            //         alert("des error!");
-	            //     }
-	            // });
+	            var des;
+	            $.ajax({
+	                type:"post",
+	                url:"/poke1",
+	                data:{name:n},
+	                success:function(data){
+	                    if(data.status==0){
+	                    	des1=data.des;
+	                        document.getElementById("des").innerHTML=des1;
+	                        // $("des").html(des);
+	                        //alert("success");
+	                    }
+	                    else{
+	                        alert("fetch des eror");
+	                    }
+	                },
+	                error:function(){
+	                    alert("des error!");
+	                }
+	            });
 
 
 				// document.getElementById('light').style.display='block';
