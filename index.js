@@ -106,8 +106,8 @@ app.post('/poke1',function(req,res){
   // description
 
   P.getPokemonSpeciesByName(name)
-  
-    .then(function(response){
+
+    .then(function(result){
       var found=0;
       var i=0;
       while(found==0){
