@@ -82,9 +82,6 @@ app.post('/poke',function(req,res){
       console.log("pokemon api error");
     }
   })//poke
-
-
-
 //retur pokemon info
 
 });
@@ -94,7 +91,7 @@ app.post('/poke',function(req,res){
 //   var name=req.body.name;
 
 //   // description
-  
+
 //   P.getPokemonSpeciesByName(name,function(result,error){
 //     if(!error){
 //       des=result.flavor_text_entries[1].flavor_text;

@@ -237,23 +237,23 @@
 	                }
 	            });
 
-	            $.ajax({
-	                type:"post",
-	                url:"/poke1",
-	                data:{name:n},
-	                success:function(data){
-	                    if(data.status==0){
-	                        $("des").html(des);
-	                        //alert("success");
-	                    }
-	                    else{
-	                        alert("fetch des eror");
-	                    }
-	                },
-	                error:function(){
-	                    alert("des error!");
-	                }
-	            });
+	            // $.ajax({
+	            //     type:"post",
+	            //     url:"/poke1",
+	            //     data:{name:n},
+	            //     success:function(data){
+	            //         if(data.status==0){
+	            //             $("des").html(des);
+	            //             //alert("success");
+	            //         }
+	            //         else{
+	            //             alert("fetch des eror");
+	            //         }
+	            //     },
+	            //     error:function(){
+	            //         alert("des error!");
+	            //     }
+	            // });
 
 				document.getElementById('picture').innerHTML='<img src="pokemon/'+n+'.png" weight="200%" height="200%">';
 
