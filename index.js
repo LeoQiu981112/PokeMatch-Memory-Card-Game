@@ -105,8 +105,9 @@ app.post('/poke1',function(req,res){
 
   // description
 
-  P.getPokemonSpeciesByName(name,function(result,error){
-    if(!error){
+  P.getPokemonSpeciesByName(name)
+  
+    .then(function(response){
       var found=0;
       var i=0;
       while(found==0){
@@ -120,13 +121,12 @@ app.post('/poke1',function(req,res){
       des=result.flavor_text_entries[i].flavor_text;
       console.log(result.flavor_text_entries[i].flavor_text);
       result.json({status:0,des:des});
-    }
+    })
 
-    else{
+    .catch(function(error){
       console.log("description err");
       result.json({status:1,msg: "description error"});
-    }
-  })
+    })
 
 });//poke1
 
