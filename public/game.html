@@ -150,6 +150,44 @@
 				document.getElementById('picture').innerHTML='<img src="pokemon/'+n+'.png" weight="200%" height="200%">';
 				document.getElementById('light').style.display='block';
 				document.getElementById('fade').style.display='block';
+
+
+	            $.ajax({
+	                type:"post",
+	                url:"/poke",
+	                data:{pokename:n},
+	                success:function(data){
+	                    if(data.status==0){
+	                        var name=n;
+	                        var hp= data.hp;
+	                        var attk=data.attk;
+	                        var def=data.def;
+	                        var sattk=data.sattk;
+	                        var sdef=data.sdef;
+	                        var spd=data.spd;
+
+	                        var ht=data.ht;
+	                        var wt=data.wt;
+	                        var type=data.type;
+	                        alert("success");
+	                    }
+	                    else{
+	                        alert(data.msg);
+	                    }
+	                },
+	                error:function(){
+	                    alert("getpoke error!");
+	                }
+	            })
+
+
+
+
+
+
+
+
+
 			}
 		</script>
 	</table>
@@ -163,36 +201,28 @@
 			<p>HP: </p>
 			<p>Attack: </p>
 			<p>Defense: </p>
-			<p>Speed: </p>
 			<p>Sp Atk: </p>			
 			<p>Sp Def: </p>
+			<p>Speed: </p>
 		</div>
 		<div id="attr_data" style="float:left;display:inline;">
-			<p>45</p>
-			<p>49</p>
-			<p>49</p>
-			<p>45</p>
-			<p>65</p>
-			<p>65</p>
-			<p>65</p>
+			<p id='name'>45</p>
+			<p id='hp'>65</p>
+			<p id='attk'>49</p>
+			<p id='def'>49</p>
+			<p id='sattk'>45</p>
+			<p id='sdef'>65</p>
+			<p id='spd'>10</p>
 		</div>
 		<div id="introduce" style="float:left;display:inline;">
 			<p>Height: </p>
 			<p>Weight: </p>
-			<p>Egg Group: </p>
-			<p>Abilities: </p>
-			<p>EVs: </p>
-			<p>Catch Rate: </p>
-			<p>Gender Ratio: </p>
+			<p>Type:</p>
 		</div>
 		<div id="introduce_data" style="float:left;display:inline;">
-			<p>2.3 ft</p>
-			<p>15.21 lbs</p>
-			<p>Plant,Monster</p>
-			<p>Chlorophyll,Overgrow</p>
-			<p>1 Special Attack</p>
-			<p>18%</p>
-			<p>12.5/87.5</p>
+			<p id='ht'>2.3 </p> <p>ft</p>
+			<p id= 'wt'>15.21 </p>  <p>lbs </p>
+			<p id= 'type'>Plant,Monster</p>
 		</div>
 </body>
 </html>
