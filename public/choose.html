@@ -87,7 +87,17 @@
 	</table>
 	<script type="text/javascript">
 		function game(n){
-			location.href = "https://stark-spire-21434.herokuapp.com/homepage.html";
+			if(n=="squirtle"){
+				location.href = "https://stark-spire-21434.herokuapp.com/game/squirtle/index.html";
+			}else if(n=="pikachu"){
+				location.href = "https://stark-spire-21434.herokuapp.com/game/pikachu/index.html";
+			}else if(n=="bulbasaur"){
+				location.href = "https://stark-spire-21434.herokuapp.com/game/bulbasaur/index.html";
+			}else if(n=="charmander"){
+				location.href = "https://stark-spire-21434.herokuapp.com/game/charmander/index.html";
+			}else{
+				location.href = "https://stark-spire-21434.herokuapp.com/game/eevee/index.html";
+			}
 		}
 	</script>
 </body>
