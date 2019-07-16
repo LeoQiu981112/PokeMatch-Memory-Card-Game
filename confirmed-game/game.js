@@ -263,3 +263,27 @@ var card = (function(total,cardnum){
     return this;
 
 })(33,9);
+
+
+document.getElementById("account").onclick = function () {
+    location.href = "https://stark-spire-21434.herokuapp.com/modify.html";
+};
+
+document.getElementById("back").onclick = function () {
+    location.href = "https://stark-spire-21434.herokuapp.com/homepage.html";
+};
+
+$("#logout").click(function(){
+    $.ajax({
+        type:"get",
+        url:"/logout",
+        success:function(data){
+            if(data.status==-1){
+                location.href="https://stark-spire-21434.herokuapp.com/login.html";
+            }
+        },
+         error:function(){
+            alert("logout error!");
+        }
+    });
+}); 

@@ -30,23 +30,45 @@ h1{
 .timeplane{
     font-family: 'Coda', cursive;
     position:fixed;
-    color:white;
+    text-align :center ;
+    color:black;
     right:0%;
     left:94%;
     top:0%;
     width:6vw;
     height:3vw;
-    background:#0000FF;
+    border-radius:20px;
+    background-color: #ffffff;
 }
 
 #restart{
     font-family: 'Coda', cursive; 
-    position:fixed;
-    color:white;
-    right:0%;
-    top:5%;
-    font-size: 1.7vw;
-    background:#0000FF;
+    font-size:1.2vw;
+    width:6%;
+    border-radius:20px;
+    background-color: #ffffff;
+}
+
+#account{
+    font-family: 'Coda', cursive; 
+    font-size:1.2vw;
+    width:6%;
+    border-radius:20px;
+    background-color: #ffffff;
+}
+#logout{
+    font-family: 'Coda', cursive; 
+    font-size:1.2vw;
+    width:6%;
+    border-radius:20px;
+    background-color: #ffffff;
+}
+#back{
+    font-family: 'Coda', cursive; 
+    font-size:1.2vw;
+    width:6%;
+    border-radius:20px;
+    background-color: #ffffff;
 }
 
 .board{
