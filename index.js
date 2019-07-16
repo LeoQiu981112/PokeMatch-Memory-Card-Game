@@ -64,9 +64,8 @@ app.post('/poke',function(req,res){
       wt=result.weight;
       console.log("weight:"); 
       console.log(result.weight);
-
       console.log("type:");   
-      for ( i=1; i< result.types.length;i++){
+      for ( i=0; i< result.types.length;i++){
         type+=result.types[i].type.name+"1";
         console.log("test");
         console.log(type);
