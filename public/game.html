@@ -195,7 +195,12 @@
 
 		<script >
 			function picture(n){
+				document.getElementById('picture').innerHTML='<img src="pokemon/'+n+'.png" weight="200%" height="200%">';
 
+				$("#light").hide();
+				$("#fade").hide();
+
+				
 				var name,hp,attk,def,sattk,sdef,spd,ht,wt,type,des;
 
 	            $.ajax({
@@ -223,7 +228,7 @@
 	                        $("wt").html(wt);
 	                        type=data.type;
 	                        $("type").html(type);
-	                        
+
 	                        // des=data.des;
 	                        // $("des").html(des);
 	                        //alert("success");
@@ -255,10 +260,7 @@
 	            //     }
 	            // });
 
-				document.getElementById('picture').innerHTML='<img src="pokemon/'+n+'.png" weight="200%" height="200%">';
 
-				$("#light").hide();
-				$("#fade").hide();
 				// document.getElementById('light').style.display='block';
 				// document.getElementById('fade').style.display='block';
 
