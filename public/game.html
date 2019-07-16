@@ -153,8 +153,10 @@
 		<a href = "javascript:void(0)" onclick = "test()" >Close</a>
 		<script>
 			function test(){
-				document.getElementById('light').style.display='none';
-				document.getElementById('fade').style.display='none';}
+				// document.getElementById('light').style.display='none';
+				// document.getElementById('fade').style.display='none';}
+				$("#light").show();
+				$("#light").show();
 		</script> 
 		<br></br>
 		<div id="picture" style="float:left;display:inline;"></div>
@@ -194,8 +196,11 @@
 		<script >
 			function picture(n){
 				document.getElementById('picture').innerHTML='<img src="pokemon/'+n+'.png" weight="200%" height="200%">';
-				document.getElementById('light').style.display='block';
-				document.getElementById('fade').style.display='block';
+
+				$("#light").hide();
+				$("#fade").hide();
+				// document.getElementById('light').style.display='block';
+				// document.getElementById('fade').style.display='block';
 
 				var name,hp,attk,def,sattk,sdef,spd,ht,wt,type,des;
 
