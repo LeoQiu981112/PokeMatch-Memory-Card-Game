@@ -56,6 +56,19 @@ app.post('/poke',function(req,res){
         console.log(result.stats[i].stat.name);
         console.log(result.stats[i].base_stat);
       }
+        console.log("teststat hp");
+        console.log(hp);
+        console.log("teststat attk");
+        console.log(attk);
+        console.log("teststat def");
+        console.log(def);
+        console.log("teststat sattk");
+        console.log(sattk);
+        console.log("teststat sdef");
+        console.log(sdef);
+        console.log("teststat spd");
+        console.log(spd);
+
 
       ht=result.height;
       console.log("height:"); 
