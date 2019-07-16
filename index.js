@@ -41,6 +41,7 @@ app.post('/poke',function(req,res){
   // var name='nidoqueen';
   var hp,attk,def,sattk,sdef,spd,ht,wt,type,des;
   var name=req.body.name;
+  console.log(name);
 
   P.getPokemonByName(name,function(result,error){
     if(!error){
@@ -56,11 +57,11 @@ app.post('/poke',function(req,res){
         console.log(result.stats[i].base_stat);
       }
 
-      // ht=result.height;
+      ht=result.height;
       console.log("height:"); 
       console.log(result.height);
 
-      // wt=results.weight;
+      wt=results.weight;
       console.log("weight:"); 
       console.log(result.weight);
 
@@ -72,17 +73,19 @@ app.post('/poke',function(req,res){
           type+=', ';
         }
       }
-    } 
+
+      res.json({status:0,hp:hp,attk:attk,def:def,sattk:sattk,sdef:sdef,spd:spd,ht:ht,wt:wt,type:type});
+    } //if
+
     else {
       res.json({status:1,msg: "api error"});
       console.log("pokemon api error");
     }
-  })
+  })//poke
 
 
 
 //retur pokemon info
-  res.json({status:0,hp:hp,attk:attk,def:def,sattk:sattk,sdef:sdef,spd:spd,ht:ht,wt:wt,type:type});
 
 });
 
@@ -92,20 +95,16 @@ app.post('/poke1',function(req,res){
     if(!error){
       des=result.flavor_text_entries[1].flavor_text;
       console.log(result.flavor_text_entries[1].flavor_text);
-
+      res.json({status:0,des:des});
     }
+
     else{
       console.log("description err");
       res.json({status:1,msg: "description error"});
-
     }
   })
 
-//retur pokemon des
-  res.json({status:0,des:des});
-
-
-});
+});//poke1
 
 
 app.post("/login", function(req, res){
