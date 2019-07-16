@@ -180,6 +180,7 @@
 			<p id='ht'>2.3 </p> <p>ft</p>
 			<p id= 'wt'>15.21 </p>  <p>lbs </p>
 			<p id= 'type'>Plant,Monster</p>
+			<p id= 'des'>des</p>
 		</div>
 </body>
 
@@ -199,18 +200,27 @@
 	                data:{pokename:"nidoqueen"},
 	                success:function(data){
 	                    if(data.status==0){
-	                        name=n;
-	                        hp= data.hp;
-	                        attk=data.attk;
-	                        def=data.def;
-	                        sattk=data.sattk;
-	                        sdef=data.sdef;
-	                        spd=data.spd;
-
+	                        $("name").html(n);
+	                        hp+=data.hp;
+	                        $("hp").html(hp);
+	                        attk=+data.attk;
+	                        $("attk").html(attk);
+	                        def+=data.def;
+	                        $("def").html(def);
+	                        sattk+=data.sattk;
+	                        $("sattk").html(sattk);
+	                        sdef+=data.sdef;
+	                        $("sdef").html(sdef);
+	                        spd+=data.spd;
+	                        $("spd").html(spd);
 	                        ht=data.ht;
+	                        $("ht").html(ht);
 	                        wt=data.wt;
+	                        $("wt").html(wt);
 	                        type=data.type;
+	                        $("type").html(type);
 	                        des=data.des;
+	                        $("des").html(des);
 	                        alert("success");
 	                    }
 	                    else{
@@ -221,6 +231,25 @@
 	                    alert("getpoke error!");
 	                }
 	            });
+
+	            $.ajax({
+	                type:"post",
+	                url:"/poke1",
+	                data:{pokename:"nidoqueen"},
+	                success:function(data){
+	                    if(data.status==0){
+	                        $("des").html(des);
+	                        alert("success");
+	                    }
+	                    else{
+	                        alert("fetch des eror");
+	                    }
+	                },
+	                error:function(){
+	                    alert("des error!");
+	                }
+	            });
+
 
 			}
 		</script>
