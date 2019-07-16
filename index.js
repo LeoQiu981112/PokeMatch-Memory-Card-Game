@@ -61,7 +61,7 @@ app.post('/poke',function(req,res){
       console.log("height:"); 
       console.log(result.height);
 
-      wt=results.weight;
+      wt=result.weight;
       console.log("weight:"); 
       console.log(result.weight);
 
@@ -98,12 +98,12 @@ app.post('/poke1',function(req,res){
     if(!error){
       des=result.flavor_text_entries[1].flavor_text;
       console.log(result.flavor_text_entries[1].flavor_text);
-      res.json({status:0,des:des});
+      result.json({status:0,des:des});
     }
 
     else{
       console.log("description err");
-      res.json({status:1,msg: "description error"});
+      result.json({status:1,msg: "description error"});
     }
   })
 
