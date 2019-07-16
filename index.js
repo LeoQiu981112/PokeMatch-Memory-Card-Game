@@ -17,8 +17,6 @@ var P = new Pokedex();
 //  database: 'test',
 //  port: 5432,
 //});
-
-
 var pool = new Pool({
   connectionString : process.env.DATABASE_URL
 })

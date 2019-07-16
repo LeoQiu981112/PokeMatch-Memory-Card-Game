@@ -145,52 +145,8 @@
 			<td><p><img src="picture/eevee/ditto.jpg" href = "javascript:void(0)" onclick ="picture('ditto')" id="ditto" align="bottom" width="80%" height="200%"></p></td>
 		</tr>
 
-		<script type="text/javascript">
-			function picture(n){
-				document.getElementById('picture').innerHTML='<img src="pokemon/'+n+'.png" weight="200%" height="200%">';
-				document.getElementById('light').style.display='block';
-				document.getElementById('fade').style.display='block';
-
-				var name,hp,attk,def,sattk,sdef,spd,ht,wt,type,des;
-	            $.ajax({
-	                type:"post",
-	                url:"/poke",
-	                data:{pokename:n},
-	                success:function(data){
-	                    if(data.status==0){
-	                        name=n;
-	                        hp= data.hp;
-	                        attk=data.attk;
-	                        def=data.def;
-	                        sattk=data.sattk;
-	                        sdef=data.sdef;
-	                        spd=data.spd;
-
-	                        ht=data.ht;
-	                        wt=data.wt;
-	                        type=data.type;
-	                        des=data.des;
-	                        alert("success");
-	                    }
-	                    else{
-	                        alert("fetch info eror");
-	                    }
-	                },
-	                error:function(){
-	                    alert("getpoke error!");
-	                }
-	            })
 
 
-
-
-
-
-
-
-
-			}
-		</script>
 	</table>
 
 	<div id="light" class="white_content">
@@ -226,4 +182,54 @@
 			<p id= 'type'>Plant,Monster</p>
 		</div>
 </body>
+
+
+
+		<script >
+			function picture(n){
+				document.getElementById('picture').innerHTML='<img src="pokemon/'+n+'.png" weight="200%" height="200%">';
+				document.getElementById('light').style.display='block';
+				document.getElementById('fade').style.display='block';
+
+				var name,hp,attk,def,sattk,sdef,spd,ht,wt,type,des;
+	            $.ajax({
+	                type:"get",
+	                url:"/poke",
+	                data:{pokename:"nidoqueen"},
+	                success:function(data){
+	                    if(data.status==0){
+	                        name=n;
+	                        hp= data.hp;
+	                        attk=data.attk;
+	                        def=data.def;
+	                        sattk=data.sattk;
+	                        sdef=data.sdef;
+	                        spd=data.spd;
+
+	                        ht=data.ht;
+	                        wt=data.wt;
+	                        type=data.type;
+	                        des=data.des;
+	                        alert("success");
+	                    }
+	                    else{
+	                        alert("fetch info eror");
+	                    }
+	                },
+	                error:function(){
+	                    alert("getpoke error!");
+	                }
+	            })
+
+
+			}
+		</script>
+
+
+
+
+
+
+
+
 </html>
