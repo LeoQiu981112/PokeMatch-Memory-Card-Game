@@ -167,7 +167,7 @@
 			<p>Defense: </p>
 			<p>Sp Atk: </p>			
 		</div>
-		<div id="attr_data" style="float:left;display:inline;">
+		<div id="attr_data" style="float:left;">
 			<p id='name'>0</p>
 			<p id='hp'>0</p>
 			<p id='attk'>0</p>
@@ -180,8 +180,9 @@
 			<p>Sp Def: </p>
 			<p>Speed: </p>
 			<p>Type:</p>
-		</div>
-		<div id="introduce_data" style="float:left;display:inline;">
+		</div>  
+		<!-- disply inline for inputs below nad above -->
+		<div id="introduce_data" style="float:left;">
 			<p id='ht'>0</p>
 			<p id= 'wt'>0</p>
 			<p id='sdef'>0</p>
@@ -211,14 +212,14 @@
 	                        $("#hp").html(hp1);
 	                        attk1=+data.attk;
 	                        $("#attk").html(attk1);
-	                        // def+=data.def;
-	                        // $("#def").html(def);
-	                        // sattk+=data.sattk;
-	                        // $("#sattk").html(sattk);
-	                        // sdef+=data.sdef;
-	                        // $("#sdef").html(sdef);
-	                        // spd+=data.spd;
-	                        // $("#spd").html(spd);
+	                        def+=data.def;
+	                        $("#def").html(def);
+	                        sattk+=data.sattk;
+	                        $("#sattk").html(sattk);
+	                        sdef+=data.sdef;
+	                        $("#sdef").html(sdef);
+	                        spd+=data.spd;
+	                        $("#spd").html(spd);
 	                        ht1=data.ht;
 	                        $("#ht").html(ht1);
 	                        wt1=data.wt;
