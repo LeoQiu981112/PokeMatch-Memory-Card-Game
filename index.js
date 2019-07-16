@@ -39,7 +39,7 @@ app.use(session({
 
 app.post('/poke',function(req,res){
   // var name='nidoqueen';
-  var hp,attk,def,sattk,sdef,spd,ht,wt,type;
+  var hp,attk,def,sattk,sdef,spd,ht,wt;
   var name=req.body.name;
   console.log(name);
 
@@ -65,8 +65,9 @@ app.post('/poke',function(req,res){
       console.log("weight:"); 
       console.log(result.weight);
       console.log("type:");   
+      var type="";
       for ( i=0; i< result.types.length;i++){
-        type+=result.types[i].type.name+"1";
+        type+=result.types[i].type.name+" ";
         console.log("test");
         console.log(type);
         console.log("actual");
