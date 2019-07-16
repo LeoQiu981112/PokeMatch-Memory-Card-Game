@@ -69,10 +69,12 @@ app.post('/poke',function(req,res){
       var jresult=JSON.parse(result);
       for ( i=1; i< result.types.length;i++){
         type+=jresult.types[i].type.name+' ';
+        console.log("test");
+        console.log(type);
+        console.log("actual");
         console.log(result.types[i].type.name);
  
       }
-      type=
       res.json({status:0,hp:hp,attk:attk,def:def,sattk:sattk,sdef:sdef,spd:spd,ht:ht,wt:wt,type:type});
     } //if
 
