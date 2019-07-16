@@ -177,16 +177,16 @@
 		<div id="introduce" style="float:left;display:inline;">
 			<p>Height(ft): </p>
 			<p>Weight(lbs): </p>
-			<p>Type:</p>
 			<p>Sp Def: </p>
 			<p>Speed: </p>
+			<p>Type:</p>
 		</div>
 		<div id="introduce_data" style="float:left;display:inline;">
 			<p id='ht'>2.3</p>
 			<p id= 'wt'>15.2</p>
-			<p id= 'type'>Plant,Monster</p>
 			<p id='sdef'>65</p>
 			<p id='spd'>10</p>
+			<p id= 'type'>Plant,Monster</p>
 	<!-- 		<p id= 'des'>des</p> -->
 		</div>
 
@@ -195,14 +195,11 @@
 
 		<script >
 			function picture(n){
-				document.getElementById('picture').innerHTML='<img src="pokemon/'+n+'.png" weight="200%" height="200%">';
-
+				document.getElementById('picture').innerHTML='<img src="pokemon/'+n+'.png" weight="150%" height="150%">'; //200
 				$("#light").show();
 				$("#fade").show();
 
-				
-				var name,hp,attk,def,sattk,sdef,spd,ht,wt,type,des;
-
+				var hp1,attk1,def1,sattk1,sdef1,spd1,ht1,wt1,type1,des;
 	            $.ajax({
 	                type:"post",
 	                url:"/poke",
@@ -210,24 +207,24 @@
 	                success:function(data){
 	                    if(data.status==0){
 	                        $("#name").html(n);
-	                        hp+=data.hp;
-	                        $("#hp").html(hp);
-	                        attk=+data.attk;
-	                        $("#attk").html(attk);
-	                        def+=data.def;
-	                        $("#def").html(def);
-	                        sattk+=data.sattk;
-	                        $("#sattk").html(sattk);
-	                        sdef+=data.sdef;
-	                        $("#sdef").html(sdef);
-	                        spd+=data.spd;
-	                        $("#spd").html(spd);
-	                        ht=data.ht;
-	                        $("#ht").html(ht);
-	                        wt=data.wt;
-	                        $("#wt").html(wt);
-	                        type=data.type;
-	                        $("#type").html(type);
+	                        hp1+=data.hp;
+	                        $("#hp").html(hp1);
+	                        // attk=+data.attk;
+	                        // $("#attk").html(attk);
+	                        // def+=data.def;
+	                        // $("#def").html(def);
+	                        // sattk+=data.sattk;
+	                        // $("#sattk").html(sattk);
+	                        // sdef+=data.sdef;
+	                        // $("#sdef").html(sdef);
+	                        // spd+=data.spd;
+	                        // $("#spd").html(spd);
+	                        // ht=data.ht;
+	                        // $("#ht").html(ht);
+	                        wt1=data.wt;
+	                        $("#wt").html(wt1);
+	                        type1=data.type;
+	                        $("#type").html(type1);
 
 	                        // des=data.des;
 	                        // $("des").html(des);
