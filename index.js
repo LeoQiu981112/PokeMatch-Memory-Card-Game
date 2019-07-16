@@ -70,7 +70,7 @@ app.post('/poke',function(req,res){
         type+=result.types[i].type.name;
         console.log(result.types[i].type.name);
         if(i!=(result.types.length-1)){
-          type+=', ';
+          type+=" ";
         }
       }
 
