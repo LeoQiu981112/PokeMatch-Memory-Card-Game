@@ -39,7 +39,7 @@ app.use(session({
 
 app.post('/poke',function(req,res){
   // var name='nidoqueen';
-  var hp,attk,def,sattk,sdef,spd,ht,wt,type,des;
+  var hp,attk,def,sattk,sdef,spd,ht,wt,type;
   var name=req.body.name;
   console.log(name);
 
@@ -90,6 +90,7 @@ app.post('/poke',function(req,res){
 });
 
 app.post('/poke1',function(req,res){
+  var des;
   var name=req.body.name;
 
   // description
