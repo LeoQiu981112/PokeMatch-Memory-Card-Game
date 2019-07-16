@@ -207,7 +207,7 @@
 	            $.ajax({
 	                type:"post",
 	                url:"/poke",
-	                data:{pokename:"nidoqueen"},
+	                data:{name:n},
 	                success:function(data){
 	                    if(data.status==0){
 	                        $("name").html(n);
@@ -245,7 +245,7 @@
 	            $.ajax({
 	                type:"post",
 	                url:"/poke1",
-	                data:{pokename:"nidoqueen"},
+	                data:{name:n},
 	                success:function(data){
 	                    if(data.status==0){
 	                        $("des").html(des);

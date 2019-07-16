@@ -90,6 +90,8 @@ app.post('/poke',function(req,res){
 });
 
 app.post('/poke1',function(req,res){
+  var name=req.body.name;
+
   // description
   P.getPokemonSpeciesByName(name,function(result,error){
     if(!error){
