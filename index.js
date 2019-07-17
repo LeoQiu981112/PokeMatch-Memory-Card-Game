@@ -344,10 +344,10 @@ app.post('/search', function(req, res){
           json+=tmp;
         }
         json+=']}';
-        var test= JSON.parse(json);
+//        var test= JSON.parse(json);
         console.log("json");
         console.log(json);
-        res.json(test);
+        res.json(json);
   	  }
 
   	  else{
