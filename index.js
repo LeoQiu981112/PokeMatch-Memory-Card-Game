@@ -316,25 +316,23 @@ app.post('/remove', function(req, res){
 
 app.post('/search', function(req, res){
 	var search_cri=req.body.search_cri;
-	var search = "select * from players where id like '%" + search_cri + "%';"; 
-                             
+	var search = "select * from players where id like '%" + search_cri + "%';";                              
   //console.log(search);
   pool.query(search, function(error, result){
     if(error) {
-        console.log("mod fail!");
+        console.log("search db fail!");
         res.json({status:-1});
     }
 
     else{
   	  if(result.rowCount) {
-        console.log("Search succeeded!");
+        //console.log("Search succeeded!");
         console.log(result.rows[0]);
 
-        // json is the big object
-        //obj is the array
         var obj = [];
+        var tmp;
         for (i=0;i<result.rowCount;i++){
-          var tmp= {  
+            tmp= {  
             user: result.rows[i].id  ,    
             pass: result.rows[i].password , 
             name: result.rows[i].name };
