@@ -331,7 +331,7 @@ app.post('/search', function(req, res){
         console.log(result.rows[0]);
 
         // json is the big object
-        var json= '{"status:": 0,[ "list:"';
+        var json= '{"status": 0,[ "list:"';
         //obj is the array
         for (i=0;i<result.rowCount;i++){
           var tmp= '{ user: '  +  result.rows[i].id   + ',' +
