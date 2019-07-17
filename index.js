@@ -319,7 +319,6 @@ app.post('/search', function(req, res){
 	var search = "select * from players where id like '%" + search_cri + "%';"; 
                              
   //console.log(search);
-  var list="[";
   pool.query(search, function(error, result){
     if(error) {
         console.log("mod fail!");
@@ -336,8 +335,8 @@ app.post('/search', function(req, res){
             list+=",";
           }
         }
-        list+="]";
-        res.json({status:0,list:list});
+        
+        res.json({status:0,list:[list]});
         //var results = result.rows;
   	  }
 
