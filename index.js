@@ -327,17 +327,23 @@ app.post('/search', function(req, res){
 
     else{
   	  if(result.rowCount) {
-        var list;
-        console.log(result.rows[0]);
         console.log("Search succeeded!");
+        console.log(result.rows[0]);
+
+        JSONObject json= new JSONObject();
+        json.put("status",0);
+
+        JSONARRAY obj=new JSONARRAY();
         for (i=0;i<result.rowCount;i++){
-          list+= result.rows[i];
-          if(i!=result.rowCount-1){
-            list+=",";
-          }
+          JSONObject tmp= new JSONObject();
+          tmp.put("user",result.rows[i].user);
+          tmp.put("pass",result.rows[i].pass);
+          tmp.put("name",result.rows[i].name);
+          obj.put(tmp);
         }
         
-        res.json({status:0,list:[list]});
+        json.put("list",obj);
+        res.json(json);
         //var results = result.rows;
   	  }
 
