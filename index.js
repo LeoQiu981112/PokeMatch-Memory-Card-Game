@@ -172,7 +172,7 @@ app.post("/login", function(req, res){
         } 
       }); 
     }
- });
+
 
     else if(result.rows[0].password != pwd){
       console.log("Wrong password!");
@@ -188,8 +188,8 @@ app.post("/login", function(req, res){
 
       //res.redirect('https://stark-spire-21434.herokuapp.com/GM.html');
     }
-  });
-});
+  })//outer query
+}); //login
 
 //for gm
 app.get('/userlist',function(req,res){
