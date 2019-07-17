@@ -46,43 +46,7 @@
         <input type="text" id="search_cri" name="search_cri" placeholder="enter ID">
         <input type="submit" value="Search" id="gsearch" name="gsearch">
       </div>
-      
-    <script>
-        $("#gsearch").click(function(){
-            var search_cri=$("#search_cri").val();
-            $.ajax({
-                type:"post",
-                url:"/search",
-                data:{search_cri:search_cri},
-                success:function(data){
-
-                    $("#user").html=data.list[0];
-                    $("#pass").html=data.list[1];
-                    $("#user").html=data.list[2];
-
-                    if(data.status==0){
-                        alert("search success!");
-                    }
-
-                    else{
-                        alert("search fail");
-                    }
-                },
-                error:function(){
-                    alert("search error!");
-                }
-            })
-        });
-    </script>
-
-
-
-
-
-
-
-
-
+    
       <table>
           <tr>
             <th>ID</th>
@@ -130,7 +94,37 @@
             });
         }); 
 
+        $("#gsearch").click(function(){
+            var search_cri=$("#search_cri").val();
+            $.ajax({
+                type:"post",
+                url:"/search",
+                data:{search_cri:search_cri},
+                success:function(data){
+
+                    $("#user").html=data.list[0];
+                    $("#pass").html=data.list[1];
+                    $("#user").html=data.list[2];
+
+                    if(data.status==0){
+                        alert("search success!");
+                    }
+
+                    else{
+                        alert("search fail");
+                    }
+                },
+                error:function(){
+                    alert("search error!");
+                }
+            })
+        });
     </script>
+
+
+
+
+
 
   </body>
 </html>
