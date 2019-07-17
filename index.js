@@ -265,9 +265,10 @@ app.post('/signup', function(req, res){
             //res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
         }
       });    
-    }
-  })
-});
+    } //else
+
+  }) //outer query
+});//signup
 
 
 
@@ -305,10 +306,7 @@ app.post('/remove', function(req, res){
       console.log("Remove failed!");
       res.json{status:-1};
 	  } 	  
-  });
-
-
-// res.redirect('http://localhost:5000/main.html');
+  })
 });
 
 
