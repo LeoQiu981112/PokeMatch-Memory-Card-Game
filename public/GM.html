@@ -46,19 +46,19 @@
         <input type="text" id="search_cri" name="search_cri" placeholder="enter ID">
         <input type="submit" value="Search" id="gsearch" name="gsearch">
       </div>
-    
-      <table>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Age</th>
-          </tr>
-          <tr>
-            <th id ="user">none1</th>
-            <th id = "pass">none2</th>
-            <th id = "name">none3</th>
-          </tr>
-      </table>
+      <div>
+        <table id="userlist">
+            <tr>
+              <td>ID</th>
+              <td>Name</th>
+              <td>Age</th>
+            </tr>
+<!--               <th id ="user">none1</th>
+              <th id = "pass">none2</th>
+              <th id = "name">none3</th> -->
+            </tr>
+        </table>
+      </div>
       <br></br>
       <h2>Delete player by ID</h2>
       <form action="/remove" method="post" >
@@ -104,10 +104,27 @@
                 success:function(data){
                       if(data.status==0){
                       //$("#user").html=user1;
-                      document.getElementById("user").innerHTML="233";
-                      document.getElementById("pass").innerHTML=data.list[0].pass;
-                      document.getElementById("name").innerHTML=data.list[0].name;
-                      alert("search success!");
+
+                      for(i=0;i<data.list.length;i++){
+                        var tr=document.createElement("tr");
+                        var td1=document.createElement("td");
+                        var td2=document.createElement("td");
+                        var td3=document.createElement("td");
+
+                        td1.innerHTML=data.list[i].user;
+                        td2.innerHTML=data.list[i].pass;
+                        td3.innerHTML=data.list[i].name;
+
+                        tr.appendChild(td1);
+                        tr.appendChild(td2);
+                        tr.appendChild(td3);
+
+                        var table=document.getElementById('userlist');
+                        table.appendChild(tr);
+                      }
+                      //document.getElementById("user").innerHTML=data.list[0].user;
+                      
+                      //alert("search success!");
                     }
 
                     else{
