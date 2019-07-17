@@ -1,46 +1,130 @@
+
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <meta charset="UTF-8">
-   <link href="GM.css " rel="stylesheet" type="text/css" />	
+    <link href="GM.css " rel="stylesheet" type="text/css" /> 
+    <link rel = "icon" href="data:,">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    <h2 align = "left" id="name"></h2>
+
+    <script>
+        //run right away
+        $.ajax({
+            type:"get",
+            url:"/userlist",
+            success:function(data){
+                if(data.status==-1){
+                    var user="";
+                    user+=data.user;
+                    $("#name").html(user);
+                }
+            },
+            error:function(){
+                alert("Internet Error");
+            }
+        });    
+
+    </script>>
+
     <title>GM</title>
-</head>
-<body>
+  </head>
+  <body>
+
+
 
   <h1>Game Manager</h1>
-	<div id="GGM">
+  <div id="GGM">
+      <h2>Manage players</h2>
 
-  		<input id="Gsearch" type="text" name="search_id" placeholder="enter ID">
-  		<button onclick="searchID()"><a herf="---------" id="gsbutton" >Search</a></button>
-  		<table>
-  			<h2>User Information</h2>
-  		    <tr>
-  		    	<th>ID</th>
-  		    	<th>Name</th>
-  		    	<th>Age</th>
-  		    	<th colspan="1"></th>
-  		    </tr>
-  		    <tr>
-  		    	<th>read</th>
-  		    	<th>read</th>
-  		    	<th>read</th>
-  		    	<th colspan="1"></th>
-  		    </tr>
-  		</table>
+
+
+
+
+      <div action="/search" method="post" >
+        <input type="text" id="search_cri" name="search_cri" placeholder="enter ID">
+        <input type="submit" value="Search" id="gsearch" name="gsearch">
+      </div>
+    
+      <table>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Age</th>
+          </tr>
+          <tr>
+            <th id ="user">none1</th>
+            <th id = "pass">none2</th>
+            <th id = "name">none3</th>
+          </tr>
+      </table>
+      <br></br>
+      <h2>Delete player by ID</h2>
       <form action="/remove" method="post" >
-            <input type="text" id="Gdelete" placeholder="Enter ID" name="Gdelete"/>
-            <input type="submit" id="gdbutton" value="delete" />
-    </form>
- 
-  	</div>
-  	<div id="gpublish">
-  		<textarea type="text" id="gmessage" cols="8" rows="20"  style="OVERFLOW:   hidden"placeholder="Message Box"></textarea>
-    </br>
-    <button onclick="searchID()"><a herf="---------" id="gpbutton" >Publish</a></button>
-  	</div>
-  	<a href="https://stark-spire-21434.herokuapp.com/login.html" id="GLog">
-            <input type="button" value="Logout" id="glog">
-    </a>
+        <input type="text" id="Gdelete" name="Gdelete" placeholder="enter ID">
+        <input type="submit" value="Delete" id="delete">
+      </form>
+    </div>
+    <div id="gpublish">
+      <h2>Public Message Board</h2>
+      <form action="/gmmessage" method="post">
+        <label for="gmessage" ></label>
+        <input type="text" id="gmessage" placeholder="Message Box" name="gmessage"/><br>
+        <input type="submit" value="Publish" id="publish">
+      </form>
+        <input type="button" value="Logout" id="glogout">
+
+    </div>
+
+    <script>
+        //wait til button clicked
+        $("#glogout").click(function(){
+            $.ajax({
+                type:"get",
+                url:"/logout",
+                success:function(data){
+                    if(data.status==-1){
+                        location.href="https://stark-spire-21434.herokuapp.com/login.html";
+                    }
+                },
+                error:function(){
+                    alert("logout error!");
+                }
+            });
+        }); 
+
+        $("#gsearch").click(function(){
+            var search_cri=$("#search_cri").val();
+            var user1,pass1,name1;
+            $.ajax({
+                type:"post",
+                url:"/search",
+                data:{search_cri:search_cri},
+                success:function(data){
+                      if(data.status==0){
+                      //$("#user").html=user1;
+                      document.getElementById("user").innerHTML="233";
+                      document.getElementById("pass").innerHTML=data.list[0].pass;
+                      document.getElementById("name").innerHTML=data.list[0].name;
+                      alert("search success!");
+                    }
+
+                    else{
+                        alert("search fail");
+                    }
+                },
+                error:function(){
+                    alert("search error!");
+                }
+            })
+        });
+    </script>
 
 
-</body>
+
+
+
+
+  </body>
+</html>
