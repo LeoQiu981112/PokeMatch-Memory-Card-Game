@@ -326,7 +326,7 @@ app.post('/search', function(req, res){
 
     else{
   	  if(result.rowCount) {
-        //console.log("Search succeeded!");
+         //console.log("Search succeeded!");
         console.log(result.rows[0]);
 
         var obj = [];
@@ -338,18 +338,16 @@ app.post('/search', function(req, res){
             name: result.rows[i].name };
           obj.push(tmp);
         }
-
-      // var test= JSON.parse(json);
-      var json = {
-        status: 0,
-        list: obj
-      }
-        json=JSON.parse(json);
+        // var test= JSON.parse(json);
+        var json = {
+          status: 0,
+          list: obj
+        }
+        json=JSON.stringify(json);
         console.log("json");
         console.log(json);
         res.json(json);
-  	  }
-
+  	   }
   	  else{
         console.log("Search failed!");
         res.json({status:-1,list:"Players not found"});
