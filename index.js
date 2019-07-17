@@ -167,13 +167,7 @@ app.post("/login", function(req, res){
           //console.log("Login succeeded!");
           req.session.user = user;
           req.session.isLogin = true;
-          var json='{"user":"'+user+'","status":1,"msg":"Login Success"}';
-          var obj=JSON.parse(json);
-          console.log(obj.user);
-          console.log(obj.status);
-          console.log(obj.msg)
-          //res.json({status:1,msg:"Login Success"});
-          res.json({status:0,msg: "user login success~"});
+              res.json({status:0,msg: "user login success~"});
           //location.href='https://stark-spire-21434.herokuapp.com/homepage.html';
         } 
       });
@@ -321,22 +315,22 @@ app.post('/remove', function(req, res){
 
 
 app.post('/search', function(req, res){
-	var sid=req.body.gsearch;
-	var search = "select * from players where id in " + "('" + sid + "')" + ";"; 
-                                                   
+	var search_cri=req.body.search_cri;
+	var search = "select * from players where id like '%" + search_cri + "%';"; 
+                             
   console.log(search);
-
+  var list=1;
   pool.query(search, function(error, result){
-    //console.log(result);
-
 	  if(result.rowCount) {
+      console.log(result);
       console.log("Search succeeded!");
+      res.json({status:0,list:list});
       //var results = result.rows;
-      res.redirect('https://stark-spire-21434.herokuapp.com/searchSucceeded.html');
 	  }
+
 	  else{
       console.log("Search failed!");
-      res.redirect('https://stark-spire-21434.herokuapp.com/searchFailed.html');
+      res.json({status:-1});
 	  } 	   
   }); 	  
 
