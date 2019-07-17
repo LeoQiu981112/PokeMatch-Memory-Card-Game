@@ -291,20 +291,20 @@ app.post('/gmmessage', function(req, res){
 
 
 app.post('/remove', function(req, res){
-	var dname=req.body.name;
-	var remove = "delete from players where id =" +    "'" + dname + "'"  
+  var dname=req.body.name;
+  var remove = "delete from players where id =" +    "'" + dname + "'"  
                                                  + ";" ;   
   console.log(remove);
 
   pool.query(remove, function(error, result){
 	  if(result.rowCount) {
       console.log("Remove succeeded!");
-      res.json{status:0};
+      res.json({status:0});
 	  }
 	  else{
       //return console.error(error);
       console.log("Remove failed!");
-      res.json{status:-1};
+      res.json({status:-1});
 	  } 	  
   })
 });
