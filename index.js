@@ -335,7 +335,7 @@ app.post('/search', function(req, res){
         //obj is the array
         for (i=0;i<result.rowCount;i++){
           var tmp= '{ user: '  +  result.rows[i].id   + ',' +
-                     'pass:'   + result.rows[i].pass + ',' +
+                     'pass:'   + result.rows[i].password + ',' +
                      'name:'   + result.rows[i].name  + ',' + '}' ;
 
           if(i!=result.rowCount-1){
