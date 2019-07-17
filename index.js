@@ -290,7 +290,7 @@ app.post('/gmmessage', function(req, res){
 
 
 app.post('/remove', function(req, res){
-	var id3=req.body.Gdelete;
+	var dname=req.body.name;
 	var remove = "delete from players where id =" +    "'" + id3 + "'"  
                                                  + ";" ;   
   console.log(remove);
