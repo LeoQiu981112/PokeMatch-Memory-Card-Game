@@ -247,12 +247,7 @@ app.post('/signup', function(req, res){
       pool.query(insert, function(error, result){
         //console.log(error);
     
-        if(error.code == 42601) {
-          //console.log("Incomplete information!");
-          res.json({status:-1,msg:"Incomplete information"})
-          //res.redirect('https://stark-spire-21434.herokuapp.com/signup.html');
-        }
-        else if(error.code == 23505){
+        if(error) {
           console.log("Insert failed!");
           res.json({status:-1,msg:"Sign Up failed, please try again!"});
           //res.redirect('https://stark-spire-21434.herokuapp.com/signupFailed.html');
