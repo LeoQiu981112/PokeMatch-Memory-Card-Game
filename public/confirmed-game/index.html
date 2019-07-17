@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<title>Pokemon Memory Game</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
+<link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Permanent+Marker" >
+<link href="https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap" rel="stylesheet">
+<script type="text/javascript" src="card.js" /></script>
+<script type="text/javascript" src="game.js" /></script>
+
+</head>
+
+<body>
+
+ <div class="timeplane" id="timeplane">TIME: <span id="livetime"></span></div>
+ <button id="account" class="float-left submit-button" >Info</button>
+ <button id="back" class="float-left submit-button" >Back</button>
+ <input type="button" value="Logout"  class="float-left submit-button" id="logout" >
+ <button id="restart">Restart</button>
+
+<div class="board">
+
+    <div class="topplane" >
+        <div class="process" id="process">
+           
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <div class="gameplane" id="gameplane"></div>
+
+    <div class="tips" id="tips">
+        <p class="title" style="font-family: 'Coda', cursive;">Game Rules：</p>
+        <p style="font-family: 'Roboto Slab', serif; ">1. After game starts, randomly select 15 sets of cards. Each set has 2 cards with same image. Totally 30 cards.<p>
+        <p style="font-family: 'Roboto Slab', serif; ">2. Each player takes turns flipping two cards face-up — if they are of the same , then that player wins the pair(the pair stays face-up) and gets another turn.</p>
+        <p style="font-family: 'Roboto Slab', serif; ">3. If the cards are not identical, they are turned back facedown and it becomes the next player’s turn to pick two cards.</p>
+        <p style="font-family: 'Roboto Slab', serif; ">4. The game continues until players have picked up all the pairs</p>
+        <p class="btn"><a href="javascript:void(0)" id="startgame">Start</a></p>
+    </div>
+
+    <div class="message_start" id="message"></div>
+
+    <div class="clear"></div>
+
+</body>
+</html>
