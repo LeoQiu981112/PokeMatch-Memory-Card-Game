@@ -334,9 +334,9 @@ app.post('/search', function(req, res){
         var json= '{"status:": 0,[ "list:"';
         //obj is the array
         for (i=0;i<result.rowCount;i++){
-          var tmp= '{"user": ' + '"'+ result.rows[i].id   + '"' + ',' +
-                     '"pass":'   + '"'+ result.rows[i].pass + '"' + ',' +
-                     '"name":'   + '"'+ result.rows[i].name + '"' + ',' + '}' ;
+          var tmp= '{ user: '  +  result.rows[i].id   + ',' +
+                     'pass:'   + result.rows[i].pass + ',' +
+                     'name:'   + result.rows[i].name  + ',' + '}' ;
 
           if(i!=result.rowCount-1){
             tmp+=',';
