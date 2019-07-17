@@ -23,16 +23,39 @@ td{
 #attr_data{
     font-size:1.2vw;
     color: #4d8673;
-    width:8%;
+    width:12%;
 }
 #introduce{
     font-size:1.2vw;
     color: #4d8673;
+    position:absolute;
+    left:65%;
+    top:14%;
 }
+
 #introduce_data{
     font-size:1.2vw;
     color: #4d8673;
+    position:absolute;
+    left:77%;
+    top:14%;
 }
+#Description{
+    border-style: solid;
+    border-color: white ;
+    width: 80%;
+    height: 30%;
+    font-size:1.2vw;
+    color: #4d8673;
+   position:absolute;
+   left:5%;
+   top:66%;
+   word-wrap: break-word;
+   word-break: normal;
+   /* z-index：21212121；
+    word-break:break-word;*/
+}
+
 #account{
     font-size:1.5vw;
     width:6%;
