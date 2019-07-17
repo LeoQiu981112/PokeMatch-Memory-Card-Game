@@ -102,14 +102,14 @@
                 url:"/search",
                 data:{search_cri:search_cri},
                 success:function(data){
-                    user1=data.list[0].id;
+                    user1=data.list[0];
                     //$("#user").html=user1;
                     document.getElementById("user").innerHTML=user1;
 
-                    pass1=data.list[0].password;
-                    $("#pass").html=pass1;
-                    name1=data.list[2].name;
-                    $("#name").html=name1;
+                    // pass1=data.list[0].password;
+                    // $("#pass").html=pass1;
+                    // name1=data.list[2].name;
+                    // $("#name").html=name1;
 
                     if(data.status==0){
                         alert("search success!");
