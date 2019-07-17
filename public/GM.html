@@ -71,8 +71,9 @@
 
       <script>
           //run right away
-          var dname= $("#Gdelete").val();
+          // var dname= $("#Gdelete").val();
           $("#delete").click(function(){
+              var dname= $("#Gdelete").val();
           $.ajax({
               type:"post",
               url:"/remove",
