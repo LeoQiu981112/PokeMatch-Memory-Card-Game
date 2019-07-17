@@ -54,9 +54,9 @@
             <th>Age</th>
           </tr>
           <tr>
-            <th id ="user">read</th>
-            <th id = "pass">read</th>
-            <th id = "name ">read</th>
+            <th id ="user">none1</th>
+            <th id = "pass">none2</th>
+            <th id = "name ">none3</th>
           </tr>
       </table>
       <br></br>
@@ -102,14 +102,12 @@
                 url:"/search",
                 data:{search_cri:search_cri},
                 success:function(data){
-                    var obj=JSON.parse(data.list[0]);
-                    //$("#user").html=user1;
-                    document.getElementById("user").innerHTML="233";
-                    $("#pass").html=obj.password;
-                    $("#name").html=obj.name;
-
-                    if(data.status==0){
-                        alert("search success!");
+                      if(data.status==0){
+                      //$("#user").html=user1;
+                      document.getElementById("user").innerHTML="233";
+                      $("#pass").html="test1";
+                      $("#name").html=data.list[0];
+                      alert("search success!");
                     }
 
                     else{
