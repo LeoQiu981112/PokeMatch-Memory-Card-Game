@@ -78,14 +78,15 @@
               url:"/remove",
               data:{name:dname}
               success:function(data){
-                  if(data.status==-1){
-                      var user="";
-                      user+=data.user;
-                      $("#name").html(user);
+                  if(data.status==0){
+                      alert("delete success!");
+                  }
+                  else{
+                    alert("delete fail");
                   }
               },
               error:function(){
-                  alert("Internet Error");
+                  alert("delete Error");
               }
             })
           });    
