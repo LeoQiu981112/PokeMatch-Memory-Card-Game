@@ -318,7 +318,7 @@ app.post('/search', function(req, res){
 	var search_cri=req.body.search_cri;
 	var search = "select * from players where id like '%" + search_cri + "%';"; 
                              
-  console.log(search);
+  //console.log(search);
   var list=1;
   pool.query(search, function(error, result){
 	  if(result.rowCount) {
