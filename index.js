@@ -327,6 +327,7 @@ app.post('/search', function(req, res){
 
     else{
   	  if(result.rowCount) {
+        var list;
         console.log(result.rows[0]);
         console.log("Search succeeded!");
         for (i=0;i<result.rowCount;i++){
