@@ -55,11 +55,14 @@
                 url:"/search",
                 data:{search_cri:search_cri},
                 success:function(data){
+
+                    var obj=data.list[0];
+                    
                     if(data.status==0){
-                        alert(data.list);
-                    }else if(data.status==-1){
-                        
-                    }else{
+                        alert(obj);
+                    }
+
+                    else{
                         alert("search fail");
                     }
                 },
