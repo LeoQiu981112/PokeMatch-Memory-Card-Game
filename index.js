@@ -331,21 +331,23 @@ app.post('/search', function(req, res){
         console.log(result.rows[0]);
 
         // json is the big object
-        var json= {};
+        var json= '{"status:": 1,[ "list:"';
         //obj is the array
-        var obj=[];
         for (i=0;i<result.rowCount;i++){
-          var tmp= {
-          user:result.rows[i].user;
-          pass:result.rows[i].pass;
-          name:result.rows[i].name;
-          };
-          obj.push(tmp);
+          var tmp= '{"user": ' + result.rows[i].user + ',' +
+                     'pass:'   + result.rows[i].pass + ',' +
+                     'name:'   + result.rows[i].name + '}' ;
+
+          if(i!=result.rowCount-1){
+            tmp+=',';
+          }
+          json+=tmp;
         }
-        json.push({status:0,list:obj});
+        json+=']}';
+        var test= JSON.parse(json);
         console.log("json");
         console.log(json);
-        res.json(json);
+        res.json(test);
   	  }
 
   	  else{
