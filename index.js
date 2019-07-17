@@ -170,9 +170,9 @@ app.post("/login", function(req, res){
               res.json({status:0,msg: "user login success~"});
           //location.href='https://stark-spire-21434.herokuapp.com/homepage.html';
         } 
-      });
+      }); 
     }
- }
+ });
 
     else if(result.rows[0].password != pwd){
       console.log("Wrong password!");
