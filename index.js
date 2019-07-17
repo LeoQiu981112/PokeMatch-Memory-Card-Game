@@ -319,22 +319,33 @@ app.post('/search', function(req, res){
 	var search = "select * from players where id like '%" + search_cri + "%';"; 
                              
   //console.log(search);
-  var list=1;
+  var list="[";
   pool.query(search, function(error, result){
-	  if(result.rowCount) {
-      console.log(result);
-      console.log("Search succeeded!");
-      for (i=0;i<result.rows.length;i++){
-        console.log(result.rows[i]);
-      }
-      res.json({status:0,list:list});
-      //var results = result.rows;
-	  }
+    if(error) {
+        console.log("mod fail!");
+        res.json({status:-1});
+    }
 
-	  else{
-      console.log("Search failed!");
-      res.json({status:-1});
-	  } 	   
+    else{
+  	  if(result.rowCount) {
+        console.log(result);
+        console.log("Search succeeded!");
+        for (i=0;i<result.rowCount;i++){
+          list+= result.rows[i];
+          if(i!=result.rowCount-1){
+            list+=",";
+          }
+        }
+        list+="]";
+        res.json({status:0,list:list});
+        //var results = result.rows;
+  	  }
+
+  	  else{
+        console.log("Search failed!");
+        res.json({status:-1,list:"Players not found"});
+  	  } 	 
+    }  
   }); 	  
 
   //res.redirect('https://stark-spire-21434.herokuapp.com/GM.html');
