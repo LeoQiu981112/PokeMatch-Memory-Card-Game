@@ -104,7 +104,7 @@
                 success:function(data){
                     var obj=JSON.parse(data.list[0]);
                     //$("#user").html=user1;
-                    document.getElementById("user").innerHTML=obj.id;
+                    document.getElementById("user").innerHTML=obj;
                     $("#pass").html=obj.password;
                     $("#name").html=obj.name;
 
