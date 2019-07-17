@@ -105,7 +105,13 @@
                       if(data.status==0){
                       //$("#user").html=user1;
                       var table=document.getElementById('userlist');
-                      table.firstChild.removeNode(true);
+                      var size=table.rows.length;
+                      for(i=0;i<size;i++){
+                        table.deleteRow(i);
+                        size=size-1;
+                        i=i-1;
+                      }
+
                       for(i=0;i<data.list.length;i++){
                         var tr=document.createElement("tr");
                         var td1=document.createElement("td");
