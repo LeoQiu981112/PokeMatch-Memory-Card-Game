@@ -344,7 +344,7 @@ app.post('/search', function(req, res){
         status: 0,
         list: obj
       }
-        json=JSON.stringify(json);
+        json=JSON.parse(json);
         console.log("json");
         console.log(json);
         res.json(json);
