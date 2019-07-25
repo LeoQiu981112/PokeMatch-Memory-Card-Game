@@ -1,6 +1,12 @@
 var http=require("http");
 var express = require('express');
+var socketio=require('socket.io');
+
+
 var app=express();//1
+var server=http.Server(app);
+var io = socketio(server);
+
 var session=require('express-session');//1
 const path = require('path')
 const PORT = process.env.PORT 
@@ -10,6 +16,7 @@ var Pokedex=require('pokedex-promise-v2');
 var P = new Pokedex();
 
 
+
 //var pool = new Pool({
 //  user: 'postgres',
 //  password: 'postgres',
@@ -17,6 +24,8 @@ var P = new Pokedex();
 //  database: 'test',
 //  port: 5432,
 //});
+
+
 var pool = new Pool({
   connectionString : process.env.DATABASE_URL
 })
@@ -36,6 +45,19 @@ app.use(session({
   saveUninitialized: true,
   cookie: {user:"default",maxAge:60*15*1000}
 }));
+
+io.on('connection', (socket) => {
+  console.log('Client connected');
+  setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
+
+  socket.on('disconnect', () => console.log('Client disconnected'));
+});
+
+
+
+
+
+
 
 app.post('/poke',function(req,res){
   // var name='nidoqueen';
