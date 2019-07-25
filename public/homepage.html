@@ -41,6 +41,9 @@
 
 </script>
 
+
+
+
 <table id="rankingbackground">
 </table>
 <!-- need js to put back  -->
@@ -87,17 +90,12 @@
     };
 </script>
 
-<button onclick="startsocket()" class="float-left submit-button"> Game </button>
-<p id="demo">empty</p>
-<script>
-    function startsocket() {
-        //location.href = "https://stark-spire-21434.herokuapp.com/choose.html";
-        var socket = io();
-        var el = document.getElementById('game');
+<button id="game" class="float-left submit-button" >Game</button>
 
-        socket.on('time', function(timeString) {
-          el.innerHTML = 'Server time: ' + timeString;
-        })
+<script type="text/javascript">
+    document.getElementById("game").onclick = function () {
+        // location.href = "https://stark-spire-21434.herokuapp.com/choose.html";
+        location.href = "https://stark-spire-21434.herokuapp.com/tmp.html";
     };
 </script>
 

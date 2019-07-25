@@ -4,8 +4,7 @@ var socketio=require('socket.io');
 
 
 var app=express();//1
-var server=http.Server(app);
-var io = socketio(server);
+
 
 var session=require('express-session');//1
 const path = require('path')
@@ -14,6 +13,20 @@ const { Pool } = require('pg');
 var bodyParser = require('body-parser');
 var Pokedex=require('pokedex-promise-v2');
 var P = new Pokedex();
+
+
+app.use((req, res) => res.sendFile(INDEX) )
+app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
+
+
+var io= socketIO(server);
+
+io.on('connection', (socket) => {
+  console.log('Client connected');
+  socket.on('disconnect', () => console.log('Client disconnected'));
+});
+
+setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
 
 
 
@@ -46,12 +59,7 @@ app.use(session({
   cookie: {user:"default",maxAge:60*15*1000}
 }));
 
-io.on('connection', (socket) => {
-  console.log('Client connected');
-  setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
 
-  socket.on('disconnect', () => console.log('Client disconnected'));
-});
 
 
 
@@ -466,6 +474,9 @@ app.post('/modify', function(req, res){
 //   console.log(req.params.id);
 // })
 
-app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
+
+
+
+//app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
 
