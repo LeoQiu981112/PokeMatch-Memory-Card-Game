@@ -87,21 +87,17 @@
     };
 </script>
 
-<button id="game" class="float-left submit-button" >Game</button>
-
-
-
-
-<script type="text/javascript">
-    document.getElementById("game").onclick = function () {
+<button onclick="startsocket()" class="float-left submit-button"> Game </button>
+<p id="demo">empty</p>
+<script>
+    function startsocket() {
         //location.href = "https://stark-spire-21434.herokuapp.com/choose.html";
-
         var socket = io();
         var el = document.getElementById('game');
+
         socket.on('time', function(timeString) {
           el.innerHTML = 'Server time: ' + timeString;
-        });
-
+        })
     };
 </script>
 
