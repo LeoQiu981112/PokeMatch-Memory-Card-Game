@@ -15,11 +15,11 @@ var Pokedex=require('pokedex-promise-v2');
 var P = new Pokedex();
 
 
-app.use((req, res) => res.sendFile(INDEX) )
-app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
+var server=http.createServer(app); 
+var io= socketio.listen(server);
+server.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 
-var io= socketio(app);
 
 io.on('connection', (socket) => {
   console.log('Client connected');
