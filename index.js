@@ -170,9 +170,9 @@ app.post("/login", function(req, res){
               res.json({status:0,msg: "user login success~"});
           //location.href='https://stark-spire-21434.herokuapp.com/homepage.html';
         } 
-      });
+      }); 
     }
- }
+
 
     else if(result.rows[0].password != pwd){
       console.log("Wrong password!");
@@ -188,8 +188,8 @@ app.post("/login", function(req, res){
 
       //res.redirect('https://stark-spire-21434.herokuapp.com/GM.html');
     }
-  });
-});
+  })//outer query
+}); //login
 
 //for gm
 app.get('/userlist',function(req,res){
@@ -247,12 +247,7 @@ app.post('/signup', function(req, res){
       pool.query(insert, function(error, result){
         //console.log(error);
     
-        if(error.code == 42601) {
-          //console.log("Incomplete information!");
-          res.json({status:-1,msg:"Incomplete information"})
-          //res.redirect('https://stark-spire-21434.herokuapp.com/signup.html');
-        }
-        else if(error.code == 23505){
+        if(error) {
           console.log("Insert failed!");
           res.json({status:-1,msg:"Sign Up failed, please try again!"});
           //res.redirect('https://stark-spire-21434.herokuapp.com/signupFailed.html');
@@ -265,9 +260,10 @@ app.post('/signup', function(req, res){
             //res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
         }
       });    
-    }
-  })
-});
+    } //else
+
+  }) //outer query
+});//signup
 
 
 
@@ -290,67 +286,62 @@ app.post('/gmmessage', function(req, res){
 
 
 app.post('/remove', function(req, res){
-	var dname=req.body.name;
-	var remove = "delete from players where id =" +    "'" + id3 + "'"  
+  var dname=req.body.name;
+  var remove = "delete from players where id =" +    "'" + dname + "'"  
                                                  + ";" ;   
   console.log(remove);
 
   pool.query(remove, function(error, result){
-    //console.log(result);
-
 	  if(result.rowCount) {
       console.log("Remove succeeded!");
-      res.redirect('https://stark-spire-21434.herokuapp.com/deleteSucceeded.html');
+      res.json({status:0});
 	  }
 	  else{
       //return console.error(error);
       console.log("Remove failed!");
-      res.redirect('https://stark-spire-21434.herokuapp.com/deleteFailed.html');
+      res.json({status:-1});
 	  } 	  
-  });
-
-
-// res.redirect('http://localhost:5000/main.html');
+  })
 });
 
 
 
 app.post('/search', function(req, res){
 	var search_cri=req.body.search_cri;
-	var search = "select * from players where id like '%" + search_cri + "%';"; 
-                             
+	var search = "select * from players where id like '%" + search_cri + "%';";                              
   //console.log(search);
   pool.query(search, function(error, result){
     if(error) {
-        console.log("mod fail!");
+        console.log("search db fail!");
         res.json({status:-1});
     }
 
     else{
   	  if(result.rowCount) {
-        console.log("Search succeeded!");
+         //console.log("Search succeeded!");
         console.log(result.rows[0]);
 
-        // json is the big object
-        var json= '{"status:": 1,[ "list:"';
-        //obj is the array
+        var obj = [];
+        var tmp;
         for (i=0;i<result.rowCount;i++){
-          var tmp= '{"user": ' + result.rows[i].id + ',' +
-                     'pass:'   + result.rows[i].password + ',' +
-                     'name:'   + result.rows[i].name + '}' ;
-
-          if(i!=result.rowCount-1){
-            tmp+=',';
-          }
-          json+=tmp;
+            tmp= {  
+            user: result.rows[i].id  ,    
+            pass: result.rows[i].password , 
+            name: result.rows[i].name };
+          obj.push(tmp);
         }
-        json+=']}';
-//        var test= JSON.parse(json);
+        // var test= JSON.parse(json);
+        var json = {
+          status: 0,
+          list: obj
+        }
+        //json=JSON.stringify(json);
+        //var result;
+        //result=JSON.parse(json)
         console.log("json");
         console.log(json);
         res.json(json);
-  	  }
-
+  	   }
   	  else{
         console.log("Search failed!");
         res.json({status:-1,list:"Players not found"});
