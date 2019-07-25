@@ -45,7 +45,7 @@ td{
     font-size:1.2vw;
     color: #4d8673;
     position:absolute;
-    left:77%;
+    left:80%;
     top:14%;
 }
 #Description{
@@ -57,9 +57,10 @@ td{
     color: #4d8673;
    position:absolute;
    left:5%;
-   top:66%;
+   top:72%;
    word-wrap: break-word;
    word-break: normal;
+   z-index:-999；
    /* z-index：21212121；
     word-break:break-word;*/
 }
