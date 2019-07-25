@@ -19,7 +19,7 @@ app.use((req, res) => res.sendFile(INDEX) )
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 
-var io= socketIO(server);
+var io= socketio(server);
 
 io.on('connection', (socket) => {
   console.log('Client connected');
