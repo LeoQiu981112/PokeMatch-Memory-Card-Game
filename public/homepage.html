@@ -82,19 +82,20 @@
 </table>
 
 <button id="poke" class="float-left submit-button" >Poke</button>
+<button id="chat" class="float-left submit-button" >public chatroom</button>
+<button id="game" class="float-left submit-button" >Game</button>
+
 
 <script type="text/javascript">
     document.getElementById("poke").onclick = function () {
         location.href = "https://stark-spire-21434.herokuapp.com/pokedex.html";
     };
-</script>
-
-<button id="game" class="float-left submit-button" >Game</button>
-
-<script type="text/javascript">
+    document.getElementById("chat").onclick = function () {
+        location.href = "https://stark-spire-21434.herokuapp.com/tmp.html";
+    };
     document.getElementById("game").onclick = function () {
         // location.href = "https://stark-spire-21434.herokuapp.com/choose.html";
-        location.href = "https://stark-spire-21434.herokuapp.com/tmp.html";
+        location.href = "https://stark-spire-21434.herokuapp.com/game.html";
     };
 </script>
 
