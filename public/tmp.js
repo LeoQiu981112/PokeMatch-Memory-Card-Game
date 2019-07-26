@@ -45,12 +45,14 @@ $(function() {
       $chatPage.show();
       $loginPage.off('click');
       $currentInput = $inputMessage.focus();
+
       // Tell the server your username
       socket.emit('add user', username);
     }
   }
 
   
+
 
   // Sends a chat message
   const sendMessage = () => {
@@ -69,22 +71,20 @@ $(function() {
     }
   }
 
+
+
+
   // Log a message
     const log = (message, options) => {
     var $el = $('<li>').addClass('log').text(message);
     addMessageElement($el, options);
   }
 
+
+
   // Adds the visual chat message to the message list
   const addChatMessage = (data, options) => {
     // Don't fade the message in if there is an 'X was typing'
-    var $typingMessages = getTypingMessages(data);
-    options = options || {};
-    if ($typingMessages.length !== 0) {
-      options.fade = false;
-      $typingMessages.remove();
-    }
-
     var $usernameDiv = $('<span class="username"/>')
       .text(data.username)
       .css('color', getUsernameColor(data.username));
@@ -96,7 +96,6 @@ $(function() {
       .data('username', data.username)
       .addClass(typingClass)
       .append($usernameDiv, $messageBodyDiv);
-
     addMessageElement($messageDiv, options);
   }
 
@@ -138,6 +137,30 @@ $(function() {
     return $('<div/>').text(input).html();
   }
 
+
+
+  // Updates the typing event
+  const updateTyping = () => {
+    if (connected) {
+      if (!typing) {
+        typing = true;
+        socket.emit('typing');
+      }
+
+      lastTypingTime = (new Date()).getTime();
+
+      setTimeout(() => {
+        var typingTimer = (new Date()).getTime();
+        var timeDiff = typingTimer - lastTypingTime;
+        if (timeDiff >= TYPING_TIMER_LENGTH && typing) {
+          socket.emit('stop typing');
+          typing = false;
+        }
+      }, TYPING_TIMER_LENGTH);
+    }
+  }
+
+
   // Gets the color of a username through our hash function
   const getUsernameColor = (username) => {
     // Compute hash code
@@ -169,9 +192,13 @@ $(function() {
   });
 
 
+
+
   $inputMessage.on('input', () => {
     updateTyping();
   });
+
+
 
   // Click events
 
@@ -216,15 +243,6 @@ $(function() {
     removeChatTyping(data);
   });
 
-  // Whenever the server emits 'typing', show the typing message
-  socket.on('typing', (data) => {
-    addChatTyping(data);
-  });
-
-  // Whenever the server emits 'stop typing', kill the typing message
-  socket.on('stop typing', (data) => {
-    removeChatTyping(data);
-  });
 
   socket.on('disconnect', () => {
     log('you have been disconnected');

@@ -24,14 +24,6 @@ server.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 
 
-
-
-
-
-
-
-
-
 // Chatroom
 var numUsers = 0;
 
@@ -103,12 +95,6 @@ io.on('connection', (socket) => {
 
 
 
-
-
-
-
-
-
 //var pool = new Pool({
 //  user: 'postgres',
 //  password: 'postgres',
@@ -137,6 +123,41 @@ app.use(session({
   saveUninitialized: true,
   cookie: {user:"default",maxAge:60*15*1000}
 }));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
