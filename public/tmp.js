@@ -9,19 +9,19 @@ $(function() {
 
   // Initialize variables
   var $window = $(window);
-  var $usernameInput = $('usernameInput'); // Input for username
+  var $usernameInput = $('.usernameInput'); // Input for username
   var $messages = $('.messages'); // Messages area
-  var $inputMessage = $('inputMessage'); // Input message input box
+  var $inputMessage = $('.inputMessage'); // Input message input box
 
-  var $loginPage = $('login.page'); // The login page
-  var $chatPage = $('chat.page'); // The chatroom page
+  var $loginPage = $('.login.page'); // The login page
+  var $chatPage = $('.chat.page'); // The chatroom page
 
   // Prompt for setting a username
   var username;
   var connected = false;
   var typing = false;
   var lastTypingTime;
-  //var $currentInput = $usernameInput.focus();
+  var $currentInput = $usernameInput.focus();
 
   var socket = io();
 
@@ -37,14 +37,15 @@ $(function() {
 
   // Sets the client's username
   const setUsername = () => {
-    username = "testuser";
+    username = cleanInput($usernameInput.val().trim());
 
     // If the username is valid
     if (username) {
       $loginPage.fadeOut();
       $chatPage.show();
       $loginPage.off('click');
-     // $currentInput = $inputMessage.focus();
+      $currentInput = $inputMessage.focus();
+
       // Tell the server your username
       socket.emit('add user', username);
     }
@@ -210,17 +211,17 @@ $(function() {
     updateTyping();
   });
 
-  // // Click events
+  // Click events
 
-  // // Focus input when clicking anywhere on login page
-  // $loginPage.click(() => {
-  //   $currentInput.focus();
-  // });
+  // Focus input when clicking anywhere on login page
+  $loginPage.click(() => {
+    $currentInput.focus();
+  });
 
-  // // Focus input when clicking on the message input's border
-  // $inputMessage.click(() => {
-  //   $inputMessage.focus();
-  // });
+  // Focus input when clicking on the message input's border
+  $inputMessage.click(() => {
+    $inputMessage.focus();
+  });
 
   // Socket events
 
