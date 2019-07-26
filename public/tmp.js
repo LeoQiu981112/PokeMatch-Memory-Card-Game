@@ -37,7 +37,7 @@ $(function() {
 
   // Sets the client's username
   const setUsername = () => {
-    username = cleanInput($usernameInput.val().trim());
+    username = "testuser";
 
     // If the username is valid
     if (username) {
