@@ -11,18 +11,29 @@ body {
   font-size:1.73vw;
   background-color: #fff;
   padding:6% 2%;
-  width: 30%;
   opacity: 0.8;
   border-radius: 10%;
   position:absolute;
-  height:30%;
+  height:45%;
+  width: 30%;
   top:20%;
   left:12%;
+  overflow:auto;
   
 }
+
+::-webkit-scrollbar{
+  padding:6% 2%;
+  opacity: 0.8;
+  border-radius: 10%;
+}
+
+
 h1{
   font-size:3.3vw;
-  color: #D4DC9F;
+  background: linear-gradient(to right,#87cefa,#ffffff);
+    -webkit-background-clip: text;
+    color: transparent;
   width:30%;
   height:20%;
   position:absolute;
@@ -32,15 +43,17 @@ h1{
   margin-top:10%；
 }
 #gpublish{
+  font-size:1.73vw;
   background-color: #fff;
   padding:6% 2%;
-  width: 30%;
   opacity: 0.8;
   border-radius: 10%;
   position:absolute;
+  height:45%;
+  width: 30%;
   top:20%;
-  left:52%;
-  height:30%;
+  left:51%;
+  overflow:auto;
 
 }
 
@@ -54,8 +67,17 @@ h1{
 #gpbutton{
   font-size: 1.5vw;
 }
+#search_cri{
+  font-size: 1.5vw;
+  
+}
+#glogout{
+  font-size: 1.5vw;
+  width: 20%;
+  height:10%;
+}
 
-#Gsearch{
+#gsearch{
   font-size: 1.5vw;
 }
 #gsbutton{
@@ -75,4 +97,6 @@ h1{
 }
 #publish{
   font-size: 1.5vw;
+  width: 20%;
+  height:10%;
 }
