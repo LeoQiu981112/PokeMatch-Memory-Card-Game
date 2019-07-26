@@ -543,6 +543,8 @@ app.post('/modify', function(req, res){
     });
   }
 
+  res.json({status:1});
+
   //res.redirect('https://stark-spire-21434.herokuapp.com/homepage.html');
 });
 
