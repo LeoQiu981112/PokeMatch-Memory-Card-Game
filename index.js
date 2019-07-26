@@ -14,23 +14,9 @@ var bodyParser = require('body-parser');
 var Pokedex=require('pokedex-promise-v2');
 var P = new Pokedex();
 
-
 var server=http.createServer(app); 
 var io= socketio.listen(server);
 server.listen(PORT, () => console.log(`Listening on ${ PORT }`));
-
-
-
-// io.on('connection', (socket) => {
-//   console.log('Client connected');
-//   socket.on('disconnect', () => console.log('Client disconnected'));
-// });
-
-// setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
-
-
-
-
 
 // Chatroom
 
@@ -38,7 +24,7 @@ var numUsers = 0;
 
 io.on('connection', (socket) => {
   var addedUser = false;
-  console.log("OMGOMGOMGOMGG");
+  console.log("new user connected");
   // when the client emits 'new message', this listens and executes
   socket.on('new message', (data) => {
     // we tell the client to execute 'new message'

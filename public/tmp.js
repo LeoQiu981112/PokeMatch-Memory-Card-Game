@@ -51,6 +51,8 @@ $(function() {
     }
   }
 
+  
+
   // Sends a chat message
   const sendMessage = () => {
     var message = $inputMessage.val();
