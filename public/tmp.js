@@ -21,7 +21,7 @@ $(function() {
   var connected = false;
   var typing = false;
   var lastTypingTime;
-  var $currentInput = $usernameInput.focus();
+  //var $currentInput = $usernameInput.focus();
 
   var socket = io();
 
@@ -44,8 +44,7 @@ $(function() {
       $loginPage.fadeOut();
       $chatPage.show();
       $loginPage.off('click');
-      $currentInput = $inputMessage.focus();
-
+     // $currentInput = $inputMessage.focus();
       // Tell the server your username
       socket.emit('add user', username);
     }
@@ -211,17 +210,17 @@ $(function() {
     updateTyping();
   });
 
-  // Click events
+  // // Click events
 
-  // Focus input when clicking anywhere on login page
-  $loginPage.click(() => {
-    $currentInput.focus();
-  });
+  // // Focus input when clicking anywhere on login page
+  // $loginPage.click(() => {
+  //   $currentInput.focus();
+  // });
 
-  // Focus input when clicking on the message input's border
-  $inputMessage.click(() => {
-    $inputMessage.focus();
-  });
+  // // Focus input when clicking on the message input's border
+  // $inputMessage.click(() => {
+  //   $inputMessage.focus();
+  // });
 
   // Socket events
 
