@@ -469,7 +469,7 @@ app.post('/search', function(req, res){
 });
 
 
-app.post('/modify', function(req, res){
+server.post('/modify', function(req, res){
   //var mid=req.body.mid;
 
   var mid=   "'" + req.session.user + "'" ;
