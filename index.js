@@ -20,16 +20,14 @@ server.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 
 
-
-
-
-
 // Chatroom
 var numUsers = 0;
 
 io.on('connection', (socket) => {
   var addedUser = false;
   console.log("new user connected");
+
+
   // when the client emits 'new message', this listens and executes
   socket.on('new message', (data) => {
     // we tell the client to execute 'new message'
@@ -38,6 +36,7 @@ io.on('connection', (socket) => {
       message: data
     });
   });
+
 
   // when the client emits 'add user', this listens and executes
   socket.on('add user', (username) => {
@@ -70,6 +69,10 @@ io.on('connection', (socket) => {
       });
     }
   });
+
+
+
+
 });
 
 

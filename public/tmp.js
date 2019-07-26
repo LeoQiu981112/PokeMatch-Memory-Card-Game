@@ -20,7 +20,6 @@ $(function() {
   var username;
   var connected = false;
   var typing = false;
-  var lastTypingTime;
   var $currentInput = $usernameInput.focus();
 
   var socket = io();
@@ -38,7 +37,6 @@ $(function() {
   // Sets the client's username
   const setUsername = () => {
     username = cleanInput($usernameInput.val().trim());
-
     // If the username is valid
     if (username) {
       $loginPage.fadeOut();
@@ -91,10 +89,8 @@ $(function() {
     var $messageBodyDiv = $('<span class="messageBody">')
       .text(data.message);
 
-    var typingClass = data.typing ? 'typing' : '';
     var $messageDiv = $('<li class="message"/>')
       .data('username', data.username)
-      .addClass(typingClass)
       .append($usernameDiv, $messageBodyDiv);
     addMessageElement($messageDiv, options);
   }
@@ -137,30 +133,6 @@ $(function() {
     return $('<div/>').text(input).html();
   }
 
-
-
-  // Updates the typing event
-  const updateTyping = () => {
-    if (connected) {
-      if (!typing) {
-        typing = true;
-        socket.emit('typing');
-      }
-
-      lastTypingTime = (new Date()).getTime();
-
-      setTimeout(() => {
-        var typingTimer = (new Date()).getTime();
-        var timeDiff = typingTimer - lastTypingTime;
-        if (timeDiff >= TYPING_TIMER_LENGTH && typing) {
-          socket.emit('stop typing');
-          typing = false;
-        }
-      }, TYPING_TIMER_LENGTH);
-    }
-  }
-
-
   // Gets the color of a username through our hash function
   const getUsernameColor = (username) => {
     // Compute hash code
@@ -184,19 +156,12 @@ $(function() {
     if (event.which === 13) {
       if (username) {
         sendMessage();
-        typing = false;
       } else {
         setUsername();
       }
     }
   });
 
-
-
-
-  $inputMessage.on('input', () => {
-    updateTyping();
-  });
 
 
 
