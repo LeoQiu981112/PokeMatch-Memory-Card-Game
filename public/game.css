@@ -1,0 +1,65 @@
+body{
+    background-image:url(images/gamebg.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size:cover; 
+}
+#table{
+    width:80%;
+    height: 90%
+}
+td{
+    text-align:center;
+    width:10%;
+    height:200%;
+}
+#account{
+    font-size:1.5vw;
+    width:6%;
+    border-radius:20px;
+    background-color: #ffffff;
+}
+#logout{
+    font-size:1.5vw;
+    width:6%;
+    border-radius:20px;
+    background-color: #ffffff;
+}
+#back{
+    font-size:1.5vw;
+    width:6%;
+    border-radius:20px;
+    background-color: #ffffff;
+}
+#start{
+    color: #4d8673;
+    font-size:1.5vw;
+    width:10%;
+    border-radius:20px;
+    background-color: #ffffff;
+    text-align:center;
+}
+#restart{
+    color: #4d8673;
+    font-size:1.5vw;
+    width:20%;
+    border-radius:20px;
+    background-color: #ffffff;
+    text-align:center;
+}
+.white_content { 
+    font-size:1.2vw;
+    color: #4d8673;
+    display: none; 
+    position: fixed; 
+    top: 25%; 
+    left: 25%; 
+    width: 50%; 
+    height: 45%; 
+    padding: 20px; 
+    border: 10px solid #fdd12a; 
+    background-color: white;
+    border-radius:20px; 
+    z-index:1002; 
+    overflow: auto; 
+ }
