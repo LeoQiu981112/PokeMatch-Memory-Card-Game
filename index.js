@@ -14,9 +14,13 @@ var bodyParser = require('body-parser');
 var Pokedex=require('pokedex-promise-v2');
 var P = new Pokedex();
 
+
+
 var server=http.createServer(app); 
 var io= socketio.listen(server);
+
 server.listen(PORT, () => console.log(`Listening on ${ PORT }`));
+//app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
 
 
@@ -469,7 +473,7 @@ app.post('/search', function(req, res){
 });
 
 
-server.app.post('/modify', function(req, res){
+app.post('/modify', function(req, res){
   //var mid=req.body.mid;
 
   var mid=   "'" + req.session.user + "'" ;
@@ -562,6 +566,5 @@ server.app.post('/modify', function(req, res){
 
 
 
-//app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
 
