@@ -73,19 +73,7 @@ io.on('connection', (socket) => {
       });
     }
   });
-
-
-
-
 });
-
-
-
-
-
-
-
-
 
 
 
@@ -348,8 +336,9 @@ app.post('/signup', function(req, res){
                                                 + "'" +  sans     + "'"     
                                                 + ")"     
                                                 + ";"  ;
-  
+  var ranking="insert into ranking values ("+"'"+sid+"'"+",100,100);";
   var match = "select * from gm where id in " + "('" + sid + "')" + ";"; 
+  console.log(ranking);
   console.log(match);
                                               
   pool.query(match, function(error, result){
@@ -369,14 +358,20 @@ app.post('/signup', function(req, res){
         if(error) {
           console.log("Insert failed!");
           res.json({status:-1,msg:"Sign Up failed, please try again!"});
-          //res.redirect('https://stark-spire-21434.herokuapp.com/signupFailed.html');
         }
         else{
-            console.log("Insert succeeded!");
-            var results = result.rows;
-            console.log(results);
-            res.json({status:0,msg:"Successed!"});
-            //res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
+          pool.query(ranking,function(error,result){
+            if(error){
+              console.log("Ranking failed!");
+            }
+            else{
+              console.log("Ranking success!");
+            }
+          });
+          console.log("Insert succeeded!");
+          var results = result.rows;
+          console.log(results);
+          res.json({status:0,msg:"Successed!"});
         }
       });    
     } //else
