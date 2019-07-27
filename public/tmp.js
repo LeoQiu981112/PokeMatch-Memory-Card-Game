@@ -1,5 +1,5 @@
 $(function() {
-
+    // document is loaded and DOM is ready
   var user="";
 
   $.ajax({
@@ -22,6 +22,7 @@ $(function() {
     '#3b88eb', '#3824aa', '#a700ff', '#d300e7'
   ];
 
+
   // Initialize variables
   var $window = $(window);
   var $messages = $('.messages'); // Messages area
@@ -29,7 +30,8 @@ $(function() {
   var $chatPage = $('.chat.page'); // The chatroom page
 
   // Prompt for setting a username
-  var username;
+  var username="";
+
   var connected = false;
   var $currentInput = $inputMessage.focus();
 
@@ -47,7 +49,6 @@ $(function() {
 
   // Sets the client's username
   const setUsername = () => {
-    // username = cleanInput($usernameInput.val().trim());
     username = user;
     // If the username is valid
     if (username) {
@@ -170,15 +171,24 @@ $(function() {
     }
     // When the client hits ENTER on their keyboard
     if (event.which === 13) {
+      //alert("ffssfd");
       if (username) {
         sendMessage();
         // socket.emit('stop typing');
         typing = false;
       } 
-      // else {
-      //   setUsername();
-      // }
+      else {
+        setUsername();
+      }
     }
+    // if(username==""){
+    //   setUsername();
+    //   alert("sfffsdfsdd");
+    // }
+    // else if(event.which===13){
+    //   sendMessage();
+    //   typing=false;
+    // }
   });
 
 
@@ -192,7 +202,7 @@ $(function() {
   socket.on('login', (data) => {
     connected = true;
     // Display the welcome message
-    var message = "Welcome to Socket.IO Chat – ";
+    var message = "Welcome to PokeMatch Chat – ";
     log(message, {
       prepend: true
     });
@@ -217,16 +227,6 @@ $(function() {
     // removeChatTyping(data);
   });
 
-  // Whenever the server emits 'typing', show the typing message
-  // socket.on('typing', (data) => {
-  //   addChatTyping(data);
-  // });
-
-  // Whenever the server emits 'stop typing', kill the typing message
-  // socket.on('stop typing', (data) => {
-  //   removeChatTyping(data);
-  // });
-
   socket.on('disconnect', () => {
     log('you have been disconnected');
   });
@@ -241,9 +241,4 @@ $(function() {
   socket.on('reconnect_error', () => {
     log('attempt to reconnect has failed');
   });
-});
-
-$(window).on('load', function() {
-  setUsername();
- // code here
 });
