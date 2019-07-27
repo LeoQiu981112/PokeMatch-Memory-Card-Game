@@ -148,24 +148,6 @@
 			$("#box").show();
 			document.getElementById("steps").innerHTML=count;
 		}
-		$("#upload").click(function(){
-			var one_steps=$("#steps").val();
-			$.ajax({
-        		type:"post",
-        		url:"/ranking",
-        		data:{one_steps:one_steps},
-        		success:function(data){
-            		if(data.status==-1){
-            			alert("ranking Fail!");
-            		}else{
-            			alert("ranking success!");
-            		}
-        		},
-        		error:function(){
-            		alert("Internet Error");
-        		}
-    		})
-		})
 	</script>
 	<div id="box" class="white_content" align="left" valign="middle">
 		<center>
@@ -174,7 +156,27 @@
 			<p>Your steps is: </p>
 			<p id="steps">0</p>
 			<button id="restart" onclick="restart();shuffle_poke()">Restart</button>
-			<input type="submit" id="upload">UploadGrade</button>
+			<input type="submit" id="upload" value="UploadGrade">
+			<script type="text/javascript">
+				$("#upload").click(function(){
+					var one_steps=$("#steps").val();
+					$.ajax({
+        				type:"post",
+        				url:"/ranking",
+        				data:{one_steps:one_steps},
+        				success:function(data){
+            				if(data.status==-1){
+            					alert("ranking Fail!");
+            				}else{
+            					alert("ranking success!");
+            				}
+        				},
+        				error:function(){
+            				alert("Internet Error");
+        				}
+    				})
+				});
+			</script>
 		</center>
 	</div>
 
