@@ -1,6 +1,5 @@
-$(document).ready(function() {
+$(function() {
     // document is loaded and DOM is ready
-    alert("document is ready");
 
   var user="";
 
