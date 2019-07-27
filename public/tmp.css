@@ -1,3 +1,5 @@
+/* Fix user-agent */
+
 * {
   box-sizing: border-box;
 }
@@ -46,7 +48,7 @@ ul {
 
 /* Login Page */
 
-/*.login.page {
+.login.page {
   background-color: #000;
 }
 
@@ -83,12 +85,12 @@ ul {
   color: #fff;
   font-weight: 100;
 }
-*/
+
 /* Chat page */
 
-/*.chat.page {
+.chat.page {
   display: none;
-}*/
+}
 
 /* Font */
 
