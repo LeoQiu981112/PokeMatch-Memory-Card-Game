@@ -9,7 +9,7 @@
 </head>
 <body>
 
-  
+
   <input id="test" type="text" />
 
 
@@ -27,5 +27,19 @@
   <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
   <script src="/socket.io/socket.io.js"></script>
   <script src="/tmp.js"></script>
+
+  <script>
+  $(document).ready(function(){
+    e = jQuery.Event("keypress")
+    e.which = 13 //choose the one you want
+        $("#test").keypress(function(){
+         alert('keypress triggered')
+        }).trigger(e)
+  })
+  </script>
+
 </body>
 </html>
+
+
+
