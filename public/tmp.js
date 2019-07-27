@@ -66,7 +66,7 @@ $(function() {
 
   // Sets the client's username
   const setUsername = () => {
-    username = "233";
+    username = user;
 
     // If the username is valid
     if (username) {
