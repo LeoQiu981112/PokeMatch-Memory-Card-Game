@@ -95,16 +95,20 @@
                 }
                 for(i=0;i<data.list.length;i++){
                     var tr=document.createElement("tr");
+                    var td0=document.createElement("td");
                     var td1=document.createElement("td");
                     var td2=document.createElement("td");
+                    //var td3=document.createElement("td");
 
+                    td0.innerHTML="No."+i+1;
                     td1.innerHTML=data.list[i].userid;
                     td2.innerHTML=data.list[i].one_steps;
-                    td3.innerHTML=data.list[i].two_steps;
+                    //td3.innerHTML=data.list[i].two_steps;
 
+                    tr.appendChild(td0);
                     tr.appendChild(td1);
                     tr.appendChild(td2);
-                    tr.appendChild(td3);
+                    //tr.appendChild(td3);
 
                     table.appendChild(tr);
 
