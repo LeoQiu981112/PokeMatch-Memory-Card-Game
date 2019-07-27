@@ -1,4 +1,24 @@
 $(function() {
+
+  var user="";
+
+  $.ajax({
+      type:"get",
+      url:"/userlist",
+      success:function(data){
+          if(data.status==-1){
+              user+=data.user;
+          }
+      },
+      error:function(){
+          alert("username Error");
+      }
+  });   
+
+
+
+
+
   var FADE_TIME = 150; // ms
   var TYPING_TIMER_LENGTH = 400; // ms
   var COLORS = [
@@ -38,7 +58,7 @@ $(function() {
   // Sets the client's username
   const setUsername = () => {
     username = cleanInput($usernameInput.val().trim());
-
+    username = user;
     // If the username is valid
     if (username) {
       $loginPage.fadeOut();
