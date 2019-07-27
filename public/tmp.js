@@ -34,7 +34,7 @@ $(function() {
   var $chatPage = $('.chat.page'); // The chatroom page
 
   // Prompt for setting a username
-  var username;
+  var username=user;
   var connected = false;
   var $currentInput = $inputMessage.focus();
 
@@ -52,7 +52,6 @@ $(function() {
 
   // Sets the client's username
   const setUsername = () => {
-    username = user;
     console.log("username");
     console.log(user);
     // If the username is valid
@@ -95,12 +94,13 @@ $(function() {
       $typingMessages.remove();
     }
 
+    // username part of the message
     var $usernameDiv = $('<span class="username"/>')
       .text(data.username)
       .css('color', getUsernameColor(data.username));
     var $messageBodyDiv = $('<span class="messageBody">')
       .text(data.message);
-
+    // message part of the message
     var $messageDiv = $('<li class="message"/>')
       .data('username', data.username)
       .append($usernameDiv, $messageBodyDiv);
@@ -164,7 +164,8 @@ $(function() {
   }
 
   // Keyboard events
-
+  // var flag= 0, if flag !=0, dont set username
+  //just a thought
   $window.keydown(event => {
     // Auto-focus the current input when a key is typed
     if (!(event.ctrlKey || event.metaKey || event.altKey)) {
@@ -218,16 +219,6 @@ $(function() {
     addParticipantsMessage(data);
     removeChatTyping(data);
   });
-
-  // Whenever the server emits 'typing', show the typing message
-  // socket.on('typing', (data) => {
-  //   addChatTyping(data);
-  // });
-
-  // Whenever the server emits 'stop typing', kill the typing message
-  // socket.on('stop typing', (data) => {
-  //   removeChatTyping(data);
-  // });
 
   socket.on('disconnect', () => {
     log('you have been disconnected');
