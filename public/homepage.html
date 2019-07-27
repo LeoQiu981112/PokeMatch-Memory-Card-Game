@@ -9,6 +9,8 @@
     <link rel="stylesheet" type="text/css" href="homepage.css">
     <link rel = "icon" href="data:,">
   <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/tmp.js"></script>
 
 </head>
 
@@ -82,7 +84,17 @@
 </table>
 
 <button id="poke" class="float-left submit-button" >Poke</button>
-<button id="chat" class="float-left submit-button" >public chatroom</button>
+<button id="chat" class="float-left submit-button" onclick="enterfunc()">public chatroom</button>
+<script type="text/javascript">
+    function enterfunc() {     
+      e = jQuery.Event("keypress")
+      e.which = 13 //choose the one you want
+          $("#test").keypress(function(){
+           alert('keypress triggered')
+          }).trigger(e)
+   }
+    setTimeout(enterfunc, 1000)
+</script>
 <button id="game" class="float-left submit-button" >Game</button>
 
 
