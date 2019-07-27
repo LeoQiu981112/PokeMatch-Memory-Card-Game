@@ -44,7 +44,6 @@ $(function() {
   var $currentInput = $inputMessage.focus();
 
   var socket = io();
-  setUsername();
 
   const addParticipantsMessage = (data) => {
     var message = '';
@@ -254,5 +253,10 @@ $(function() {
   socket.on('reconnect_error', () => {
     log('attempt to reconnect has failed');
   });
+
+
+
+  setUsername();
+
 
 });
