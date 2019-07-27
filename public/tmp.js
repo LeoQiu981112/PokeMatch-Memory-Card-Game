@@ -6,26 +6,6 @@ $(function() {
     '#3b88eb', '#3824aa', '#a700ff', '#d300e7'
   ];
 
-
-  // get session name with ajax,
-  $.ajax({
-      type:"get",
-      url:"/userlist",
-      success:function(data){
-          if(data.status==-1){
-              var user="";
-              user+=data.user;
-          }
-         // var html="";
-         // html+=data.status;
-          //$("tbody").html(html);
-      },
-      error:function(){
-          alert("Internet Error");
-      }
-  });   
-
-
   // Initialize variables
   var $window = $(window);
 
@@ -39,6 +19,7 @@ $(function() {
   var username;
   var connected = false;
   var $currentInput = $inputMessage.focus();
+
 
   var socket = io();
 
@@ -54,14 +35,19 @@ $(function() {
 
   // Sets the client's username
   const setUsername = () => {
+    username = "233";
     // If the username is valid
     if (username) {
       $chatPage.show();
       $currentInput = $inputMessage.focus();
+
       // Tell the server your username
-      socket.emit('add user', user);
+      socket.emit('add user', username);
     }
   }
+
+  
+
 
   // Sends a chat message
   const sendMessage = () => {
@@ -194,7 +180,7 @@ $(function() {
   socket.on('login', (data) => {
     connected = true;
     // Display the welcome message
-    var message = "Welcome to the Chat";
+    var message = "Welcome to Socket.IO Chat – ";
     log(message, {
       prepend: true
     });
@@ -224,5 +210,15 @@ $(function() {
     log('you have been disconnected');
   });
 
+  socket.on('reconnect', () => {
+    log('you have been reconnected');
+    if (username) {
+      socket.emit('add user', username);
+    }
+  });
+
+  socket.on('reconnect_error', () => {
+    log('attempt to reconnect has failed');
+  });
 
 });
