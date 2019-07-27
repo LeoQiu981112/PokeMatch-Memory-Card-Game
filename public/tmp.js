@@ -44,7 +44,8 @@ $(function() {
   var $currentInput = $inputMessage.focus();
 
   var socket = io();
-
+  setUsername();
+  
   const addParticipantsMessage = (data) => {
     var message = '';
     if (data.numUsers === 1) {
@@ -189,9 +190,10 @@ $(function() {
         sendMessage();
         // socket.emit('stop typing');
         typing = false;
-      } else {
-        setUsername();
-      }
+      } 
+      // else {
+      //   setUsername();
+      // }
     }
   });
 
