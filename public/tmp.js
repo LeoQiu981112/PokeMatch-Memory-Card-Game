@@ -202,7 +202,7 @@ $(function() {
   socket.on('login', (data) => {
     connected = true;
     // Display the welcome message
-    var message = "Welcome to Socket.IO Chat – ";
+    var message = "Welcome to PokeMatch Chat – ";
     log(message, {
       prepend: true
     });
