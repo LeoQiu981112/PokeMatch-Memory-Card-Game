@@ -47,6 +47,7 @@ $(function() {
     log(message);
   }
 
+  setUsername();
   // Sets the client's username
   const setUsername = () => {
     username = user;
@@ -181,10 +182,6 @@ $(function() {
       else {
         setUsername();
       }
-    }
-    else{
-      alert("fdfsdfsd");
-      setUsername();
     }
   });
 
