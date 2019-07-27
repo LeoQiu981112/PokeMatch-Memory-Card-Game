@@ -175,9 +175,9 @@ $(function() {
         // socket.emit('stop typing');
         typing = false;
       } 
-      else {
-        setUsername();
-      }
+      // else {
+      //   setUsername();
+      // }
     }
   });
 
@@ -246,4 +246,9 @@ $(function() {
 
 
 
+});
+
+$(window).on('load', function() {
+  setUsername();
+ // code here
 });
