@@ -551,7 +551,7 @@ app.post('/ranking', function(req, res){
   var one_steps=req.body.one_steps;
 
   var fp="update ranking set ";
-  var sp= " where id = " + mid + ";";
+  var sp= " where userid = " + mid + ";";
   var tmp;
   console.log(one_steps);
   if(one_steps){
@@ -564,7 +564,7 @@ app.post('/ranking', function(req, res){
       }
     });
   }
-  //res.json({status:1});
+  res.json({status:1});
 
   //res.redirect('https://stark-spire-21434.herokuapp.com/homepage.html');
 });
