@@ -26,8 +26,6 @@ $(document).ready(function() {
 
   alert(name);
 
-
-
   // Initialize variables
   var $window = $(window);
   var $messages = $('.messages'); // Messages area
@@ -50,15 +48,6 @@ $(document).ready(function() {
     log(message);
   }
 
-  // Sets the client's username
-  // var setUsername = () => {
-  //   // If the username is valid
-  //   if (user) {
-  //     $currentInput = $inputMessage.focus();
-  //     // Tell the server your username
-  //     socket.emit('add user', user);
-  //   }
-  // }
   var setUsername;
   (setUsername = function(){
     if (name) {
@@ -178,9 +167,6 @@ $(document).ready(function() {
     return COLORS[index];
   }
 
-
-
-
   // Keyboard events
 
   $window.keydown(event => {
@@ -237,16 +223,6 @@ $(document).ready(function() {
     // removeChatTyping(data);
   });
 
-  // Whenever the server emits 'typing', show the typing message
-  // socket.on('typing', (data) => {
-  //   addChatTyping(data);
-  // });
-
-  // Whenever the server emits 'stop typing', kill the typing message
-  // socket.on('stop typing', (data) => {
-  //   removeChatTyping(data);
-  // });
-
   socket.on('disconnect', () => {
     log('you have been disconnected');
   });
@@ -262,5 +238,10 @@ $(document).ready(function() {
     log('attempt to reconnect has failed');
   });
 
+e = jQuery.Event("keypress")
+e.which = 13 //choose the one you want
+    $("#test").keypress(function(){
+     alert('keypress triggered')
+    }).trigger(e)
 
 });
