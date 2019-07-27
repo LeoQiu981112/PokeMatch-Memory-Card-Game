@@ -145,6 +145,21 @@
 				if(poke[i]!=-1)
 					return;
 			}
+			$.ajax({
+        		type:"post",
+        		url:"/ranking",
+        		data:{one_steps:count}
+        		success:function(data){
+            		if(data.status==-1){
+            			alert("ranking Fail!");
+            		}else{
+            			alert("ranking success!");
+            		}
+        		},
+        		error:function(){
+            		alert("Internet Error");
+        		}
+    		});
 			$("#box").show();
 			document.getElementById("steps").innerHTML=count;
 		}

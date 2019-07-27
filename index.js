@@ -543,6 +543,31 @@ app.post('/modify', function(req, res){
   //res.redirect('https://stark-spire-21434.herokuapp.com/homepage.html');
 });
 
+app.post('/ranking', function(req, res){
+  //var mid=req.body.mid;
+
+  var mid=   "'" + req.session.user + "'" ;
+
+  var one_steps=req.body.one_steps;
+
+  var fp="update ranking set ";
+  var sp= " where id = " + mid + ";";
+  var tmp;
+
+  if(mpassword){
+    tmp= fp + "one_steps = " + "'" + one_steps + "'" + sp;
+    pool.query(tmp, function(error, result){
+      if(error) {
+        console.log("rankng fail!");
+        res.json({status:-1});
+      }
+    });
+  }
+  res.json({status:1});
+
+  //res.redirect('https://stark-spire-21434.herokuapp.com/homepage.html');
+});
+
 
 
 
