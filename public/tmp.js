@@ -1,4 +1,6 @@
-$(function() {
+$(document).ready(function() {
+    // document is loaded and DOM is ready
+    alert("document is ready");
 
   var user="";
 
@@ -22,6 +24,7 @@ $(function() {
     '#3b88eb', '#3824aa', '#a700ff', '#d300e7'
   ];
 
+  alert(user);
   // Initialize variables
   var $window = $(window);
   var $messages = $('.messages'); // Messages area
@@ -159,9 +162,7 @@ $(function() {
   }
 
 
-  alert("start");
-  setUsername();
-  alert("over");
+
 
   // Keyboard events
 
@@ -172,7 +173,7 @@ $(function() {
     }
     // When the client hits ENTER on their keyboard
     if (event.which === 13) {
-      if (username) {
+      if (user) {
         sendMessage();
         // socket.emit('stop typing');
         typing = false;
@@ -246,6 +247,8 @@ $(function() {
 
 
 
-
+  alert("start");
+  setUsername();
+  alert("over");
 
 });
