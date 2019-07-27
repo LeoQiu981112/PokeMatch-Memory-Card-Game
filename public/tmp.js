@@ -1,25 +1,21 @@
 
     //run right away
-$.ajax({
-    type:"get",
-    url:"/userlist",
-    success:function(data){
-        if(data.status==-1){
-            var user="";
-            user+=data.user;
-            $("h1").html(user);
-            var msg="";
-            msg+=data.msg;
-            $("p1").html(msg);
+    $.ajax({
+        type:"get",
+        url:"/userlist",
+        success:function(data){
+            if(data.status==-1){
+                var user="";
+                user+=data.user;
+            }
+           // var html="";
+           // html+=data.status;
+            //$("tbody").html(html);
+        },
+        error:function(){
+            alert("Internet Error");
         }
-       // var html="";
-       // html+=data.status;
-        //$("tbody").html(html);
-    },
-    error:function(){
-        alert("Internet Error");
-    }
-});    
+    });    
 
 
 $(function() {
@@ -66,6 +62,7 @@ $(function() {
 
   // Sets the client's username
   const setUsername = () => {
+    // username = "233";
     username = user;
 
     // If the username is valid
