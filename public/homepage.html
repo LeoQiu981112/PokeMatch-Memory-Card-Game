@@ -80,6 +80,50 @@
         <td id="w5">45</td>
     </tr>
 </table>
+<script type="text/javascript">
+    $.ajax({
+        type:"get",
+        url:"/rankinglist",
+        success:function(data){
+            if(data.status==0){
+                var table=document.getElementById('ranking');
+                var size=table.rows.length;
+                for(i=0;i<size;i++){
+                    table.deleteRow(i);
+                    size=size-1;
+                    i=i-1;
+                }
+                for(i=0;i<data.list.length;i++){
+                    var tr=document.createElement("tr");
+                    var td1=document.createElement("td");
+                    var td2=document.createElement("td");
+
+                    td1.innerHTML=data.list[i].userid;
+                    td2.innerHTML=data.list[i].one_steps;
+                    td3.innerHTML=data.list[i].two_steps;
+
+                    tr.appendChild(td1);
+                    tr.appendChild(td2);
+                    tr.appendChild(td3);
+
+                    table.appendChild(tr);
+
+                }
+            }
+
+            else{
+                alert("Ranking fail!");
+            }
+           // var html="";
+           // html+=data.status;
+            //$("tbody").html(html);
+        },
+        error:function(){
+            alert("Internet Error");
+        }
+    });
+    
+</script>
 
 <button id="poke" class="float-left submit-button" >Poke</button>
 
@@ -174,13 +218,6 @@
         document.getElementById('inputbox').style.display=n?'block':'none';
     }
 </script>
-
-
-
-
-
-
-
 
 </body>
 </html>

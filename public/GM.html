@@ -38,11 +38,6 @@
   
   <div id="GGM">
       <h2>Manage players</h2>
-
-
-
-
-
       <div action="/search" method="post" id="GS">
         <input type="text" id="search_cri" name="search_cri" placeholder="enter ID">
         <input type="submit" value="Search" id="gsearch" name="gsearch">
@@ -50,9 +45,9 @@
       <div>
         <table id="userlist">
             <tr>
-              <td>ID</th>
-              <td>Name</th>
-              <td>Age</th>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Age</th>
             </tr>
 <!--               <th id ="user">none1</th>
               <th id = "pass">none2</th>
@@ -62,10 +57,7 @@
       </div>
       <br></br>
       <h2>Delete player by ID</h2>
-
-
-
-      <div> <!action="/remove" method="post" >
+      <div>
         <input type="text" id="Gdelete" name="Gdelete" placeholder="enter ID">
         <input type="submit" value="Delete" id="delete">
       </div>
@@ -159,7 +151,7 @@
 
                         table.appendChild(tr);
                       }
-                      document.getElementById("user").innerHTML=data.list[0].user;
+                      //document.getElementById("user").innerHTML=data.list[0].user;
                       
                       //alert("search success!");
                     }
@@ -174,11 +166,5 @@
             })
         });
     </script>
-
-
-
-
-
-
   </body>
 </html>

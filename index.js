@@ -573,12 +573,53 @@ app.post('/ranking', function(req, res){
     });
   }
   res.json({status:1});
-
-  //res.redirect('https://stark-spire-21434.herokuapp.com/homepage.html');
 });
 
+app.post('/rankinglist', function(req, res){
+  var search = "select * from ranking order by one_steps asc;";                              
+  //console.log(search);
+  pool.query(search, function(error, result){
+    if(error) {
+        console.log("order fail!");
+        res.json({status:-1});
+    }
 
+    else{
+      if(result.rowCount) {
+         //console.log("Search succeeded!");
+        console.log(result.rows[0]);
 
+        var obj = [];
+        var tmp;
+        for (i=0;i<result.rowCount;i++){
+            tmp= {  
+            userid: result.rows[i].userid  ,    
+            one_steps: result.rows[i].one_steps , 
+            two_steps: result.rows[i].two_steps};
+          obj.push(tmp);
+        }
+        // var test= JSON.parse(json);
+        var json = {
+          status: 0,
+          list: obj
+        }
+        //json=JSON.stringify(json);
+        //var result;
+        //result=JSON.parse(json)
+        console.log("json");
+        console.log(json);
+        res.json(json);
+       }
+      else{
+        console.log("Ranking failed!");
+        res.json({status:-1,list:"No ranking"});
+      }    
+    }  
+  });     
+
+  //res.redirect('https://stark-spire-21434.herokuapp.com/GM.html');
+// res.redirect('http://localhost:5000/main.html');
+});
 
 // app.delete('/user/:id', (req, res) => {
 //   console.log(req.params.id) 
@@ -588,14 +629,6 @@ app.post('/ranking', function(req, res){
 // app.set('view engine', 'ejs')
 // app.get('/', (req, res) => res.render('pages/index'))
 
-
-
 // app.get('/users/:id', function(req, res){
 //   console.log(req.params.id);
 // })
-
-
-
-
-
-
