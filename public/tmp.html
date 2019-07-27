@@ -27,14 +27,14 @@
   <script src="/tmp.js"></script>
 
   <script>
-    function enterfunc() {     
+    //function enterfunc() {     
       e = jQuery.Event("keypress")
       e.which = 13 //choose the one you want
           $("#test").keypress(function(){
            alert('keypress triggered')
           }).trigger(e)
    }
-    setTimeout(enterfunc, 1000)
+    //setTimeout(enterfunc, 1000)
   </script>
 
 </body>
