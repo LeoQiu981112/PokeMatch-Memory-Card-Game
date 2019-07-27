@@ -241,11 +241,6 @@ $(function() {
   socket.on('reconnect_error', () => {
     log('attempt to reconnect has failed');
   });
-
-
-
-
-
 });
 
 $(window).on('load', function() {
