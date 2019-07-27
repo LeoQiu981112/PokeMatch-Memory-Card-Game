@@ -401,12 +401,21 @@ app.post('/gmmessage', function(req, res){
 
 app.post('/remove', function(req, res){
   var dname=req.body.name;
-  var remove = "delete from players where id =" +    "'" + dname + "'"  
-                                                 + ";" ;   
+  var remove = "delete from players where id =" +    "'" + dname + "'" + ";" ;   
+  var ranking="delete from ranking where userid="+"'"+dname+"'"+";";
   console.log(remove);
+  console.log(ranking);
 
   pool.query(remove, function(error, result){
 	  if(result.rowCount) {
+      pool.query(ranking,function(error,result){
+        if(error){
+          console.log("Ranking failed!");
+        }
+        else{
+          console.log("Ranking success!");
+        }
+      });
       console.log("Remove succeeded!");
       res.json({status:0});
 	  }
@@ -545,7 +554,6 @@ app.post('/modify', function(req, res){
 
 app.post('/ranking', function(req, res){
   //var mid=req.body.mid;
-  console.log("ghjkggkh")
   var mid=   "'" + req.session.user + "'" ;
 
   var one_steps=req.body.one_steps;
