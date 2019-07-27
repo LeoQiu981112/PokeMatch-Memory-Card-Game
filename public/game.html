@@ -94,7 +94,16 @@
 			<td><p><img href = "javascript:void(0)"  id="location17" align="bottom" width="90%" height="200%" onclick="poker(17)"></p></td>
 		</tr>
 	</table>
-    <script language="javascript">
+
+	<div id="box" class="white_content" align="left" valign="middle">
+		<center>
+			<img src="images/Success.png" href = "javascript:void(0)"  id="success" align="bottom" width="70%">
+			<br></br>
+			<p>Your steps is: </p>
+			<p id="steps">0</p>
+			<button id="restart" onclick="restart();shuffle_poke()">Restart</button>
+			<input type="submit" id="upload" value="UploadGrade">
+			<script type="text/javascript">
 		var poke=[1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10];
 		var number=Math.ceil(Math.random()*10);
 		poke.splice((number-1)*2,2);
@@ -166,15 +175,7 @@
         		}
     		})
 		});
-	</script>
-	<div id="box" class="white_content" align="left" valign="middle">
-		<center>
-			<img src="images/Success.png" href = "javascript:void(0)"  id="success" align="bottom" width="70%">
-			<br></br>
-			<p>Your steps is: </p>
-			<p id="steps">0</p>
-			<button id="restart" onclick="restart();shuffle_poke()">Restart</button>
-			<input type="submit" id="upload" value="UploadGrade">
+			</script>
 		</center>
 	</div>
 
