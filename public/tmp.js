@@ -1,4 +1,6 @@
-$(function() {
+
+$( document ).ready(function() {
+    console.log( "ready!" );
 
   var user="";
 
@@ -9,8 +11,6 @@ $(function() {
           if(data.status==-1){
               // var user="";
               user+=data.user;
-              setUsername();
-
           }
          // var html="";
          // html+=data.status;
@@ -20,6 +20,12 @@ $(function() {
           alert("Internet Error");
       }
   });    
+
+  setUsername();
+});
+
+$(function() {
+
 
   var FADE_TIME = 150; // ms
   var TYPING_TIMER_LENGTH = 400; // ms
