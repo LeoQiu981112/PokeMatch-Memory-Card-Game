@@ -545,7 +545,7 @@ app.post('/modify', function(req, res){
 
 app.post('/ranking', function(req, res){
   //var mid=req.body.mid;
-
+  console.log("ghjkggkh")
   var mid=   "'" + req.session.user + "'" ;
 
   var one_steps=req.body.one_steps;
