@@ -576,7 +576,8 @@ app.post('/ranking', function(req, res){
 });
 
 app.post('/rankinglist', function(req, res){
-  var search = "select * from ranking order by one_steps asc;";                              
+  var search = "select * from ranking order by one_steps asc;"; 
+  console.log(search);                             
   //console.log(search);
   pool.query(search, function(error, result){
     if(error) {
