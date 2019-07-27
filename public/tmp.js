@@ -48,14 +48,23 @@ $(document).ready(function() {
   }
 
   // Sets the client's username
-  const setUsername = () => {
-    // If the username is valid
+  // var setUsername = () => {
+  //   // If the username is valid
+  //   if (user) {
+  //     $currentInput = $inputMessage.focus();
+  //     // Tell the server your username
+  //     socket.emit('add user', user);
+  //   }
+  // }
+  var setUsername;
+  (setUsername = function(){
     if (user) {
       $currentInput = $inputMessage.focus();
       // Tell the server your username
       socket.emit('add user', user);
-    }
-  }
+      }
+  })();
+
 
   // Sends a chat message
   const sendMessage = () => {
@@ -245,10 +254,5 @@ $(document).ready(function() {
     log('attempt to reconnect has failed');
   });
 
-
-
-  alert("start");
-  setUsername();
-  alert("over");
 
 });
