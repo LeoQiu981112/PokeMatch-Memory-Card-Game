@@ -183,6 +183,7 @@ $(function() {
     //   }
     // }
     if(username){
+      alert("sfffsdfsdd");
       if(event.which===13){
         sendMessage();
         typing=false;
