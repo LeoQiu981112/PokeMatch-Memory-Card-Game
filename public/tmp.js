@@ -1,9 +1,21 @@
 $(function() {
 
- 
+  var user="";
 
-  var FADE_TIME = 150; // ms
-  var TYPING_TIMER_LENGTH = 400; // ms
+  $.ajax({
+      type:"get",
+      url:"/userlist",
+      success:function(data){
+          if(data.status==-1){
+              user+=data.user;
+          }
+      },
+      error:function(){
+          alert("username Error");
+      }
+  });   
+
+
   var COLORS = [
     '#e21400', '#91580f', '#f8a700', '#f78b00',
     '#58dc00', '#287b00', '#a8f07a', '#4ae8c4',
@@ -14,7 +26,6 @@ $(function() {
   var $window = $(window);
   // var $usernameInput = $('.usernameInput'); // Input for username
 
-
   var $messages = $('.messages'); // Messages area
   var $inputMessage = $('.inputMessage'); // Input message input box
 
@@ -24,10 +35,7 @@ $(function() {
   // Prompt for setting a username
   var username;
   var connected = false;
-  // var typing = false;
-  // var lastTypingTime;
   var $currentInput = $inputMessage.focus();
-
 
   var socket = io();
 
@@ -43,21 +51,9 @@ $(function() {
 
   // Sets the client's username
   const setUsername = () => {
-    var user="";
-
-    $.ajax({
-        type:"get",
-        url:"/userlist",
-        success:function(data){
-            if(data.status==-1){
-                user+=data.user;
-            }
-        },
-        error:function(){
-            alert("Internet Error");
-        }
-    });   
     username = user;
+    console.log("username");
+    console.log(user);
     // If the username is valid
     if (username) {
       $currentInput = $inputMessage.focus();
