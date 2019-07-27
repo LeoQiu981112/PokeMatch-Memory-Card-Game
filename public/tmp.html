@@ -8,11 +8,6 @@
 
 </head>
 <body>
-
-
-  <input id="test" type="text" />
-
-
   <ul class="pages">
 
     <li class="chat page">
@@ -22,7 +17,7 @@
       <div class="chatArea">
         <ul class="messages"></ul>
       </div>
-      <input class="inputMessage" placeholder="Type here..."/>
+      <input id="test" class="inputMessage" placeholder="Type here..."/>
     </li>
 
   </ul>
@@ -32,14 +27,14 @@
   <script src="/tmp.js"></script>
 
   <script>
-   //  function enterfunc() {     
-   //    e = jQuery.Event("keypress")
-   //    e.which = 13 //choose the one you want
-   //        $("#test").keypress(function(){
-   //         alert('keypress triggered')
-   //        }).trigger(e)
-   // }
-   //  setTimeout(enterfunc, 1000)
+    function enterfunc() {     
+      e = jQuery.Event("keypress")
+      e.which = 13 //choose the one you want
+          $("#test").keypress(function(){
+           alert('keypress triggered')
+          }).trigger(e)
+   }
+    setTimeout(enterfunc, 1000)
   </script>
 
 </body>
