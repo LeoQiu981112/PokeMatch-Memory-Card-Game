@@ -552,7 +552,7 @@ app.post('/modify', function(req, res){
   //res.redirect('https://stark-spire-21434.herokuapp.com/homepage.html');
 });
 
-app.post('/ranking', function(req, res){
+app.get('/ranking', function(req, res){
   //var mid=req.body.mid;
   var mid=   "'" + req.session.user + "'" ;
 
