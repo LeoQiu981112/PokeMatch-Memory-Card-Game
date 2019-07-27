@@ -553,7 +553,7 @@ app.post('/ranking', function(req, res){
   var fp="update ranking set ";
   var sp= " where id = " + mid + ";";
   var tmp;
-
+  console.log(one_steps);
   if(one_steps){
     tmp= fp + "one_steps = " + "'" + one_steps + "'" + sp;
     pool.query(tmp, function(error, result){
