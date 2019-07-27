@@ -1,24 +1,29 @@
 
     //run right away
-    $.ajax({
-        type:"get",
-        url:"/userlist",
-        success:function(data){
-            if(data.status==-1){
-                var user="";
-                user+=data.user;
-            }
-           // var html="";
-           // html+=data.status;
-            //$("tbody").html(html);
-        },
-        error:function(){
-            alert("Internet Error");
-        }
-    });    
+
 
 
 $(function() {
+
+  var user="";
+
+  $.ajax({
+      type:"get",
+      url:"/userlist",
+      success:function(data){
+          if(data.status==-1){
+              // var user="";
+              user+=data.user;
+          }
+         // var html="";
+         // html+=data.status;
+          //$("tbody").html(html);
+      },
+      error:function(){
+          alert("Internet Error");
+      }
+  });    
+
   var FADE_TIME = 150; // ms
   var TYPING_TIMER_LENGTH = 400; // ms
   var COLORS = [
