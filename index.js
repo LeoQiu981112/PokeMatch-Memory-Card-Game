@@ -554,7 +554,7 @@ app.post('/ranking', function(req, res){
   var sp= " where id = " + mid + ";";
   var tmp;
 
-  if(mpassword){
+  if(one_steps){
     tmp= fp + "one_steps = " + "'" + one_steps + "'" + sp;
     pool.query(tmp, function(error, result){
       if(error) {
