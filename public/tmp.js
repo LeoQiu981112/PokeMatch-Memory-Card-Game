@@ -116,28 +116,28 @@ $(function() {
     var $messageBodyDiv = $('<span class="messageBody">')
       .text(data.message);
 
-    var typingClass = data.typing ? 'typing' : '';
+    // var typingClass = data.typing ? 'typing' : '';
     var $messageDiv = $('<li class="message"/>')
       .data('username', data.username)
-      .addClass(typingClass)
+      // .addClass(typingClass)
       .append($usernameDiv, $messageBodyDiv);
 
     addMessageElement($messageDiv, options);
   }
 
   // Adds the visual chat typing message
-  const addChatTyping = (data) => {
-    data.typing = true;
-    data.message = 'is typing';
-    addChatMessage(data);
-  }
+  // const addChatTyping = (data) => {
+  //   data.typing = true;
+  //   data.message = 'is typing';
+  //   addChatMessage(data);
+  // }
 
   // Removes the visual chat typing message
-  const removeChatTyping = (data) => {
-    getTypingMessages(data).fadeOut(function () {
-      $(this).remove();
-    });
-  }
+  // const removeChatTyping = (data) => {
+  //   getTypingMessages(data).fadeOut(function () {
+  //     $(this).remove();
+  //   });
+  // }
 
   // Adds a message element to the messages and scrolls to the bottom
   // el - The element to add as a message
@@ -175,7 +175,7 @@ $(function() {
     return $('<div/>').text(input).html();
   }
 
-  // // Updates the typing event
+  // Updates the typing event
   // const updateTyping = () => {
   //   if (connected) {
   //     if (!typing) {
@@ -195,7 +195,7 @@ $(function() {
   //   }
   // }
 
-  // // Gets the 'X is typing' messages of a user
+  // Gets the 'X is typing' messages of a user
   // const getTypingMessages = (data) => {
   //   return $('.typing.message').filter(function (i) {
   //     return $(this).data('username') === data.username;
@@ -226,8 +226,9 @@ $(function() {
       if (username) {
         sendMessage();
         // socket.emit('stop typing');
-        typing = false;
-      } else {
+        // typing = false;
+      } 
+      else {
         setUsername();
       }
     }
@@ -239,7 +240,7 @@ $(function() {
 
   // Click events
 
-  // // Focus input when clicking anywhere on login page
+  // Focus input when clicking anywhere on login page
   // $loginPage.click(() => {
   //   $currentInput.focus();
   // });
@@ -285,7 +286,7 @@ $(function() {
   //   addChatTyping(data);
   // });
 
-  // // Whenever the server emits 'stop typing', kill the typing message
+  // Whenever the server emits 'stop typing', kill the typing message
   // socket.on('stop typing', (data) => {
   //   removeChatTyping(data);
   // });
