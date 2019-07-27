@@ -10,6 +10,10 @@ $(function() {
   // Initialize variables
   var $window = $(window);
   var $usernameInput = $('.usernameInput'); // Input for username
+
+
+
+
   var $messages = $('.messages'); // Messages area
   var $inputMessage = $('.inputMessage'); // Input message input box
 
@@ -21,7 +25,8 @@ $(function() {
   var connected = false;
   var typing = false;
   var lastTypingTime;
-  var $currentInput = $usernameInput.focus();
+  var $currentInput = $inputMessage.focus();
+
 
   var socket = io();
 
@@ -37,7 +42,7 @@ $(function() {
 
   // Sets the client's username
   const setUsername = () => {
-    username = cleanInput($usernameInput.val().trim());
+    username = "233";
 
     // If the username is valid
     if (username) {
