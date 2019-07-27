@@ -55,6 +55,7 @@ $(function() {
     log(message);
   }
 
+
   // Sets the client's username
   const setUsername = () => {
     // username = cleanInput($usernameInput.val().trim());
