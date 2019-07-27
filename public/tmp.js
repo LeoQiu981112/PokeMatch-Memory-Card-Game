@@ -58,10 +58,6 @@ $(function() {
     }
   }
 
-  if(username==""){
-    setUsername();
-    alert("ssdd");
-  }
   // Sends a chat message
   const sendMessage = () => {
     var message = $inputMessage.val();
@@ -174,25 +170,25 @@ $(function() {
       $currentInput.focus();
     }
     // When the client hits ENTER on their keyboard
-    // if (event.which === 13) {
-    //   alert("ffssfd");
-    //   if (username) {
-    //     sendMessage();
-    //     // socket.emit('stop typing');
-    //     typing = false;
-    //   } 
-    //   else {
-    //     setUsername();
-    //   }
+    if (event.which === 13) {
+      //alert("ffssfd");
+      if (username) {
+        sendMessage();
+        // socket.emit('stop typing');
+        typing = false;
+      } 
+      else {
+        setUsername();
+      }
+    }
+    // if(username==""){
+    //   setUsername();
+    //   alert("sfffsdfsdd");
     // }
-    if(username==""){
-      setUsername();
-      alert("sfffsdfsdd");
-    }
-    else if(event.which===13){
-      sendMessage();
-      typing=false;
-    }
+    // else if(event.which===13){
+    //   sendMessage();
+    //   typing=false;
+    // }
   });
 
 
