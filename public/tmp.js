@@ -31,6 +31,8 @@ $(function() {
   var $chatPage = $('.chat.page'); // The chatroom page
 
   // Prompt for setting a username
+  var username;
+
   var connected = false;
   var $currentInput = $inputMessage.focus();
 
