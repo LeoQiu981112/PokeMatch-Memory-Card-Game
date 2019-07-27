@@ -45,7 +45,7 @@ $(function() {
 
   var socket = io();
   setUsername();
-  
+
   const addParticipantsMessage = (data) => {
     var message = '';
     if (data.numUsers === 1) {
@@ -63,9 +63,6 @@ $(function() {
     username = user;
     // If the username is valid
     if (username) {
-      // $loginPage.fadeOut();
-      // $chatPage.show();
-      // $loginPage.off('click');
       $currentInput = $inputMessage.focus();
 
       // Tell the server your username
@@ -197,16 +194,6 @@ $(function() {
     }
   });
 
-  // $inputMessage.on('input', () => {
-  //   updateTyping();
-  // });
-
-  // Click events
-
-  // Focus input when clicking anywhere on login page
-  // $loginPage.click(() => {
-  //   $currentInput.focus();
-  // });
 
   // Focus input when clicking on the message input's border
   $inputMessage.click(() => {
@@ -214,7 +201,6 @@ $(function() {
   });
 
   // Socket events
-
   // Whenever the server emits 'login', log the login message
   socket.on('login', (data) => {
     connected = true;
