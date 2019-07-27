@@ -100,18 +100,18 @@ $(function() {
   }
 
   // Adds the visual chat typing message
-  // const addChatTyping = (data) => {
-  //   data.typing = true;
-  //   data.message = 'is typing';
-  //   addChatMessage(data);
-  // }
+  const addChatTyping = (data) => {
+    data.typing = true;
+    data.message = 'is typing';
+    addChatMessage(data);
+  }
 
   // Removes the visual chat typing message
-  // const removeChatTyping = (data) => {
-  //   getTypingMessages(data).fadeOut(function () {
-  //     $(this).remove();
-  //   });
-  // }
+  const removeChatTyping = (data) => {
+    getTypingMessages(data).fadeOut(function () {
+      $(this).remove();
+    });
+  }
 
   // Adds a message element to the messages and scrolls to the bottom
   // el - The element to add as a message
@@ -149,25 +149,25 @@ $(function() {
     return $('<div/>').text(input).html();
   }
 
-  // // Updates the typing event
-  // const updateTyping = () => {
-  //   if (connected) {
-  //     if (!typing) {
-  //       typing = true;
-  //       socket.emit('typing');
-  //     }
-  //     lastTypingTime = (new Date()).getTime();
+  // Updates the typing event
+  const updateTyping = () => {
+    if (connected) {
+      if (!typing) {
+        typing = true;
+        socket.emit('typing');
+      }
+      lastTypingTime = (new Date()).getTime();
 
-  //     setTimeout(() => {
-  //       var typingTimer = (new Date()).getTime();
-  //       var timeDiff = typingTimer - lastTypingTime;
-  //       if (timeDiff >= TYPING_TIMER_LENGTH && typing) {
-  //         socket.emit('stop typing');
-  //         typing = false;
-  //       }
-  //     }, TYPING_TIMER_LENGTH);
-  //   }
-  // }
+      setTimeout(() => {
+        var typingTimer = (new Date()).getTime();
+        var timeDiff = typingTimer - lastTypingTime;
+        if (timeDiff >= TYPING_TIMER_LENGTH && typing) {
+          socket.emit('stop typing');
+          typing = false;
+        }
+      }, TYPING_TIMER_LENGTH);
+    }
+  }
 
   // Gets the 'X is typing' messages of a user
   const getTypingMessages = (data) => {
@@ -199,7 +199,7 @@ $(function() {
     if (event.which === 13) {
       if (username) {
         sendMessage();
-        // socket.emit('stop typing');
+        socket.emit('stop typing');
         typing = false;
       } else {
         setUsername();
@@ -207,9 +207,9 @@ $(function() {
     }
   });
 
-  // $inputMessage.on('input', () => {
-  //   updateTyping();
-  // });
+  $inputMessage.on('input', () => {
+    updateTyping();
+  });
 
   // Click events
 
@@ -251,18 +251,18 @@ $(function() {
   socket.on('user left', (data) => {
     log(data.username + ' left');
     addParticipantsMessage(data);
-    // removeChatTyping(data);
+    removeChatTyping(data);
   });
 
   // Whenever the server emits 'typing', show the typing message
-  // socket.on('typing', (data) => {
-  //   addChatTyping(data);
-  // });
+  socket.on('typing', (data) => {
+    addChatTyping(data);
+  });
 
   // Whenever the server emits 'stop typing', kill the typing message
-  // socket.on('stop typing', (data) => {
-  //   removeChatTyping(data);
-  // });
+  socket.on('stop typing', (data) => {
+    removeChatTyping(data);
+  });
 
   socket.on('disconnect', () => {
     log('you have been disconnected');

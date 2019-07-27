@@ -25,12 +25,11 @@ server.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 
 // Chatroom
+
 var numUsers = 0;
 
 io.on('connection', (socket) => {
   var addedUser = false;
-  console.log("new user connected");
-
 
   // when the client emits 'new message', this listens and executes
   socket.on('new message', (data) => {
@@ -40,7 +39,6 @@ io.on('connection', (socket) => {
       message: data
     });
   });
-
 
   // when the client emits 'add user', this listens and executes
   socket.on('add user', (username) => {
@@ -60,6 +58,19 @@ io.on('connection', (socket) => {
     });
   });
 
+  // when the client emits 'typing', we broadcast it to others
+  socket.on('typing', () => {
+    socket.broadcast.emit('typing', {
+      username: socket.username
+    });
+  });
+
+  // when the client emits 'stop typing', we broadcast it to others
+  socket.on('stop typing', () => {
+    socket.broadcast.emit('stop typing', {
+      username: socket.username
+    });
+  });
 
   // when the user disconnects.. perform this
   socket.on('disconnect', () => {
@@ -73,12 +84,7 @@ io.on('connection', (socket) => {
       });
     }
   });
-
-
-
-
 });
-
 
 
 
