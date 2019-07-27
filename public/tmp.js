@@ -1,4 +1,3 @@
-$(function() {
 
   var user="";
 
@@ -246,7 +245,6 @@ $(function() {
 
 
 
-});
 
 $(window).on('load', function() {
   setUsername();
