@@ -29,7 +29,6 @@ $(function() {
   var $chatPage = $('.chat.page'); // The chatroom page
 
   // Prompt for setting a username
-  var username=user;
   var connected = false;
   var $currentInput = $inputMessage.focus();
 
@@ -47,13 +46,11 @@ $(function() {
 
   // Sets the client's username
   const setUsername = () => {
-    // username = cleanInput($usernameInput.val().trim());
-    username = user;
     // If the username is valid
-    if (username) {
+    if (user) {
       $currentInput = $inputMessage.focus();
       // Tell the server your username
-      socket.emit('add user', username);
+      socket.emit('add user', user);
     }
   }
 
@@ -180,10 +177,9 @@ $(function() {
         // socket.emit('stop typing');
         typing = false;
       } 
-      else {
-        // setUsername();
-        alert("AAHHH");
-      }
+      // else {
+      //   setUsername();
+      // }
     }
   });
 
