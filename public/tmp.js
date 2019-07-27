@@ -1,6 +1,4 @@
-
-$( document ).ready(function() {
-    console.log( "ready!" );
+$(function() {
 
   var user="";
 
@@ -9,23 +7,13 @@ $( document ).ready(function() {
       url:"/userlist",
       success:function(data){
           if(data.status==-1){
-              // var user="";
               user+=data.user;
           }
-         // var html="";
-         // html+=data.status;
-          //$("tbody").html(html);
       },
       error:function(){
           alert("Internet Error");
       }
   });    
-
-  setUsername();
-});
-
-$(function() {
-
 
   var FADE_TIME = 150; // ms
   var TYPING_TIMER_LENGTH = 400; // ms
@@ -38,8 +26,6 @@ $(function() {
   // Initialize variables
   var $window = $(window);
   // var $usernameInput = $('.usernameInput'); // Input for username
-
-
 
 
   var $messages = $('.messages'); // Messages area
@@ -307,5 +293,8 @@ $(function() {
   socket.on('reconnect_error', () => {
     log('attempt to reconnect has failed');
   });
+
+
+  setTimeout(setUsername, 1000);
 
 });
