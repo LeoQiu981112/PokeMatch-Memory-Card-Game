@@ -15,12 +15,7 @@ $(function() {
       }
   });   
 
-
-
-
-
   var FADE_TIME = 150; // ms
-  var TYPING_TIMER_LENGTH = 400; // ms
   var COLORS = [
     '#e21400', '#91580f', '#f8a700', '#f78b00',
     '#58dc00', '#287b00', '#a8f07a', '#4ae8c4',
@@ -29,18 +24,13 @@ $(function() {
 
   // Initialize variables
   var $window = $(window);
-  // var $usernameInput = $('.usernameInput'); // Input for username
   var $messages = $('.messages'); // Messages area
   var $inputMessage = $('.inputMessage'); // Input message input box
-
-  // var $loginPage = $('.login.page'); // The login page
   var $chatPage = $('.chat.page'); // The chatroom page
 
   // Prompt for setting a username
   var username;
   var connected = false;
-  // var typing = false;
-  // var lastTypingTime;
   var $currentInput = $inputMessage.focus();
 
   var socket = io();
@@ -55,7 +45,6 @@ $(function() {
     log(message);
   }
 
-
   // Sets the client's username
   const setUsername = () => {
     // username = cleanInput($usernameInput.val().trim());
@@ -63,7 +52,6 @@ $(function() {
     // If the username is valid
     if (username) {
       $currentInput = $inputMessage.focus();
-
       // Tell the server your username
       socket.emit('add user', username);
     }
@@ -187,9 +175,9 @@ $(function() {
         // socket.emit('stop typing');
         typing = false;
       } 
-      // else {
-      //   setUsername();
-      // }
+      else {
+        setUsername();
+      }
     }
   });
 
@@ -256,7 +244,6 @@ $(function() {
 
 
 
-  setUsername();
 
 
 });
