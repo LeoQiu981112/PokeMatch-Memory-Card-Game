@@ -9,6 +9,8 @@ $(function() {
           if(data.status==-1){
               // var user="";
               user+=data.user;
+              setUsername();
+
           }
          // var html="";
          // html+=data.status;
@@ -224,12 +226,7 @@ $(function() {
     if (event.which === 13) {
       if (username) {
         sendMessage();
-        // socket.emit('stop typing');
-        // typing = false;
       } 
-      else {
-        setUsername();
-      }
     }
   });
 
