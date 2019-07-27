@@ -1,6 +1,5 @@
 $(function() {
     // document is loaded and DOM is ready
-
   var user="";
 
   $.ajax({
@@ -182,6 +181,9 @@ $(function() {
         setUsername();
       }
     }
+    else{
+        setUsername();
+    }
   });
 
 
@@ -234,11 +236,4 @@ $(function() {
   socket.on('reconnect_error', () => {
     log('attempt to reconnect has failed');
   });
-
-
-e = jQuery.Event("keypress")
-e.which = 13 //choose the one you want
-    $("#test").keypress(function(){
-     alert('keypress triggered')
-    }).trigger(e)
 });
