@@ -41,7 +41,7 @@ $(function() {
   var connected = false;
   // var typing = false;
   // var lastTypingTime;
-  // var $currentInput = $usernameInput.focus();
+  var $currentInput = $inputMessage.focus();
 
   var socket = io();
 
