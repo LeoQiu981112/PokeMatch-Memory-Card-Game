@@ -1,8 +1,3 @@
-
-    //run right away
-
-
-
 $(function() {
 
   var user="";
@@ -34,7 +29,7 @@ $(function() {
 
   // Initialize variables
   var $window = $(window);
-  var $usernameInput = $('.usernameInput'); // Input for username
+  // var $usernameInput = $('.usernameInput'); // Input for username
 
 
 
@@ -42,14 +37,14 @@ $(function() {
   var $messages = $('.messages'); // Messages area
   var $inputMessage = $('.inputMessage'); // Input message input box
 
-  var $loginPage = $('.login.page'); // The login page
+  // var $loginPage = $('.login.page'); // The login page
   var $chatPage = $('.chat.page'); // The chatroom page
 
   // Prompt for setting a username
   var username;
   var connected = false;
-  var typing = false;
-  var lastTypingTime;
+  // var typing = false;
+  // var lastTypingTime;
   var $currentInput = $inputMessage.focus();
 
 
@@ -72,9 +67,9 @@ $(function() {
 
     // If the username is valid
     if (username) {
-      $loginPage.fadeOut();
+      // $loginPage.fadeOut();
       $chatPage.show();
-      $loginPage.off('click');
+      // $loginPage.off('click');
       $currentInput = $inputMessage.focus();
 
       // Tell the server your username
@@ -180,32 +175,32 @@ $(function() {
     return $('<div/>').text(input).html();
   }
 
-  // Updates the typing event
-  const updateTyping = () => {
-    if (connected) {
-      if (!typing) {
-        typing = true;
-        socket.emit('typing');
-      }
-      lastTypingTime = (new Date()).getTime();
+  // // Updates the typing event
+  // const updateTyping = () => {
+  //   if (connected) {
+  //     if (!typing) {
+  //       typing = true;
+  //       socket.emit('typing');
+  //     }
+  //     lastTypingTime = (new Date()).getTime();
 
-      setTimeout(() => {
-        var typingTimer = (new Date()).getTime();
-        var timeDiff = typingTimer - lastTypingTime;
-        if (timeDiff >= TYPING_TIMER_LENGTH && typing) {
-          socket.emit('stop typing');
-          typing = false;
-        }
-      }, TYPING_TIMER_LENGTH);
-    }
-  }
+  //     setTimeout(() => {
+  //       var typingTimer = (new Date()).getTime();
+  //       var timeDiff = typingTimer - lastTypingTime;
+  //       if (timeDiff >= TYPING_TIMER_LENGTH && typing) {
+  //         socket.emit('stop typing');
+  //         typing = false;
+  //       }
+  //     }, TYPING_TIMER_LENGTH);
+  //   }
+  // }
 
-  // Gets the 'X is typing' messages of a user
-  const getTypingMessages = (data) => {
-    return $('.typing.message').filter(function (i) {
-      return $(this).data('username') === data.username;
-    });
-  }
+  // // Gets the 'X is typing' messages of a user
+  // const getTypingMessages = (data) => {
+  //   return $('.typing.message').filter(function (i) {
+  //     return $(this).data('username') === data.username;
+  //   });
+  // }
 
   // Gets the color of a username through our hash function
   const getUsernameColor = (username) => {
@@ -230,7 +225,7 @@ $(function() {
     if (event.which === 13) {
       if (username) {
         sendMessage();
-        socket.emit('stop typing');
+        // socket.emit('stop typing');
         typing = false;
       } else {
         setUsername();
@@ -238,16 +233,16 @@ $(function() {
     }
   });
 
-  $inputMessage.on('input', () => {
-    updateTyping();
-  });
+  // $inputMessage.on('input', () => {
+  //   updateTyping();
+  // });
 
   // Click events
 
-  // Focus input when clicking anywhere on login page
-  $loginPage.click(() => {
-    $currentInput.focus();
-  });
+  // // Focus input when clicking anywhere on login page
+  // $loginPage.click(() => {
+  //   $currentInput.focus();
+  // });
 
   // Focus input when clicking on the message input's border
   $inputMessage.click(() => {
@@ -286,14 +281,14 @@ $(function() {
   });
 
   // Whenever the server emits 'typing', show the typing message
-  socket.on('typing', (data) => {
-    addChatTyping(data);
-  });
+  // socket.on('typing', (data) => {
+  //   addChatTyping(data);
+  // });
 
-  // Whenever the server emits 'stop typing', kill the typing message
-  socket.on('stop typing', (data) => {
-    removeChatTyping(data);
-  });
+  // // Whenever the server emits 'stop typing', kill the typing message
+  // socket.on('stop typing', (data) => {
+  //   removeChatTyping(data);
+  // });
 
   socket.on('disconnect', () => {
     log('you have been disconnected');
