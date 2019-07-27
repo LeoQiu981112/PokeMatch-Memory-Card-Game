@@ -181,9 +181,9 @@ $(document).ready(function() {
         // socket.emit('stop typing');
         typing = false;
       } 
-      // else {
-      //   setUsername();
-      // }
+      else {
+        setUsername();
+      }
     }
   });
 
