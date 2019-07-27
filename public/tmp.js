@@ -30,7 +30,7 @@ $(function() {
   var $chatPage = $('.chat.page'); // The chatroom page
 
   // Prompt for setting a username
-  var username;
+  var username="";
 
   var connected = false;
   var $currentInput = $inputMessage.focus();
@@ -182,15 +182,13 @@ $(function() {
     //     setUsername();
     //   }
     // }
-    if(username){
+    if(username==""){
+      setUsername();
       alert("sfffsdfsdd");
-      if(event.which===13){
+    }
+    else if(event.which===13){
         sendMessage();
         typing=false;
-      }
-      else{
-        setUsername();
-      }
     }
   });
 
