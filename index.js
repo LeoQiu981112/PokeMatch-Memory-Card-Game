@@ -31,7 +31,6 @@ io.on('connection', (socket) => {
   var addedUser = false;
   console.log("new user connected");
 
-
   // when the client emits 'new message', this listens and executes
   socket.on('new message', (data) => {
     // we tell the client to execute 'new message'

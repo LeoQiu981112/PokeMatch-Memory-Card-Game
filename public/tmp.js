@@ -68,10 +68,9 @@ $(function() {
     // If the username is valid
     if (username) {
       // $loginPage.fadeOut();
-      $chatPage.show();
+      // $chatPage.show();
       // $loginPage.off('click');
       $currentInput = $inputMessage.focus();
-
       // Tell the server your username
       socket.emit('add user', username);
     }
@@ -196,11 +195,11 @@ $(function() {
   // }
 
   // Gets the 'X is typing' messages of a user
-  // const getTypingMessages = (data) => {
-  //   return $('.typing.message').filter(function (i) {
-  //     return $(this).data('username') === data.username;
-  //   });
-  // }
+  const getTypingMessages = (data) => {
+    return $('.typing.message').filter(function (i) {
+      return $(this).data('username') === data.username;
+    });
+  }
 
   // Gets the color of a username through our hash function
   const getUsernameColor = (username) => {
