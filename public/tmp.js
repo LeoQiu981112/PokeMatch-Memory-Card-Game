@@ -2,14 +2,14 @@ $(document).ready(function() {
     // document is loaded and DOM is ready
     alert("document is ready");
 
-  var name="";
+  var user="";
 
   $.ajax({
       type:"get",
       url:"/userlist",
       success:function(data){
           if(data.status==-1){
-              name+=data.user;
+              user+=data.user;
           }
       },
       error:function(){
@@ -24,7 +24,6 @@ $(document).ready(function() {
     '#3b88eb', '#3824aa', '#a700ff', '#d300e7'
   ];
 
-  alert(name);
 
   // Initialize variables
   var $window = $(window);
@@ -48,19 +47,16 @@ $(document).ready(function() {
     log(message);
   }
 
-  var setUsername;
-  (setUsername = function(){
-    if (name) {
+  // Sets the client's username
+  const setUsername = () => {
+    username = user;
+    // If the username is valid
+    if (username) {
       $currentInput = $inputMessage.focus();
       // Tell the server your username
-      socket.emit('add user', name);
-      alert("success");
-
-      }
-      else{
-        alert("empty");
-      }
-  })();
+      socket.emit('add user', username);
+    }
+  }
 
 
   // Sends a chat message
@@ -176,7 +172,7 @@ $(document).ready(function() {
     }
     // When the client hits ENTER on their keyboard
     if (event.which === 13) {
-      if (name) {
+      if (username) {
         sendMessage();
         // socket.emit('stop typing');
         typing = false;
