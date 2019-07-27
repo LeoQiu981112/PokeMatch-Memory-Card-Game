@@ -47,7 +47,6 @@ $(function() {
     log(message);
   }
 
-  setUsername();
   // Sets the client's username
   const setUsername = () => {
     username = user;
@@ -172,14 +171,23 @@ $(function() {
       $currentInput.focus();
     }
     // When the client hits ENTER on their keyboard
-    if (event.which === 13) {
-      alert("ffssfd");
-      if (username) {
+    // if (event.which === 13) {
+    //   alert("ffssfd");
+    //   if (username) {
+    //     sendMessage();
+    //     // socket.emit('stop typing');
+    //     typing = false;
+    //   } 
+    //   else {
+    //     setUsername();
+    //   }
+    // }
+    if(username){
+      if(event.which===13){
         sendMessage();
-        // socket.emit('stop typing');
-        typing = false;
-      } 
-      else {
+        typing=false;
+      }
+      else{
         setUsername();
       }
     }
