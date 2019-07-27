@@ -556,6 +556,7 @@ app.post('/ranking', function(req, res){
   console.log(one_steps);
   if(one_steps){
     tmp= fp + "one_steps = " + "'" + one_steps + "'" + sp;
+    console.log(tmp);
     pool.query(tmp, function(error, result){
       if(error) {
         console.log("rankng fail!");
@@ -563,7 +564,7 @@ app.post('/ranking', function(req, res){
       }
     });
   }
-  res.json({status:1});
+  //res.json({status:1});
 
   //res.redirect('https://stark-spire-21434.herokuapp.com/homepage.html');
 });
