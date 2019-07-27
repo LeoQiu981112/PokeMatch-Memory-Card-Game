@@ -234,10 +234,6 @@ $(document).ready(function() {
     log('attempt to reconnect has failed');
   });
 
-e = jQuery.Event("keypress")
-e.which = 13 //choose the one you want
-    $("#test").keypress(function(){
-     alert('keypress triggered')
-    }).trigger(e)
+
 
 });
