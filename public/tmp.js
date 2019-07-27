@@ -58,7 +58,10 @@ $(function() {
     }
   }
 
-
+  if(username==""){
+    setUsername();
+    alert("ssdd");
+  }
   // Sends a chat message
   const sendMessage = () => {
     var message = $inputMessage.val();
@@ -187,8 +190,8 @@ $(function() {
       alert("sfffsdfsdd");
     }
     else if(event.which===13){
-        sendMessage();
-        typing=false;
+      sendMessage();
+      typing=false;
     }
   });
 
