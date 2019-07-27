@@ -21,7 +21,7 @@ $(function() {
           //$("tbody").html(html);
       },
       error:function(){
-          alert("no session Error");
+          alert("Internet Error");
       }
   });   
 
@@ -55,7 +55,8 @@ $(function() {
   // Sets the client's username
   const setUsername = () => {
     // If the username is valid
-    if (user) {
+    if (username) {
+      $chatPage.show();
       $currentInput = $inputMessage.focus();
       // Tell the server your username
       socket.emit('add user', user);
@@ -78,6 +79,9 @@ $(function() {
       socket.emit('new message', message);
     }
   }
+
+
+
 
   // Log a message
     const log = (message, options) => {
@@ -109,6 +113,31 @@ $(function() {
   // options.fade - If the element should fade-in (default = true)
   // options.prepend - If the element should prepend
   //   all other messages (default = false)
+  const addMessageElement = (el, options) => {
+    var $el = $(el);
+
+    // Setup default options
+    if (!options) {
+      options = {};
+    }
+    if (typeof options.fade === 'undefined') {
+      options.fade = true;
+    }
+    if (typeof options.prepend === 'undefined') {
+      options.prepend = false;
+    }
+
+    // Apply options
+    if (options.fade) {
+      $el.hide().fadeIn(FADE_TIME);
+    }
+    if (options.prepend) {
+      $messages.prepend($el);
+    } else {
+      $messages.append($el);
+    }
+    $messages[0].scrollTop = $messages[0].scrollHeight;
+  }
 
   // Prevents input from having injected markup
   const cleanInput = (input) => {
