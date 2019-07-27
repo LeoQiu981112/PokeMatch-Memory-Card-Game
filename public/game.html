@@ -68,6 +68,23 @@
 
 	<br></br>
 
+	<div id="choose">
+		<table id="table1" align="center" valign="middle">
+			<tr>
+				<td><div id="squirtle" onclick ="game('water')"></div></td>
+				<td><div id="pikachu" onclick ="game('electric')"></div></td>
+				<td><div id="bulbasaur" onclick ="game('grass')"></div></td>
+			</tr>
+		</table>
+		<table id="table2" align="center" valign="middle">
+			<tr>
+				<td></td>
+				<td><div id="charmander" onclick ="game('fire')"></div></td>
+				<td><div id="eevee" onclick ="game('eevee')"></div></td>
+			</tr>
+		</table>
+	</div>
+
 	<table id="table" align="center" valign="middle">
 		<tr>
 			<td><p><img href = "javascript:void(0)"  id="location0" align="bottom" width="90%" height="200%" onclick="poker(0)"/></p></td>
@@ -103,70 +120,78 @@
 			<p id="steps">0</p>
 			<button id="restart" onclick="restart();shuffle_poke()">Restart</button>
 			<input type="submit" id="upload" value="UploadGrade">
-			<script type="text/javascript">
-		var poke=[1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10];
-		var number=Math.ceil(Math.random()*10);
-		poke.splice((number-1)*2,2);
-		var flag=false;
-		var oneid=-1;
-		var count=0;
-		function poker(id){
-			count++;
-			if(poke[id]==-1){
-				return;
+		<script type="text/javascript">
+			var poke=[1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10];
+			var number=Math.ceil(Math.random()*10);
+			poke.splice((number-1)*2,2);
+			var flag=false;
+			var oneid=-1;
+			var count=0;
+			var a;
+			function game(type){
+				a=type;
+				$("#light").show();
+				$("#choose").hide();
+
 			}
-			document.getElementById("location"+id).src="images/eevee/card"+poke[id]+".jpg";
-			if(flag){
-				if(poke[id]==poke[oneid]){
-					poke[id]=-1;
-					poke[oneid]=-1;
+			function poker(id){
+				count++;
+				if(poke[id]==-1){
+					return;
+				}
+
+				document.getElementById("location"+id).src="images/"+a+"/card"+poke[id]+".jpg";
+				if(flag){
+					if(poke[id]==poke[oneid]){
+						poke[id]=-1;
+						poke[oneid]=-1;
+					}
+					else{
+						setTimeout("fail("+id+","+oneid+")",600);
+					}
+					oneid=-1;
+					flag=false;
 				}
 				else{
-					setTimeout("fail("+id+","+oneid+")",600);
+					oneid=id;
+					flag=true;
 				}
-				oneid=-1;
-				flag=false;
+				check_success();
 			}
-			else{
-				oneid=id;
-				flag=true;
+			function shuffle_poke(){
+				for(var i=0;i<18;i++){
+					document.getElementById("location"+i).src="images/cardbg.png";
+				}
+				for(var i=0;i<18;i++){
+                	var a=Math.floor(Math.random()*18);
+                	var b=Math.floor(Math.random()*18);
+                	var temp=poke[a];
+                	poke[a]=poke[b];
+                	poke[b]=temp;
+				}
 			}
-			check_success();
-		}
-		function shuffle_poke(){
-			for(var i=0;i<18;i++){
-				document.getElementById("location"+i).src="images/cardbg.png";
+			function fail(id, oneid){
+				document.getElementById("location"+id).src="images/cardbg.png";
+				document.getElementById("location"+oneid).src="images/cardbg.png";
 			}
-			for(var i=0;i<18;i++){
-                var a=Math.floor(Math.random()*18);
-                var b=Math.floor(Math.random()*18);
-                var temp=poke[a];
-                poke[a]=poke[b];
-                poke[b]=temp;
+			function check_success(){
+				for(var i=0;i<18;i++){
+					if(poke[i]!=-1)
+						return;
+				}
+				$("#box").show();
+				document.getElementById("steps").innerHTML=count;
 			}
-		}
-		function fail(id, oneid){
-			document.getElementById("location"+id).src="images/cardbg.png";
-			document.getElementById("location"+oneid).src="images/cardbg.png";
-		}
-		function check_success(){
-			for(var i=0;i<18;i++){
-				if(poke[i]!=-1)
-					return;
-			}
-			$("#box").show();
-			document.getElementById("steps").innerHTML=count;
-		}
-		$("#upload").click(function(){
-			var one_steps=count;
-			$.ajax({
-        		type:"post",
-        		url:"/ranking",
-        		data:{one_steps:one_steps},
-        		success:function(data){
-            		if(data.status==-1){
-            			alert("ranking Fail!");
-            		}else{
+			$("#upload").click(function(){
+				var one_steps=count;
+				$.ajax({
+        			type:"post",
+        			url:"/ranking",
+        			data:{one_steps:one_steps},
+        			success:function(data){
+            			if(data.status==-1){
+            				alert("ranking Fail!");
+            			}else{
             			alert("ranking success!");
             		}
         		},
@@ -193,7 +218,7 @@
 		<button id="start" onclick="start();shuffle_poke()">Start</a>
 		<script>
 			//$("#box").show();
-			$("#light").show();
+			$("#light").hide();
 			function start(){
 				$("#light").hide(); 
 			}
