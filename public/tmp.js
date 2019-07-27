@@ -176,7 +176,7 @@ $(document).ready(function() {
     }
     // When the client hits ENTER on their keyboard
     if (event.which === 13) {
-      if (user) {
+      if (name) {
         sendMessage();
         // socket.emit('stop typing');
         typing = false;
