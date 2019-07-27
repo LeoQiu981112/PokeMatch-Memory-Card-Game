@@ -1,3 +1,4 @@
+$(function() {
 
   var user="";
 
@@ -160,6 +161,11 @@
     return COLORS[index];
   }
 
+
+  alert("start");
+  setUsername();
+  alert("over");
+
   // Keyboard events
 
   $window.keydown(event => {
@@ -174,9 +180,10 @@
         // socket.emit('stop typing');
         typing = false;
       } 
-      // else {
-      //   setUsername();
-      // }
+      else {
+        // setUsername();
+        alert("AAHHH");
+      }
     }
   });
 
@@ -245,8 +252,4 @@
 
 
 
-
-$(window).on('load', function() {
-  setUsername();
- // code here
 });
