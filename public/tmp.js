@@ -2,14 +2,14 @@ $(document).ready(function() {
     // document is loaded and DOM is ready
     alert("document is ready");
 
-  var user="";
+  var name="";
 
   $.ajax({
       type:"get",
       url:"/userlist",
       success:function(data){
           if(data.status==-1){
-              user+=data.user;
+              name+=data.user;
           }
       },
       error:function(){
@@ -24,7 +24,10 @@ $(document).ready(function() {
     '#3b88eb', '#3824aa', '#a700ff', '#d300e7'
   ];
 
-  alert(user);
+  alert(name);
+
+
+
   // Initialize variables
   var $window = $(window);
   var $messages = $('.messages'); // Messages area
@@ -58,10 +61,15 @@ $(document).ready(function() {
   // }
   var setUsername;
   (setUsername = function(){
-    if (user) {
+    if (name) {
       $currentInput = $inputMessage.focus();
       // Tell the server your username
-      socket.emit('add user', user);
+      socket.emit('add user', name);
+      alert("success");
+
+      }
+      else{
+        alert("empty");
       }
   })();
 
