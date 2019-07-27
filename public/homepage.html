@@ -84,17 +84,7 @@
 </table>
 
 <button id="poke" class="float-left submit-button" >Poke</button>
-<button id="chat" class="float-left submit-button" onclick="enterfunc()">public chatroom</button>
-<script type="text/javascript">
-    function enterfunc() {     
-      e = jQuery.Event("keypress")
-      e.which = 13 //choose the one you want
-          $("#test").keypress(function(){
-           alert('keypress triggered')
-          }).trigger(e)
-   }
-    setTimeout(enterfunc, 1000)
-</script>
+<button id="chat" class="float-left submit-button" >public chatroom</button>
 <button id="game" class="float-left submit-button" >Game</button>
 
 
