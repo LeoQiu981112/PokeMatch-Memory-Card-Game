@@ -219,6 +219,9 @@ $(function() {
       if (username) {
         sendMessage();
       } 
+      else{
+        setTimeout(setUsername, 500);
+      }
     }
   });
 
@@ -295,6 +298,5 @@ $(function() {
   });
 
 
-  setTimeout(setUsername, 1000);
 
 });
