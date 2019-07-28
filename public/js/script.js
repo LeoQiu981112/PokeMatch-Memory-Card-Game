@@ -18,6 +18,6 @@ socket.on('ready', function(str) {
         document.getElementById("mes").innerHTML = i; 
         i--; 
     } 
-    intervalid = setInterval("fun()", 1000); 
+    intervalid = setInterval(fun, 1000); 
     
 })
