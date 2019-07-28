@@ -71,6 +71,22 @@ td{
     z-index:1002; 
     overflow: auto; 
  }
+ .menu { 
+    font-size:1.2vw;
+    color: #4d8673;
+    display: none; 
+    position: fixed; 
+    top: 25%; 
+    left: 25%; 
+    width: 50%; 
+    height: 45%; 
+    padding: 20px; 
+    border: 10px solid #fdd12a; 
+    background-color: white;
+    border-radius:20px; 
+    z-index:1002; 
+    overflow: auto; 
+ }
  #table1{
     width:75%;
     z-index: 100;

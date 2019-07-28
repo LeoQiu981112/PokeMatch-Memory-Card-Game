@@ -22,9 +22,7 @@
                 	var user="";
                 	user+=data.user;
                 	$("h1").html(user);
-                	var msg="";
-                	msg+=data.msg;
-                	$("p1").html(msg);
+
             		}
         		},
         	error:function(){
@@ -67,6 +65,28 @@
 	</script>
 
 	<br></br>
+
+	<div id="menu" class="menu" align="left" valign="middle">
+
+    	<h4>New game</h4>
+    	<input type="text" name="name" id="nameNew" placeholder="Enter your name" required>
+    	<button id="new">New Game</button>
+
+    	<br><br>
+    
+    	<h4>Join an existing game</h4>
+    	<input type="text" name="name" id="nameJoin" placeholder="Enter your name" required>
+    	<input type="text" name="room" id="room" placeholder="Enter Game ID" required>
+    	<button id="join" onclick="room()">Join Game</button>
+    	<script type="text/javascript">
+    		function room(){
+    			$("#menu").hide();
+    			$("#choose").show();
+    		}
+    	</script>
+
+	</div>
+
 
 	<div id="choose">
 		<table id="table1" align="center" valign="middle">
@@ -127,6 +147,8 @@
 			var flag=false;
 			var oneid=-1;
 			var count=0;
+
+
 			var a;
 			function game(type){
 				a=type;
@@ -134,6 +156,7 @@
 				$("#choose").hide();
 
 			}
+
 			function poker(id){
 				count++;
 				if(poke[id]==-1){
@@ -141,6 +164,9 @@
 				}
 
 				document.getElementById("location"+id).src="images/"+a+"/card"+poke[id]+".jpg";
+
+
+
 				if(flag){
 					if(poke[id]==poke[oneid]){
 						poke[id]=-1;
@@ -217,7 +243,8 @@
     	<br></br>
 		<button id="start" onclick="start();shuffle_poke()">Start</a>
 		<script>
-			//$("#box").show();
+			$("#menu").show();
+			$("#choose").hide();
 			$("#light").hide();
 			function start(){
 				$("#light").hide(); 
@@ -228,5 +255,7 @@
 			}
 		</script> 
 	</div>
+
+
 </body>
 </html>
