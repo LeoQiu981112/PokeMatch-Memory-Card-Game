@@ -46,15 +46,11 @@
     <div id="startpage" class="white_content" align="left" valign="middle">
             <div id="waiting"></div>
             <div id="ready"></div>
-            <button id="start" onclick="start()">Start</a>
+            <p>Game will start in <span id="mes">5</span> seconds！</p>
             <script>
-                $("#startpage").show();
-                function start(){
-                    $("#startpage").hide(); 
-                }
+                $("#startpage").show();       
             </script> 
         </div>
-
 
         
     <script src="socket.io.js"></script>

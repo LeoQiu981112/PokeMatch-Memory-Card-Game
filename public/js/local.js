@@ -128,7 +128,7 @@ var Local = function(socket) {
     }
 
     socket.on('start', function(){
-        document.getElementById('waiting').innerHTML = '';
+        //document.getElementById('waiting').innerHTML = '';
         start();
     })
     socket.on('lose',function() {
