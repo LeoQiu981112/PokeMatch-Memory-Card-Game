@@ -60,8 +60,7 @@ io.on('connection', function(socket){
       if(socketMap[socket.clientNum - 1]){
           socket.emit('ready','another person is ready');
           socketMap[(clientCount - 1)].emit('ready','another person is ready');
-          socket.emit('5togo')
-          socketMap[(clientCount - 1)].emit('5togo');
+    
           socket.emit('start');
           socketMap[(clientCount - 1)].emit('start');
       } else {
