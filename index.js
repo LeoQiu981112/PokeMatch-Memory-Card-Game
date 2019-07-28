@@ -24,10 +24,10 @@ server.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 
 
-var gameserver=http.createServer(app); 
-var gameio= socketio.listen(gameserver);
+//var gameserver=http.createServer(app); 
+//var gameio= socketio.listen(gameserver);
 
-gameserver.listen(PORT, () => console.log(`Listening on ${ PORT }`));
+//gameserver.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 
 // 客户端计数
@@ -51,7 +51,7 @@ var bindListener = function(socket, event){
 }
 
 
-gameio.on('connection', function(socket){
+io.on('connection', function(socket){
   
   clientCount = clientCount + 1;
   socket.clientNum = clientCount;
