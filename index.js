@@ -23,8 +23,7 @@ server.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 
 
-
-
+//1v1
 
 // 客户端计数
 var clientCount = 0;
@@ -104,7 +103,6 @@ io.on('connection', function(socket){
       delete(socketMap[socket.clientNum]);
   })
 })
-
 
 
 

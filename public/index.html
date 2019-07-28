@@ -27,20 +27,44 @@
         </div>
     </div>
     <div class="square" id="remote">
-            <!-- 对方游戏区域 -->
-            <div class="title">对方游戏区域</div>
-            <div class="game" id="remote_game"></div>
-    
-            <!-- 下一块区域 -->
-            <div class="next" id="remote_next"></div>
-    
-            <!-- 显示信息区域 -->
-            <div class="info">
-                <div>已用时：<span id="remote_time">0</span>s</div>
-                <div>已得分：<span id="remote_score">0</span>分</div>
-                <div id="remote_gameover"></div>       
-            </div>
+        <!-- 对方游戏区域 -->
+        <div class="title">对方游戏区域</div>
+        <div class="game" id="remote_game"></div>
+
+        <!-- 下一块区域 -->
+        <div class="next" id="remote_next"></div>
+
+        <!-- 显示信息区域 -->
+        <div class="info">
+            <div>已用时：<span id="remote_time">0</span>s</div>
+            <div>已得分：<span id="remote_score">0</span>分</div>
+            <div id="remote_gameover"></div>       
         </div>
+    </div>
+
+
+    <div id="startpage" class="white_content" align="left" valign="middle">
+            Rule:
+            <br></br>
+            Players choose a pattern for the cards. Cards are all initialized face-down.
+            <br></br>
+            Each player takes turns flipping two cards face-up — if they are of the same, then that player wins the pair(the pair stays face-up) and gets another turn.
+            <br></br>
+            If the cards are not identical, they are turned back facedown and it becomes the next player’s turn to pick two cards.
+            <br></br>
+            The game continues until players have picked up all the pairs; the winner is the player with the most pairs.
+            <br></br>
+            <button id="start" onclick="start()">Start</a>
+            <script>
+                $("#startpage").show();
+                function start(){
+                    $("#startpage").hide(); 
+                }
+            </script> 
+        </div>
+
+
+        
     <script src="socket.io.js"></script>
     <script src="js/square.js"></script>
     <script src="js/squareFactory.js"></script>

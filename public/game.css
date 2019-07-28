@@ -4,9 +4,13 @@ body{
     background-attachment: fixed;
     background-size:cover; 
 }
-#table{
-    width:80%;
-    height: 90%
+#t1{
+    width:40%;
+    height:80%
+}
+#t2{
+    width:40%;
+    height:80%
 }
 td{
     text-align:center;
