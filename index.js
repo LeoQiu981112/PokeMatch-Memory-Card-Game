@@ -52,6 +52,7 @@ var bindListener = function(socket, event){
 
 
 io.on('connection', function(socket){
+  console.log("1 player coming"); 
   
   clientCount = clientCount + 1;
   socket.clientNum = clientCount;
