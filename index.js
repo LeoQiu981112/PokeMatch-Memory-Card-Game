@@ -1,6 +1,10 @@
 var http=require("http");
 var express = require('express');
+var socketio=require('socket.io');
+
+
 var app=express();//1
+
 var session=require('express-session');//1
 const path = require('path')
 const PORT = process.env.PORT 
@@ -8,6 +12,62 @@ const { Pool } = require('pg');
 var bodyParser = require('body-parser');
 var Pokedex=require('pokedex-promise-v2');
 var P = new Pokedex();
+
+var server=http.createServer(app); 
+var io= socketio.listen(server);
+
+server.listen(PORT, () => console.log(`Listening on ${ PORT }`));
+//app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
+
+// Chatroom
+var numUsers = 0;
+
+io.on('connection', (socket) => {
+  var addedUser = false;
+  console.log("new user connected");
+
+  // when the client emits 'new message', this listens and executes
+  socket.on('new message', (data) => {
+    // we tell the client to execute 'new message'
+    socket.broadcast.emit('new message', {
+      username: socket.username,
+      message: data
+    });
+  });
+
+
+  // when the client emits 'add user', this listens and executes
+  socket.on('add user', (username) => {
+    if (addedUser) return;
+    // we store the username in the socket session for this client
+    socket.username = username;
+    ++numUsers;
+    addedUser = true;
+    socket.emit('login', {
+      numUsers: numUsers
+    });
+    // echo globally (all clients) that a person has connected
+    socket.broadcast.emit('user joined', {
+      username: socket.username,
+      numUsers: numUsers
+    });
+  });
+
+
+  // when the user disconnects.. perform this
+  socket.on('disconnect', () => {
+    if (addedUser) {
+      --numUsers;
+
+      // echo globally that this client has left
+      socket.broadcast.emit('user left', {
+        username: socket.username,
+        numUsers: numUsers
+      });
+    }
+  });
+});
+
 
 
 //var pool = new Pool({
@@ -39,46 +99,136 @@ app.use(session({
   cookie: {user:"default",maxAge:60*15*1000}
 }));
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 app.post('/poke',function(req,res){
-  // var name=req.body.name;
-  var name='nidoqueen';
+  // var name='nidoqueen';
+  var hp,attk,def,sattk,sdef,spd,ht,wt;
+  var name=req.body.name;
+  console.log(name);
+
   P.getPokemonByName(name,function(result,error){
     if(!error){
       // stats
-      var statlen = result.stats.length-1;
-      for ( i=statlen; i>=0 ;i--){
+      hp=result.stats[5].base_stat;
+      attk=result.stats[4].base_stat;
+      def=result.stats[3].base_stat;
+      sattk=result.stats[2].base_stat;
+      sdef=result.stats[1].base_stat;
+      spd=result.stats[0].base_stat;
+      for ( i=5; i>=0 ;i--){
         console.log(result.stats[i].stat.name);
         console.log(result.stats[i].base_stat);
       }
+        console.log("teststat hp");
+        console.log(hp);
+        console.log("teststat attk");
+        console.log(attk);
+        console.log("teststat def");
+        console.log(def);
+        console.log("teststat sattk");
+        console.log(sattk);
+        console.log("teststat sdef");
+        console.log(sdef);
+        console.log("teststat spd");
+        console.log(spd);
+
+
+      ht=result.height;
       console.log("height:"); 
       console.log(result.height);
+
+      wt=result.weight;
       console.log("weight:"); 
       console.log(result.weight);
       console.log("type:");   
+      var type="";
       for ( i=0; i< result.types.length;i++){
-        console.log(result.types[i].type.name);
+        type+=result.types[i].type.name+" ";
+        // console.log("test");
+        // console.log(type);
+        // console.log("actual");
+        // console.log(result.types[i].type.name);
+ 
       }
-    // description
-    P.getPokemonSpeciesByName(name,function(result,error){
-      if(!error){
-        console.log(result.flavor_text_entries[1].flavor_text);
-      }
-      else{
-        console.log("description err");
-      }
-    })
+      res.json({status:0,hp:hp,attk:attk,def:def,sattk:sattk,sdef:sdef,spd:spd,ht:ht,wt:wt,type:type});
+    } //if
 
-
-
-    } 
     else {
+      res.json({status:1,msg: "api error"});
       console.log("pokemon api error");
     }
-  })
+  })//poke
+//retur pokemon info
+
 });
 
+app.post('/poke1',function(req,res){
+  var des;
+  var name=req.body.name;
 
+  // description
 
+  P.getPokemonSpeciesByName(name)
+
+    .then(function(result){
+      var found=0;
+      var i=0;
+      while(found==0){
+        if(result.flavor_text_entries[i].language.name=="en"){
+          found=1;
+        }
+        else{
+          i++;
+        }
+      }
+      des=result.flavor_text_entries[i].flavor_text;
+      console.log(result.flavor_text_entries[i].flavor_text);
+      res.json({status:0,des:des});
+    })
+
+    .catch(function(error){
+      console.log("description err");
+      res.json({status:1,msg: "description error"});
+    })
+
+});//poke1
 
 
 app.post("/login", function(req, res){
@@ -117,17 +267,12 @@ app.post("/login", function(req, res){
           //console.log("Login succeeded!");
           req.session.user = user;
           req.session.isLogin = true;
-          var json='{"user":"'+user+'","status":1,"msg":"Login Success"}';
-          var obj=JSON.parse(json);
-          console.log(obj.user);
-          console.log(obj.status);
-          console.log(obj.msg)
-          //res.json({status:1,msg:"Login Success"});
-          res.json({status:0,msg: "user login success~"});
+              res.json({status:0,msg: "user login success~"});
           //location.href='https://stark-spire-21434.herokuapp.com/homepage.html';
         } 
-      });
+      }); 
     }
+
 
     else if(result.rows[0].password != pwd){
       console.log("Wrong password!");
@@ -143,8 +288,8 @@ app.post("/login", function(req, res){
 
       //res.redirect('https://stark-spire-21434.herokuapp.com/GM.html');
     }
-  });
-});
+  })//outer query
+}); //login
 
 //for gm
 app.get('/userlist',function(req,res){
@@ -161,8 +306,8 @@ app.get('/userlist',function(req,res){
 app.get('/logout',function(req,res){
   console.log("server receive logout req");
   console.log("destroying session");
+  req.session.isLogin= false;
   req.session.destroy();
-  //req.session.isLogin= false;
   res.json({status:-1,msg:"session ended"});
 });
 
@@ -184,8 +329,9 @@ app.post('/signup', function(req, res){
                                                 + "'" +  sans     + "'"     
                                                 + ")"     
                                                 + ";"  ;
-  
+  var ranking="insert into ranking values ("+"'"+sid+"'"+",100,100);";
   var match = "select * from gm where id in " + "('" + sid + "')" + ";"; 
+  console.log(ranking);
   console.log(match);
                                               
   pool.query(match, function(error, result){
@@ -202,27 +348,29 @@ app.post('/signup', function(req, res){
       pool.query(insert, function(error, result){
         //console.log(error);
     
-        if(error.code == 42601) {
-          //console.log("Incomplete information!");
-          res.json({status:-1,msg:"Incomplete information"})
-          //res.redirect('https://stark-spire-21434.herokuapp.com/signup.html');
-        }
-        else if(error.code == 23505){
+        if(error) {
           console.log("Insert failed!");
           res.json({status:-1,msg:"Sign Up failed, please try again!"});
-          //res.redirect('https://stark-spire-21434.herokuapp.com/signupFailed.html');
         }
         else{
-            console.log("Insert succeeded!");
-            var results = result.rows;
-            console.log(results);
-            res.json({status:0,msg:"Successed!"});
-            //res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
+          pool.query(ranking,function(error,result){
+            if(error){
+              console.log("Ranking failed!");
+            }
+            else{
+              console.log("Ranking success!");
+            }
+          });
+          console.log("Insert succeeded!");
+          var results = result.rows;
+          console.log(results);
+          res.json({status:0,msg:"Successed!"});
         }
       });    
-    }
-  })
-});
+    } //else
+
+  }) //outer query
+});//signup
 
 
 
@@ -245,49 +393,76 @@ app.post('/gmmessage', function(req, res){
 
 
 app.post('/remove', function(req, res){
-	var id3=req.body.Gdelete;
-	var remove = "delete from players where id =" +    "'" + id3 + "'"  
-                                                 + ";" ;   
+  var dname=req.body.name;
+  var remove = "delete from players where id =" +    "'" + dname + "'" + ";" ;   
+  var ranking="delete from ranking where userid="+"'"+dname+"'"+";";
   console.log(remove);
+  console.log(ranking);
 
   pool.query(remove, function(error, result){
-    //console.log(result);
-
 	  if(result.rowCount) {
+      pool.query(ranking,function(error,result){
+        if(error){
+          console.log("Ranking failed!");
+        }
+        else{
+          console.log("Ranking success!");
+        }
+      });
       console.log("Remove succeeded!");
-      res.redirect('https://stark-spire-21434.herokuapp.com/deleteSucceeded.html');
+      res.json({status:0});
 	  }
 	  else{
       //return console.error(error);
       console.log("Remove failed!");
-      res.redirect('https://stark-spire-21434.herokuapp.com/deleteFailed.html');
+      res.json({status:-1});
 	  } 	  
-  });
-
-
-// res.redirect('http://localhost:5000/main.html');
+  })
 });
 
 
 
 app.post('/search', function(req, res){
-	var sid=req.body.gsearch;
-	var search = "select * from players where id in " + "('" + sid + "')" + ";"; 
-                                                   
-  console.log(search);
-
+	var search_cri=req.body.search_cri;
+	var search = "select * from players where id like '%" + search_cri + "%';";                              
+  //console.log(search);
   pool.query(search, function(error, result){
-    //console.log(result);
+    if(error) {
+        console.log("search db fail!");
+        res.json({status:-1});
+    }
 
-	  if(result.rowCount) {
-      console.log("Search succeeded!");
-      //var results = result.rows;
-      res.redirect('https://stark-spire-21434.herokuapp.com/searchSucceeded.html');
-	  }
-	  else{
-      console.log("Search failed!");
-      res.redirect('https://stark-spire-21434.herokuapp.com/searchFailed.html');
-	  } 	   
+    else{
+  	  if(result.rowCount) {
+         //console.log("Search succeeded!");
+        console.log(result.rows[0]);
+
+        var obj = [];
+        var tmp;
+        for (i=0;i<result.rowCount;i++){
+            tmp= {  
+            user: result.rows[i].id  ,    
+            pass: result.rows[i].password , 
+            name: result.rows[i].name };
+          obj.push(tmp);
+        }
+        // var test= JSON.parse(json);
+        var json = {
+          status: 0,
+          list: obj
+        }
+        //json=JSON.stringify(json);
+        //var result;
+        //result=JSON.parse(json)
+        console.log("json");
+        console.log(json);
+        res.json(json);
+  	   }
+  	  else{
+        console.log("Search failed!");
+        res.json({status:-1,list:"Players not found"});
+  	  } 	 
+    }  
   }); 	  
 
   //res.redirect('https://stark-spire-21434.herokuapp.com/GM.html');
@@ -365,11 +540,80 @@ app.post('/modify', function(req, res){
     });
   }
 
+  res.json({status:1});
+
   //res.redirect('https://stark-spire-21434.herokuapp.com/homepage.html');
 });
 
+app.post('/ranking', function(req, res){
+  //var mid=req.body.mid;
+  var mid=   "'" + req.session.user + "'" ;
 
+  var one_steps=req.body.one_steps;
 
+  var fp="update ranking set ";
+  var sp= " where userid = " + mid + ";";
+  var tmp;
+  console.log(one_steps);
+  if(one_steps){
+    tmp= fp + "one_steps = " + "'" + one_steps + "'" + sp;
+    console.log(tmp);
+    pool.query(tmp, function(error, result){
+      if(error) {
+        console.log("rankng fail!");
+        res.json({status:-1});
+      }
+    });
+  }
+  res.json({status:1});
+});
+
+app.get('/rankinglist', function(req, res){
+  var search = "select * from ranking order by one_steps asc;"; 
+  console.log(search);                             
+  //console.log(search);
+  pool.query(search, function(error, result){
+    if(error) {
+        console.log("order fail!");
+        res.json({status:-1});
+    }
+
+    else{
+      if(result.rowCount) {
+         //console.log("Search succeeded!");
+        console.log(result.rows[0]);
+
+        var obj = [];
+        var tmp;
+        for (i=0;i<result.rowCount;i++){
+            tmp= {  
+            userid: result.rows[i].userid  ,    
+            one_steps: result.rows[i].one_steps , 
+            two_steps: result.rows[i].two_steps};
+          obj.push(tmp);
+        }
+        // var test= JSON.parse(json);
+        var json = {
+          status: 0,
+          list: obj
+        }
+        //json=JSON.stringify(json);
+        //var result;
+        //result=JSON.parse(json)
+        console.log("json");
+        console.log(json);
+        res.json(json);
+       }
+      else{
+        console.log("Ranking failed!");
+        res.json({status:-1,list:"No ranking"});
+      }    
+    }  
+  });     
+
+  //res.redirect('https://stark-spire-21434.herokuapp.com/GM.html');
+// res.redirect('http://localhost:5000/main.html');
+});
 
 // app.delete('/user/:id', (req, res) => {
 //   console.log(req.params.id) 
@@ -379,12 +623,6 @@ app.post('/modify', function(req, res){
 // app.set('view engine', 'ejs')
 // app.get('/', (req, res) => res.render('pages/index'))
 
-
-
 // app.get('/users/:id', function(req, res){
 //   console.log(req.params.id);
 // })
-
-app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
-
-

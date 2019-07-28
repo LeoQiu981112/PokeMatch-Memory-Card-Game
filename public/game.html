@@ -3,8 +3,7 @@
 <head>
 <title>Pokemon Match</title>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel = "shortcut icon" href="">
     <link rel="stylesheet" type="text/css" href="game.css">
@@ -23,9 +22,6 @@
                 	var user="";
                 	user+=data.user;
                 	$("h1").html(user);
-                	var msg="";
-                	msg+=data.msg;
-                	$("p1").html(msg);
             		}
         		},
         	error:function(){
@@ -68,161 +64,166 @@
 	</script>
 
 	<br></br>
-	<br></br>
+
+	<div id="choose">
+		<table id="table1" align="center" valign="middle">
+			<tr>
+				<td><div id="squirtle" onclick ="game('water')"></div></td>
+				<td><div id="pikachu" onclick ="game('electric')"></div></td>
+				<td><div id="bulbasaur" onclick ="game('grass')"></div></td>
+			</tr>
+		</table>
+		<table id="table2" align="center" valign="middle">
+			<tr>
+				<td></td>
+				<td><div id="charmander" onclick ="game('fire')"></div></td>
+				<td><div id="eevee" onclick ="game('eevee')"></div></td>
+			</tr>
+		</table>
+	</div>
 
 	<table id="table" align="center" valign="middle">
 		<tr>
-			<td><p><img src="picture/water/dewgong.jpg" href = "javascript:void(0)" onclick ="picture('dewgong')" id="dewgong" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/water/seel.jpg" href = "javascript:void(0)" onclick ="picture('seel')" id="seel" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/water/squirtle.jpg" href = "javascript:void(0)" onclick ="picture('squirtle')" id="squirtle" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/water/wartortle.jpg" href = "javascript:void(0)" onclick ="picture('wartortle')" id="wartortle" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/water/lapras.jpg" href = "javascript:void(0)" onclick ="picture('lapras')" id="lapras" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img href = "javascript:void(0)"  id="location0" align="bottom" width="90%" height="200%" onclick="poker(0)"/></p></td>
+			<td><p><img href = "javascript:void(0)"  id="location1" align="bottom" width="90%" height="200%" onclick="poker(1)"></p></td>
+			<td><p><img href = "javascript:void(0)"  id="location2" align="bottom" width="90%" height="200%" onclick="poker(2)"></p></td>
+			<td><p><img href = "javascript:void(0)"  id="location3" align="bottom" width="90%" height="200%" onclick="poker(3)"></p></td>
+			<td><p><img href = "javascript:void(0)"  id="location4" align="bottom" width="90%" height="200%" onclick="poker(4)"></p></td>
+			<td><p><img href = "javascript:void(0)"  id="location5" align="bottom" width="90%" height="200%" onclick="poker(5)"></p></td>
 		</tr>
 		<tr>
-			<td><p><img src="picture/water/poliwag.jpg" href = "javascript:void(0)" onclick ="picture('poliwag')" id="poliwag" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/water/slowpoke.jpg" href = "javascript:void(0)" onclick ="picture('slowpoke')" id="slowpoke" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/water/slowking.jpg" href = "javascript:void(0)" onclick ="picture('slowking')" id="slowking" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/water/magikarp.jpg" href = "javascript:void(0)" onclick ="picture('magikarp')" id="magikarp" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/water/psyduck.jpg" href = "javascript:void(0)" onclick ="picture('psyduck')" id="psyduck" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img href = "javascript:void(0)"  id="location6" align="bottom" width="90%" height="200%" onclick="poker(6)"></p></td>
+			<td><p><img href = "javascript:void(0)"  id="location7" align="bottom" width="90%" height="200%" onclick="poker(7)"></p></td>
+			<td><p><img href = "javascript:void(0)"  id="location8" align="bottom" width="90%" height="200%" onclick="poker(8)"></p></td>
+			<td><p><img href = "javascript:void(0)"  id="location9" align="bottom" width="90%" height="200%" onclick="poker(9)"></p></td>
+			<td><p><img href = "javascript:void(0)"  id="location10" align="bottom" width="90%" height="200%" onclick="poker(10)"></p></td>
+			<td><p><img href = "javascript:void(0)"  id="location11" align="bottom" width="90%" height="200%" onclick="poker(11)"></p></td>
 		</tr>
 		<tr>
-			<td><p><img src="picture/electric/pikachu.jpg" href = "javascript:void(0)" onclick ="picture('pikachu')" id="pikachu" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/electric/raichu.jpg" href = "javascript:void(0)" onclick ="picture('raichu')" id="raichu" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/electric/pichu.jpg" href = "javascript:void(0)" onclick ="picture('pichu')" id="pichu" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/electric/dedenne.jpg" href = "javascript:void(0)" onclick ="picture('dedenne')" id="dedenne" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/electric/emolga.jpg" href = "javascript:void(0)" onclick ="picture('emolga')" id="emolga" align="bottom" width="80%" height="200%"></p></td>
+			<td><p><img href = "javascript:void(0)"  id="location12" align="bottom" width="90%" height="200%" onclick="poker(12)"></p></td>
+			<td><p><img href = "javascript:void(0)"  id="location13" align="bottom" width="90%" height="200%" onclick="poker(13)"></p></td>
+			<td><p><img href = "javascript:void(0)"  id="location14" align="bottom" width="90%" height="200%" onclick="poker(14)"></p></td>
+			<td><p><img href = "javascript:void(0)"  id="location15" align="bottom" width="90%" height="200%" onclick="poker(15)"></p></td>
+			<td><p><img href = "javascript:void(0)"  id="location16" align="bottom" width="90%" height="200%" onclick="poker(16)"></p></td>
+			<td><p><img href = "javascript:void(0)"  id="location17" align="bottom" width="90%" height="200%" onclick="poker(17)"></p></td>
 		</tr>
-		<tr>
-			<td><p><img src="picture/electric/plusle.jpg" href = "javascript:void(0)" onclick ="picture('plusle')" id="plusle" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/electric/shinx.jpg" href = "javascript:void(0)" onclick ="picture('shinx')" id="shinx" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/electric/mareep.jpg" href = "javascript:void(0)" onclick ="picture('mareep')" id="mareep" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/electric/electrode.jpg" href = "javascript:void(0)" onclick ="picture('electrode')" id="electrode" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/electric/magnemite.jpg" href = "javascript:void(0)" onclick ="picture('magnemite')" id="magnemite" align="bottom" width="80%" height="200%"></p></td>
-		</tr>
-		<tr>
-			<td><p><img src="picture/grass/exeggcute.jpg" href = "javascript:void(0)" onclick ="picture('exeggcute')" id="exeggcute" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/grass/shroomish.jpg" href = "javascript:void(0)" onclick ="picture('shroomish')" id="shroomish" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/grass/petilil.jpg" href = "javascript:void(0)" onclick ="picture('petilil')" id="petilil" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/grass/chikorita.jpg" href = "javascript:void(0)" onclick ="picture('chikorita')" id="chikorita" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/grass/turtwig.jpg" href = "javascript:void(0)" onclick ="picture('turtwig')" id="turtwig" align="bottom" width="80%" height="200%"></p></td>
-		</tr>
-		<tr>
-			<td><p><img src="picture/grass/bulbasaur.jpg" href = "javascript:void(0)" onclick ="picture('bulbasaur')" id="bulbasaur" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/grass/bellossom.jpg" href = "javascript:void(0)" onclick ="picture('bellossom')" id="bellossom" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/grass/oddish.jpg" href = "javascript:void(0)" onclick ="picture('oddish')" id="oddish" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/grass/bounsweet.jpg" href = "javascript:void(0)" onclick ="picture('bounsweet')" id="bounsweet" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/grass/cherubi.jpg" href = "javascript:void(0)" onclick ="picture('cherubi')" id="cherubi" align="bottom" width="80%" height="200%"></p></td>
-		</tr>
-		<tr>
-			<td><p><img src="picture/fire/charmander.jpg" href = "javascript:void(0)" onclick ="picture('charmander')" id="charmander" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/fire/cyndaquil.jpg" href = "javascript:void(0)" onclick ="picture('cyndaquil')" id="cyndaquil" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/fire/darumaka.jpg" href = "javascript:void(0)" onclick ="picture('darumaka')" id="darumaka" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/fire/fennekin.jpg" href = "javascript:void(0)" onclick ="picture('fennekin')" id="fennekin" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/fire/growlithe.jpg" href = "javascript:void(0)" onclick ="picture('growlithe')" id="growlithe" align="bottom" width="80%" height="200%"></p></td>
-		</tr>
-
-		<tr>
-			<td><p><img src="picture/fire/ninetales.jpg" href = "javascript:void(0)" onclick ="picture('ninetales')" id="ninetales" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/fire/ponyta.jpg" href = "javascript:void(0)" onclick ="picture('ponyta')" id="ponyta" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/fire/torchic.jpg" href = "javascript:void(0)" onclick ="picture('torchic')" id="torchic" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/fire/victini.jpg" href = "javascript:void(0)" onclick ="picture('victini')" id="victini" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/fire/vulpix.jpg" href = "javascript:void(0)" onclick ="picture('vulpix')" id="vulpix" align="bottom" width="80%" height="200%"></p></td>
-		</tr>
-
-		<tr>
-			<td><p><img src="picture/eevee/eevee.jpg" href = "javascript:void(0)" onclick ="picture('eevee')" id="eevee" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/eevee/espeon.jpg" href = "javascript:void(0)" onclick ="picture('espeon')" id="espeon" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/eevee/glaceon.jpg" href = "javascript:void(0)" onclick ="picture('glaceon')" id="glaceon" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/eevee/jolteon.jpg" href = "javascript:void(0)" onclick ="picture('jolteon')" id="jolteon" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/eevee/flareon.jpg" href = "javascript:void(0)" onclick ="picture('flareon')" id="flareon" align="bottom" width="80%" height="200%"></p></td>
-		</tr>
-
-		<tr>
-			<td><p><img src="picture/eevee/leafeon.jpg" href = "javascript:void(0)" onclick ="picture('leafeon')" id="leafeon" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/eevee/sylveon.jpg" href = "javascript:void(0)" onclick ="picture('sylveon')" id="sylveon" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/eevee/umbreon.jpg" href = "javascript:void(0)" onclick ="picture('umbreon')" id="umbreon" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/eevee/vaporeon.jpg" href = "javascript:void(0)" onclick ="picture('vaporeon')" id="vaporeon" align="bottom" width="80%" height="200%"></p></td>
-			<td><p><img src="picture/eevee/ditto.jpg" href = "javascript:void(0)" onclick ="picture('ditto')" id="ditto" align="bottom" width="80%" height="200%"></p></td>
-		</tr>
-
-		<script type="text/javascript">
-			function picture(n){
-				document.getElementById('picture').innerHTML='<img src="pokemon/'+n+'.png" weight="200%" height="200%">';
-				document.getElementById('light').style.display='block';
-				document.getElementById('fade').style.display='block';
-
-
-	            $.ajax({
-	                type:"post",
-	                url:"/poke",
-	                data:{pokename:n},
-	                success:function(data){
-	                    if(data.status==0){
-	                        var name=n;
-	                        var hp= data.hp;
-	                        var attk=data.attk;
-	                        var def=data.def;
-	                        var sattk=data.sattk;
-	                        var sdef=data.sdef;
-	                        var spd=data.spd;
-
-	                        var ht=data.ht;
-	                        var wt=data.wt;
-	                        var type=data.type;
-	                        alert("success");
-	                    }
-	                    else{
-	                        alert(data.msg);
-	                    }
-	                },
-	                error:function(){
-	                    alert("getpoke error!");
-	                }
-	            })
-
-
-
-
-
-
-
-
-
-			}
-		</script>
 	</table>
 
-	<div id="light" class="white_content">
-		<a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'" >Close</a>
+	<div id="box" class="white_content" align="left" valign="middle">
+		<center>
+			<img src="images/Success.png" href = "javascript:void(0)"  id="success" align="bottom" width="70%">
+			<br></br>
+			<p>Your steps is: </p>
+			<p id="steps">0</p>
+			<button id="restart" onclick="restart();shuffle_poke()">Restart</button>
+			<input type="submit" id="upload" value="UploadGrade">
+		<script type="text/javascript">
+			var poke=[1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10];
+			var number=Math.ceil(Math.random()*10);
+			poke.splice((number-1)*2,2);
+			var flag=false;
+			var oneid=-1;
+			var count=0;
+			var a;
+			function game(type){
+				a=type;
+				$("#light").show();
+				$("#choose").hide();
+
+			}
+			function poker(id){
+				count++;
+				if(poke[id]==-1){
+					return;
+				}
+
+				document.getElementById("location"+id).src="images/"+a+"/card"+poke[id]+".jpg";
+				if(flag){
+					if(poke[id]==poke[oneid]){
+						poke[id]=-1;
+						poke[oneid]=-1;
+					}
+					else{
+						setTimeout("fail("+id+","+oneid+")",600);
+					}
+					oneid=-1;
+					flag=false;
+				}
+				else{
+					oneid=id;
+					flag=true;
+				}
+				check_success();
+			}
+			function shuffle_poke(){
+				for(var i=0;i<18;i++){
+					document.getElementById("location"+i).src="images/cardbg.png";
+				}
+				for(var i=0;i<18;i++){
+                	var a=Math.floor(Math.random()*18);
+                	var b=Math.floor(Math.random()*18);
+                	var temp=poke[a];
+                	poke[a]=poke[b];
+                	poke[b]=temp;
+				}
+			}
+			function fail(id, oneid){
+				document.getElementById("location"+id).src="images/cardbg.png";
+				document.getElementById("location"+oneid).src="images/cardbg.png";
+			}
+			function check_success(){
+				for(var i=0;i<18;i++){
+					if(poke[i]!=-1)
+						return;
+				}
+				$("#box").show();
+				document.getElementById("steps").innerHTML=count;
+			}
+			$("#upload").click(function(){
+				var one_steps=count;
+				$.ajax({
+        			type:"post",
+        			url:"/ranking",
+        			data:{one_steps:one_steps},
+        			success:function(data){
+            			if(data.status==-1){
+            				alert("ranking Fail!");
+            			}else{
+            			alert("ranking success!");
+            		}
+        		},
+        		error:function(){
+            		alert("Internet Error");
+        		}
+    		})
+		});
+			</script>
+		</center>
+	</div>
+
+	<div id="light" class="white_content" align="left" valign="middle">
+		Rule:
 		<br></br>
-		<div id="picture" style="float:left;display:inline;"></div>
-		<div id="attr" style="float:left;display:inline;">
-			<p>Name: </p>
-			<p>HP: </p>
-			<p>Attack: </p>
-			<p>Defense: </p>
-			<p>Sp Atk: </p>			
-			<p>Sp Def: </p>
-			<p>Speed: </p>
-		</div>
-		<div id="attr_data" style="float:left;display:inline;">
-			<p id='name'>45</p>
-			<p id='hp'>65</p>
-			<p id='attk'>49</p>
-			<p id='def'>49</p>
-			<p id='sattk'>45</p>
-			<p id='sdef'>65</p>
-			<p id='spd'>10</p>
-		</div>
-		<div id="introduce" style="float:left;display:inline;">
-			<p>Height: </p>
-			<p>Weight: </p>
-			<p>Type:</p>
-		</div>
-		<div id="introduce_data" style="float:left;display:inline;">
-			<p id='ht'>2.3 </p> <p>ft</p>
-			<p id= 'wt'>15.21 </p>  <p>lbs </p>
-			<p id= 'type'>Plant,Monster</p>
-		</div>
+		Players choose a pattern for the cards. Cards are all initialized face-down.
+		<br></br>
+    	Each player takes turns flipping two cards face-up — if they are of the same, then that player wins the pair(the pair stays face-up) and gets another turn.
+    	<br></br>
+    	If the cards are not identical, they are turned back facedown and it becomes the next player’s turn to pick two cards.
+    	<br></br>
+    	The game continues until players have picked up all the pairs; the winner is the player with the most pairs.
+    	<br></br>
+		<button id="start" onclick="start();shuffle_poke()">Start</a>
+		<script>
+			//$("#box").show();
+			$("#light").hide();
+			function start(){
+				$("#light").hide(); 
+			}
+			function restart(){
+				$("#box").hide();
+				location.reload();
+			}
+		</script> 
+	</div>
 </body>
 </html>

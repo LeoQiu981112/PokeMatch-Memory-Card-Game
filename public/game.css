@@ -1,37 +1,17 @@
 body{
-    background-image:url(picture/gamebg.jpg);
+    background-image:url(images/gamebg.jpg);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size:cover; 
 }
 #table{
     width:80%;
-    z-index: 100;
+    height: 90%
 }
 td{
     text-align:center;
-}
-#picture{
-    width:40%;
-    height:40%;
-}
-#attr{
-    font-size: 1.2vw;
-    color: #4d8673;
-
-}
-#attr_data{
-    font-size:1.2vw;
-    color: #4d8673;
-    width:8%;
-}
-#introduce{
-    font-size:1.2vw;
-    color: #4d8673;
-}
-#introduce_data{
-    font-size:1.2vw;
-    color: #4d8673;
+    width:10%;
+    height:200%;
 }
 #account{
     font-size:1.5vw;
@@ -51,12 +31,38 @@ td{
     border-radius:20px;
     background-color: #ffffff;
 }
+#start{
+    color: #4d8673;
+    font-size:1.5vw;
+    width:10%;
+    border-radius:20px;
+    background-color: #ffffff;
+    text-align:center;
+}
+#restart{
+    color: #4d8673;
+    font-size:1.5vw;
+    width:20%;
+    border-radius:20px;
+    background-color: #ffffff;
+    text-align:center;
+}
+#upload{
+    color: #4d8673;
+    font-size:1.5vw;
+    width:20%;
+    border-radius:20px;
+    background-color: #ffffff;
+    text-align:center;
+}
 .white_content { 
+    font-size:1.2vw;
+    color: #4d8673;
     display: none; 
     position: fixed; 
     top: 25%; 
     left: 25%; 
-    width: 55%; 
+    width: 50%; 
     height: 45%; 
     padding: 20px; 
     border: 10px solid #fdd12a; 
@@ -64,4 +70,85 @@ td{
     border-radius:20px; 
     z-index:1002; 
     overflow: auto; 
- } 
+ }
+ .menu { 
+    font-size:1.2vw;
+    color: #4d8673;
+    display: none; 
+    position: fixed; 
+    top: 25%; 
+    left: 25%; 
+    width: 50%; 
+    height: 45%; 
+    padding: 20px; 
+    border: 10px solid #fdd12a; 
+    background-color: white;
+    border-radius:20px; 
+    z-index:1002; 
+    overflow: auto; 
+ }
+ #table1{
+    width:75%;
+    z-index: 100;
+}
+#table2{
+    width:53%;
+    z-index: 100;
+}
+td{
+    text-align:center;
+}
+#squirtle{
+    background: url(pokemon/squirtle.png);
+    background-size: 20vw 20vw;
+    background-repeat: no-repeat;
+    width: 20vw;
+    height: 20vw;
+}
+#squirtle:hover {
+    background-size: 105% 105%;
+}
+
+#pikachu{
+    background: url(pokemon/pikachu.png);
+    background-size: 20vw 20vw;
+    background-repeat: no-repeat;
+    width: 20vw;
+    height: 20vw;
+}
+#pikachu:hover {
+    background-size: 105% 105%;
+}
+
+#bulbasaur{
+    background: url(pokemon/bulbasaur.png);
+    background-size: 20vw 20vw;
+    background-repeat: no-repeat;
+    width: 20vw;
+    height: 20vw;
+}
+#bulbasaur:hover {
+    background-size: 105% 105%;
+}
+
+#charmander{
+    background: url(pokemon/charmander.png);
+    background-size: 20vw 20vw;
+    background-repeat: no-repeat;
+    width: 20vw;
+    height: 20vw;
+}
+#charmander:hover {
+    background-size: 105% 105%;
+}
+
+#eevee{
+    background: url(pokemon/eevee.png);
+    background-size: 20vw 20vw;
+    background-repeat: no-repeat;
+    width: 20vw;
+    height: 20vw;
+}
+#eevee:hover {
+    background-size: 105% 105%;
+}

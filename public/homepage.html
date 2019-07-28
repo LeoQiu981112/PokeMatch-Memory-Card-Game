@@ -7,10 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel = "shortcut icon" href="">
     <link rel="stylesheet" type="text/css" href="homepage.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <link rel = "icon" href="data:,">
+  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/tmp.js"></script>
 
-<!-- <script type="text/javascript" src="poker_home.js"></script> -->
 </head>
 
 <body>
@@ -40,9 +41,6 @@
     });    
 
 </script>
-
-
-
 
 <table id="rankingbackground">
 </table>
@@ -81,20 +79,76 @@
         <td id="w5">45</td>
     </tr>
 </table>
+<script>
+    $.ajax({
+        type:"get",
+        url:"/rankinglist",
+        success:function(data){
+            if(data.status==0){
+                var table=document.getElementById('ranking');
+                var size=table.rows.length;
+                for(i=1;i<size;i++){
+                    table.deleteRow(i);
+                    size=size-1;
+                    i=i-1;
+                }
+                for(i=0;i<data.list.length;i++){
+                    var tr=document.createElement("tr");
+                    var td0=document.createElement("td");
+                    var td1=document.createElement("td");
+                    var td2=document.createElement("td");
+                    //var td3=document.createElement("td");
 
-<button id="create" class="float-left submit-button" >Create</button>
+                    var count;
+                    count=i+1;
+                    td0.innerHTML="No."+count;
+                    td1.innerHTML=data.list[i].userid;
+                    td2.innerHTML=data.list[i].one_steps;
+                    //td3.innerHTML=data.list[i].two_steps;
 
-<script type="text/javascript">
-    document.getElementById("create").onclick = function () {
-        location.href = "https://stark-spire-21434.herokuapp.com";
-    };
+                    tr.appendChild(td0);
+                    tr.appendChild(td1);
+                    tr.appendChild(td2);
+                    //tr.appendChild(td3);
+
+                    table.appendChild(tr);
+
+                }
+            }
+            else{
+                alert("Ranking fail!");
+            }
+           // var html="";
+           // html+=data.status;
+            //$("tbody").html(html);
+        },
+        error:function(){
+            alert("Internet Error");
+        }
+    });
+    
 </script>
 
-<button id="join" class="float-left submit-button" >Join</button>
+<button id="poke" class="float-left submit-button" >Poke</button>
+<button id="chat" class="float-left submit-button" >Chat</button>
+<button id="game" class="float-left submit-button" >Solo</button>
+<button id="game2" class="float-left submit-button" >Coop</button>
+
 
 <script type="text/javascript">
-    document.getElementById("join").onclick = function () {
-        location.href = "https://stark-spire-21434.herokuapp.com";
+    document.getElementById("poke").onclick = function () {
+        location.href = "https://stark-spire-21434.herokuapp.com/pokedex.html";
+    };
+    document.getElementById("chat").onclick = function () {
+        location.href = "https://stark-spire-21434.herokuapp.com/tmp.html";
+    };
+    document.getElementById("game").onclick = function () {
+        // location.href = "https://stark-spire-21434.herokuapp.com/choose.html";
+        location.href = "https://stark-spire-21434.herokuapp.com/game.html";
+    };
+    document.getElementById("game2").onclick = function () {
+        // location.href = "https://stark-spire-21434.herokuapp.com/choose.html";
+        location.href = "https://stark-spire-21434.herokuapp.com/game2.html";
     };
 </script>
 
@@ -105,6 +159,9 @@
 
 <table id="myownbackground">    
 </table>
+
+
+
 <table id="myown">
     <tr>
         <td width="30%" id="rm">No.15</td>
@@ -113,17 +170,6 @@
     </tr>
 </table>
 
-<!--<form action="/rank check" method="post" >
-<input type="submit" value="update" />
-</form>-->
-<form action="/poke" method="post" >
-<input type="submit" value="poke api test" />
-</form>
-
-
-
-
-
 <button id="account" class="float-left submit-button" >Info</button>
 
 <script type="text/javascript">
@@ -131,11 +177,6 @@
         location.href = "https://stark-spire-21434.herokuapp.com/modify.html";
     };
 </script>
-
-
-
-
-
 
 <input type="button" value="logout"  class="float-left submit-button" id="logout" > 
 
@@ -157,9 +198,6 @@
     }); 
 
 </script>
-
-
-
 
 <input type="button" onClick="msgbox(1)" value="rule" id="Hrule">
 <div id='inputbox' class="box">

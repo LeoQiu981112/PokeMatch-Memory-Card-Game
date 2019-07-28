@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Pokemon Match</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel = "shortcut icon" href="">
+    <link rel="stylesheet" type="text/css" href="game.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <link rel = "icon" href="data:,">
+</head>
+<body>
+	<h1></h1>
+	<script>
+    //run right away
+    	$.ajax({
+        	type:"get",
+        	url:"/userlist",
+        	success:function(data){
+            	if(data.status==-1){
+                	var user="";
+                	user+=data.user;
+                	$("h1").html(user);
+
+            		}
+        		},
+        	error:function(){
+            	alert("Internet Error");
+        	}
+    	});    
+	</script>
+
+	<button id="account" class="float-left submit-button" >Info</button>
+	<script type="text/javascript">
+		document.getElementById("account").onclick = function () {
+			location.href = "https://stark-spire-21434.herokuapp.com/modify.html";
+		};
+	</script>
+
+	<button id="back" class="float-left submit-button" >Back</button>
+	<script type="text/javascript">
+		document.getElementById("back").onclick = function () {
+			location.href = "https://stark-spire-21434.herokuapp.com/homepage.html";
+		};
+	</script>
+
+	<input type="button" value="logout"  class="float-left submit-button" id="logout" > 
+	<script>
+	//wait til button clicked
+		$("#logout").click(function(){
+			$.ajax({
+				type:"get",
+				url:"/logout",
+				success:function(data){
+					if(data.status==-1){
+						location.href="https://stark-spire-21434.herokuapp.com/login.html";
+					}
+				},
+				error:function(){
+					alert("logout error!");
+				}
+			});
+		}); 
+	</script>
+
+	<br></br>
+
+	<div id="menu" class="menu" align="left" valign="middle">
+
+    	<h4>New game</h4>
+    	<input type="text" name="name" id="nameNew" placeholder="Enter your name" required>
+    	<button id="new">New Game</button>
+
+    	<br><br>
+    
+    	<h4>Join an existing game</h4>
+    	<input type="text" name="name" id="nameJoin" placeholder="Enter your name" required>
+    	<input type="text" name="room" id="room" placeholder="Enter Game ID" required>
+    	<button id="join" onclick="room()">Join Game</button>
+    	<script type="text/javascript">
+    		function room(){
+    			$("#menu").hide();
+    			$("#choose").show();
+    		}
+    	</script>
+
+	</div>
+
+
+	<div id="choose">
+		<table id="table1" align="center" valign="middle">
+			<tr>
+				<td><div id="squirtle" onclick ="game('water')"></div></td>
+				<td><div id="pikachu" onclick ="game('electric')"></div></td>
+				<td><div id="bulbasaur" onclick ="game('grass')"></div></td>
+			</tr>
+		</table>
+		<table id="table2" align="center" valign="middle">
+			<tr>
+				<td></td>
+				<td><div id="charmander" onclick ="game('fire')"></div></td>
+				<td><div id="eevee" onclick ="game('eevee')"></div></td>
+			</tr>
+		</table>
+	</div>
+
+	<table id="table" align="center" valign="middle">
+		<tr>
+			<td><p><img href = "javascript:void(0)"  id="location0" align="bottom" width="90%" height="200%" onclick="poker(0)"/></p></td>
+			<td><p><img href = "javascript:void(0)"  id="location1" align="bottom" width="90%" height="200%" onclick="poker(1)"></p></td>
+			<td><p><img href = "javascript:void(0)"  id="location2" align="bottom" width="90%" height="200%" onclick="poker(2)"></p></td>
+			<td><p><img href = "javascript:void(0)"  id="location3" align="bottom" width="90%" height="200%" onclick="poker(3)"></p></td>
+			<td><p><img href = "javascript:void(0)"  id="location4" align="bottom" width="90%" height="200%" onclick="poker(4)"></p></td>
+			<td><p><img href = "javascript:void(0)"  id="location5" align="bottom" width="90%" height="200%" onclick="poker(5)"></p></td>
+		</tr>
+		<tr>
+			<td><p><img href = "javascript:void(0)"  id="location6" align="bottom" width="90%" height="200%" onclick="poker(6)"></p></td>
+			<td><p><img href = "javascript:void(0)"  id="location7" align="bottom" width="90%" height="200%" onclick="poker(7)"></p></td>
+			<td><p><img href = "javascript:void(0)"  id="location8" align="bottom" width="90%" height="200%" onclick="poker(8)"></p></td>
+			<td><p><img href = "javascript:void(0)"  id="location9" align="bottom" width="90%" height="200%" onclick="poker(9)"></p></td>
+			<td><p><img href = "javascript:void(0)"  id="location10" align="bottom" width="90%" height="200%" onclick="poker(10)"></p></td>
+			<td><p><img href = "javascript:void(0)"  id="location11" align="bottom" width="90%" height="200%" onclick="poker(11)"></p></td>
+		</tr>
+		<tr>
+			<td><p><img href = "javascript:void(0)"  id="location12" align="bottom" width="90%" height="200%" onclick="poker(12)"></p></td>
+			<td><p><img href = "javascript:void(0)"  id="location13" align="bottom" width="90%" height="200%" onclick="poker(13)"></p></td>
+			<td><p><img href = "javascript:void(0)"  id="location14" align="bottom" width="90%" height="200%" onclick="poker(14)"></p></td>
+			<td><p><img href = "javascript:void(0)"  id="location15" align="bottom" width="90%" height="200%" onclick="poker(15)"></p></td>
+			<td><p><img href = "javascript:void(0)"  id="location16" align="bottom" width="90%" height="200%" onclick="poker(16)"></p></td>
+			<td><p><img href = "javascript:void(0)"  id="location17" align="bottom" width="90%" height="200%" onclick="poker(17)"></p></td>
+		</tr>
+	</table>
+
+	<div id="box" class="white_content" align="left" valign="middle">
+		<center>
+			<img src="images/Success.png" href = "javascript:void(0)"  id="success" align="bottom" width="70%">
+			<br></br>
+			<p>Your steps is: </p>
+			<p id="steps">0</p>
+			<button id="restart" onclick="restart();shuffle_poke()">Restart</button>
+			<input type="submit" id="upload" value="UploadGrade">
+		<script type="text/javascript">
+			var poke=[1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10];
+			var number=Math.ceil(Math.random()*10);
+			poke.splice((number-1)*2,2);
+			var flag=false;
+			var oneid=-1;
+			var count=0;
+
+
+			var a;
+			function game(type){
+				a=type;
+				$("#light").show();
+				$("#choose").hide();
+
+			}
+
+			function poker(id){
+				count++;
+				if(poke[id]==-1){
+					return;
+				}
+
+				document.getElementById("location"+id).src="images/"+a+"/card"+poke[id]+".jpg";
+
+
+
+				if(flag){
+					if(poke[id]==poke[oneid]){
+						poke[id]=-1;
+						poke[oneid]=-1;
+					}
+					else{
+						setTimeout("fail("+id+","+oneid+")",600);
+					}
+					oneid=-1;
+					flag=false;
+				}
+				else{
+					oneid=id;
+					flag=true;
+				}
+				check_success();
+			}
+			function shuffle_poke(){
+				for(var i=0;i<18;i++){
+					document.getElementById("location"+i).src="images/cardbg.png";
+				}
+				for(var i=0;i<18;i++){
+                	var a=Math.floor(Math.random()*18);
+                	var b=Math.floor(Math.random()*18);
+                	var temp=poke[a];
+                	poke[a]=poke[b];
+                	poke[b]=temp;
+				}
+			}
+			function fail(id, oneid){
+				document.getElementById("location"+id).src="images/cardbg.png";
+				document.getElementById("location"+oneid).src="images/cardbg.png";
+			}
+			function check_success(){
+				for(var i=0;i<18;i++){
+					if(poke[i]!=-1)
+						return;
+				}
+				$("#box").show();
+				document.getElementById("steps").innerHTML=count;
+			}
+			$("#upload").click(function(){
+				var one_steps=count;
+				$.ajax({
+        			type:"post",
+        			url:"/ranking",
+        			data:{one_steps:one_steps},
+        			success:function(data){
+            			if(data.status==-1){
+            				alert("ranking Fail!");
+            			}else{
+            			alert("ranking success!");
+            		}
+        		},
+        		error:function(){
+            		alert("Internet Error");
+        		}
+    		})
+		});
+			</script>
+		</center>
+	</div>
+
+	<div id="light" class="white_content" align="left" valign="middle">
+		Rule:
+		<br></br>
+		Players choose a pattern for the cards. Cards are all initialized face-down.
+		<br></br>
+    	Each player takes turns flipping two cards face-up — if they are of the same, then that player wins the pair(the pair stays face-up) and gets another turn.
+    	<br></br>
+    	If the cards are not identical, they are turned back facedown and it becomes the next player’s turn to pick two cards.
+    	<br></br>
+    	The game continues until players have picked up all the pairs; the winner is the player with the most pairs.
+    	<br></br>
+		<button id="start" onclick="start();shuffle_poke()">Start</a>
+		<script>
+			$("#menu").show();
+			$("#choose").hide();
+			$("#light").hide();
+			function start(){
+				$("#light").hide(); 
+			}
+			function restart(){
+				$("#box").hide();
+				location.reload();
+			}
+		</script> 
+	</div>
+
+
+</body>
+</html>

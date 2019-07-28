@@ -82,7 +82,7 @@ body{
     border-radius:20px;
     background-color: #ffffff;
 }
-#create{
+#poke{
 	margin: auto;
 	position: absolute;
     font-size:2vw;
@@ -96,7 +96,7 @@ body{
     bottom: 0;
     z-index: -1;
 }
-#join{
+#game{
 	margin: auto;
 	position: absolute;
     font-size:2vw;
@@ -107,6 +107,34 @@ body{
     top:0;
     left: 20%;
     right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+#game2{
+    margin: auto;
+    position: absolute;
+    font-size:2vw;
+    width:8%;
+    height:8%;
+    border-radius: 40px;
+    background-color: #ffffff;
+    top:0;
+    left: 40%;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+#chat{
+    margin: auto;
+    position: absolute;
+    font-size:2vw;
+    width:8%;
+    height:8%;
+    border-radius: 40px;
+    background-color: #ffffff;
+    top:0;
+    left: 0;
+    right: 40%;
     bottom: 0;
     z-index: -1;
 }
