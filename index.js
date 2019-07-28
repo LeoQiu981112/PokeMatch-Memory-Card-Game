@@ -5,7 +5,6 @@ var socketio=require('socket.io');
 
 var app=express();//1
 
-
 var session=require('express-session');//1
 const path = require('path')
 const PORT = process.env.PORT 
@@ -19,7 +18,6 @@ var io= socketio.listen(server);
 
 server.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 //app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
-
 
 // Chatroom
 var numUsers = 0;
