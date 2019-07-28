@@ -5,6 +5,7 @@ var socketio=require('socket.io');
 
 var app=express();//1
 
+
 var session=require('express-session');//1
 const path = require('path')
 const PORT = process.env.PORT 
@@ -13,11 +14,118 @@ var bodyParser = require('body-parser');
 var Pokedex=require('pokedex-promise-v2');
 var P = new Pokedex();
 
+
+
 var server=http.createServer(app); 
 var io= socketio.listen(server);
 
 server.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 //app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
+
+
+
+//var gameserver=http.createServer(app); 
+//var gameio= socketio.listen(gameserver);
+
+//gameserver.listen(PORT, () => console.log(`Listening on ${ PORT }`));
+
+
+// 客户端计数
+var clientCount = 0;
+
+// 用来存储客户端socket
+var socketMap = {};
+
+var bindListener = function(socket, event){
+    socket.on(event, function(data){
+        if(socket.clientNum % 2 == 0){
+            if(socketMap[socket.clientNum - 1]){
+                socketMap[socket.clientNum - 1].emit(event,data);
+            }
+        } else {
+            if(socketMap[socket.clientNum + 1]){
+                socketMap[socket.clientNum + 1].emit(event,data);
+            }
+        }
+    })
+}
+
+
+io.on('connection', function(socket){
+  console.log("1 player coming"); 
+  
+  clientCount = clientCount + 1;
+  socket.clientNum = clientCount;
+  socketMap[clientCount] = socket;
+  // 第一个用户进来让其等待配对
+  if(clientCount % 2 == 1){
+      socket.emit('waiting','waiting for another person');
+  } else {    // 每对的第二个进来给他们发送开始消息
+      // 如果不存在了说明掉线了
+      if(socketMap[socket.clientNum - 1]){
+          socket.emit('start');
+          socketMap[(clientCount - 1)].emit('start');
+      } else {
+          socket.emit('leave');
+      }
+  }
+
+  // 把一方的初始值发送给另一方显示
+  // socket.on('init', function(data){
+  //     if(socket.clientNum % 2 == 0){
+  //         socketMap[socket.clientNum - 1].emit('init',data);
+  //     } else {
+  //         socketMap[socket.clientNum + 1].emit('init',data);
+  //     }
+  // })
+  // 简化
+  bindListener(socket,'init');
+  bindListener(socket,'next');
+  bindListener(socket,'rotate');
+  bindListener(socket,'right');
+  bindListener(socket,'down');
+  bindListener(socket,'left');
+  bindListener(socket,'fall');
+  bindListener(socket,'fixed');
+  bindListener(socket,'line');
+  bindListener(socket,'time');
+  bindListener(socket,'lose');
+  bindListener(socket,'bottomLines');
+  bindListener(socket,'addTailLines');
+  
+  
+  
+  socket.on('disconnect', function(){
+      if(socket.clientNum % 2 == 0){
+          if(socketMap[socket.clientNum - 1]){
+              socketMap[socket.clientNum - 1].emit('leave');
+          }
+      } else {
+          if(socketMap[socket.clientNum + 1]){
+              socketMap[socket.clientNum + 1].emit('leave');
+          }
+      }
+      delete(socketMap[socket.clientNum]);
+  })
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Chatroom
 var numUsers = 0;
@@ -25,6 +133,7 @@ var numUsers = 0;
 io.on('connection', (socket) => {
   var addedUser = false;
   console.log("new user connected");
+
 
   // when the client emits 'new message', this listens and executes
   socket.on('new message', (data) => {
@@ -39,6 +148,7 @@ io.on('connection', (socket) => {
   // when the client emits 'add user', this listens and executes
   socket.on('add user', (username) => {
     if (addedUser) return;
+
     // we store the username in the socket session for this client
     socket.username = username;
     ++numUsers;
@@ -66,7 +176,19 @@ io.on('connection', (socket) => {
       });
     }
   });
+
+
+
+
 });
+
+
+
+
+
+
+
+
 
 
 
@@ -329,9 +451,8 @@ app.post('/signup', function(req, res){
                                                 + "'" +  sans     + "'"     
                                                 + ")"     
                                                 + ";"  ;
-  var ranking="insert into ranking values ("+"'"+sid+"'"+",100,100);";
+  
   var match = "select * from gm where id in " + "('" + sid + "')" + ";"; 
-  console.log(ranking);
   console.log(match);
                                               
   pool.query(match, function(error, result){
@@ -351,20 +472,14 @@ app.post('/signup', function(req, res){
         if(error) {
           console.log("Insert failed!");
           res.json({status:-1,msg:"Sign Up failed, please try again!"});
+          //res.redirect('https://stark-spire-21434.herokuapp.com/signupFailed.html');
         }
         else{
-          pool.query(ranking,function(error,result){
-            if(error){
-              console.log("Ranking failed!");
-            }
-            else{
-              console.log("Ranking success!");
-            }
-          });
-          console.log("Insert succeeded!");
-          var results = result.rows;
-          console.log(results);
-          res.json({status:0,msg:"Successed!"});
+            console.log("Insert succeeded!");
+            var results = result.rows;
+            console.log(results);
+            res.json({status:0,msg:"Successed!"});
+            //res.redirect('https://stark-spire-21434.herokuapp.com/login.html');
         }
       });    
     } //else
@@ -394,21 +509,12 @@ app.post('/gmmessage', function(req, res){
 
 app.post('/remove', function(req, res){
   var dname=req.body.name;
-  var remove = "delete from players where id =" +    "'" + dname + "'" + ";" ;   
-  var ranking="delete from ranking where userid="+"'"+dname+"'"+";";
+  var remove = "delete from players where id =" +    "'" + dname + "'"  
+                                                 + ";" ;   
   console.log(remove);
-  console.log(ranking);
 
   pool.query(remove, function(error, result){
 	  if(result.rowCount) {
-      pool.query(ranking,function(error,result){
-        if(error){
-          console.log("Ranking failed!");
-        }
-        else{
-          console.log("Ranking success!");
-        }
-      });
       console.log("Remove succeeded!");
       res.json({status:0});
 	  }
@@ -545,75 +651,8 @@ app.post('/modify', function(req, res){
   //res.redirect('https://stark-spire-21434.herokuapp.com/homepage.html');
 });
 
-app.post('/ranking', function(req, res){
-  //var mid=req.body.mid;
-  var mid=   "'" + req.session.user + "'" ;
 
-  var one_steps=req.body.one_steps;
 
-  var fp="update ranking set ";
-  var sp= " where userid = " + mid + ";";
-  var tmp;
-  console.log(one_steps);
-  if(one_steps){
-    tmp= fp + "one_steps = " + "'" + one_steps + "'" + sp;
-    console.log(tmp);
-    pool.query(tmp, function(error, result){
-      if(error) {
-        console.log("rankng fail!");
-        res.json({status:-1});
-      }
-    });
-  }
-  res.json({status:1});
-});
-
-app.get('/rankinglist', function(req, res){
-  var search = "select * from ranking order by one_steps asc;"; 
-  console.log(search);                             
-  //console.log(search);
-  pool.query(search, function(error, result){
-    if(error) {
-        console.log("order fail!");
-        res.json({status:-1});
-    }
-
-    else{
-      if(result.rowCount) {
-         //console.log("Search succeeded!");
-        console.log(result.rows[0]);
-
-        var obj = [];
-        var tmp;
-        for (i=0;i<result.rowCount;i++){
-            tmp= {  
-            userid: result.rows[i].userid  ,    
-            one_steps: result.rows[i].one_steps , 
-            two_steps: result.rows[i].two_steps};
-          obj.push(tmp);
-        }
-        // var test= JSON.parse(json);
-        var json = {
-          status: 0,
-          list: obj
-        }
-        //json=JSON.stringify(json);
-        //var result;
-        //result=JSON.parse(json)
-        console.log("json");
-        console.log(json);
-        res.json(json);
-       }
-      else{
-        console.log("Ranking failed!");
-        res.json({status:-1,list:"No ranking"});
-      }    
-    }  
-  });     
-
-  //res.redirect('https://stark-spire-21434.herokuapp.com/GM.html');
-// res.redirect('http://localhost:5000/main.html');
-});
 
 // app.delete('/user/:id', (req, res) => {
 //   console.log(req.params.id) 
@@ -623,6 +662,14 @@ app.get('/rankinglist', function(req, res){
 // app.set('view engine', 'ejs')
 // app.get('/', (req, res) => res.render('pages/index'))
 
+
+
 // app.get('/users/:id', function(req, res){
 //   console.log(req.params.id);
 // })
+
+
+
+
+
+

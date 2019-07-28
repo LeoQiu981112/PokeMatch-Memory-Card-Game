@@ -1,39 +1,26 @@
 $(function() {
-    // document is loaded and DOM is ready
-  var user="";
-
-  $.ajax({
-      type:"get",
-      url:"/userlist",
-      success:function(data){
-          if(data.status==-1){
-              user+=data.user;
-          }
-      },
-      error:function(){
-          alert("username Error");
-      }
-  });   
-
   var FADE_TIME = 150; // ms
+  var TYPING_TIMER_LENGTH = 400; // ms
   var COLORS = [
     '#e21400', '#91580f', '#f8a700', '#f78b00',
     '#58dc00', '#287b00', '#a8f07a', '#4ae8c4',
     '#3b88eb', '#3824aa', '#a700ff', '#d300e7'
   ];
 
-
   // Initialize variables
   var $window = $(window);
+  var $usernameInput = $('.usernameInput'); // Input for username
   var $messages = $('.messages'); // Messages area
   var $inputMessage = $('.inputMessage'); // Input message input box
+
+  var $loginPage = $('.login.page'); // The login page
   var $chatPage = $('.chat.page'); // The chatroom page
 
   // Prompt for setting a username
-  var username="";
-
+  var username;
   var connected = false;
-  var $currentInput = $inputMessage.focus();
+  var typing = false;
+  var $currentInput = $usernameInput.focus();
 
   var socket = io();
 
@@ -49,14 +36,21 @@ $(function() {
 
   // Sets the client's username
   const setUsername = () => {
-    username = user;
+    username = cleanInput($usernameInput.val().trim());
     // If the username is valid
     if (username) {
+      $loginPage.fadeOut();
+      $chatPage.show();
+      $loginPage.off('click');
       $currentInput = $inputMessage.focus();
+
       // Tell the server your username
       socket.emit('add user', username);
     }
   }
+
+  
+
 
   // Sends a chat message
   const sendMessage = () => {
@@ -75,36 +69,33 @@ $(function() {
     }
   }
 
+
+
+
   // Log a message
     const log = (message, options) => {
     var $el = $('<li>').addClass('log').text(message);
     addMessageElement($el, options);
   }
 
+
+
   // Adds the visual chat message to the message list
   const addChatMessage = (data, options) => {
     // Don't fade the message in if there is an 'X was typing'
-    var $typingMessages = getTypingMessages(data);
-    options = options || {};
-    if ($typingMessages.length !== 0) {
-      options.fade = false;
-      $typingMessages.remove();
-    }
-
     var $usernameDiv = $('<span class="username"/>')
       .text(data.username)
       .css('color', getUsernameColor(data.username));
     var $messageBodyDiv = $('<span class="messageBody">')
       .text(data.message);
 
-    // var typingClass = data.typing ? 'typing' : '';
     var $messageDiv = $('<li class="message"/>')
       .data('username', data.username)
-      // .addClass(typingClass)
       .append($usernameDiv, $messageBodyDiv);
-
     addMessageElement($messageDiv, options);
   }
+
+
 
   // Adds a message element to the messages and scrolls to the bottom
   // el - The element to add as a message
@@ -142,14 +133,6 @@ $(function() {
     return $('<div/>').text(input).html();
   }
 
-
-  // Gets the 'X is typing' messages of a user
-  const getTypingMessages = (data) => {
-    return $('.typing.message').filter(function (i) {
-      return $(this).data('username') === data.username;
-    });
-  }
-
   // Gets the color of a username through our hash function
   const getUsernameColor = (username) => {
     // Compute hash code
@@ -171,26 +154,23 @@ $(function() {
     }
     // When the client hits ENTER on their keyboard
     if (event.which === 13) {
-      //alert("ffssfd");
       if (username) {
         sendMessage();
-        // socket.emit('stop typing');
-        typing = false;
-      } 
-      else {
+      } else {
         setUsername();
       }
     }
-    // if(username==""){
-    //   setUsername();
-    //   alert("sfffsdfsdd");
-    // }
-    // else if(event.which===13){
-    //   sendMessage();
-    //   typing=false;
-    // }
   });
 
+
+
+
+  // Click events
+
+  // Focus input when clicking anywhere on login page
+  $loginPage.click(() => {
+    $currentInput.focus();
+  });
 
   // Focus input when clicking on the message input's border
   $inputMessage.click(() => {
@@ -198,11 +178,12 @@ $(function() {
   });
 
   // Socket events
+
   // Whenever the server emits 'login', log the login message
   socket.on('login', (data) => {
     connected = true;
     // Display the welcome message
-    var message = "Welcome to PokeMatch Chat – ";
+    var message = "Welcome to Socket.IO Chat – ";
     log(message, {
       prepend: true
     });
@@ -224,8 +205,9 @@ $(function() {
   socket.on('user left', (data) => {
     log(data.username + ' left');
     addParticipantsMessage(data);
-    // removeChatTyping(data);
+    removeChatTyping(data);
   });
+
 
   socket.on('disconnect', () => {
     log('you have been disconnected');
@@ -241,4 +223,5 @@ $(function() {
   socket.on('reconnect_error', () => {
     log('attempt to reconnect has failed');
   });
+
 });
