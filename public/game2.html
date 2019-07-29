@@ -83,6 +83,21 @@
 	<div id="menu" class="menu" align="left" valign="middle">
     	<h4>New game</h4>
     	<button id="new">New Game</button>
+<script>
+  $("#new").click(() => {
+    const name = user;
+    if (!name) {
+      alert('account name undef');
+      return;
+    }
+    socket.emit('createGame', { name });
+    player = new Player(name, P1);
+	$("#menu").hide();
+	$("#choose").show();
+    alert("new clicked");
+  });		
+</script>
+
 
     	<br><br>
     

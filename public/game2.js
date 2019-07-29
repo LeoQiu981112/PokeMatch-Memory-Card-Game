@@ -234,18 +234,18 @@
 
 
 
-  $("#new").click(() => {
-    const name = user;
-    if (!name) {
-      alert('account name undef');
-      return;
-    }
-    socket.emit('createGame', { name });
-    player = new Player(name, P1);
-	$("#menu").hide();
-	$("#choose").show();
-    alert("new clicked");
-  });
+ //  $("#new").click(() => {
+ //    const name = user;
+ //    if (!name) {
+ //      alert('account name undef');
+ //      return;
+ //    }
+ //    socket.emit('createGame', { name });
+ //    player = new Player(name, P1);
+	// $("#menu").hide();
+	// $("#choose").show();
+ //    alert("new clicked");
+ //  });
 
   // Join an existing game on the entered roomId. Emit the joinGame event.
   $("#join").click(function() {
