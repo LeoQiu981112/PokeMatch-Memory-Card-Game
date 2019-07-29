@@ -31,7 +31,7 @@ var socketMap = {};
 
 var bindListener = function(socket, event){
     socket.on(event, function(data){
-        console.log(data);
+        //console.log(data);
         if(socket.clientNum % 2 == 0){
             if(socketMap[socket.clientNum - 1]){
                 socketMap[socket.clientNum - 1].emit(event,data);

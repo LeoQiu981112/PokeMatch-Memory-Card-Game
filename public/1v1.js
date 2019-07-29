@@ -15,6 +15,7 @@ function poker(id){
         return;
     }
     document.getElementById("location"+id).src="images/eevee/card"+poke[id]+".jpg";
+    poke[id]==-1;
     socket.emit('up', {remote_id:id});
     if(flag){
         if(poke[id]==poke[oneid]){
@@ -23,6 +24,7 @@ function poker(id){
         }
         else{
             setTimeout("fail("+id+","+oneid+")",600);
+            poke[oneid]==1;
         }
         oneid=-1;
         flag=false;
