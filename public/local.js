@@ -4,12 +4,15 @@ poke.splice((number-1)*2,2);
 var flag=false;
 var oneid=-1;
 var count=0;
+
+var remote_id;
 function poker(id){
     count++;
     if(poke[id]==-1){
         return;
     }
     document.getElementById("location"+id).src="images/eevee/card"+poke[id]+".jpg";
+    socket.emit('up', {remote_id:id});
     if(flag){
         if(poke[id]==poke[oneid]){
             poke[id]=-1;
