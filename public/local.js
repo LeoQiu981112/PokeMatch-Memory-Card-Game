@@ -53,6 +53,6 @@ function check_success(){
 }
 socket.on('start', function(){
     shuffle_poke();
-    console.log(poke);
+    //console.log(poke);
     //socket.emit('init')
 })
