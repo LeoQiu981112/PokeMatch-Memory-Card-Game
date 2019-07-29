@@ -78,6 +78,7 @@ io.on('connection', function(socket){
   bindListener(socket,'init');
   bindListener(socket,'up');
   bindListener(socket,'back');
+  bindListener(socket,'lose');
 
   bindListener(socket,'next');
   bindListener(socket,'rotate');
@@ -88,7 +89,6 @@ io.on('connection', function(socket){
   bindListener(socket,'fixed');
   bindListener(socket,'line');
   bindListener(socket,'time');
-  bindListener(socket,'lose');
   bindListener(socket,'bottomLines');
   bindListener(socket,'addTailLines');
   

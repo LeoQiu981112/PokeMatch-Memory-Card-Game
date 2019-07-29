@@ -58,7 +58,9 @@ function check_success(){
             return;
     }
     $("#box").show();
+    document.getElementById("result").innerHTML="You win!";
     document.getElementById("steps").innerHTML=count;
+    socket.emit('lose');
 }
 
 
@@ -109,4 +111,10 @@ socket.on('back', function(data) {
 socket.on('leave', function(){
     document.getElementById('local').innerHTML = "Your opponent is offline";
     document.getElementById('remote').innerHTML = "Offline";
+})
+
+socket.on('lose', function(){
+    $("#box").show();
+    document.getElementById("result").innerHTML="You lost!";
+    document.getElementById("steps").innerHTML=count;
 })

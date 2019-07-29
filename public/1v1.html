@@ -67,9 +67,9 @@
             });
         }); 
     </script>
-    
-    <table id="t1" align="left" valign="middle">
-        <div>My Game Area</div>
+    <div style="width:40%; display:inline-block">
+    <table id="t1" align="left" valign="middle" border = "1">
+        <p>My Game Area</p>
         <tr>
             <td><p><img href = "javascript:void(0)"  id="location0" align="bottom" width="90%" height="200%" onclick="poker(0)"/></p></td>
             <td><p><img href = "javascript:void(0)"  id="location1" align="bottom" width="90%" height="200%" onclick="poker(1)"></p></td>
@@ -94,13 +94,13 @@
             <td><p><img href = "javascript:void(0)"  id="location16" align="bottom" width="90%" height="200%" onclick="poker(16)"></p></td>
             <td><p><img href = "javascript:void(0)"  id="location17" align="bottom" width="90%" height="200%" onclick="poker(17)"></p></td>
         </tr>
-        <div id="local"></div>
+        
     </table>
-
-
-
-    <table id="t2" valign="middle" align = "right">		
-        <div align = "center">Opponent's Game Area</div>
+    <div id="local">11111</div>
+    </div>
+    <div style="width:40%; display:inline-block">
+    <table id="t2" valign="middle" align = "right" border = "1">		
+        <p align = "center">Opponent's Game Area</p>
         <tr>
             <td><p><img href = "javascript:void(0)"  id="location18" align="bottom" width="90%" height="200%"></p></td>
             <td><p><img href = "javascript:void(0)"  id="location19" align="bottom" width="90%" height="200%"></p></td>
@@ -125,9 +125,12 @@
             <td><p><img href = "javascript:void(0)"  id="location34" align="bottom" width="90%" height="200%"></p></td>
             <td><p><img href = "javascript:void(0)"  id="location35" align="bottom" width="90%" height="200%"></p></td>
         </tr>  
-        <div id="remote"></div>       
+               
     </table>
-    
+    </div>
+    <div id="local">11111</div>
+    <br>
+    <div id="remote" align="right">22222</div>
 
     <div id="startpage" class="white_content" align="left" valign="middle">
         <div id="waiting" align = "center"></div>
@@ -142,13 +145,12 @@
         
 	<div id="box" class="white_content" align="left" valign="middle">
 		<center>
-            <p font-size="1.8vw">You win!</p>
+            <div id="result"></div>
 			<br></br>
 			<p>Your steps is: </p>
-			<p id="steps">0</p>
-			<button id="restart" onclick="restart();shuffle_poke()">Restart</a>
+			<p id="steps"></p>
 		</center>
 	</div>
-    
+ 
 </body>
 </html>
