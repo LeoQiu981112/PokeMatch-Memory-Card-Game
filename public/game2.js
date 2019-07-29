@@ -69,17 +69,14 @@
 
 
 
-
-  // roomId Id of the room in which the game is running on the server.
+}
+      // roomId Id of the room in which the game is running on the server.
   class Game {
     constructor(roomId) {
       this.roomId = roomId;
       // this.board = [];
       this.moves = 0;
     }
-
-
-
 
     // move card set up here?
 
@@ -236,7 +233,11 @@
       alert(message);
       location.reload();
     }
-  }
+    
+}
+
+
+
 
 
 // show selection menu
