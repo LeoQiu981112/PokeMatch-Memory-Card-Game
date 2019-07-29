@@ -119,7 +119,7 @@
     displayBoard(message) {
       $('.menu').css('display', 'none');
       //$('.gameBoard').css('display', 'block');
-      $('#userHello2').html(message);
+      $('#t2').html(message);
 
 
 //important
@@ -235,7 +235,7 @@
 
 
   $("#new").click(function() {
-  	    $('#user1Hello1').html("fucking work");
+  	    $("#t1").html("fucking work");
 
  //    const name = user;
  //    if (!name) {

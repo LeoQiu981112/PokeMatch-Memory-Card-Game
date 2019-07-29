@@ -24,9 +24,6 @@ var rooms = 0;
 
 io.on('connection', (socket) => {
 
-
-
-
   // Create a new game room and notify the creator of game.
   socket.on('createGame', (data) => {
       socket.join(`room-${++rooms}`);
@@ -62,22 +59,6 @@ io.on('connection', (socket) => {
   // socket.on('gameEnded', (data) => {
   //     socket.broadcast.to(data.room).emit('gameEnd', data);
   // });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -128,6 +109,8 @@ io.on('connection', (socket) => {
       });
     }
   });
+
+  
 });
 
 
