@@ -21,6 +21,43 @@
       }
   });   
 
+
+	//wait til button clicked
+	$("#logout").click(function(){
+		$.ajax({
+			type:"get",
+			url:"/logout",
+			success:function(data){
+				if(data.status==-1){
+					location.href="https://stark-spire-21434.herokuapp.com/login.html";
+				}
+			},
+			error:function(){
+				alert("logout error!");
+			}
+		});
+	}); 
+
+	$("#upload").click(function(){
+		var one_steps=count;
+		$.ajax({
+			type:"post",
+			url:"/ranking",
+			data:{one_steps:one_steps},
+			success:function(data){
+    			if(data.status==-1){
+    				alert("ranking Fail!");
+    			}else{
+    			alert("ranking success!");
+    		}
+		},
+		error:function(){
+    		alert("Internet Error");
+		}
+	})
+});
+
+
   class Player {
     constructor(name, type) {
       this.name = name;
@@ -251,7 +288,7 @@
   });
 
 
-  
+
 
   // Join an existing game on the entered roomId. Emit the joinGame event.
   $("#join").click(function() {
