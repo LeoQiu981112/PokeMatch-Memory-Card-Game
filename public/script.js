@@ -21,3 +21,4 @@ socket.on('ready', function(str) {
     intervalid = setInterval(fun, 1000); 
     
 })
+s

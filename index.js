@@ -21,8 +21,6 @@ server.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 
 
-
-
 //1v1
 
 // 客户端计数
@@ -60,7 +58,6 @@ io.on('connection', function(socket){
       if(socketMap[socket.clientNum - 1]){
           socket.emit('ready','another person is ready');
           socketMap[(clientCount - 1)].emit('ready','another person is ready');
-    
           socket.emit('start');
           socketMap[(clientCount - 1)].emit('start');
       } else {
@@ -106,10 +103,6 @@ io.on('connection', function(socket){
       delete(socketMap[socket.clientNum]);
   })
 })
-
-
-
-
 
 
 

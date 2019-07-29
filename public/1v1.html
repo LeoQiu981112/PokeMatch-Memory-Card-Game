@@ -11,10 +11,9 @@
     <link rel = "icon" href="data:,">
 </head>
 <body>
-    <div id="waiting"></div>
-
     <div id="local">
 	    <table id="t1" align="left" valign="middle">
+            <div>My Game Area</div>
 		    <tr>
 			    <td><p><img href = "javascript:void(0)"  id="location0" align="bottom" width="90%" height="200%" onclick="poker(0)"/></p></td>
 			    <td><p><img href = "javascript:void(0)"  id="location1" align="bottom" width="90%" height="200%" onclick="poker(1)"></p></td>
@@ -44,7 +43,7 @@
 
 	<div id="remote">
 	    <table id="t2" valign="middle" align = "right" border = "1">		
-		
+            <div align = "center">Opponent's Game Area</div>
 		    <tr>
 			    <td><p><img href = "javascript:void(0)"  id="location18" align="bottom" width="90%" height="200%" onclick="poker(0)"/></p></td>
 			    <td><p><img href = "javascript:void(0)"  id="location19" align="bottom" width="90%" height="200%" onclick="poker(1)"></p></td>
@@ -128,10 +127,21 @@
 			document.getElementById("steps").innerHTML=count;
 		}
 
-		shuffle_poke();
+		
 
-	</script>
-
+    </script>
+    
+    <div id="startpage" class="white_content" align="left" valign="middle">
+        <div id="waiting"></div>
+        <div id="ready"></div>
+        <p id="3togoshow">Game will start in <span id="mes">3</span> seconds！</p>
+        <script>
+            $("#startpage").show();    
+            $("#3togoshow").hide();   
+        </script> 
+    </div>
+            
+        
 	<div id="box" class="white_content" align="left" valign="middle">
 		<center>
 			<img src="images/Success.png" href = "javascript:void(0)"  id="success" align="bottom" width="70%">
@@ -141,7 +151,11 @@
 			<button id="restart" onclick="restart();shuffle_poke()">Restart</a>
 		</center>
 	</div>
-	
+    
+
     <script src="socket.io.js"></script>
+    <script src="local.js"></script>
+    <script src="remote.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
