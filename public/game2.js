@@ -5,8 +5,8 @@
   let game;
 
   // const socket = io.connect('http://tic-tac-toe-realtime.herokuapp.com'),
-  const socket = io.connect("https://stark-spire-21434.herokuapp.com/game2.html");
-
+  // const socket = io.connect("https://stark-spire-21434.herokuapp.com/game2.html");
+  var socket = io();
 
   var user="";
   $.ajax({
