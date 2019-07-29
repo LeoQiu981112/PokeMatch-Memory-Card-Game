@@ -119,7 +119,7 @@
     displayBoard(message) {
       $('.menu').css('display', 'none');
       //$('.gameBoard').css('display', 'block');
-      $('#userHello').html(message);
+      $('#userHello2').html(message);
 
 
 //important
@@ -234,7 +234,9 @@
 
 
 
- //  $("#new").click(() => {
+  $("#new").click(function() {
+  	    $('#user1Hello1').html("fucking work");
+
  //    const name = user;
  //    if (!name) {
  //      alert('account name undef');
@@ -245,7 +247,7 @@
 	// $("#menu").hide();
 	// $("#choose").show();
  //    alert("new clicked");
- //  });
+  });
 
   // Join an existing game on the entered roomId. Emit the joinGame event.
   $("#join").click(function() {

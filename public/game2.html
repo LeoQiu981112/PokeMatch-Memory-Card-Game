@@ -75,29 +75,14 @@
 
 
 
-	<h2 id="user1Hello">P1 TEST!!</h2>
-	<h2 id="user2Hello">P2 TEST!!</h2>
+	<h2 id="user1Hello1">P1 TEST!!</h2>
+	<h2 id="user2Hello2">P2 TEST!!</h2>
 
 
 
 	<div id="menu" class="menu" align="left" valign="middle">
     	<h4>New game</h4>
     	<button id="new">New Game</button>
-<script>
-  $("#new").click(() => {
-    const name = user;
-    if (!name) {
-      alert('account name undef');
-      return;
-    }
-    socket.emit('createGame', { name });
-    player = new Player(name, P1);
-	$("#menu").hide();
-	$("#choose").show();
-    alert("new clicked");
-  });		
-</script>
-
 
     	<br><br>
     
