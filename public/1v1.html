@@ -7,70 +7,126 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel = "shortcut icon" href="">
     <link rel="stylesheet" type="text/css" href="game.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="jquery.min.js"></script>
+    <script src="socket.io.js"></script>
+    <script src="1v1.js"></script>
     <link rel = "icon" href="data:,">
 </head>
 <body>
-    <div id="local">
-	    <table id="t1" align="left" valign="middle">
-            <div>My Game Area</div>
-		    <tr>
-			    <td><p><img href = "javascript:void(0)"  id="location0" align="bottom" width="90%" height="200%" onclick="poker(0)"/></p></td>
-			    <td><p><img href = "javascript:void(0)"  id="location1" align="bottom" width="90%" height="200%" onclick="poker(1)"></p></td>
-			    <td><p><img href = "javascript:void(0)"  id="location2" align="bottom" width="90%" height="200%" onclick="poker(2)"></p></td>
-			    <td><p><img href = "javascript:void(0)"  id="location3" align="bottom" width="90%" height="200%" onclick="poker(3)"></p></td>
-			    <td><p><img href = "javascript:void(0)"  id="location4" align="bottom" width="90%" height="200%" onclick="poker(4)"></p></td>
-			    <td><p><img href = "javascript:void(0)"  id="location5" align="bottom" width="90%" height="200%" onclick="poker(5)"></p></td>
-		    </tr>
-		    <tr>
-			    <td><p><img href = "javascript:void(0)"  id="location6" align="bottom" width="90%" height="200%" onclick="poker(6)"></p></td>
-			    <td><p><img href = "javascript:void(0)"  id="location7" align="bottom" width="90%" height="200%" onclick="poker(7)"></p></td>
-			    <td><p><img href = "javascript:void(0)"  id="location8" align="bottom" width="90%" height="200%" onclick="poker(8)"></p></td>
-			    <td><p><img href = "javascript:void(0)"  id="location9" align="bottom" width="90%" height="200%" onclick="poker(9)"></p></td>
-			    <td><p><img href = "javascript:void(0)"  id="location10" align="bottom" width="90%" height="200%" onclick="poker(10)"></p></td>
-			    <td><p><img href = "javascript:void(0)"  id="location11" align="bottom" width="90%" height="200%" onclick="poker(11)"></p></td>
-		    </tr>
-		    <tr>
-			    <td><p><img href = "javascript:void(0)"  id="location12" align="bottom" width="90%" height="200%" onclick="poker(12)"></p></td>
-			    <td><p><img href = "javascript:void(0)"  id="location13" align="bottom" width="90%" height="200%" onclick="poker(13)"></p></td>
-			    <td><p><img href = "javascript:void(0)"  id="location14" align="bottom" width="90%" height="200%" onclick="poker(14)"></p></td>
-			    <td><p><img href = "javascript:void(0)"  id="location15" align="bottom" width="90%" height="200%" onclick="poker(15)"></p></td>
-			    <td><p><img href = "javascript:void(0)"  id="location16" align="bottom" width="90%" height="200%" onclick="poker(16)"></p></td>
-			    <td><p><img href = "javascript:void(0)"  id="location17" align="bottom" width="90%" height="200%" onclick="poker(17)"></p></td>
-		    </tr>
-	    </table>
-    </div>
+    <h1></h1>
+    <script>
+    //run right away
+        $.ajax({
+            type:"get",
+            url:"/userlist",
+            success:function(data){
+                if(data.status==-1){
+                    var user="";
+                    user+=data.user;
+                    $("h1").html(user);
+                    var msg="";
+                    msg+=data.msg;
+                    $("p1").html(msg);
+                    }
+                },
+            error:function(){
+                alert("Internet Error");
+            }
+        });    
+    </script>
 
-	<div id="remote">
-	    <table id="t2" valign="middle" align = "right">		
-            <div align = "center">Opponent's Game Area</div>
-		    <tr>
-			    <td><p><img href = "javascript:void(0)"  id="location18" align="bottom" width="90%" height="200%"></p></td>
-			    <td><p><img href = "javascript:void(0)"  id="location19" align="bottom" width="90%" height="200%"></p></td>
-			    <td><p><img href = "javascript:void(0)"  id="location20" align="bottom" width="90%" height="200%"></p></td>
-			    <td><p><img href = "javascript:void(0)"  id="location21" align="bottom" width="90%" height="200%"></p></td>
-			    <td><p><img href = "javascript:void(0)"  id="location22" align="bottom" width="90%" height="200%"></p></td>
-			    <td><p><img href = "javascript:void(0)"  id="location23" align="bottom" width="90%" height="200%"></p></td>
-		    </tr>
-		    <tr>
-			    <td><p><img href = "javascript:void(0)"  id="location24" align="bottom" width="90%" height="200%"></p></td>
-			    <td><p><img href = "javascript:void(0)"  id="location25" align="bottom" width="90%" height="200%"></p></td>
-			    <td><p><img href = "javascript:void(0)"  id="location26" align="bottom" width="90%" height="200%"></p></td>
-			    <td><p><img href = "javascript:void(0)"  id="location27" align="bottom" width="90%" height="200%"></p></td>
-			    <td><p><img href = "javascript:void(0)"  id="location28" align="bottom" width="90%" height="200%"></p></td>
-			    <td><p><img href = "javascript:void(0)"  id="location29" align="bottom" width="90%" height="200%"></p></td>
-		    </tr>
-		    <tr>
-			    <td><p><img href = "javascript:void(0)"  id="location30" align="bottom" width="90%" height="200%"></p></td>
-			    <td><p><img href = "javascript:void(0)"  id="location31" align="bottom" width="90%" height="200%"></p></td>
-			    <td><p><img href = "javascript:void(0)"  id="location32" align="bottom" width="90%" height="200%"></p></td>
-			    <td><p><img href = "javascript:void(0)"  id="location33" align="bottom" width="90%" height="200%"></p></td>
-			    <td><p><img href = "javascript:void(0)"  id="location34" align="bottom" width="90%" height="200%"></p></td>
-			    <td><p><img href = "javascript:void(0)"  id="location35" align="bottom" width="90%" height="200%"></p></td>
-		    </tr>  
-					
-	    </table>
-    </div>
+    <button id="account" class="float-left submit-button" >Info</button>
+    <script type="text/javascript">
+        document.getElementById("account").onclick = function () {
+            location.href = "https://stark-spire-21434.herokuapp.com/modify.html";
+        };
+    </script>
+
+    <button id="back" class="float-left submit-button" >Back</button>
+    <script type="text/javascript">
+        document.getElementById("back").onclick = function () {
+            location.href = "https://stark-spire-21434.herokuapp.com/homepage.html";
+        };
+    </script>
+
+    <input type="button" value="logout"  class="float-left submit-button" id="logout" > 
+    <script>
+    //wait til button clicked
+        $("#logout").click(function(){
+            $.ajax({
+                type:"get",
+                url:"/logout",
+                success:function(data){
+                    if(data.status==-1){
+                        location.href="https://stark-spire-21434.herokuapp.com/login.html";
+                    }
+                },
+                error:function(){
+                    alert("logout error!");
+                }
+            });
+        }); 
+    </script>
+    
+    <table id="t1" align="left" valign="middle">
+        <div>My Game Area</div>
+        <tr>
+            <td><p><img href = "javascript:void(0)"  id="location0" align="bottom" width="90%" height="200%" onclick="poker(0)"/></p></td>
+            <td><p><img href = "javascript:void(0)"  id="location1" align="bottom" width="90%" height="200%" onclick="poker(1)"></p></td>
+            <td><p><img href = "javascript:void(0)"  id="location2" align="bottom" width="90%" height="200%" onclick="poker(2)"></p></td>
+            <td><p><img href = "javascript:void(0)"  id="location3" align="bottom" width="90%" height="200%" onclick="poker(3)"></p></td>
+            <td><p><img href = "javascript:void(0)"  id="location4" align="bottom" width="90%" height="200%" onclick="poker(4)"></p></td>
+            <td><p><img href = "javascript:void(0)"  id="location5" align="bottom" width="90%" height="200%" onclick="poker(5)"></p></td>
+        </tr>
+        <tr>
+            <td><p><img href = "javascript:void(0)"  id="location6" align="bottom" width="90%" height="200%" onclick="poker(6)"></p></td>
+            <td><p><img href = "javascript:void(0)"  id="location7" align="bottom" width="90%" height="200%" onclick="poker(7)"></p></td>
+            <td><p><img href = "javascript:void(0)"  id="location8" align="bottom" width="90%" height="200%" onclick="poker(8)"></p></td>
+            <td><p><img href = "javascript:void(0)"  id="location9" align="bottom" width="90%" height="200%" onclick="poker(9)"></p></td>
+            <td><p><img href = "javascript:void(0)"  id="location10" align="bottom" width="90%" height="200%" onclick="poker(10)"></p></td>
+            <td><p><img href = "javascript:void(0)"  id="location11" align="bottom" width="90%" height="200%" onclick="poker(11)"></p></td>
+        </tr>
+        <tr>
+            <td><p><img href = "javascript:void(0)"  id="location12" align="bottom" width="90%" height="200%" onclick="poker(12)"></p></td>
+            <td><p><img href = "javascript:void(0)"  id="location13" align="bottom" width="90%" height="200%" onclick="poker(13)"></p></td>
+            <td><p><img href = "javascript:void(0)"  id="location14" align="bottom" width="90%" height="200%" onclick="poker(14)"></p></td>
+            <td><p><img href = "javascript:void(0)"  id="location15" align="bottom" width="90%" height="200%" onclick="poker(15)"></p></td>
+            <td><p><img href = "javascript:void(0)"  id="location16" align="bottom" width="90%" height="200%" onclick="poker(16)"></p></td>
+            <td><p><img href = "javascript:void(0)"  id="location17" align="bottom" width="90%" height="200%" onclick="poker(17)"></p></td>
+        </tr>
+    </table>
+
+
+
+    <table id="t2" valign="middle" align = "right">		
+        <div align = "center">Opponent's Game Area</div>
+        <tr>
+            <td><p><img href = "javascript:void(0)"  id="location18" align="bottom" width="90%" height="200%"></p></td>
+            <td><p><img href = "javascript:void(0)"  id="location19" align="bottom" width="90%" height="200%"></p></td>
+            <td><p><img href = "javascript:void(0)"  id="location20" align="bottom" width="90%" height="200%"></p></td>
+            <td><p><img href = "javascript:void(0)"  id="location21" align="bottom" width="90%" height="200%"></p></td>
+            <td><p><img href = "javascript:void(0)"  id="location22" align="bottom" width="90%" height="200%"></p></td>
+            <td><p><img href = "javascript:void(0)"  id="location23" align="bottom" width="90%" height="200%"></p></td>
+        </tr>
+        <tr>
+            <td><p><img href = "javascript:void(0)"  id="location24" align="bottom" width="90%" height="200%"></p></td>
+            <td><p><img href = "javascript:void(0)"  id="location25" align="bottom" width="90%" height="200%"></p></td>
+            <td><p><img href = "javascript:void(0)"  id="location26" align="bottom" width="90%" height="200%"></p></td>
+            <td><p><img href = "javascript:void(0)"  id="location27" align="bottom" width="90%" height="200%"></p></td>
+            <td><p><img href = "javascript:void(0)"  id="location28" align="bottom" width="90%" height="200%"></p></td>
+            <td><p><img href = "javascript:void(0)"  id="location29" align="bottom" width="90%" height="200%"></p></td>
+        </tr>
+        <tr>
+            <td><p><img href = "javascript:void(0)"  id="location30" align="bottom" width="90%" height="200%"></p></td>
+            <td><p><img href = "javascript:void(0)"  id="location31" align="bottom" width="90%" height="200%"></p></td>
+            <td><p><img href = "javascript:void(0)"  id="location32" align="bottom" width="90%" height="200%"></p></td>
+            <td><p><img href = "javascript:void(0)"  id="location33" align="bottom" width="90%" height="200%"></p></td>
+            <td><p><img href = "javascript:void(0)"  id="location34" align="bottom" width="90%" height="200%"></p></td>
+            <td><p><img href = "javascript:void(0)"  id="location35" align="bottom" width="90%" height="200%"></p></td>
+        </tr>  
+                
+    </table>
+    
 
     <div id="startpage" class="white_content" align="left" valign="middle">
         <div id="waiting" align = "center"></div>
@@ -93,8 +149,5 @@
 		</center>
 	</div>
     
-
-    <script src="socket.io.js"></script>
-    <script src="1v1.js"></script>
 </body>
 </html>
