@@ -104,9 +104,9 @@ socket.on('init', function(data) {
     for(var i=18;i<36;i++){
         document.getElementById("location"+i).src="images/cardbg.png";
     }
-    remote_poke = data.poke;
+    remote_poke = data.remote_poke;
 })
-document.getElementById("demo1").innerHTML=remote_poke;
+//document.getElementById("demo1").innerHTML=remote_poke;
 socket.on('up', function(data) {
     remote_id = data.remote_id + 18;
     document.getElementById("location"+remote_id).src="images/eevee/card"+remote_poke[id]+".jpg";
