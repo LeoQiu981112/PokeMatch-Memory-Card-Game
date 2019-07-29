@@ -1,4 +1,5 @@
 // 对方游戏区域
+console.log("test!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 var Remote = function(socket){
     // 游戏对象
     var game;
