@@ -5,8 +5,22 @@
   let game;
 
   // const socket = io.connect('http://tic-tac-toe-realtime.herokuapp.com'),
-  const socket = io.connect("https://stark-spire-21434.herokuapp.com/game2.html"
-);
+  const socket = io.connect("https://stark-spire-21434.herokuapp.com/game2.html");
+
+
+  var user="";
+  $.ajax({
+      type:"get",
+      url:"/userlist",
+      success:function(data){
+          if(data.status==-1){
+              user+=data.user;
+          }
+      },
+      error:function(){
+          alert("username Error");
+      }
+  });   
 
   class Player {
     constructor(name, type) {
@@ -226,6 +240,8 @@
 
   // Create a new game. Emit newGame event.
   $('#new').on('click', () => {
+    alert("new clicked");
+
     const name = user;
     if (!name) {
       alert('account name undef');
@@ -237,6 +253,7 @@
 
   // Join an existing game on the entered roomId. Emit the joinGame event.
   $('#join').on('click', () => {
+  	alert("join clicked");
     const name = user;
     const roomID = $('#room').val();
     if (!name || !roomID) {
