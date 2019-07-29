@@ -38,6 +38,7 @@ function shuffle_poke(){
         poke[a]=poke[b];
         poke[b]=temp;
     }
+    console.log(poke);
 }
 function fail(id, oneid){
     document.getElementById("location"+id).src="images/cardbg.png";

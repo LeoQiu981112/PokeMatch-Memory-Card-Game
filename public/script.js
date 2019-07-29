@@ -22,5 +22,9 @@ socket.on('ready', function(str) {
 
 socket.on('start', function() {
     shuffle_poke();
-    console.log(poke);
+    socket.emit('init', poke);
+})
+
+socket.on('init', function(data){
+    console.log(data);
 })
