@@ -240,14 +240,13 @@
 
 
 // show selection menu
-	 room(){
-		$("#menu").hide();
-		$("#choose").show();
-	}
+
+
+
 
 
   // Create a new game. Emit newGame event.
-  $('#new').on('click', () => {
+  $("#new").click(function() {
     alert("new clicked");
     const name = user;
     if (!name) {
@@ -256,13 +255,14 @@
     }
     socket.emit('createGame', { name });
     player = new Player(name, P1);
-    room();
+	$("#menu").hide();
+	$("#choose").show();
 
 
   });
 
   // Join an existing game on the entered roomId. Emit the joinGame event.
-  $('#join').on('click', () => {
+  $("#join").click(function() {
   	alert("join clicked");
     const name = user;
     const roomID = $('#room').val();
