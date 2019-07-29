@@ -231,8 +231,10 @@
 // show selection menu
 
   // Create a new game. Emit newGame event.
-  $("#new").click(function() {
-    alert("new clicked");
+
+
+
+  $("#new").click(() => {
     const name = user;
     if (!name) {
       alert('account name undef');
@@ -242,8 +244,7 @@
     player = new Player(name, P1);
 	$("#menu").hide();
 	$("#choose").show();
-
-
+    alert("new clicked");
   });
 
   // Join an existing game on the entered roomId. Emit the joinGame event.
