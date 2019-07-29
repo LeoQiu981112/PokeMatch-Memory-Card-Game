@@ -109,5 +109,5 @@ socket.on('init', function(data) {
 //document.getElementById("demo1").innerHTML=remote_poke;
 socket.on('up', function(data) {
     remote_id = data.remote_id + 18;
-    document.getElementById("location"+remote_id).src="images/eevee/card"+remote_poke[id]+".jpg";
+    document.getElementById("location"+remote_id).src="images/eevee/card"+remote_poke[remote_id-18]+".jpg";
 })
