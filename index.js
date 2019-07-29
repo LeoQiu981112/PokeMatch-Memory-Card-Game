@@ -25,6 +25,21 @@ server.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 var clientCount = 0;
 var socketMap = {};
 
+var bindListener = function(socket, event){
+  socket.on(event, function(data){
+      //console.log(data);
+      if(socket.clientNum % 2 == 0){
+          if(socketMap[socket.clientNum - 1]){
+              socketMap[socket.clientNum - 1].emit(event,data);
+          }
+      } else {
+          if(socketMap[socket.clientNum + 1]){
+              socketMap[socket.clientNum + 1].emit(event,data);
+          }
+      }
+  })
+}
+
 io.on('connection', function(socket){
   console.log("1 player coming"); 
   
@@ -45,6 +60,11 @@ io.on('connection', function(socket){
       }
   }
 
+  bindListener(socket,'init');
+  bindListener(socket,'up');
+  bindListener(socket,'back');
+  bindListener(socket,'lose');
+  
   socket.on('disconnect', function(){
       if(socket.clientNum % 2 == 0){
           if(socketMap[socket.clientNum - 1]){
@@ -59,24 +79,8 @@ io.on('connection', function(socket){
   })
 })
 
-var bindListener = function(socket, event){
-  socket.on(event, function(data){
-      //console.log(data);
-      if(socket.clientNum % 2 == 0){
-          if(socketMap[socket.clientNum - 1]){
-              socketMap[socket.clientNum - 1].emit(event,data);
-          }
-      } else {
-          if(socketMap[socket.clientNum + 1]){
-              socketMap[socket.clientNum + 1].emit(event,data);
-          }
-      }
-  })
-}
-bindListener(socket,'init');
-bindListener(socket,'up');
-bindListener(socket,'back');
-bindListener(socket,'lose');
+
+
 
 
 
