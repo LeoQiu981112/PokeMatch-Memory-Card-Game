@@ -250,6 +250,9 @@
  //    alert("new clicked");
   });
 
+
+  
+
   // Join an existing game on the entered roomId. Emit the joinGame event.
   $("#join").click(function() {
   	alert("join clicked");
@@ -263,6 +266,12 @@
     player = new Player(name, P2);
   });
 
+
+
+
+
+
+
   // New Game created by current client. Update the UI and create new Game var.
   socket.on('newGame', (data) => {
   	alert("AH");
@@ -274,6 +283,12 @@
    game = new Game(data.room);
    game.displayBoard(message);
   });
+
+
+
+
+
+
 
   /**
 	 * If player creates the game, he'll be P1(X) and has the first turn.
