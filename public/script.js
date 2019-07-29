@@ -22,9 +22,11 @@ socket.on('ready', function(str) {
 
 socket.on('start', function() {
     shuffle_poke();
-    socket.emit('init', poke);
+    socket.emit('init');
 })
 
-socket.on('init', function(data){
-    console.log(data);
+socket.on('init', function() {
+    for(var i=18;i<36;i++){
+        document.getElementById("location"+i).src="images/cardbg.png";
+    }
 })
