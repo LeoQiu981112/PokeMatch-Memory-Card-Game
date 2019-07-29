@@ -22,28 +22,8 @@ server.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 
 //1v1
-
-// 客户端计数
 var clientCount = 0;
-
-// 用来存储客户端socket
 var socketMap = {};
-
-var bindListener = function(socket, event){
-    socket.on(event, function(data){
-        //console.log(data);
-        if(socket.clientNum % 2 == 0){
-            if(socketMap[socket.clientNum - 1]){
-                socketMap[socket.clientNum - 1].emit(event,data);
-            }
-        } else {
-            if(socketMap[socket.clientNum + 1]){
-                socketMap[socket.clientNum + 1].emit(event,data);
-            }
-        }
-    })
-}
-
 
 io.on('connection', function(socket){
   console.log("1 player coming"); 
@@ -51,11 +31,10 @@ io.on('connection', function(socket){
   clientCount = clientCount + 1;
   socket.clientNum = clientCount;
   socketMap[clientCount] = socket;
-  // 第一个用户进来让其等待配对
+  // first player waiting
   if(clientCount % 2 == 1){
       socket.emit('waiting','Waiting for another person');
-  } else {    // 每对的第二个进来给他们发送开始消息
-      // 如果不存在了说明掉线了
+  } else {    // second player coming
       if(socketMap[socket.clientNum - 1]){
           socket.emit('ready','First player is ready, are you ready?');
           socketMap[(clientCount - 1)].emit('ready','Another person is ready');
@@ -66,34 +45,6 @@ io.on('connection', function(socket){
       }
   }
 
-  // 把一方的初始值发送给另一方显示
-  // socket.on('init', function(data){
-  //     if(socket.clientNum % 2 == 0){
-  //         socketMap[socket.clientNum - 1].emit('init',data);
-  //     } else {
-  //         socketMap[socket.clientNum + 1].emit('init',data);
-  //     }
-  // })
-  // 简化
-  bindListener(socket,'init');
-  bindListener(socket,'up');
-  bindListener(socket,'back');
-  bindListener(socket,'lose');
-
-  bindListener(socket,'next');
-  bindListener(socket,'rotate');
-  bindListener(socket,'right');
-  bindListener(socket,'down');
-  bindListener(socket,'left');
-  bindListener(socket,'fall');
-  bindListener(socket,'fixed');
-  bindListener(socket,'line');
-  bindListener(socket,'time');
-  bindListener(socket,'bottomLines');
-  bindListener(socket,'addTailLines');
-  
-  
-  
   socket.on('disconnect', function(){
       if(socket.clientNum % 2 == 0){
           if(socketMap[socket.clientNum - 1]){
@@ -107,6 +58,28 @@ io.on('connection', function(socket){
       delete(socketMap[socket.clientNum]);
   })
 })
+
+var bindListener = function(socket, event){
+  socket.on(event, function(data){
+      //console.log(data);
+      if(socket.clientNum % 2 == 0){
+          if(socketMap[socket.clientNum - 1]){
+              socketMap[socket.clientNum - 1].emit(event,data);
+          }
+      } else {
+          if(socketMap[socket.clientNum + 1]){
+              socketMap[socket.clientNum + 1].emit(event,data);
+          }
+      }
+  })
+}
+bindListener(socket,'init');
+bindListener(socket,'up');
+bindListener(socket,'back');
+bindListener(socket,'lose');
+
+
+
 
 
 // Chatroom
@@ -188,38 +161,6 @@ app.use(session({
   saveUninitialized: true,
   cookie: {user:"default",maxAge:60*15*1000}
 }));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
