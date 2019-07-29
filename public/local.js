@@ -23,7 +23,7 @@ socket.on('ready', function(str) {
 })
 
 //socket.on('start', function(){
-    shuffle_poke();
+    
     //console.log(poke);
     //socket.emit('init')
 //})
@@ -82,3 +82,4 @@ function check_success(){
     document.getElementById("steps").innerHTML=count;
 }
 
+shuffle_poke();
