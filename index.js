@@ -77,7 +77,7 @@ io.on('connection', function(socket){
   // 简化
   bindListener(socket,'init');
   bindListener(socket,'up');
-  //bindListener(socket,'back');
+  bindListener(socket,'back');
 
   bindListener(socket,'next');
   bindListener(socket,'rotate');

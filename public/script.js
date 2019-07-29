@@ -1,9 +1,5 @@
 var socket = io();
 
-
-
-
-
 var poke=[1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10];
 var number=Math.ceil(Math.random()*10);
 poke.splice((number-1)*2,2);
@@ -12,6 +8,7 @@ var oneid=-1;
 var count=0;
 
 var remote_id;
+var remote_oneid;
 function poker(id){
     count++;
     if(poke[id]==-1){
@@ -51,6 +48,7 @@ function shuffle_poke(){
 function fail(id, oneid){
     document.getElementById("location"+id).src="images/cardbg.png";
     document.getElementById("location"+oneid).src="images/cardbg.png";
+    socket.emit('back', {remote_id:id,remote_oneid:oneid});
 }
 function check_success(){
     for(var i=0;i<18;i++){
@@ -60,19 +58,6 @@ function check_success(){
     $("#box").show();
     document.getElementById("steps").innerHTML=count;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 socket.on('waiting', function(str) {
@@ -106,8 +91,14 @@ socket.on('init', function(data) {
     }
     remote_poke = data.remote_poke;
 })
-//document.getElementById("demo1").innerHTML=remote_poke;
+
 socket.on('up', function(data) {
     remote_id = data.remote_id + 18;
     document.getElementById("location"+remote_id).src="images/eevee/card"+remote_poke[remote_id-18]+".jpg";
+})
+socket.on('back', function(data) {
+    remote_id = data.remote_id + 18;
+    remote_oneid = data.remote_oneid + 18;
+    document.getElementById("location"+remote_id).src="images/cardbg.png";
+    document.getElementById("location"+remote_oneid).src="images/cardbg.png";
 })
