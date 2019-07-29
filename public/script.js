@@ -22,4 +22,5 @@ socket.on('ready', function(str) {
 
 socket.on('start', function() {
     shuffle_poke();
+    console.log(poke);
 })

@@ -53,3 +53,4 @@ function check_success(){
 }
 
 shuffle_poke();
+console.log(poke);
