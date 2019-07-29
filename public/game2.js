@@ -282,9 +282,9 @@
  //    }
  //    socket.emit('createGame', { name });
  //    player = new Player(name, P1);
-	// $("#menu").hide();
-	// $("#choose").show();
- //    alert("new clicked");
+	$("#menu").hide();
+	$("#choose").show();
+    alert("new clicked");
   });
 
 
