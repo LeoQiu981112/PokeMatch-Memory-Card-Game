@@ -5,7 +5,8 @@ var Remote = function(socket){
     // 绑定按钮事件
     var bindEvents = function() {
         socket.on('init', function(data){
-            console.log(data);
+            console.log(data.type);
+            console.log(data.dir);
             start(data.type, data.dir);
         })
 
