@@ -271,7 +271,7 @@
 
 
   $("#new").click(function() {
-   	alert("AHASDF");
+   	alert("new clicked");
   	$("#t1").html("fucking work");
     socket.emit('createGame', { name });
     player = new Player(name, P1);
@@ -311,7 +311,7 @@
 
   // New Game created by current client. Update the UI and create new Game var.
   socket.on('newGame', (data) => {
-  	alert("AH");
+  	alert("first person created game");
     const message =
       `Hello, ${data.name}. Please ask your friend to enter Game ID: 
       ${data.room}. Waiting for player 2...`;
