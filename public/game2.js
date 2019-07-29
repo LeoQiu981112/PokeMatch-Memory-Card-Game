@@ -1,8 +1,8 @@
 (function init() {
-  const P1 = 'X';
-  const P2 = 'O';
-  let player;
-  let game;
+  var P1 = 'X';
+  var P2 = 'O';
+  var player;
+  var game;
 
   // const socket = io.connect('http://tic-tac-toe-realtime.herokuapp.com'),
   // const socket = io.connect("https://stark-spire-21434.herokuapp.com/game2.html");
@@ -115,10 +115,6 @@
     //   }
     // }
 
-
-
-
-
     // Remove the menu from DOM, display the gameboard and greet the player.
     displayBoard(message) {
       $('.menu').css('display', 'none');
@@ -128,12 +124,7 @@
 
 //important
     //  this.createGameBoard();
-    
-
     }
-
-
-
 
     /**
      * Update game board UI
@@ -233,18 +224,11 @@
       alert(message);
       location.reload();
     }
-    
+
 }
 
 
-
-
-
 // show selection menu
-
-
-
-
 
   // Create a new game. Emit newGame event.
   $("#new").click(function() {
@@ -282,7 +266,7 @@
       ${data.room}. Waiting for player 2...`;
 
     // Create game for player 1
-    //game = new Game(data.room);
+   game = new Game(data.room);
    game.displayBoard(message);
   });
 
@@ -304,10 +288,10 @@
     const message = `Hello, ${data.name}`;
 
     // Create game for player 2
-    // game = new Game(data.room);
+    game = new Game(data.room);
 
     $('#userHello2').html(message);
-    // game.displayBoard(message);
+    game.displayBoard(message);
     // player.setCurrentTurn(false);    
   });
 
