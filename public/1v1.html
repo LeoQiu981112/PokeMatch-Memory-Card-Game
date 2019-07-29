@@ -67,9 +67,9 @@
             });
         }); 
     </script>
-    <div style="width:40%; display:inline-block">
-    <table id="t1" align="left" valign="middle" border = "1">
-        <p>My Game Area</p>
+    
+    <table id="t1" align="left" valign="middle">
+        <div>My Game Area</div>
         <tr>
             <td><p><img href = "javascript:void(0)"  id="location0" align="bottom" width="90%" height="200%" onclick="poker(0)"/></p></td>
             <td><p><img href = "javascript:void(0)"  id="location1" align="bottom" width="90%" height="200%" onclick="poker(1)"></p></td>
@@ -96,11 +96,10 @@
         </tr>
         
     </table>
-    <div id="local">11111</div>
-    </div>
-    <div style="width:40%; display:inline-block">
-    <table id="t2" valign="middle" align = "right" border = "1">		
-        <p align = "center">Opponent's Game Area</p>
+    
+    
+    <table id="t2" valign="middle" align = "right">		
+        <div align = "center">Opponent's Game Area</div>
         <tr>
             <td><p><img href = "javascript:void(0)"  id="location18" align="bottom" width="90%" height="200%"></p></td>
             <td><p><img href = "javascript:void(0)"  id="location19" align="bottom" width="90%" height="200%"></p></td>
@@ -127,10 +126,9 @@
         </tr>  
                
     </table>
-    </div>
-    <div id="local">11111</div>
-    <br>
-    <div id="remote" align="right">22222</div>
+    <br><br><br><br><br><br><br><br><br>
+    <div id="local"></div>
+    <div id="remote" align="right"></div>
 
     <div id="startpage" class="white_content" align="left" valign="middle">
         <div id="waiting" align = "center"></div>
@@ -142,15 +140,16 @@
         </script> 
     </div>
             
-        
 	<div id="box" class="white_content" align="left" valign="middle">
 		<center>
             <div id="result"></div>
-			<br></br>
+            <br></br>
+            <div id="hidesteps">
 			<p>Your steps is: </p>
-			<p id="steps"></p>
+            <p id="steps"></p>
+            </div>
 		</center>
 	</div>
- 
+
 </body>
 </html>

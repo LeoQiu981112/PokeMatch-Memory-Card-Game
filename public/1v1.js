@@ -115,6 +115,6 @@ socket.on('leave', function(){
 
 socket.on('lose', function(){
     $("#box").show();
+    $("#hidesteps").hide();  
     document.getElementById("result").innerHTML="You lost!";
-    document.getElementById("steps").innerHTML=count;
 })
