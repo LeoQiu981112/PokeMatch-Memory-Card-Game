@@ -4,8 +4,7 @@
   var player;
   var game;
 
-  // const socket = io.connect('http://tic-tac-toe-realtime.herokuapp.com'),
-  // const socket = io.connect("https://stark-spire-21434.herokuapp.com/game2.html");
+  
   var socket = io();
 
   var user="";
@@ -235,8 +234,10 @@
 
 
   $("#new").click(function() {
-  	    $("#t1").html("fucking work");
-
+   	alert("AHASDF");
+  	$("#t1").html("fucking work");
+    socket.emit('createGame', { name });
+    player = new Player(name, P1);
  //    const name = user;
  //    if (!name) {
  //      alert('account name undef');
@@ -264,6 +265,7 @@
 
   // New Game created by current client. Update the UI and create new Game var.
   socket.on('newGame', (data) => {
+  	alert("AH");
     const message =
       `Hello, ${data.name}. Please ask your friend to enter Game ID: 
       ${data.room}. Waiting for player 2...`;
@@ -278,6 +280,7 @@
 	 * This event is received when opponent connects to the room.
 	 */
   socket.on('player1', (data) => {
+  	  	alert("AHHH");
     const message = `Hello, ${player.getPlayerName()}`;
     $('#userHello1').html(message);
     // player.setCurrentTurn(true);
@@ -288,6 +291,8 @@
 	 * This event is received when P2 successfully joins the game room. 
 	 */
   socket.on('player2', (data) => {
+  	  	alert("AHHHHH");
+
     const message = `Hello, ${data.name}`;
 
     // Create game for player 2
