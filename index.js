@@ -52,12 +52,12 @@ io.on('connection', function(socket){
   socketMap[clientCount] = socket;
   // 第一个用户进来让其等待配对
   if(clientCount % 2 == 1){
-      socket.emit('waiting','waiting for another person');
+      socket.emit('waiting','Waiting for another person');
   } else {    // 每对的第二个进来给他们发送开始消息
       // 如果不存在了说明掉线了
       if(socketMap[socket.clientNum - 1]){
-          socket.emit('ready','another person is ready');
-          socketMap[(clientCount - 1)].emit('ready','another person is ready');
+          socket.emit('ready','First player is ready, are you ready?');
+          socketMap[(clientCount - 1)].emit('ready','Another person is ready');
           socket.emit('start');
           socketMap[(clientCount - 1)].emit('start');
       } else {

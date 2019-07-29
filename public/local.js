@@ -52,5 +52,3 @@ function check_success(){
     document.getElementById("steps").innerHTML=count;
 }
 
-shuffle_poke();
-console.log(poke);
