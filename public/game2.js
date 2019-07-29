@@ -238,10 +238,17 @@
     }
   }
 
+
+// show selection menu
+	 room(){
+		$("#menu").hide();
+		$("#choose").show();
+	}
+
+
   // Create a new game. Emit newGame event.
   $('#new').on('click', () => {
     alert("new clicked");
-
     const name = user;
     if (!name) {
       alert('account name undef');
@@ -249,6 +256,9 @@
     }
     socket.emit('createGame', { name });
     player = new Player(name, P1);
+    room();
+
+
   });
 
   // Join an existing game on the entered roomId. Emit the joinGame event.
