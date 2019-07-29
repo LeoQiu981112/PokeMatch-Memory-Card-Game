@@ -4,7 +4,7 @@
   var player;
   var game;
 
-  
+  alert("hi!");
   var socket = io();
 
   var user="";
@@ -116,7 +116,7 @@
 
     // Remove the menu from DOM, display the gameboard and greet the player.
     displayBoard(message) {
-      $('.menu').css('display', 'none');
+     // $('.menu').css('display', 'none');
       //$('.gameBoard').css('display', 'block');
       $('#t2').html(message);
 
