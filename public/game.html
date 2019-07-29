@@ -132,13 +132,11 @@
 
 			}
 			function poker(id){
-				count++;
-				if(poke[id]==-1){
+				if(poke[id]==-1||oneid==id){
 					return;
 				}
-
+				count++;
 				document.getElementById("location"+id).src="images/"+a+"/card"+poke[id]+".jpg";
-				poke[id]==-1;
 				if(flag){
 					if(poke[id]==poke[oneid]){
 						poke[id]=-1;
@@ -146,7 +144,6 @@
 					}
 					else{
 						setTimeout("fail("+id+","+oneid+")",600);
-						poke[oneid]==1;
 					}
 					oneid=-1;
 					flag=false;

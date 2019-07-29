@@ -10,12 +10,11 @@ var count=0;
 var remote_id;
 var remote_oneid;
 function poker(id){
-    count++;
-    if(poke[id]==-1){
+    if(poke[id]==-1||oneid==id){
         return;
     }
+    count++;
     document.getElementById("location"+id).src="images/eevee/card"+poke[id]+".jpg";
-    poke[id]==-1;
     socket.emit('up', {remote_id:id});
     if(flag){
         if(poke[id]==poke[oneid]){
@@ -24,7 +23,6 @@ function poker(id){
         }
         else{
             setTimeout("fail("+id+","+oneid+")",600);
-            poke[oneid]==1;
         }
         oneid=-1;
         flag=false;
@@ -109,8 +107,9 @@ socket.on('back', function(data) {
 })
 
 socket.on('leave', function(){
-    document.getElementById('local').innerHTML = "Your opponent is offline";
-    document.getElementById('remote').innerHTML = "Offline";
+    $("#box").show();
+    $("#hidesteps").hide();  
+    document.getElementById('result').innerHTML = "Your opponent is offline";
 })
 
 socket.on('lose', function(){
