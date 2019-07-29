@@ -98,9 +98,15 @@ socket.on('up', function(data) {
     remote_id = data.remote_id + 18;
     document.getElementById("location"+remote_id).src="images/eevee/card"+remote_poke[remote_id-18]+".jpg";
 })
+
 socket.on('back', function(data) {
     remote_id = data.remote_id + 18;
     remote_oneid = data.remote_oneid + 18;
     document.getElementById("location"+remote_id).src="images/cardbg.png";
     document.getElementById("location"+remote_oneid).src="images/cardbg.png";
+})
+
+socket.on('leave', function(){
+    document.getElementById('local').innerHTML = "Your opponent is offline";
+    document.getElementById('remote').innerHTML = "Offline";
 })

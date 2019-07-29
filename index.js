@@ -109,7 +109,6 @@ io.on('connection', function(socket){
 })
 
 
-
 // Chatroom
 var numUsers = 0;
 
