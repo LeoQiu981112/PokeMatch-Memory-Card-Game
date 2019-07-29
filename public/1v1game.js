@@ -51,4 +51,7 @@ function check_success(){
     $("#box").show();
     document.getElementById("steps").innerHTML=count;
 }
-shuffle_poke();
+socket.on('start', function(){
+    shuffle_poke();
+    socket.emit('init', {type: type, dir:dir})
+})

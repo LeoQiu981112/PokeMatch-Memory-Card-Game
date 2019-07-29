@@ -1,3 +1,0 @@
-var Remote = function(socket){
- 
-}
