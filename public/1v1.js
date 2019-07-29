@@ -107,13 +107,15 @@ socket.on('back', function(data) {
 })
 
 socket.on('leave', function(){
-    $("#box").show();
+    $("#box").show(); 
     $("#hidesteps").hide();  
-    document.getElementById('result').innerHTML = "Your opponent is offline";
+    document.getElementById('offline').innerHTML = "Your opponent is offline.";
+    document.getElementById('result').innerHTML = "You win!";
 })
 
 socket.on('lose', function(){
     $("#box").show();
-    $("#hidesteps").hide();  
+    $("#hidesteps").hide(); 
+    $("#upload").hide();
     document.getElementById("result").innerHTML="You lost!";
 })
