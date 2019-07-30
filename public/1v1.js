@@ -134,7 +134,9 @@ socket.on('back', function(data) {
 
 socket.on('leave', function(){
     $("#box").show(); 
+    $("#result").hide();
     $("#hidesteps").hide();  
+    $("#upload2").hide();
     document.getElementById('offline').innerHTML = "Your opponent is offline.";
     document.getElementById('result').innerHTML = "You win!";
 })
