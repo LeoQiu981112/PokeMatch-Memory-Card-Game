@@ -13,8 +13,24 @@ body{
 
 }
 #t2{
-    width:40%;
-    height:80%;
+    position: fixed; 
+    top: 20%; 
+    left: 55%; 
+    width: 40%; 
+    height: 60%; 
+}
+#ownG{
+    font-size:1.5vw;
+    position: fixed; 
+    top: 10%; 
+    left: 5%; 
+}
+
+#remotename{
+    font-size:1.5vw;
+    position: fixed; 
+    top: 10%; 
+    left: 55%; 
 }
 td{
     text-align:center;
