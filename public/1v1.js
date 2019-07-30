@@ -110,6 +110,9 @@ socket.on('start', function() {
     socket.yet = true;
     shuffle_poke();
     socket.emit('init', {remote_poke:poke});
+    // console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+    // console.log(socket.yet);
+    // console.log(socket.clientNum);
 })
 
 socket.on('init', function(data) {

@@ -75,7 +75,7 @@ io.on('connection', function(socket){
   });
 
   socket.on('disconnect', function(){
-    if(socket.yet = false){
+    if(socket.yet == false){
       clientCount = clientCount - 1;
     } else{
         if(socket.clientNum % 2 == 0){
