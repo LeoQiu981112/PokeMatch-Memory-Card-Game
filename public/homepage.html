@@ -78,6 +78,40 @@
         <td id="w5">45</td>
     </tr>
 </table>
+<table id="ranking2">
+    <caption id="rankingtitle2">Player Ranking</caption>
+    <tr>
+        <th style="color: #4169E1" width="30%">Ranking</th>
+        <th style="color: #4169E1" width="30%">Name</th>
+        <th style="color: #4169E1" width="30%">Wins</th>
+    </tr>
+    <tr>
+        <td>No.1</td>
+        <td id="n1">Amy</td>
+        <td id="w1">113</td>
+    </tr>
+    <tr>
+        <td>No.2</td>
+        <td id="n2">Shirley</td>
+        <td id="w2">100</td>           
+    </tr>
+    <tr>
+        <td>No.3</td>
+        <td id="n3">John</td>
+        <td id="w3">88</td>
+    </tr>
+    <tr>
+        <td>No.4</td>
+        <td id="n4">Pearl</td>
+        <td id="w4">66</td>
+    </tr>
+    <tr>
+        <td>No.5</td>
+        <td id="n5">Mike</td>
+        <td id="w5">45</td>
+    </tr>
+</table>
+
 <script>
     $.ajax({
         type:"get",
@@ -163,13 +197,59 @@
 </table>
 
 
+<script>
+    $.ajax({
+        type:"get",
+        url:"/rankinglist2",
+        success:function(data){
+            if(data.status==0){
+                var table=document.getElementById('ranking');
+                var size=table.rows.length;
+                for(i=1;i<size;i++){
+                    table.deleteRow(i);
+                    size=size-1;
+                    i=i-1;
+                }
+                for(i=0;i<data.list.length;i++){
+                    var tr=document.createElement("tr");
+                    var td0=document.createElement("td");
+                    var td1=document.createElement("td");
+                    var td2=document.createElement("td");
+
+                    var count;
+                    count=i;
+                    if(count<5){
+                        count=count+1;
+                        td0.innerHTML="No."+count;
+                        td1.innerHTML=data.list[i].userid;
+                        td2.innerHTML=data.list[i].two_wins;
+                    }
+
+                    tr.appendChild(td0);
+                    tr.appendChild(td1);
+                    tr.appendChild(td2);
+
+                    table.appendChild(tr);
+                }
+            }
+            else{
+                alert("Ranking fail!");
+            }
+        },
+        error:function(){
+            alert("Internet Error");
+        }
+    });
+    
+</script>
+
 
 <table id="myown">
-    <tr>
+<!--    <tr>
         <td width="30%" id="rm">No.15</td>
         <td width="30%" id="nm">Leo</td>
         <td width="30%" id="wm">22</td>
-    </tr>
+    </tr>   -->
 </table>
 
 <button id="account" class="float-left submit-button" >Info</button>
