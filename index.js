@@ -41,30 +41,7 @@ var bindListener = function(socket, event){
 }
 
 io.on('connection', function(socket){
-  console.log("1 player coming"); 
-  
-  clientCount = clientCount + 1;
-  socket.clientNum = clientCount;
-  socketMap[clientCount] = socket;
-  // first player waiting
-  if(clientCount % 2 == 1){
-      socket.emit('waiting','Waiting for another person');
-  } else {    // second player coming
-      if(socketMap[socket.clientNum - 1]){
-          socket.emit('ready','First player is ready, are you ready?');
-          socketMap[(clientCount - 1)].emit('ready','Another person is ready');
-          socket.emit('start');
-          socketMap[(clientCount - 1)].emit('start');
-      } else {
-          socket.emit('leave');
-      }
-  }
 
-  bindListener(socket,'init');
-  bindListener(socket,'up');
-  bindListener(socket,'back');
-  bindListener(socket,'lose');
-  
   socket.on('disconnect', function(){
       if(socket.clientNum % 2 == 0){
           if(socketMap[socket.clientNum - 1]){
@@ -77,7 +54,46 @@ io.on('connection', function(socket){
       }
       delete(socketMap[socket.clientNum]);
   })
-})
+
+
+
+
+  socket.on('gametest', (data) => {
+    var x=data.path;
+    console.log(x);
+
+    if (x== "/1v1.html"){
+      console.log("1 player coming"); 
+      clientCount = clientCount + 1;
+      socket.clientNum = clientCount;
+      socketMap[clientCount] = socket;
+      // first player waiting
+      if(clientCount % 2 == 1){
+          socket.emit('waiting','Waiting for another person');
+      } else {    // second player coming
+          if(socketMap[socket.clientNum - 1]){
+              socket.emit('ready','First player is ready, are you ready?');
+              socketMap[(clientCount - 1)].emit('ready','Another person is ready');
+              socket.emit('start');
+              socketMap[(clientCount - 1)].emit('start');
+          } else {
+              socket.emit('leave');
+          }
+      }
+      bindListener(socket,'init');
+      bindListener(socket,'up');
+      bindListener(socket,'back');
+      bindListener(socket,'lose');
+      bindListener(socket,'getname');
+    }
+    // we tell the client to execute 'new message'
+  });
+
+
+
+
+
+});
 
 
 
@@ -91,7 +107,11 @@ var numUsers = 0;
 
 io.on('connection', (socket) => {
   var addedUser = false;
-  console.log("new user connected");
+  console.log("new PERSON connected");
+
+
+
+
 
   // when the client emits 'new message', this listens and executes
   socket.on('new message', (data) => {

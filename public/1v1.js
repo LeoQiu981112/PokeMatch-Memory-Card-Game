@@ -9,6 +9,15 @@ var count=0;
 
 var remote_id;
 var remote_oneid;
+
+
+
+var pathname = window.location.pathname; // Returns path only (/path/example.html)
+socket.emit('gametest',{path:pathname});
+
+
+
+
 function poker(id){
     if(poke[id]==-1||oneid==id){
         return;
@@ -118,4 +127,8 @@ socket.on('lose', function(){
     $("#hidesteps").hide(); 
     $("#upload").hide();
     document.getElementById("result").innerHTML="You lost!";
+})
+
+socket.on('getname', function(data){
+    document.getElementById('remotename').innerHTML = data.remotename;
 })
