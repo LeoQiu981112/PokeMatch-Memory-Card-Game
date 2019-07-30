@@ -99,11 +99,14 @@
                     //var td3=document.createElement("td");
 
                     var count;
-                    count=i+1;
-                    td0.innerHTML="No."+count;
-                    td1.innerHTML=data.list[i].userid;
-                    td2.innerHTML=data.list[i].one_steps;
-                    //td3.innerHTML=data.list[i].two_steps;
+                    count=i;
+                    if(count<5){
+                        count=count+1;
+                        td0.innerHTML="No."+count;
+                        td1.innerHTML=data.list[i].userid;
+                        td2.innerHTML=data.list[i].one_steps;
+                        //td3.innerHTML=data.list[i].two_steps;
+                    }
 
                     tr.appendChild(td0);
                     tr.appendChild(td1);
@@ -131,7 +134,7 @@
 <button id="poke" class="float-left submit-button" >Poke</button>
 <button id="chat" class="float-left submit-button" >Chat</button>
 <button id="game" class="float-left submit-button" >Solo</button>
-<button id="game2" class="float-left submit-button" >Coop</button>
+<button id="game2" class="float-left submit-button" >1VS1</button>
 
 
 <script type="text/javascript">
@@ -201,13 +204,15 @@
 <input type="button" onClick="msgbox(1)" value="rule" id="Hrule">
 <div id='inputbox' class="box">
     <a class='x' href=''; onclick="msgbox(0); return false;">close</a>
-    Players choose a pattern for the cards. Cards are all initialized face-down.
+    Rules:
     <br/>
-    Each player takes turns flipping two cards face-up — if they are of the same , then that player wins the pair(the pair stays face-up) and gets another turn.
+    1. Players choose a pattern for the cards. Cards are all initialized face-down.
     <br/>
-    If the cards are not identical, they are turned back facedown and it becomes the next player’s turn to pick two cards.
+    2. Each player takes turns flipping two cards face-up — if they are of the same , then that player wins the pair(the pair stays face-up) and gets another turn.
     <br/>
-    The game continues until players have picked up all the pairs; the winner is the player with the most pairs.
+    3. If the cards are not identical, they are turned back facedown and it becomes the next player’s turn to pick two cards.
+    <br/>
+    4. The game continues until players have picked up all the pairs; the winner is the player with the most pairs.
 </div>
 <script>  
     function msgbox(n){

@@ -10,6 +10,38 @@
 <body>
   <ul class="pages">
 
+<button id="account" class="float-left submit-button" >Info</button>
+    <script type="text/javascript">
+        document.getElementById("account").onclick = function () {
+            location.href = "https://stark-spire-21434.herokuapp.com/modify.html";
+        };
+    </script>
+
+    <button id="back" class="float-left submit-button" >Back</button>
+    <script type="text/javascript">
+        document.getElementById("back").onclick = function () {
+            location.href = "https://stark-spire-21434.herokuapp.com/homepage.html";
+        };
+    </script>
+
+    <input type="button" value="logout"  class="float-left submit-button" id="logout" > 
+    <script>
+    //wait til button clicked
+        $("#logout").click(function(){
+            $.ajax({
+                type:"get",
+                url:"/logout",
+                success:function(data){
+                    if(data.status==-1){
+                        location.href="https://stark-spire-21434.herokuapp.com/login.html";
+                    }
+                },
+                error:function(){
+                    alert("logout error!");
+                }
+            });
+        }); 
+    </script>
     <li class="chat page">
       <center>
         <p>Please press enter to join chat!</p>

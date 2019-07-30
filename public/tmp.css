@@ -7,6 +7,24 @@ html {
   -webkit-font-smoothing: antialiased;
 }
 
+#account{
+  font-size:1.5vw;
+  width:6%;
+  border-radius:20px;
+  background-color: #ffffff;
+}
+#logout{
+  font-size:1.5vw;
+  width:6%;
+  border-radius:20px;
+  background-color: #ffffff;
+}
+#back{
+  font-size:1.5vw;
+  width:6%;
+  border-radius:20px;
+  background-color: #ffffff;
+}
 html, input {
   font-family:
     "HelveticaNeue-Light",
