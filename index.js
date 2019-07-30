@@ -710,8 +710,7 @@ app.get('/rankinglist2', function(req, res){
           status: 0,
           list: obj
         }
-        //console.log("json");
-        //console.log(json);
+        console.log(json);
         res.json(json);
         }
       else{
