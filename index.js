@@ -100,11 +100,11 @@ io.on('connection', function(socket){
 
     
   socket.on('disconnect', function(){
-    if(socket.yet == false){
-      clientCount = clientCount - 1;
-    } 
-    else 
-    {
+    //if(socket.yet == false){
+      //clientCount = clientCount - 1;
+    //} 
+    //else 
+    //{
       if((socket.middle == true) && (socket.end == false)){
           if(socket.clientNum % 2 == 0){
             if(socketMap[socket.clientNum - 1]){
@@ -117,7 +117,7 @@ io.on('connection', function(socket){
             }
           }
         } 
-    }
+    //}
     delete(socketMap[socket.clientNum]);
   })
 
