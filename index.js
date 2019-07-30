@@ -77,21 +77,26 @@ io.on('connection', function(socket){
   });
 
   socket.on('end', function(){
+    var tell;
     if(socket.clientNum % 2 == 0){
       if(socketMap[socket.clientNum - 1]){
         if(socketMap[socket.clientNum - 1].end == false){
           socket.end = true;
-          socket.emit('confirm', true);
+          tell = true;
+          socket.emit('confirm', {tell: tell});
         } else {
-          socket.emit('confirm', false);
+          tell = false;
+          socket.emit('confirm', {tell: tell});
         }
       } else {
           if(socketMap[socket.clientNum + 1]){
             if(socketMap[socket.clientNum + 1].end == false){
               socket.end = true;
-              socket.emit('confirm', true);
+              tell = true;
+              socket.emit('confirm', {tell: tell});
             } else {
-              socket.emit('confirm', false);
+              tell = false;
+              socket.emit('confirm', {tell: tell});
             }
           }
       }

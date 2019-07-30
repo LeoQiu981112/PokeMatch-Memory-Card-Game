@@ -65,7 +65,7 @@ function check_success(){
     socket.middle = false;
     socket.emit('end');
     socket.on('confirm', function(data){
-        if(data == true){
+        if(data.tell == true){
             socket.end = true;
             $("#box").show();
             //$("#hidesteps").hide(); 
