@@ -16,16 +16,15 @@
     <h1></h1>
     <script>
     //run right away
+        var user="";
         $.ajax({
             type:"get",
             url:"/userlist",
             success:function(data){
                 if(data.status==-1){
-                    var user="";
                     var remotename;
                     user+=data.user;
                     $("h1").html(user);
-                    socket.emit("getname",{remotename:user});
                     var msg="";
                     msg+=data.msg;
                     $("p1").html(msg);
