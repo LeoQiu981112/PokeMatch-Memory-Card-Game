@@ -62,18 +62,11 @@ function check_success(){
         if(poke[i]!=-1)
             return;
     }
-    socket.middle = false;
-    socket.emit('end');
-    socket.on('confirm', function(data){
-        if(data.tell == true){
-            socket.end = true;
-            $("#box").show();
-            //$("#hidesteps").hide(); 
-            document.getElementById("result").innerHTML="You win!";
-            document.getElementById("steps").innerHTML=count;
-            socket.emit('lose');
-        }
-    });
+    $("#box").show();
+    $("#hidesteps").hide(); 
+    document.getElementById("result").innerHTML="You win!";
+    document.getElementById("steps").innerHTML=count;
+    socket.emit('lose');
 }
 
 function upload(){

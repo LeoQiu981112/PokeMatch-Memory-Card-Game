@@ -50,9 +50,6 @@ io.on('connection', function(socket){
       console.log("1 player coming"); 
       clientCount = clientCount + 1;
       socket.clientNum = clientCount;
-      socket.yet = false;
-      socket.middle = true;
-      socket.end = false;
       socketMap[clientCount] = socket;
       // first player waiting
       if(clientCount % 2 == 1){
@@ -63,9 +60,9 @@ io.on('connection', function(socket){
             socketMap[(clientCount - 1)].emit('ready','Another person is ready');
             socket.emit('start');
             socketMap[(clientCount - 1)].emit('start');
-          } //else {
-              //socket.emit('leave');
-          //}
+          } else {
+              socket.emit('leave');
+          }
       }
       bindListener(socket,'init');
       bindListener(socket,'up');
@@ -75,54 +72,18 @@ io.on('connection', function(socket){
     }
     // we tell the client to execute 'new message'
   });
-
-  socket.on('end', function(){
-    var tell;
-    if(socket.clientNum % 2 == 0){
-      if(socketMap[socket.clientNum - 1]){
-        if(socketMap[socket.clientNum - 1].end == false){
-          socket.end = true;
-          tell = true;
-          socket.emit('confirm', {tell: tell});
-        } else {
-          tell = false;
-          socket.emit('confirm', {tell: tell});
-        }
-      } else {
-          if(socketMap[socket.clientNum + 1]){
-            if(socketMap[socket.clientNum + 1].end == false){
-              socket.end = true;
-              tell = true;
-              socket.emit('confirm', {tell: tell});
-            } else {
-              tell = false;
-              socket.emit('confirm', {tell: tell});
-            }
-          }
-      }
-    }
-  });
-
     
   socket.on('disconnect', function(){
-    //if(socket.yet == false){
-      //clientCount = clientCount - 1;
-    //} 
-    //else 
-    //{
-      if((socket.middle == true) && (socket.end == false)){
-          if(socket.clientNum % 2 == 0){
-            if(socketMap[socket.clientNum - 1]){
-              socketMap[socket.clientNum - 1].emit('leave');
-            }
-          } 
-          else {
-            if(socketMap[socket.clientNum + 1]){
-              socketMap[socket.clientNum + 1].emit('leave');
-            }
-          }
-        } 
-    //}
+    if(socket.clientNum % 2 == 0){
+      if(socketMap[socket.clientNum - 1]){
+        socketMap[socket.clientNum - 1].emit('leave');
+      }
+    } 
+    else {
+      if(socketMap[socket.clientNum + 1]){
+        socketMap[socket.clientNum + 1].emit('leave');
+      }
+    }   
     delete(socketMap[socket.clientNum]);
   })
 
