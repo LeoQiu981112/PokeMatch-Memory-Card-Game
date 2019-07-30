@@ -8,14 +8,13 @@ body{
 	text-align: center; 
 	background-color: #fff;
 	border-radius: 20px;
-	width: 50%;
-	height: 30%;
+	width: 47%;
+	height: 35%;
 	margin: auto;
 	position: absolute;
 	opacity: 0.5;
-	top:15%;
-    left: 0;
-    right: 0;
+	top:25%;
+    left: 1%;
     z-index: -1;
 }
 #ranking{
@@ -26,18 +25,48 @@ body{
 	height: 30%;
 	margin: auto;
 	position: absolute;
-	top:6.5%;
-    left: 0;
-    right: 0;
+	top:18%;
+    left: -1%;
     z-index: -1;
 }
 #rankingtitle{
 	font-size: 3.5vw;
-	background: linear-gradient(to right,#87cefa,#ffffff);
+	background: linear-gradient(to right,#F9F900,#ffffff);
     -webkit-background-clip: text;
     color: transparent;
 }
-#myownbackground{
+
+#ranking2background{
+	text-align: center; 
+	background-color: #fff;
+	border-radius: 20px;
+	width: 47%;
+	height: 35%;
+	margin: auto;
+	position: absolute;
+	opacity: 0.5;
+	top:25%;
+    left: 52%;
+    z-index: -1;
+}
+#ranking2{
+	font-size: 1.5vw;
+	text-align: center; 
+	border-radius: 20px;
+	width: 50%;
+	height: 30%;
+	margin: auto;
+	position: absolute;
+	top:18%;
+    left: 51%;
+}
+#rankingtitle2{
+	font-size: 3.5vw;
+	background: linear-gradient(to right,#F9F900,#ffffff);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+/* #myownbackground{
 	text-align: center; 
 	background-color: #fff;
 	border-radius: 20px;
@@ -63,7 +92,7 @@ body{
     left: 0;
     right: 0;
     z-index: -1;
-}
+} */
 #account{
     font-size:1.5vw;
     width:6%;
@@ -90,7 +119,7 @@ body{
     height:8%;
     border-radius: 40px;
     background-color: #ffffff;
-    top:0;
+    top:30%;
     left: 0;
     right: 20%;
     bottom: 0;
@@ -104,7 +133,7 @@ body{
     height:8%;
     border-radius: 40px;
     background-color: #ffffff;
-    top:0;
+    top:30%;
     left: 20%;
     right: 0;
     bottom: 0;
@@ -118,7 +147,7 @@ body{
     height:8%;
     border-radius: 40px;
     background-color: #ffffff;
-    top:0;
+    top:30%;
     left: 40%;
     right: 0;
     bottom: 0;
@@ -132,7 +161,7 @@ body{
     height:8%;
     border-radius: 40px;
     background-color: #ffffff;
-    top:0;
+    top:30%;
     left: 0;
     right: 40%;
     bottom: 0;
@@ -154,7 +183,7 @@ body{
 }
 #boardtitle{
 	font-size: 3.5vw;
-	background: linear-gradient(to right,#7CFC00,#66CDAA);
+	background: linear-gradient(to right,#F9F900,#ffffff);
     -webkit-background-clip: text;
     color: transparent;	
     text-align: center; 
@@ -165,7 +194,7 @@ body{
 	margin: auto;
 	position: absolute;
 	opacity: 1;
-	top:67%;
+	top:67.5%;
     left: 0;
     right: 0;
     z-index: -1;

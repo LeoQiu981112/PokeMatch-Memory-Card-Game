@@ -100,6 +100,14 @@ td{
     background-color: #ffffff;
     text-align:center;
 }
+#upload2{
+    color: #4d8673;
+    font-size:1.5vw;
+    width:20%;
+    border-radius:20px;
+    background-color: #ffffff;
+    text-align:center;
+}
 .white_content { 
     font-size:1.2vw;
     color: #4d8673;
