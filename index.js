@@ -72,12 +72,12 @@ io.on('connection', function(socket){
           socket.emit('waiting','Waiting for another person');
       } else {    // second player coming
           if(socketMap[socket.clientNum - 1]){
-              socket.emit('ready','First player is ready, are you ready?');
-              socketMap[(clientCount - 1)].emit('ready','Another person is ready');
-              socket.emit('start');
-              socketMap[(clientCount - 1)].emit('start');
+            socket.emit('ready','First player is ready, are you ready?');
+            socketMap[(clientCount - 1)].emit('ready','Another person is ready');
+            socket.emit('start');
+            socketMap[(clientCount - 1)].emit('start');
           } else {
-              socket.emit('leave');
+              //socket.emit('leave');
           }
       }
       bindListener(socket,'init');
@@ -89,13 +89,7 @@ io.on('connection', function(socket){
     // we tell the client to execute 'new message'
   });
 
-
-
-
-
 });
-
-
 
 
 
@@ -108,9 +102,6 @@ var numUsers = 0;
 io.on('connection', (socket) => {
   var addedUser = false;
   console.log("new PERSON connected");
-
-
-
 
 
   // when the client emits 'new message', this listens and executes
