@@ -68,6 +68,25 @@ function check_success(){
     socket.emit('lose');
 }
 
+$("#upload2").click(function(){
+    $.ajax({
+        type:"post",
+        url:"/ranking2",
+        success:function(data){
+            if(data.status==-1){
+                alert("Upload Fail!");
+            }else{
+            alert("Upload success!");
+            }
+        },
+        error:function(){
+            alert("Internet Error");
+        }
+    })
+
+
+
+});
 
 socket.on('waiting', function(str) {
     document.getElementById('waiting').innerHTML = str;

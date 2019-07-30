@@ -384,7 +384,7 @@ app.post('/signup', function(req, res){
                                                 + "'" +  sans     + "'"     
                                                 + ")"     
                                                 + ";"  ;
-  var ranking="insert into ranking values ("+"'"+sid+"'"+",100,100);";
+  var ranking="insert into ranking values ("+"'"+sid+"'"+",100,0);";
   var match = "select * from gm where id in " + "('" + sid + "')" + ";"; 
   console.log(ranking);
   console.log(match);
@@ -622,6 +622,19 @@ app.post('/ranking', function(req, res){
   }
   res.json({status:1});
 });
+
+app.post('/ranking2', function(req, res){
+  var name = req.session.user;
+  var match = "select two_wins from ranking where userid = " + name; 
+  console.log(match);
+
+  // pool.query(match, function(error, result){
+  //   result.rows[0]
+
+
+  // }
+
+}
 
 app.get('/rankinglist', function(req, res){
   var search = "select * from ranking order by one_steps asc;"; 
