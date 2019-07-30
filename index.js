@@ -520,8 +520,8 @@ app.post('/search', function(req, res){
   //   } 
   //}); 	  
 
-  //var addone;
-  //var newone;
+  var addone;
+
   var name = 2;
   var match = "select two_wins from ranking where userid = '" + name + "';"; 
   console.log(match);
@@ -529,9 +529,10 @@ app.post('/search', function(req, res){
     console.log(result);
     console.log(result.rows[0].two_wins);
     addone = result.rows[0].two_wins;  
+    addone ++;
   });
-  newone = addone + 1;
-  console.log(newone);
+  
+  console.log(addone);
   
   // addone = addone + 1;
   // var match2 = "update ranking set two_wins = '" + addone  + "' where userid = '" + name + "';";
