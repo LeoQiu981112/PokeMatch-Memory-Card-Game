@@ -626,7 +626,7 @@ app.post('/ranking', function(req, res){
 
 app.post('/ranking2', function(req, res){
   var name = req.session.user;
-  var match = "select two_wins from ranking where userid = " + name + ";"; 
+  var match = "select two_wins from ranking where userid = '" + name + "';"; 
   console.log(match);
   var two_wins;
   pool.query(match, function(error, result){
@@ -634,7 +634,7 @@ app.post('/ranking2', function(req, res){
   });
   console.log(two_wins);
   two_wins = two_wins + 1;
-  var match = "update ranking set two_wins = " +  two_wins  + " where userid = " + name + ";";
+  var match = "update ranking set two_wins = '" + two_wins  + "' where userid = '" + name + "';";
   console.log(match);
   pool.query(match, function(error, result){
     console.log(result);
