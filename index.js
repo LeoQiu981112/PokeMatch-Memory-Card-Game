@@ -521,7 +521,6 @@ app.post('/search', function(req, res){
   //}); 	  
 
   var addone;
-
   var name = 2;
   var match = "select two_wins from ranking where userid = '" + name + "';"; 
   console.log(match);
@@ -529,20 +528,25 @@ app.post('/search', function(req, res){
     console.log(result);
     console.log(result.rows[0].two_wins);
     addone = result.rows[0].two_wins;  
+    console.log(addone);
     addone ++;
+    console.log(addone);
+    var match2 = "update ranking set two_wins = '" + addone  + "' where userid = '" + name + "';";
+    console.log(match2);
+    pool.query(match2, function(error, result){
+      console.log(result);
+      if(error) {
+        console.log("rankng fail!");
+      }
+    });
+
+
   });
   
-  console.log(addone);
+
   
-  // addone = addone + 1;
-  // var match2 = "update ranking set two_wins = '" + addone  + "' where userid = '" + name + "';";
-  // console.log(match2);
-  // pool.query(match2, function(error, result){
-  //   console.log(result);
-  //   if(error) {
-  //     console.log("rankng fail!");
-  //   }
-  // });
+  
+ 
 
 
 
