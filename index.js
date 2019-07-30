@@ -50,7 +50,7 @@ io.on('connection', function(socket){
       console.log("1 player coming"); 
       clientCount = clientCount + 1;
       socket.clientNum = clientCount;
-      socket.yet = false;
+      //socket.yet = false;
       socketMap[clientCount] = socket;
       // first player waiting
       if(clientCount % 2 == 1){
@@ -75,9 +75,9 @@ io.on('connection', function(socket){
   });
 
   socket.on('disconnect', function(){
-    if(socket.yet == false){
-      clientCount = clientCount - 1;
-    } else{
+    //if(socket.yet == false){
+      //clientCount = clientCount - 1;
+    //} else{
         if(socket.clientNum % 2 == 0){
           if(socketMap[socket.clientNum - 1]){
             socketMap[socket.clientNum - 1].emit('leave');
@@ -87,7 +87,7 @@ io.on('connection', function(socket){
               socketMap[socket.clientNum + 1].emit('leave');
           }
       }
-    }
+    //}
   
     delete(socketMap[socket.clientNum]);
   })
