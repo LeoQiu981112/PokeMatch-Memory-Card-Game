@@ -27,14 +27,24 @@ body{
 }
 
 #togoshow{
-    font-size:3vw;
+    font-size:2.6vw;
 
 }
 #waiting{
     font-size:3vw;
-    position: center center;
+    
+}
+#ready{
+    font-size:2.6vw;
 }
 
+#offline{
+    font-size:2.6vw;
+}
+
+#result{
+    font-size:2.6vw;
+}
 #remotename{
     font-size:1.5vw;
     position: fixed; 
