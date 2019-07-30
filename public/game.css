@@ -28,7 +28,9 @@ body{
 
 #3togoshow{
     font-size:3vw;
-    position:center center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
 
 }
 
