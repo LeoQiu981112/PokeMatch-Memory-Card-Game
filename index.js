@@ -523,7 +523,7 @@ app.post('/search', function(req, res){
   console.log(match);
 
   pool.query(match, function(error, result){
-    console.log(result);
+    console.log(result.rows[0].two_wins);
 
 
 
