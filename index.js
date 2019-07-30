@@ -104,7 +104,7 @@ io.on('connection', function(socket){
       clientCount = clientCount - 1;
     } 
     else{
-      if(socket.middle == ture && socket.end == false){
+      if((socket.middle == ture) && (socket.end == false)){
         if(socket.clientNum % 2 == 0){
           if(socketMap[socket.clientNum - 1]){
             socketMap[socket.clientNum - 1].emit('leave');
