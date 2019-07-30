@@ -62,10 +62,18 @@ function check_success(){
         if(poke[i]!=-1)
             return;
     }
-    $("#box").show();
-    document.getElementById("result").innerHTML="You win!";
-    document.getElementById("steps").innerHTML=count;
-    socket.emit('lose');
+    socket.middle = false;
+    socket.emit('end');
+    socket.on('confirm', function(data){
+        if(data == true){
+            socket.end = true;
+            $("#box").show();
+            //$("#hidesteps").hide(); 
+            document.getElementById("result").innerHTML="You win!";
+            document.getElementById("steps").innerHTML=count;
+            socket.emit('lose');
+        }
+    });
 }
 
 function upload(){
@@ -107,7 +115,7 @@ socket.on('ready', function(str) {
 })
 var remote_poke;
 socket.on('start', function() {
-    //socket.yet = true;
+    socket.yet = true;
     shuffle_poke();
     socket.emit('init', {remote_poke:poke});
 })
@@ -148,3 +156,4 @@ socket.on('lose', function(){
 socket.on('getname', function(data){
     document.getElementById('remotename').innerHTML = data.remotename+"'s Game Area";
 })
+

@@ -50,7 +50,9 @@ io.on('connection', function(socket){
       console.log("1 player coming"); 
       clientCount = clientCount + 1;
       socket.clientNum = clientCount;
-      //socket.yet = false;
+      socket.yet = false;
+      socket.middle = true;
+      socket.end = false;
       socketMap[clientCount] = socket;
       // first player waiting
       if(clientCount % 2 == 1){
@@ -74,21 +76,45 @@ io.on('connection', function(socket){
     // we tell the client to execute 'new message'
   });
 
-  socket.on('disconnect', function(){
-    //if(socket.yet == false){
-      //clientCount = clientCount - 1;
-    //} else{
-        if(socket.clientNum % 2 == 0){
-          if(socketMap[socket.clientNum - 1]){
-            socketMap[socket.clientNum - 1].emit('leave');
-          }
+  socket.on('end', function(){
+    if(socket.clientNum % 2 == 0){
+      if(socketMap[socket.clientNum - 1]){
+        if(socketMap[socket.clientNum - 1].end == false){
+          socket.end = true;
+          socket.emit('confirm', true);
         } else {
-            if(socketMap[socket.clientNum + 1]){
-              socketMap[socket.clientNum + 1].emit('leave');
+          socket.emit('confirm', false);
+        }
+      } else {
+          if(socketMap[socket.clientNum + 1]){
+            if(socketMap[socket.clientNum + 1].end == false){
+              socket.end = true;
+              socket.emit('confirm', true);
+            } else {
+              socket.emit('confirm', false);
+            }
           }
       }
-    //}
-  
+    }
+  });
+
+    
+  socket.on('disconnect', function(){
+    if(socket.yet == false){
+      clientCount = clientCount - 1;
+    } else{
+        if(socket.middle == ture && socket.end == false){
+          if(socket.clientNum % 2 == 0){
+            if(socketMap[socket.clientNum - 1]){
+              socketMap[socket.clientNum - 1].emit('leave');
+            }
+          } else {
+              if(socketMap[socket.clientNum + 1]){
+                socketMap[socket.clientNum + 1].emit('leave');
+              }
+            }
+        } 
+    }
     delete(socketMap[socket.clientNum]);
   })
 
