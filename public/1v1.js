@@ -14,7 +14,6 @@ var remote_oneid;
 
 var pathname = window.location.pathname; // Returns path only (/path/example.html)
 socket.emit('gametest',{path:pathname});
-socket.emit("getname",{remotename:user});
 
 
 function poker(id){
@@ -75,6 +74,7 @@ socket.on('waiting', function(str) {
 })
 
 socket.on('ready', function(str) {
+    socket.emit("getname",{remotename:user});
     document.getElementById('ready').innerHTML = str;
     $("#3togoshow").show();
     var i = 3;      
