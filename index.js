@@ -63,9 +63,9 @@ io.on('connection', function(socket){
             socketMap[(clientCount - 1)].emit('ready','Another person is ready');
             socket.emit('start');
             socketMap[(clientCount - 1)].emit('start');
-          } else {
-              socket.emit('leave');
-          }
+          } //else {
+              //socket.emit('leave');
+          //}
       }
       bindListener(socket,'init');
       bindListener(socket,'up');
