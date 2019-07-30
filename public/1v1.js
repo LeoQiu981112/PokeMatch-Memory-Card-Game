@@ -68,7 +68,7 @@ function check_success(){
     socket.emit('lose');
 }
 
-$("#upload2").click(function(){
+function upload(){
     $.ajax({
         type:"post",
         url:"/ranking2",
@@ -83,7 +83,7 @@ $("#upload2").click(function(){
             alert("Internet Error");
         }
     })
-});
+};
 
 socket.on('waiting', function(str) {
     document.getElementById('waiting').innerHTML = str;
