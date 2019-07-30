@@ -520,8 +520,8 @@ app.post('/search', function(req, res){
   //   } 
   //}); 	  
 
-  var addone;
-  var newone;
+  //var addone;
+  //var newone;
   var name = 2;
   var match = "select two_wins from ranking where userid = '" + name + "';"; 
   console.log(match);
