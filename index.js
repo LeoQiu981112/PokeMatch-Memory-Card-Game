@@ -528,13 +528,13 @@ app.post('/search', function(req, res){
   pool.query(match, function(error, result){
     console.log(result);
     console.log(result.rows[0].two_wins);
-    //two_wins = result.rows[0].two_wins;
+    two_wins = result.rows[0].two_wins;
   });
-  // console.log(two_wins);
-  // two_wins = two_wins + 1;
-  // var match = "update ranking set two_wins = '" + two_wins  + "' where userid = '" + name + "';";
-  // console.log(match);
-  // pool.query(match, function(error, result){
+  console.log(two_wins);
+  two_wins = two_wins + 1;
+  // var match2 = "update ranking set two_wins = '" + two_wins  + "' where userid = '" + name + "';";
+  // console.log(match2);
+  // pool.query(match2, function(error, result){
   //   console.log(result);
   //   if(error) {
   //     console.log("rankng fail!");
