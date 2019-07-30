@@ -478,56 +478,46 @@ app.post('/remove', function(req, res){
 
 
 app.post('/search', function(req, res){
-	// var search_cri=req.body.search_cri;
-	// var search = "select * from players where id like '%" + search_cri + "%';";                              
-  // //console.log(search);
-  // pool.query(search, function(error, result){
-  //   if(error) {
-  //       console.log("search db fail!");
-  //       res.json({status:-1});
-  //   }
+	var search_cri=req.body.search_cri;
+	var search = "select * from players where id like '%" + search_cri + "%';";                              
+  //console.log(search);
+  pool.query(search, function(error, result){
+    if(error) {
+        console.log("search db fail!");
+        res.json({status:-1});
+    }
 
-  //   else{
-  // 	  if(result.rowCount) {
-  //        //console.log("Search succeeded!");
-  //       console.log(result.rows[0]);
+    else{
+  	  if(result.rowCount) {
+         //console.log("Search succeeded!");
+        console.log(result.rows[0]);
 
-  //       var obj = [];
-  //       var tmp;
-  //       for (i=0;i<result.rowCount;i++){
-  //           tmp= {  
-  //           user: result.rows[i].id  ,    
-  //           pass: result.rows[i].password , 
-  //           name: result.rows[i].name };
-  //         obj.push(tmp);
-  //       }
-  //       // var test= JSON.parse(json);
-  //       var json = {
-  //         status: 0,
-  //         list: obj
-  //       }
-  //       //json=JSON.stringify(json);
-  //       //var result;
-  //       //result=JSON.parse(json)
-  //       console.log("json");
-  //       console.log(json);
-  //       res.json(json);
-  // 	   }
-  // 	  else{
-  //       console.log("Search failed!");
-  //       res.json({status:-1,list:"Players not found"});
-  // 	  } 	 
-  //   }  
-
-  var match = "select two_wins from ranking where userid = 'qq'" ; 
-  console.log(match);
-
-  pool.query(match, function(error, result){
-    console.log(result.rows[0].two_wins);
-
-
-
-
+        var obj = [];
+        var tmp;
+        for (i=0;i<result.rowCount;i++){
+            tmp= {  
+            user: result.rows[i].id  ,    
+            pass: result.rows[i].password , 
+            name: result.rows[i].name };
+          obj.push(tmp);
+        }
+        // var test= JSON.parse(json);
+        var json = {
+          status: 0,
+          list: obj
+        }
+        //json=JSON.stringify(json);
+        //var result;
+        //result=JSON.parse(json)
+        console.log("json");
+        console.log(json);
+        res.json(json);
+  	   }
+  	  else{
+        console.log("Search failed!");
+        res.json({status:-1,list:"Players not found"});
+  	  } 	 
+    } 
 
   }); 	  
 
@@ -637,14 +627,20 @@ app.post('/ranking', function(req, res){
 app.post('/ranking2', function(req, res){
   var name = req.session.user;
   var match = "select two_wins from ranking where userid = " + name; 
-  console.log(match);
-
+  //console.log(match);
+  var two_wins;
   pool.query(match, function(error, result){
-    console.log(result);
-
-
+    two_wins = result.rows[0].two_wins;
   });
-
+  two_wins = two_wins + 1;
+  var match = "update ranking set two_wins = " +  two_wins  + " where userid = " + name;
+  pool.query(match, function(error, result){
+    if(error) {
+      console.log("rankng fail!");
+      res.json({status:-1});
+    }
+  });
+  res.json({status:1});
 });
 
 app.get('/rankinglist', function(req, res){
