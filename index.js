@@ -105,18 +105,18 @@ io.on('connection', function(socket){
     //} 
     //else 
     //{
-      if((socket.middle == ture) && (socket.end == false)){
-        if(socket.clientNum % 2 == 0){
-          if(socketMap[socket.clientNum - 1]){
-            socketMap[socket.clientNum - 1].emit('leave');
-          }
-        } 
-        else {
-          if(socketMap[socket.clientNum + 1]){
-            socketMap[socket.clientNum + 1].emit('leave');
-          }
+    if((socket.middle == ture) && (socket.end == false)){
+      if(socket.clientNum % 2 == 0){
+        if(socketMap[socket.clientNum - 1]){
+          socketMap[socket.clientNum - 1].emit('leave');
         }
       } 
+      else {
+        if(socketMap[socket.clientNum + 1]){
+          socketMap[socket.clientNum + 1].emit('leave');
+        }
+      }
+    } 
     //}
     delete(socketMap[socket.clientNum]);
   })
