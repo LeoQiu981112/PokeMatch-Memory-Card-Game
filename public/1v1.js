@@ -107,6 +107,7 @@ socket.on('ready', function(str) {
 })
 var remote_poke;
 socket.on('start', function() {
+    socket.yet = true;
     shuffle_poke();
     socket.emit('init', {remote_poke:poke});
 })
