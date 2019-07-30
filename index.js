@@ -478,46 +478,57 @@ app.post('/remove', function(req, res){
 
 
 app.post('/search', function(req, res){
-	var search_cri=req.body.search_cri;
-	var search = "select * from players where id like '%" + search_cri + "%';";                              
-  //console.log(search);
-  pool.query(search, function(error, result){
-    if(error) {
-        console.log("search db fail!");
-        res.json({status:-1});
-    }
+	// var search_cri=req.body.search_cri;
+	// var search = "select * from players where id like '%" + search_cri + "%';";                              
+  // //console.log(search);
+  // pool.query(search, function(error, result){
+  //   if(error) {
+  //       console.log("search db fail!");
+  //       res.json({status:-1});
+  //   }
 
-    else{
-  	  if(result.rowCount) {
-         //console.log("Search succeeded!");
-        console.log(result.rows[0]);
+  //   else{
+  // 	  if(result.rowCount) {
+  //        //console.log("Search succeeded!");
+  //       console.log(result.rows[0]);
 
-        var obj = [];
-        var tmp;
-        for (i=0;i<result.rowCount;i++){
-            tmp= {  
-            user: result.rows[i].id  ,    
-            pass: result.rows[i].password , 
-            name: result.rows[i].name };
-          obj.push(tmp);
-        }
-        // var test= JSON.parse(json);
-        var json = {
-          status: 0,
-          list: obj
-        }
-        //json=JSON.stringify(json);
-        //var result;
-        //result=JSON.parse(json)
-        console.log("json");
-        console.log(json);
-        res.json(json);
-  	   }
-  	  else{
-        console.log("Search failed!");
-        res.json({status:-1,list:"Players not found"});
-  	  } 	 
-    }  
+  //       var obj = [];
+  //       var tmp;
+  //       for (i=0;i<result.rowCount;i++){
+  //           tmp= {  
+  //           user: result.rows[i].id  ,    
+  //           pass: result.rows[i].password , 
+  //           name: result.rows[i].name };
+  //         obj.push(tmp);
+  //       }
+  //       // var test= JSON.parse(json);
+  //       var json = {
+  //         status: 0,
+  //         list: obj
+  //       }
+  //       //json=JSON.stringify(json);
+  //       //var result;
+  //       //result=JSON.parse(json)
+  //       console.log("json");
+  //       console.log(json);
+  //       res.json(json);
+  // 	   }
+  // 	  else{
+  //       console.log("Search failed!");
+  //       res.json({status:-1,list:"Players not found"});
+  // 	  } 	 
+  //   }  
+
+  var match = "select two_wins from ranking where userid = 'qq'" ; 
+  console.log(match);
+
+  pool.query(match, function(error, result){
+    console.log(result);
+
+
+
+
+
   }); 	  
 
   //res.redirect('https://stark-spire-21434.herokuapp.com/GM.html');
