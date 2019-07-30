@@ -628,11 +628,11 @@ app.post('/ranking2', function(req, res){
   var match = "select two_wins from ranking where userid = " + name; 
   console.log(match);
 
-  // pool.query(match, function(error, result){
-  //   result.rows[0]
+  pool.query(match, function(error, result){
+    console.log(result);
 
 
-  // }
+  });
 
 });
 
