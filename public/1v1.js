@@ -76,7 +76,7 @@ socket.on('waiting', function(str) {
 socket.on('ready', function(str) {
     socket.emit("getname",{remotename:user});
     document.getElementById('ready').innerHTML = str;
-    $("#3togoshow").show();
+    $("#togoshow").show();
     var i = 3;      
     var intervalid; 
     function fun() { 
