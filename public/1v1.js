@@ -130,5 +130,5 @@ socket.on('lose', function(){
 })
 
 socket.on('getname', function(data){
-    document.getElementById('remotename').innerHTML = data.remotename;
+    document.getElementById('remotename').innerHTML = data.remotename+"'s Game Area";
 })
