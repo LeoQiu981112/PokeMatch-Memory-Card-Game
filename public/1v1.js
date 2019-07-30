@@ -140,7 +140,7 @@ socket.on('leave', function(){
 socket.on('lose', function(){
     $("#box").show();
     $("#hidesteps").hide(); 
-    $("#upload").hide();
+    $("#upload2").hide();
     document.getElementById("result").innerHTML="You lose!";
 })
 
