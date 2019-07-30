@@ -684,45 +684,48 @@ app.get('/rankinglist', function(req, res){
       }    
     }  
   });     
+});
 
-  app.get('/rankinglist2', function(req, res){
-    var match = "select * from ranking order by two_wins desc;"; 
-    console.log(match);                             
-    pool.query(match, function(error, result){
-      if(error) {
-          console.log("order fail!");
-          res.json({status:-1});
-      }
+app.get('/rankinglist2', function(req, res){
+  var match = "select * from ranking order by two_wins desc;"; 
+  console.log(match);                             
+  pool.query(match, function(error, result){
+    if(error) {
+        console.log("order fail!");
+        res.json({status:-1});
+    }
+    else{
+      if(result.rowCount) {
+        //console.log(result.rows[0]);
+        var obj = [];
+        var tmp;
+        for (i=0;i<5;i++){
+          tmp= {  
+          userid: result.rows[i].userid  ,    
+          one_steps: result.rows[i].one_steps , 
+          two_steps: result.rows[i].two_steps};
+          obj.push(tmp);
+        }
+        var json = {
+          status: 0,
+          list: obj
+        }
+        //console.log("json");
+        //console.log(json);
+        res.json(json);
+        }
       else{
-        if(result.rowCount) {
-          //console.log(result.rows[0]);
-          var obj = [];
-          var tmp;
-          for (i=0;i<5;i++){
-            tmp= {  
-            userid: result.rows[i].userid  ,    
-            one_steps: result.rows[i].one_steps , 
-            two_steps: result.rows[i].two_steps};
-            obj.push(tmp);
-          }
-          var json = {
-            status: 0,
-            list: obj
-          }
-          //console.log("json");
-          //console.log(json);
-          res.json(json);
-         }
-        else{
-          console.log("Ranking failed!");
-          res.json({status:-1,list:"No ranking"});
-        }    
-      }  
-    });     
+        console.log("Ranking failed!");
+        res.json({status:-1,list:"No ranking"});
+      }    
+    }  
+  });     
+});
+
 
   //res.redirect('https://stark-spire-21434.herokuapp.com/GM.html');
 // res.redirect('http://localhost:5000/main.html');
-});
+
 
 // app.delete('/user/:id', (req, res) => {
 //   console.log(req.params.id) 
