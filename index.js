@@ -529,8 +529,8 @@ app.post('/search', function(req, res){
     console.log(result.rows[0].two_wins);
     addone = result.rows[0].two_wins;  
   });
-  addone = addone + 1;
-  console.log(addone);
+  var newone = addone + 1;
+  console.log(newone);
   
   // addone = addone + 1;
   // var match2 = "update ranking set two_wins = '" + addone  + "' where userid = '" + name + "';";
