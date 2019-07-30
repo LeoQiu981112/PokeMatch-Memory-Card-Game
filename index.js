@@ -524,7 +524,7 @@ app.post('/search', function(req, res){
   var name = 2;
   var match = "select two_wins from ranking where userid = '" + name + "';"; 
   console.log(match);
-  //var addone;
+  var addone;
   pool.query(match, function(error, result){
     console.log(result);
     console.log(result.rows[0].two_wins);
