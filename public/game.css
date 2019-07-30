@@ -6,7 +6,7 @@ body{
 }
 #t1{
     position: fixed; 
-    top: 20%; 
+    top: 30%; 
     left: 5%; 
     width: 40%; 
     height: 60%; 
@@ -14,7 +14,7 @@ body{
 }
 #t2{
     position: fixed; 
-    top: 20%; 
+    top: 30%; 
     left: 55%; 
     width: 40%; 
     height: 60%; 
@@ -22,14 +22,14 @@ body{
 #ownG{
     font-size:1.5vw;
     position: fixed; 
-    top: 10%; 
+    top: 20%; 
     left: 5%; 
 }
 
 #remotename{
     font-size:1.5vw;
     position: fixed; 
-    top: 10%; 
+    top: 20%; 
     left: 55%; 
 }
 td{
