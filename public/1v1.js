@@ -125,7 +125,7 @@ socket.on('lose', function(){
     $("#box").show();
     $("#hidesteps").hide(); 
     $("#upload").hide();
-    document.getElementById("result").innerHTML="You lost!";
+    document.getElementById("result").innerHTML="You lose!";
 })
 
 socket.on('getname', function(data){
