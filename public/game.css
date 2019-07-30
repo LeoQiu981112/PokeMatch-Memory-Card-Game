@@ -5,12 +5,16 @@ body{
     background-size:cover; 
 }
 #t1{
-    width:40%;
-    height:80%
+    position: fixed; 
+    top: 20%; 
+    left: 5%; 
+    width: 40%; 
+    height: 60%; 
+
 }
 #t2{
     width:40%;
-    height:80%
+    height:80%;
 }
 td{
     text-align:center;
