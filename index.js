@@ -524,22 +524,22 @@ app.post('/search', function(req, res){
   var name = 2;
   var match = "select two_wins from ranking where userid = '" + name + "';"; 
   console.log(match);
-  var two_wins;
+  //var addone;
   pool.query(match, function(error, result){
     console.log(result);
     console.log(result.rows[0].two_wins);
-    two_wins = result.rows[0].two_wins;
+    addone = result.rows[0].two_wins;
   });
-  // console.log(two_wins);
-  // two_wins = two_wins + 1;
-  // var match2 = "update ranking set two_wins = '" + two_wins  + "' where userid = '" + name + "';";
-  // console.log(match2);
-  // pool.query(match2, function(error, result){
-  //   console.log(result);
-  //   if(error) {
-  //     console.log("rankng fail!");
-  //   }
-  //});
+  console.log(addone);
+  addone = addone + 1;
+  var match2 = "update ranking set two_wins = '" + addone  + "' where userid = '" + name + "';";
+  console.log(match2);
+  pool.query(match2, function(error, result){
+    console.log(result);
+    if(error) {
+      console.log("rankng fail!");
+    }
+  });
 
 
 
