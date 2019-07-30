@@ -518,6 +518,8 @@ app.post('/search', function(req, res){
   //       res.json({status:-1,list:"Players not found"});
   // 	  } 	 
   //   } 
+  //}); 	  
+
 
   var name = 2;
   var match = "select two_wins from ranking where userid = '" + name + "';"; 
@@ -539,7 +541,7 @@ app.post('/search', function(req, res){
 
 
 
-  }); 	  
+
 
   //res.redirect('https://stark-spire-21434.herokuapp.com/GM.html');
 // res.redirect('http://localhost:5000/main.html');
