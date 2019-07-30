@@ -83,9 +83,6 @@ $("#upload2").click(function(){
             alert("Internet Error");
         }
     })
-
-
-
 });
 
 socket.on('waiting', function(str) {

@@ -634,7 +634,7 @@ app.post('/ranking2', function(req, res){
 
   // }
 
-}
+});
 
 app.get('/rankinglist', function(req, res){
   var search = "select * from ranking order by one_steps asc;"; 
