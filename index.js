@@ -661,8 +661,8 @@ app.get('/rankinglist', function(req, res){
         var tmp;
         for (i=0;i<result.rowCount;i++){
             tmp= {  
-            userid: result.rows[i].userid  ,    
-            one_steps: result.rows[i].one_steps , 
+            userid: result.rows[i].userid,    
+            one_steps: result.rows[i].one_steps, 
             two_wins: result.rows[i].two_wins};
           obj.push(tmp);
         }
@@ -699,11 +699,11 @@ app.get('/rankinglist2', function(req, res){
         //console.log(result.rows[0]);
         var obj = [];
         var tmp;
-        for (i=0;i<5;i++){
+        for (i=0;i<result.rowCount;i++){
           tmp= {  
-          userid: result.rows[i].userid  ,    
-          one_steps: result.rows[i].one_steps , 
-          two_steps: result.rows[i].two_steps};
+          userid: result.rows[i].userid,    
+          one_steps: result.rows[i].one_steps, 
+          two_wins: result.rows[i].two_wins};
           obj.push(tmp);
         }
         var json = {
