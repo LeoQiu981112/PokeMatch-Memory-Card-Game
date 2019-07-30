@@ -539,7 +539,7 @@ app.post('/search', function(req, res){
   //   if(error) {
   //     console.log("rankng fail!");
   //   }
-  });
+  //});
 
 
 
