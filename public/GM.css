@@ -1,0 +1,102 @@
+body {
+  background-image: url(GM.jpg);
+  background-repeat:no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+
+
+}
+#GGM{
+  font-size:1.73vw;
+  background-color: #fff;
+  padding:6% 2%;
+  opacity: 0.8;
+  border-radius: 10%;
+  position:absolute;
+  height:45%;
+  width: 30%;
+  top:20%;
+  left:12%;
+  overflow:auto;
+  
+}
+
+::-webkit-scrollbar{
+  padding:6% 2%;
+  opacity: 0.8;
+  border-radius: 10%;
+}
+
+
+h1{
+  font-size:3.3vw;
+  background: linear-gradient(to right,#87cefa,#ffffff);
+    -webkit-background-clip: text;
+    color: transparent;
+  width:30%;
+  height:20%;
+  position:absolute;
+  top:0%;
+  left:29%;
+  margin-left:10%;
+  margin-top:10%；
+}
+#gpublish{
+  font-size:1.73vw;
+  background-color: #fff;
+  padding:6% 2%;
+  opacity: 0.8;
+  border-radius: 10%;
+  position:absolute;
+  height:45%;
+  width: 30%;
+  top:20%;
+  left:51%;
+  overflow:auto;
+
+}
+
+#gmessage{
+  width:96%;
+  height:90%;
+  line-height:30px;
+  font-size: 1.5vw;
+
+}
+#gpbutton{
+  font-size: 1.5vw;
+}
+#search_cri{
+  font-size: 1.5vw;
+  
+}
+#glogout{
+  font-size: 1.5vw;
+  width: 20%;
+  height:10%;
+}
+
+#gsearch{
+  font-size: 1.5vw;
+}
+#gsbutton{
+  font-size: 1.5vw;
+}
+#Gdelete{
+  font-size: 1.5vw;
+}
+#gdbutton{
+  font-size: 1.5vw;
+}
+#delete{
+  font-size:1.5vw;
+}
+#glog{
+  font-size: 1.5vw;
+}
+#publish{
+  font-size: 1.5vw;
+  width: 20%;
+  height:10%;
+}

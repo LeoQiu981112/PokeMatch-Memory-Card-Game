@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -7,12 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login</title>
     <link rel="stylesheet" type="text/css" href="login.css">
-</head>
+    <script src="jquery.min.js"></script>
+    <link rel = "icon" href="data:,">
 
+</head>
 <body>
 <div class="table1">
 </div>
-<form id="table11" action="/login" method="post" >
+<div id="table11">
     <input type="text" placeholder="Enter Username" name="Lid" id="Lid"/>
     <br/>
     <input type="password" placeholder="Enter Password" name="Lpassword" id="Lpassword"/>
@@ -21,23 +23,42 @@
     <a href="https://stark-spire-21434.herokuapp.com/signup.html">
     <input type="button" value="SignUp" id="Lsignup">
     </a>
-</form>
+</div>
+
+    <script>
+        $("#Llogin").click(function(){
+            var Lid=$("#Lid").val();
+            var Lpassword=$("#Lpassword").val();
+            $.ajax({
+                type:"post",
+                url:"/login",
+                data:{Lid:Lid,Lpassword:Lpassword},
+                success:function(data){
+                    if(data.status==0){
+                        location.href="https://stark-spire-21434.herokuapp.com/homepage.html";
+                    }else if(data.status==-1){
+                        location.href="https://stark-spire-21434.herokuapp.com/GM.html";
+                    }else{
+                        alert(data.msg);
+                    }
+                },
+                error:function(){
+                    alert("login error!");
+                }
+            })
+        });
+    </script>
+
 <input type="button" onClick="msgbox(1)" value="rule" id="Lrule">
 <div id='inputbox' class="box">
     <a class='x' href=''; onclick="msgbox(0); return false;">close</a>
-    The object of the game is to rearch 21 points or achieve a score higher than the dealer without exceeding 21
+    Players choose a pattern for the cards. Cards are all initialized face-down.
     <br/>
-    First, place a bet and hit Deal
+    Each player takes turns flipping two cards face-up — if they are of the same , then that player wins the pair(the pair stays face-up) and gets another turn.
     <br/>
-    Then HIT to add a card, or STAND if you are happen with your cards
+    If the cards are not identical, they are turned back facedown and it becomes the next player’s turn to pick two cards.
     <br/>
-    If your card total goes over 21 you are  BUST and the dealer wins 
-    <br/>
-    You can use INSURANCE if the dealer is dealt an ace. INsurance pays out if the dealer has BLACKJAC
-    <br/>
-    You can SPLIT your cards if dealt two cars of the same value
-    <br/>
-    DOUBLE your bet to receive only one further card if you are confident of beating the dealer
+    The game continues until players have picked up all the pairs; the winner is the player with the most pairs.
 </div>
 <script>  
     function msgbox(n){

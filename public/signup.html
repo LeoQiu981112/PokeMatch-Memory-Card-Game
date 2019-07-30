@@ -2,7 +2,9 @@
 <html>
 <head>
 
-<link href="signup.css " rel="stylesheet" type="text/css" />   
+<link href="signup.css " rel="stylesheet" type="text/css" />  
+<script src="jquery.min.js"></script> 
+<link rel = "icon" href="data:,">
 
 
 </head>
@@ -15,21 +17,27 @@
 
 
 
-   <form action="/signup" method="post">
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   <div> 
+   	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <label for="sid" >ID:</label>
+      &nbsp;
       <input type="text" id="sid" placeholder="Enter User ID" name="sid"/><br>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       <label for="spassword">Password:</label>
+      &nbsp;
       <input type="text" id="spassword" placeholder="Enter Password" name="spassword"/><br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <label for="sname">Name:</label>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <label for="sname">Name :</label>
+      &nbsp;
       <input type="text" id="sname" placeholder="Enter Your Name" name="sname"/><br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <label for="sage">Age:</label>
-      <input type="number" id="sage" placeholder="Enter Your Name" name="sage"/><br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+      <label for="sage">Age :</label>
+      &nbsp;
+      <input type="number" id="sage" placeholder="Enter Your Age" name="sage"/><br>
 
       <label for="squestion">Security Question:</label>
+      &nbsp;
       <select name="squestion" id="squestion">
          <option value="nonselect">Select</option>
          <option value=1>What is your mother's name?</option>
@@ -41,35 +49,59 @@
       </select><br>
 
       <label for="sanswer">Question   Answer :</label>
+      &nbsp;
       <input type="text" id="sanswer" placeholder="Enter Your Answer" name="sanswer"><br>
-      <input type="submit" value="sign up"  id="ssign" onClick="test()" >
+      <input type="submit" value="sign up"  id="ssign">
       <a href="https://stark-spire-21434.herokuapp.com/login.html">
             <input type="button" value="Back" id="sback" >
         </a>
-   </form>
+   </div>
 
 
 </div>
 <script>  
-   function test(){
-        var ID,pwd,name,age, sq,sa;
-        ID = document.getElementById('sid').value;
-        pwd= document.getElementById('spassword').value;
-        name= document.getElementById('sname').value;
-        age= document.getElementById('sage').value;
-        sq= document.getElementById('squestion').value;
-        sa= document.getElementById('sanswer').value;
+  $("#ssign").click(function(){
+    var sid=$("#sid").val();
+    var spassword=$("#spassword").val();
+    var sname=$("#sname").val();
+    var sage=$("#sage").val();
+    var squestion=$("#squestion").val();
+    var sanswer=$("#sanswer").val();
+    $.ajax({
+      type:"post",
+      url:"/signup",
+      data:{sid:sid,spassword:spassword,sname:sname,sage:sage,squestion:squestion,sanswer:sanswer},
+      success:function(data){
+        if(data.status==0){
+          location.href="https://stark-spire-21434.herokuapp.com/login.html";
+        }else{
+          alert(data.msg);
+        }
+      },
+      error:function(){
+        alert("insert error!");
+      }
+    })
+  });
+   //function test(){
+   //     var ID,pwd,name,age, sq,sa;
+     //   ID = document.getElementById('sid').value;
+       // pwd= document.getElementById('spassword').value;
+        //name= document.getElementById('sname').value;
+        //age= document.getElementById('sage').value;
+        //sq= document.getElementById('squestion').value;
+        //sa= document.getElementById('sanswer').value;
    
-        if(ID=="" || pwd=="" || name=="" || age=="" || sq=="" || sa==""){
-            alert("should enter all information");
-        }
-        else{
-         window.location.href="https://stark-spire-21434.herokuapp.com/login.html";
-        }
-        
-        
-    
-    }
+        //if(ID=="" || pwd=="" || name=="" || age=="" || sq=="" || sa==""){
+          //alert("Please enter all information!");
+        //}
+      //   else if(ID=="GM1"|| ID=="GM2" || ID=="GM3"){
+      //     alert("Sorry!You can not sign up as GM!")
+      //   }
+        //else{
+         //window.location.href="https://stark-spire-21434.herokuapp.com/login.html";
+        //}
+    //}
 </script>
 
 </body>
