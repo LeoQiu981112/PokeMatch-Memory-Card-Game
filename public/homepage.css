@@ -47,7 +47,7 @@ body{
 	opacity: 0.5;
 	top:25%;
     left: 52%;
-    z-index: -1;
+    z-index: -2;
 }
 #ranking2{
 	font-size: 1.5vw;
@@ -59,6 +59,8 @@ body{
 	position: absolute;
 	top:18%;
     left: 51%;
+    z-index: -1;
+
 }
 #rankingtitle2{
 	font-size: 3.5vw;
